@@ -37,7 +37,7 @@
                     android:layout_marginTop="50dp"
                     android:background="@drawable/im_avatar"
                     fresco:actualImageScaleType="focusCrop"
-                    fresco:placeholderImageScaleType="fitCenter"
+                    fresco:placeholderImageScaleType="centerCrop"
                     fresco:roundAsCircle="true"/>
 
                 <ImageView

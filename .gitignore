@@ -19,6 +19,8 @@
 /.settings
 /.idea
 /.gradle/2.8/taskArtifacts
+/gradlew
+/urgoo_client.iml
 ### Android template
 # Built application files
 *.apk
