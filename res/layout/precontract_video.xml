@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#50000000"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="272dp"
+        android:layout_height="375dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/checked_btn5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/xx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="视频预约"
+            android:textColor="#434343"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/cx"
+            android:layout_width="12dp"
+            android:layout_height="13dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/x" />
+
+        <TextView
+            android:id="@+id/flag1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="54dp"
+            android:text="预约顾问:"
+            android:textColor="#4c4c4c"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/yygw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="54dp"
+            android:layout_toRightOf="@+id/flag1"
+            android:paddingLeft="3dp"
+            android:text="Alex Lee"
+            android:textColor="#26bdab"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/flag2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/flag1"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="13dp"
+            android:text="预约日期:"
+            android:textColor="#4c4c4c"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/yyrq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/yygw"
+            android:layout_marginTop="13dp"
+            android:layout_toRightOf="@+id/flag2"
+            android:paddingLeft="3dp"
+            android:text="1月9日，星期三"
+            android:textColor="#26bdab"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/yysj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/yyrq"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@+id/flag2"
+            android:paddingLeft="3dp"
+            android:text="8:00-9:00"
+            android:textColor="#26bdab"
+            android:textSize="13sp" />
+        <TextView
+            android:id="@+id/yysjus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/yysj"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@+id/flag2"
+            android:paddingLeft="3dp"
+            android:text="(英国时间:20:00-21:00)"
+            android:textColor="#b0b3b3"
+            android:textSize="11sp" />
+
+        <Button
+            android:id="@+id/qr"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/checked_btn6"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ppw_bg"
+                android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="10dp"
+        android:scaleX="0.3"
+        android:scaleY="0.3"
+        android:layout_marginTop="10dp"
+        android:id="@+id/ImageDelIcon"
+        android:src="@drawable/cancelicon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/makerili"/>
+
+    <TextView
+        android:id="@+id/TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:gravity="center"
+        android:text="预约成功\n等待顾问确认"
+        android:textColor="#535353"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/TextView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="完善资料可提高预约成功率哦~"
+        android:textColor="#bfbfbf"
+        android:textSize="16sp"
+        />
+
+    <TextView
+        android:id="@+id/but_makegood_submit"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/TextView2"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="33dp"
+        android:gravity="center"
+        android:text="去完善资料"
+        android:textColor="#26bdab"
+        android:textSize="15sp"
+        />
+</RelativeLayout>

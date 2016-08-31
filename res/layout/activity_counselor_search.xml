@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/btn_trash"
+        android:drawableLeft="@drawable/laji"
+        android:text=" 清除历史记录"
+        android:textColor="#999999"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="#26BDAB"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="8"
+            android:background="@drawable/ppw_bg"
+            android:drawableLeft="@drawable/search_search"
+            android:hint="请输入顾问的姓名"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
+            android:textColor="#ccc"
+            android:textColorHint="#ccc"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_cancle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_history"
+        android:layout_below="@id/ll_top"
+        android:orientation="vertical"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="热门搜索"
+            android:textColor="#555"
+            android:textSize="14sp" />
+
+        <com.urgoo.view.FlowRadioGroup
+            android:id="@+id/frg_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="历史搜索"
+            android:textColor="#555"
+            android:textSize="14sp" />
+
+        <ListView
+            android:id="@+id/lv_history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:cacheColorHint="#00000000" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_nosearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawablePadding="20dp"
+        android:drawableTop="@drawable/img_no_search"
+        android:gravity="center"
+        android:text="更改筛选条件,一定可以找到合适的顾问"
+        android:textColor="@color/color_text_brief"
+        android:textSize="14dp"
+        android:visibility="gone" />
+
+    <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_top"
+        android:visibility="gone" />
+</RelativeLayout>

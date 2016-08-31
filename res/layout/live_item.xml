@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="200dp"
+    android:layout_height="120dp"
+    android:layout_marginLeft="15dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/img_live"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        fresco:actualImageScaleType="focusCrop"
+        fresco:placeholderImageScaleType="fitCenter"
+        fresco:roundWithOverlayColor="#ffffff"
+        fresco:roundedCornerRadius="6dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/img_mengceng" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="顾问直播"
+            android:layout_marginBottom="10dp"
+            android:textSize="18dp"
+            android:textColor="@color/btn_register_normal" />
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="你猜呢才是的阿萨德"
+            android:textSize="14dp"
+            android:textColor="@color/btn_register_normal" />
+    </LinearLayout>
+</FrameLayout>

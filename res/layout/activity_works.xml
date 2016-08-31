@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout_top"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@color/common_botton_bar_blue"
+        >
+
+        <LinearLayout
+            android:id="@+id/LinLyout_myorder_back"
+            android:layout_width="@dimen/height_top_bar45"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/img_myorder_title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/padding11"
+                android:adjustViewBounds="true"
+                android:src="@drawable/urgoo_title_back"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/myorder_message_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="顾问作品"
+            android:textColor="#fff"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
+    <com.urgoo.view.XListView
+        android:id="@+id/works_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:divider="@null"/>
+
+
+</LinearLayout>

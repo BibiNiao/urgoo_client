@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f7f7"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="258dp"
+        android:background="@color/white">
+
+        <EditText
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:background="@null"
+            android:gravity="left|top"
+            android:hint="Please writing content here..."
+            android:maxLength="150"
+            android:padding="10dp"
+            android:textColorHint="#e5e5e5"
+            android:textSize="16sp" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:id="@+id/photo_iv"
+                android:layout_width="71dp"
+                android:layout_height="71dp"
+                android:layout_marginLeft="12dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/choose_photo"
+                android:padding="50dp" />
+
+            <TextView
+                android:layout_toRightOf="@+id/photo_iv"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Add photo"
+                android:textColor="#9b9b9b" />
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="12dp"
+                android:layout_marginRight="12dp"
+                android:textColor="#434343"
+                tools:text="0/150" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

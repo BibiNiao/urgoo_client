@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="5dp"
+              android:layout_marginTop="5dp"
+              android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/xian"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding15"
+        android:layout_marginRight="@dimen/padding16"
+        android:layout_marginTop="@dimen/padding15"
+        android:paddingLeft="@dimen/call_button_padding_right30"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_c_s_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="            "
+                android:textColor="#000000"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_c_s_rmb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding8"
+                android:text="            "
+                android:textColor="#666666"
+                android:textSize="13sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center|right"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/but_c_s_hire"
+                android:layout_width="@dimen/padding85"
+                android:layout_height="@dimen/padding36"
+                android:layout_marginRight="@dimen/sidebar_text_size"
+                android:background="@drawable/ppw_button_bg_a"
+                android:gravity="center"
+                android:text="立即聘用"
+                android:textColor="#ffffff"
+                android:textSize="13sp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f7f7"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="#26BDAB">
+
+        <LinearLayout
+            android:id="@+id/LinLyout_schedule_back"
+            android:layout_width="45dip"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_myorder_title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="11dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/urgoo_title_back"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/myorder_message_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="请选择取消的理由"
+            android:textColor="#fff"
+            android:textSize="16sp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RelativeLayout"
+        android:layout_marginTop="10dp"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="对本次视频满意度："
+            android:textColor="#252525"
+            android:textSize="13sp"/>
+
+        <RatingBar
+            android:id="@+id/ratingBar_z1_score"
+            style="@style/MyRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:numStars="5"
+            android:rating="1"
+            android:minWidth="10dp"
+            android:stepSize="1"
+            />
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="对顾问做个评价："
+            android:textColor="#252525"
+
+            android:textSize="13sp"/>
+
+
+        <EditText
+            android:id="@+id/EditTexts"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/editext_bg"
+            android:gravity="left|top"
+            android:maxLength="30"
+            android:padding="5dp"
+            android:textColor="#b7b7b7"
+            android:textSize="13sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:text="5~100字"
+            android:textColor="#727272"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/but_ppw_cancel_submit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/common_botton_bar_blue"
+        android:gravity="center"
+        android:paddingBottom="3dp"
+        android:paddingTop="4dp"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="14sp"/>
+
+
+</RelativeLayout>

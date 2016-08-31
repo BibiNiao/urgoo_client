@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="272dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/ppw_bg"
+                android:orientation="vertical">
+    <TextView
+        android:id="@+id/spyy"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="视频预约确认"
+        android:textColor="#434343"
+        android:textScaleX="1.1"
+        android:textSize="14dp"/>
+
+    <ImageView
+        android:id="@+id/img_make_popup_x"
+        android:layout_width="12dp"
+        android:layout_height="13dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="13dp"
+        android:clickable="true"
+        android:src="@drawable/x"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="54dp"
+        android:text="预约顾问："
+        android:textColor="#4c4c4c"
+        android:textSize="12dp"/>
+
+    <TextView
+        android:id="@+id/tv_make_popup_user"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_below="@id/spyy"
+        android:layout_marginLeft="91dp"
+        android:layout_marginTop="24dp"
+        android:text="Karen Mitchel"
+        android:textColor="#26bdab"
+        android:textScaleX="1.08"
+        android:textSize="12dp"/>
+
+    <TextView
+        android:id="@+id/TextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="81dp"
+        android:text="预约日期："
+        android:textColor="#4c4c4c"
+        android:textSize="12dp"/>
+
+    <LinearLayout
+        android:id="@+id/Relat_make_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_make_popup_user"
+        android:layout_marginTop="14dp"
+        android:layout_toRightOf="@id/TextView2"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:id="@+id/Relat_make_popup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_make_popup_date"
+                android:layout_width="wrap_content"
+                android:layout_height="13dp"
+                android:text="5月9日星期三"
+                android:textColor="#26bdab"
+                android:textScaleX="1.08"
+                android:textSize="11dp"/>
+
+
+            <TextView
+                android:id="@+id/tv_make_popup_date_usa"
+                android:layout_width="wrap_content"
+                android:layout_height="11dp"
+                android:layout_below="@id/tv_make_popup_date"
+                android:layout_marginTop="3dp"
+                android:text="(美国时间:20:00-21:00)"
+                android:textColor="#b0b3b3"
+                android:textScaleX="1.08"
+                android:textSize="9dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/Relat_make_popup2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_make_popup_date_usa2"
+                android:layout_width="wrap_content"
+                android:layout_height="11dp"
+                android:layout_below="@+id/tv_make_popup_date2"
+                android:layout_marginTop="3dp"
+                android:text="(美国时间:20:00-21:00)"
+                android:textColor="#b0b3b3"
+                android:textScaleX="1.08"
+                android:textSize="9dp"/>
+
+            <TextView
+                android:id="@+id/tv_make_popup_date2"
+                android:layout_width="wrap_content"
+                android:layout_height="13dp"
+                android:layout_marginTop="10dp"
+                android:text="5月9日星期三"
+                android:textColor="#26bdab"
+                android:textScaleX="1.08"
+                android:textSize="11dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/Relat_make_popup3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_make_popup_date_usa3"
+                android:layout_width="wrap_content"
+                android:layout_height="11dp"
+                android:layout_below="@+id/tv_make_popup_date3"
+                android:layout_marginTop="3dp"
+                android:text="(美国时间:20:00-21:00)"
+                android:textColor="#b0b3b3"
+                android:textScaleX="1.08"
+                android:textSize="9dp"/>
+
+            <TextView
+                android:id="@+id/tv_make_popup_date3"
+                android:layout_width="wrap_content"
+                android:layout_height="13dp"
+                android:layout_marginTop="10dp"
+                android:text="5月9日星期三"
+                android:textColor="#26bdab"
+                android:textScaleX="1.08"
+                android:textSize="11dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/ly"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_below="@id/Relat_make_popup"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="19dp"
+        android:text="留言："
+        android:textColor="#4c4c4c"
+        android:textSize="12dp"/>
+
+    <RadioGroup
+        android:id="@+id/Radio_make_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/ly"
+        android:layout_below="@id/Relat_make_popup"
+        android:layout_marginLeft="13dp"
+        android:layout_toRightOf="@id/ly"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/Radio_make_popup_radio1"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ppw_button_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="初次沟通"
+            android:textColor="@drawable/ppw_button_bg_tv"
+            android:textSize="10dp"/>
+
+        <RadioButton
+            android:id="@+id/Radio_make_popup_radio2"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="77dp"
+            android:layout_marginTop="-20dp"
+            android:background="@drawable/ppw_button_bg"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="考试规则"
+            android:textColor="@drawable/ppw_button_bg_tv"
+            android:textSize="10dp"/>
+
+        <RadioButton
+            android:id="@+id/Radio_make_popup_radio3"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/ppw_button_bg"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="课外活动"
+            android:textColor="@drawable/ppw_button_bg_tv"
+            android:textSize="10dp"/>
+
+        <RadioButton
+            android:id="@+id/Radio_make_popup_radio4"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="77dp"
+            android:layout_marginTop="-20dp"
+            android:background="@drawable/ppw_button_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="选校指导"
+            android:textColor="@drawable/ppw_button_bg_tv"
+            android:textSize="10dp"/>
+
+        <RadioButton
+            android:id="@+id/Radio_make_popup_radio5"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/ppw_button_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="文书指导"
+            android:textColor="@drawable/ppw_button_bg_tv"
+            android:textSize="10dp"/>
+
+        <RadioButton
+            android:id="@+id/Radio_make_popup_radio6"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="77dp"
+            android:layout_marginTop="-20dp"
+            android:background="@drawable/ppw_button_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="例行会面"
+            android:textColor="@drawable/ppw_button_bg_tv"
+            android:textSize="10dp"/>
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/ed_make_popup_EditText"
+        android:layout_width="220dp"
+        android:layout_height="72dp"
+        android:layout_below="@id/Radio_make_popup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/mine_order_content_edittext_bg"
+        android:focusable="true"
+        android:gravity="left|top"
+        android:padding="5dp"
+        android:state_focused="true"
+        android:textColor="#383838"
+        android:textSize="13sp"
+        />
+
+    <Button
+        android:id="@+id/but_make_popup_submit"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_below="@+id/ed_make_popup_EditText"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/ppw_button_bottom"
+        android:text="确认"
+        android:textColor="@color/white"
+        android:textSize="12dp"/>
+
+</RelativeLayout>
+

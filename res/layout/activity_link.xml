@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="#26BDAB">
+
+        <LinearLayout
+            android:id="@+id/ll_breakss"
+            android:layout_width="45dip"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="11dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/urgoo_title_back"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="优顾三方协议"
+            android:textColor="#fff"
+            android:textSize="16sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_toLeftOf="@+id/relativeLayout1"
+            android:layout_toStartOf="@+id/relativeLayout1"
+            android:text="具体服务"
+            android:textColor="@color/tv26bdab"
+            android:textSize="10sp"/>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView13"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp">
+
+            <TextView
+                android:id="@+id/im1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/glv"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="2dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="9dp"
+                android:layout_toRightOf="@+id/im1"
+                android:background="@color/tv25b7a6"
+                android:visibility="visible"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/relativeLayout7"
+            android:layout_toEndOf="@+id/relativeLayout7"
+            android:layout_toRightOf="@+id/relativeLayout7">
+
+            <TextView
+                android:id="@+id/im2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/glv"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="2dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="9dp"
+                android:layout_toRightOf="@+id/im2"
+                android:background="@color/tv25b7a6"
+                android:visibility="visible"
+                />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/relativeLayout1"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/relativeLayout1"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
+            android:text="支付保障"
+            android:textColor="@color/tv26bdab"
+            android:textSize="10sp"/>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView14"
+            android:layout_toRightOf="@+id/relativeLayout1">
+
+            <TextView
+                android:id="@+id/im3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/glv"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="2dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="9dp"
+                android:layout_toRightOf="@+id/im3"
+                android:background="@color/linecccccc"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="51dp"
+            android:layout_marginRight="51dp"
+            android:layout_toLeftOf="@+id/relativeLayout9"
+            android:layout_toStartOf="@+id/relativeLayout9"
+            android:text="三方协议"
+            android:textColor="@color/tv26bdab"
+            android:textSize="10sp"/>
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/relativeLayout8"
+            android:layout_toRightOf="@+id/relativeLayout8"
+            android:text="订单"
+            android:textColor="@color/color_text_brief"
+            android:textSize="10sp"/>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView15"
+            android:layout_toRightOf="@+id/relativeLayout8">
+
+            <TextView
+                android:id="@+id/im4"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ghui"
+                android:gravity="center"
+                android:text="4"
+                android:textColor="@color/linecccccc"
+                android:textSize="10sp"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/padding27"
+        android:layout_marginRight="@dimen/padding27"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi1"
+                            android:textColor="#383838"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="20dp"
+                        android:background="#cccccc"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/tv_times"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="   "
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="@string/xiyi_jia"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+
+                            <EditText
+                                android:id="@+id/et_names"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:hint="输入家长名字"
+                                android:inputType="text"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp"
+                                android:textColor="#666666"
+                                android:textColorHint="#cfcfcf"
+                                android:textSize="11sp"
+                                />
+
+                            <EditText
+                                android:id="@+id/et_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@color/white"
+                                android:hint="输入学生名字"
+                                android:inputType="text"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp"
+                                android:singleLine="true"
+                                android:textColor="#666666"
+                                android:textColorHint="#cfcfcf"
+                                android:textSize="11sp"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="@string/xiyi_id"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            >
+
+                            <EditText
+                                android:maxLength="18"
+                                android:id="@+id/et_ids"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:digits="0123456789QWERTYUIOPLKJHGFDSAZXCVBNMqwertyuiopasdfghjklmnbvcxz"
+                                android:hint="输入家长身份证号或护照"
+                                android:inputType="number"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp"
+                                android:singleLine="true"
+                                android:textColor="#666666"
+                                android:textColorHint="#cfcfcf"
+                                android:textSize="11sp"
+                                />
+
+                            <EditText
+                                android:id="@+id/et_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:digits="0123456789QWERTYUIOPLKJHGFDSAZXCVBNMqwertyuiopasdfghjklmnbvcxz"
+                                android:hint="输入学生身份证号或护照"
+                                android:inputType="number"
+                                android:maxLength="18"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp"
+                                android:singleLine="true"
+                                android:textColor="#666666"
+                                android:textColorHint="#cfcfcf"
+                                android:textSize="11sp"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_add"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <EditText
+                            android:id="@+id/et_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:hint="输入地址"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:singleLine="true"
+                            android:textColor="#666666"
+                            android:inputType="text"
+                            android:textColorHint="#cfcfcf"
+                            android:textSize="11sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_phone"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <EditText
+                            android:id="@+id/et_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:hint="输入电话"
+                            android:inputType="number"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:maxLength="11"
+                            android:singleLine="true"
+                            android:textColor="#666666"
+                            android:textColorHint="#cfcfcf"
+                            android:textSize="11sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_emil"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <EditText
+                            android:id="@+id/et_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:hint="填写邮件"
+                            android:inputType="textEmailAddress"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:singleLine="true"
+                            android:textColor="#666666"
+                            android:textColorHint="#cfcfcf"
+                            android:textSize="11sp"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_yi"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_counselor_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:text=""
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_id"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_counselor_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:text=""
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_add"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_counselor_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:text=""
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_phone"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_counselor_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:text=""
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_emil"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_counselor_emil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:text=""
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_bing"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_name"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_add"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_adda"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_phone"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_phonea"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_emil"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/xiyi_emila"
+                            android:textColor="#666666"
+                            android:textSize="11sp"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp">
+
+                    <TextView
+                        android:id="@+id/xieyi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/xieyi"
+                        android:textColor="#666666"
+                        android:textSize="11sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:id="@+id/rrl_subit"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="#26BDAB">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/tv_order"
+            android:layout_toStartOf="@+id/tv_order"
+            android:src="@drawable/gou"/>
+
+        <TextView
+            android:id="@+id/tv_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="同意"
+            android:textColor="#fff"
+            android:textSize="17sp"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

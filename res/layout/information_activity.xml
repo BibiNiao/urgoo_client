@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="#26BDAB">
+
+        <LinearLayout
+            android:id="@+id/back"
+            android:layout_width="45dip"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/urgoo_title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="11dp"
+                android:src="@drawable/urgoo_title_back"
+                android:adjustViewBounds="true" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/message_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="通知"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+
+        <LinearLayout
+            android:id="@+id/activity_selectimg_send"
+            android:layout_width="60dip"
+            android:layout_height="match_parent"
+
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:text=""
+                android:textColor="#2d2d2d" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:textColor="#9e9e9e" />
+        </LinearLayout>
+    </RelativeLayout>
+    <TabHost
+        android:id="@+id/tab_host"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:showDividers="none"></TabWidget>
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@android:id/tabs"
+                android:visibility="gone"></FrameLayout>
+        </LinearLayout>
+    </TabHost>
+</LinearLayout>

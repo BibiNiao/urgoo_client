@@ -1,0 +1,112 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.growingio.android:vds-gradle-plugin:0.9.85'
+    }
+}
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 22
+    buildToolsVersion '23.0.1'
+
+    defaultConfig {
+        applicationId "com.urgoo.client"
+        minSdkVersion 10
+        targetSdkVersion 22
+        versionCode 7
+        versionName "2.0.1"
+        multiDexEnabled true
+        ndk {
+            abiFilters 'armeabi-v7a', 'armeabi', 'x86'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/ASL2.0'
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+
+        // Move the tests to tests/java, tests/res, etc...
+        instrumentTest.setRoot('tests')
+
+        // Move the build types to build-types/<type>
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of them default location under src/<type>/... which would
+        // conflict with src/ being used by the main source set.
+        // Adding new build types or product flavors should be accompanied
+        // by a similar customization.
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    configurations { all*.exclude group: 'com.android.support', module: 'support-v4' }
+}
+apply plugin: 'com.growingio.android'
+dependencies {
+    compile fileTree(include: '*.jar', exclude: 'android-support-multidex.jar', dir: 'libs')
+    compile('com.marshalchen.ultimaterecyclerview:library:0.3.18') {
+        exclude module: 'support-annotations'
+        exclude module: 'glide'
+    }
+    compile project(':easeui')
+    compile 'com.android.support:cardview-v7:22.2.1'
+    compile files('libs/alipaySdk-20160516.jar')
+    compile files('libs/libammsdk.jar')
+    compile project(':zoomcommonlib')
+    compile project(':zoomsdk')
+    compile('com.facebook.fresco:fresco:0.9.0') {
+        exclude group: 'com.parse.bolts',
+                module: 'bolts-android'
+    }
+    compile project(':library')
+    compile 'com.growingio.android:vds-android-agent:0.9.85@aar'
+    compile 'com.tencent.bugly:crashreport:latest.release'
+    compile files('libs/ShareSDK-SinaWeibo-2.7.6.jar')
+    compile files('libs/SHRBSDK.jar')
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.alibaba:fastjson:1.2.14'
+}
+repositories {
+    mavenCentral()
+}

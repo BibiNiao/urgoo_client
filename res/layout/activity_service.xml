@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="#26BDAB">
+
+        <LinearLayout
+            android:id="@+id/ll_breakss"
+            android:layout_width="45dip"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="11dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/urgoo_title_back"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="具体服务"
+            android:textColor="#fff"
+            android:textSize="16sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:layout_marginRight="48dp"
+            android:text="具体服务"
+            android:textColor="@color/tv26bdab"
+            android:textSize="10sp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/relativeLayout1"
+            android:layout_toStartOf="@+id/relativeLayout1"/>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView13"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp">
+
+            <TextView
+                android:id="@+id/im1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/glv"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="2dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="9dp"
+                android:layout_toRightOf="@+id/im1"
+                android:background="@color/tv25b7a6"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/relativeLayout7"
+            android:layout_toEndOf="@+id/relativeLayout7"
+            android:layout_toRightOf="@+id/relativeLayout7">
+
+            <TextView
+                android:id="@+id/im2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ghui"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="#999"
+                android:textSize="10sp"
+                />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="2dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="9dp"
+                android:layout_toRightOf="@+id/im2"
+                android:background="@color/linecccccc"
+
+                />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
+            android:text="支付保障"
+            android:textColor="@color/color_text_brief"
+            android:textSize="10sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/relativeLayout1"
+            android:layout_alignEnd="@+id/relativeLayout1"/>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView14"
+            android:layout_toRightOf="@+id/relativeLayout1">
+
+            <TextView
+                android:id="@+id/im3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ghui"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="#999"
+                android:textSize="10sp"
+                />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="2dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="9dp"
+                android:layout_toRightOf="@+id/im3"
+                android:background="@color/linecccccc"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="51dp"
+            android:layout_marginRight="51dp"
+            android:text="三方协议"
+            android:textColor="@color/color_text_brief"
+            android:textSize="10sp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/relativeLayout9"
+            android:layout_toStartOf="@+id/relativeLayout9"/>
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单"
+            android:textColor="@color/color_text_brief"
+            android:textSize="10sp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/relativeLayout8"
+            android:layout_toEndOf="@+id/relativeLayout8"/>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView15"
+            android:layout_toRightOf="@+id/relativeLayout8">
+
+            <TextView
+                android:id="@+id/im4"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ghui"
+                android:gravity="center"
+                android:text="4"
+                android:textColor="@color/linecccccc"
+                android:textSize="10sp"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="服务内容："
+                android:textColor="#999999"
+                android:textSize="14dp"
+                />
+
+            <ListView
+                android:id="@+id/serverList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="16dp"
+                android:divider="@null"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#999999"
+                />
+
+            <TextView
+                android:id="@+id/tv_beizhu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="顾问备注："
+                android:textColor="#999999"
+                android:textSize="14dp"
+                android:visibility="visible"
+                />
+
+            <TextView
+                android:id="@+id/tv_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:lineSpacingExtra="8dp"
+                android:text="顾问备注顾问备注顾问备注顾问备注顾问备注"
+                android:textColor="#666666"
+                android:textSize="14sp"
+                android:visibility="visible"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_order"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_centerInParent="true"
+        android:background="#26BDAB"
+        android:gravity="center"
+        android:text="阅读优顾支付保障"
+        android:textColor="#fff"
+        android:textSize="16sp"/>
+
+</LinearLayout>

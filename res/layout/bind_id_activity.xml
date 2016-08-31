@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="#26BDAB">
+
+        <LinearLayout
+            android:id="@+id/back"
+            android:layout_width="45dip"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="11dp"
+                android:adjustViewBounds="true" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/message_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="绑定ID"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+
+        <LinearLayout
+            android:id="@+id/activity_selectimg_send"
+            android:layout_width="60dip"
+            android:layout_height="match_parent"
+
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:text=""
+                android:textColor="#2d2d2d" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:textColor="#9e9e9e" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="9dp"
+        android:text="请选择你的身份:"
+        android:textColor="#575757"
+        android:textSize="12sp" />
+
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/student_rb"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:background="@drawable/bindid_selector"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="学生"
+            android:textColor="@drawable/bindid_textcolor_selector"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/parents_rb"
+            android:layout_width="100dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/bindid_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="家长"
+            android:textColor="@drawable/bindid_textcolor_selector"
+            android:textSize="13sp" />
+    </RadioGroup>
+
+
+    <include
+        layout="@layout/uilib_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
+    <EditText
+        android:id="@+id/bind_phone_ev"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:hint="请输入要绑定的手机号"
+        android:imeOptions="actionNext"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:paddingLeft="12dp"
+        android:singleLine="true"
+        android:textColor="#434343"
+        android:textColorHint="#e5e5e5"
+        android:textSize="13sp" />
+
+
+    <include layout="@layout/uilib_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/verify_ev"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:hint="验证码"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:paddingLeft="12dp"
+            android:singleLine="true"
+            android:textColor="#434343"
+            android:textColorHint="#e5e5e5"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="21dp"
+            android:layout_gravity="center_vertical"
+            android:background="#6abdab" />
+
+        <Button
+            android:id="@+id/verify_code"
+            android:layout_width="130dp"
+            android:layout_height="44dp"
+            android:background="@android:color/white"
+            android:text="获取验证码"
+            android:textColor="#26bdab"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <include
+        layout="@layout/uilib_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="62.0dp"
+        android:layout_marginRight="62.0dp"
+        android:layout_marginTop="69dp"
+        android:background="@drawable/btn_register_bg"
+        android:text="确认"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

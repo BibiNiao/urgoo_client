@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/adb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_centerInParent="true"
+        android:background="#f6f6f6"
+        android:gravity="center"
+        android:text="系统消息"
+        android:textSize="9dp"/>
+
+    <View
+        android:id="@+id/point"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:layout_above="@+id/content_vt"
+        android:layout_toRightOf="@+id/content_vt"
+        android:background="@drawable/circle_red"
+        android:visibility="gone"/>
+</RelativeLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_search_bar"
+                android:layout_marginTop="@dimen/padding_search_bar"
+    >
+
+    <TextView
+        android:id="@+id/tv_content_serverName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="Townsenf Hrris High School,Flushing,New York  "
+        android:textColor="#666666"
+        android:textSize="13sp"
+        />
+
+</RelativeLayout>

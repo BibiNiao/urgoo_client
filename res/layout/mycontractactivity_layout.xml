@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffe6e6e6"
+    android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="#26BDAB" >
+		 <LinearLayout  
+			    android:id="@+id/back"
+			    android:layout_width="45dip"
+			    android:layout_height="match_parent"
+			    android:clickable="true"
+			    android:orientation="horizontal" > 
+			       <ImageView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content" 
+		            android:layout_gravity="center_vertical"
+			        android:layout_marginLeft="11dp"  
+		            android:adjustViewBounds="true"
+		            android:src="@drawable/urgoo_title_back"
+		             />
+			
+			</LinearLayout>
+	       <TextView
+	            android:id="@+id/message_title"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_centerInParent="true"
+	            android:text="My Contract"
+	            android:textColor="#fff"
+	            android:textSize="18sp" />
+
+      
+        <LinearLayout  
+            android:id="@+id/activity_selectimg_send"
+		    android:layout_width="60dip"
+		    android:layout_height="match_parent"
+		    
+		    android:clickable="true"
+		    android:orientation="horizontal" 
+		    android:gravity="left"
+		    android:layout_alignParentRight="true">
+			     
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical" 
+		        android:layout_marginRight="10dp"  
+		        android:textColor="#2d2d2d" 
+		        android:text="" />
+	       	 <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical" 
+		        android:layout_marginRight="5dp"  
+		        android:layout_centerVertical="true"
+		        android:gravity="center"
+		        android:textColor="#9e9e9e"  />
+		</LinearLayout>
+    </RelativeLayout>
+
+      <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:fadingEdge="none" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+          
+            android:orientation="vertical" >
+	       	 
+            <RelativeLayout
+		        android:id="@+id/re_myinfo"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:clickable="true"
+		        android:layout_centerVertical="true">
+		        
+                <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical" 
+		        android:padding="8dp" 
+		        android:layout_centerVertical="true"
+		        android:text="Nam porttitor blandit accumsan. Ut vel dictum sem, a pretium dui. In malesuada enim in dolor euismod, id commodo mi consectetur. Curabitur at vestibulum nisi. Nullam vehicula nisi velit. Mauris turpis nisl, molestie ut ipsum et, suscipit vehicula odio. Vestibulum interdum vestibulum felis ac molestie. Praesent aliquet quam et libero dictum, vitae dignissim leo eleifend. In in turpis turpis. Quisque justo turpis, vestibulum non enim nec, tempor mollis mi. Sed vel tristique quam.
+Nam porttitor blandit accumsan. Ut vel dictum sem, a pretium dui. In malesuada enim in dolor euismod, id commodo mi consectetur. Curabitur at vestibulum nisi. Nullam vehicula nisi velit. Mauris turpis nisl, molestie ut ipsum et, suscipit vehicula odio. Vestibulum interdum vestibulum felis ac molestie. Praesent aliquet quam et libero dictum, vitae dignissim leo eleifend. In in turpis turpis. Quisque justo turpis, vestibulum non enim nec, tempor mollis mi. Sed vel tristique quam.
+Nam porttitor blandit accumsan. Ut vel dictum sem, a pretium dui. In malesuada enim in dolor euismod, id commodo mi consectetur. Curabitur at vestibulum nisi. Nullam vehicula nisi velit. Mauris turpis nisl, molestie ut ipsum et, suscipit vehicula odio. Vestibulum interdum vestibulum felis ac molestie. Praesent aliquet quam et libero dictum, vitae dignissim leo eleifend. In in turpis turpis. Quisque justo turpis, vestibulum non enim nec, tempor mollis mi. Sed vel tristique quam.
+Nam porttitor blandit accumsan. Ut vel dictum sem, a pretium dui. In malesuada enim in dolor euismod, id commodo mi consectetur. Curabitur at vestibulum nisi. Nullam vehicula nisi velit."
+		        android:gravity="center"
+		        android:textSize="14sp"
+		        android:textColor="#9e9e9e"  />
+         </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ffffff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@color/common_botton_bar_blue">
+
+        <LinearLayout
+            android:id="@+id/back"
+            android:layout_width="45dip"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="11dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/urgoo_title_back" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/counselorlist"
+            android:textColor="@color/ffffff"
+            android:textSize="18sp" />
+
+
+        <LinearLayout
+            android:id="@+id/search"
+            android:layout_width="45dip"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="11dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_list_search" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.yyydjk.library.DropDownMenu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/dropDownMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:dddividerColor="@color/white"
+        app:ddmaskColor="#6fffffff"
+        app:ddmenuBackgroundColor="@color/white"
+        app:ddmenuSelectedIcon="@drawable/ic_down_selected"
+        app:ddmenuTextSize="13sp"
+        app:ddmenuUnselectedIcon="@drawable/ic_drop_up_unselect"
+        app:ddtextSelectedColor="@color/tv0fb7a3"
+        app:ddtextUnselectedColor="@color/tv666666"
+        app:ddunderlineColor="@color/linecccccc" />
+
+    <TextView
+        android:id="@+id/tv_nosearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="130dp"
+        android:drawablePadding="20dp"
+        android:drawableTop="@drawable/img_no_search"
+        android:text="更改筛选条件,一定可以找到合适的顾问"
+        android:textColor="@color/color_text_brief"
+        android:textSize="14dp"
+        android:visibility="gone"/>
+</LinearLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:paddingTop="5dp"
+    android:background="#ff9e9e9e"
+    android:paddingBottom="5dp" >
+
+    <ImageView
+        android:id="@+id/iv_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:contentDescription="@string/app_name"
+        android:src="@android:drawable/stat_sys_download" />
+    
+    <TextView
+        android:id="@+id/tv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_download"
+        android:layout_marginLeft="5dp"
+        android:paddingTop="2dp"
+        android:text="35%"
+        android:textColor="@android:color/white" />
+    
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tv_progress"
+        android:layout_marginLeft="6dp"
+        android:text="better"
+        android:textColor="@android:color/white" />
+    
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="am 9:00"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:textColor="@android:color/white" />
+
+    <ProgressBar
+        android:id="@+id/pb_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/progressbar_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="4dp"
+        android:maxHeight="4dp"
+        android:layout_alignBottom="@id/tv_progress"
+        android:layout_alignLeft="@id/tv_title"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="-5dp"
+        android:layout_marginRight="3dp"
+        android:paddingLeft="6dp"
+        android:paddingRight="3dp" />
+
+</RelativeLayout>

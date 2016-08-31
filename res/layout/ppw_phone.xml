@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/RelativeLayoutbj"
+    >
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ppw_bg"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:paddingTop="10dp">
+
+        <Button
+            android:id="@+id/but_pictures"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ppw_but_bg"
+            android:text="拨打电话"
+            android:textColor="@drawable/ppw_but_bg_tv"
+            android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/but_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ppw_but_bg2"
+            android:text="取消"
+            android:textColor="@drawable/ppw_but_bg_tv2"
+            android:textSize="15sp"/>
+    </LinearLayout>
+</RelativeLayout>

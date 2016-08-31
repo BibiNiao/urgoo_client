@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:paddingLeft="34dp"
+    android:paddingRight="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <com.urgoo.view.CircleImageView
+            android:id="@+id/img_touxiang"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:src="@drawable/default_useravatar"/>
+
+        <RelativeLayout
+            android:id="@+id/re_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/img_touxiang"
+            android:layout_marginBottom="11dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/img_touxiang"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Jacqueline Gonzalez"
+                android:textColor="#3d3d3d"
+                android:textSize="11sp"/>
+
+            <TextView
+                android:id="@+id/tv_shijian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="07-10 10:15"
+                android:textColor="#cccccc"
+                android:textSize="10sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rll_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/re_name"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/img_touxiang"
+            >
+
+            <TextView
+                android:id="@+id/tv_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:paddingRight="50dp"
+                android:text="Reveal the plugins folder, open Content Generator Sketch Plugin, then paste your text into the this file: Data > Text > my-text.js"
+                android:textColor="#333333"
+                android:textSize="12sp"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/rll_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rll_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="16dp"
+            android:layout_toEndOf="@+id/img_touxiang"
+            android:layout_toRightOf="@+id/img_touxiang"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/ll_fujian"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="0.5"
+                    android:scaleY="0.5"
+                    android:src="@drawable/biezhen"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_cont_fujian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="3dp"
+                    android:text="             "
+                    android:textColor="#aeaeae"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="回复"
+                android:textColor="#26bdab"
+                android:textSize="12sp"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

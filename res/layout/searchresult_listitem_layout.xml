@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/searchresult_listitem_titlelayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="-3dp"
+        android:background="#ffdcdcdc"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/searchresult_listitem_titletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="民生资讯"
+            android:textColor="#ff0b7bf6"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/searchresult_listitem_titlerightarrowimg"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/common_rightarrow" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/searchresult_listitem_infolayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffffff"
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/searchresult_listitem_infotitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:textColor="#ff444444"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/searchresult_listitem_infotime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:textColor="#ff666666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/searchresult_listitem_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:paddingTop="5dp"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:textColor="#ff666666"
+            android:visibility="gone"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/searchresult_listitem_infoline"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="#ff999999" />
+    </LinearLayout>
+
+</LinearLayout>

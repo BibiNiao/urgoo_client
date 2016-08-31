@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_huangguan"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="60dp"
+            android:src="@drawable/ic_huangguan" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="140dp"
+            android:background="@drawable/dot_line_white"
+            android:layerType="software" />
+
+        <RelativeLayout
+            android:id="@+id/rl_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_huangguan"
+            android:layout_marginLeft="48dp">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/bg_name"
+                android:gravity="center"
+                android:text="韩梅梅" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.urgoo.view.CircleImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="#a1b3c8" />
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_width="53dp"
+                    android:layout_height="53dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/img_defult_avatar"
+                    fresco:actualImageScaleType="focusCrop"
+                    fresco:placeholderImageScaleType="fitCenter"
+                    fresco:roundAsCircle="true" />
+            </RelativeLayout>
+        </RelativeLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="69dp"
+            android:background="@color/tv25b7a6" />
+    </RelativeLayout>
+
+    <com.urgoo.view.TimeLineListView
+        android:id="@+id/lv_nostart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:listSelector="@android:color/transparent" />
+
+</LinearLayout>

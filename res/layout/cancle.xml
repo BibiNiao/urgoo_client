@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="238dp"
+    android:background="@drawable/checked_btn5"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/xx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="为什么要取消呢?"
+        android:textColor="#434343"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/cx"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:paddingRight="21dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="21dp"
+        android:layout_marginRight="21dp"
+        android:src="@drawable/x" />
+
+    <TextView
+        android:id="@+id/shijianct"
+        android:layout_width="185dp"
+        android:layout_height="38dp"
+        android:layout_below="@+id/xx"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/checked_btn7"
+        android:gravity="center"
+        android:text="时间冲突"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/yigoutong"
+        android:layout_width="185dp"
+        android:layout_height="38dp"
+        android:layout_below="@+id/shijianct"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/checked_btn8"
+        android:gravity="center"
+        android:text="已沟通"
+        android:textColor="@color/common_botton_bar_blue" />
+
+    <Button
+        android:id="@+id/qr"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/checked_btn6"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/white" />
+</RelativeLayout>

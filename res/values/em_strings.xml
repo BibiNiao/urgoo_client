@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="system_msg">系统消息</string>
+    <string name="task_msg">任务</string>
+    <string name="account_msg">账户</string>
+    <string name="app_name">优顾</string>
+    <string name="app_slogon">IM as a service</string>
+    <string name="text_ack_msg">Read</string>
+    <string name="text_delivered_msg">Delivered</string>
+    <string name="back">Back</string>
+    <string name="save">Save</string>
+    <string name="button_pushtotalk">Hold to talk</string>
+    <string name="button_send">Send</string>
+    <string name="attach_smile">Emoticon</string>
+    <string name="attach_picture">Image</string>
+    <string name="attach_take_pic">Capture</string>
+    <string name="attach_location">Location</string>
+    <string name="attach_video">Video</string>
+    <string name="attach_file">File</string>
+    <string name="attach_voice_call">Voice call</string>
+    <string name="attach_video_call">Video call</string>
+    <string name="user_card">Business card</string>
+    <string name="move_up_to_cancel">Finger up to cancel sending</string>
+    <string name="release_to_cancel">Finger release to cancel sending</string>
+    <string name="send_fail">Send failed</string>
+    <string name="delete_message">Delete message</string>
+    <string name="delete_conversation_messages">Delete conversation and messages</string>
+    <string name="delete_conversation">Delete conversation</string>
+    <string name="copy_message">Copy message</string>
+    <string name="delete_voice">Delete voice</string>
+    <string name="delete_video">Delete video</string>
+    <string name="delete">Delete</string>
+    <string name="resend">Resend</string>
+    <string name="confirm_resend">Confirm to resend？</string>
+    <string name="connect_failuer_toast">Please check the network or try again later</string>
+    <string name="network_unavailable">The network connection is not available, please check the network</string>
+    <string name="copy">Copy</string>
+    <string name="forward">Forward</string>
+    <string name="button_uploadlog">Upload the log</string>
+    <string name="cancel">Cancel</string>
+    <string name="prompt">Prompt</string>
+    <string name="clear_records">Clear conversation?</string>
+    <string name="clear_all_records">Clear all conversations？</string>
+    <string name="location_recv">[%1$s location]</string>
+    <string name="location_message">The location information</string>
+    <string name="recording_video">Record video</string>
+    <string name="location_prefix">[my location]</string>
+    <string name="picture">[Picture]</string>
+    <string name="video">[Video]</string>
+    <string name="file">[file]</string>
+    <string name="voice_call">[Voice call]</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_save">Save</string>
+    <string name="button_search">Find</string>
+    <string name="button_add">Add</string>
+    <string name="search_header">Search</string>
+    <string name="network_isnot_available">The network is not available</string>
+    <string name="recoding_fail">The recording failure, please try again！</string>
+    <string name="select_contacts">Select the contact</string>
+    <string name="confirm_forward_to">Confirm to forward to：%1$s ?</string>
+    <string name="logout">Logout</string>
+    <string name="logout_hint">Logout will never clear the chat history, this account can be used on next login</string>
+    <string name="exit_group_hint">The group messages will not be received after exiting the group</string>
+    <string name="dissolution_group_hint">The group will be dismissed after exiting</string>
+    <string name="exit_group">Exit</string>
+    <string name="connect_conflict">The same account was loggedin in other device</string>
+    <string name="em_user_remove">This user has been removed</string>
+    <string name="set">Settings</string>
+    <string name="Profile">Profile</string>
+    <string name="notify">New message notification</string>
+    <string name="newnotify">Receiving a new message</string>
+    <string name="voice">Voice</string>
+    <string name="shake">Vibrate</string>
+    <string name="chatset">Chat settings</string>
+    <string name="yangshengqi">Use speaker</string>
+    <string name="book_black">Black list</string>
+    <string name="session">Message</string>
+    <string name="address_book">Address book</string>
+    <string name="setting">Settings</string>
+    <string name="now_refresh_list">Loading data</string>
+    <string name="Application_and_notify">Invitation and notification</string>
+    <string name="save_new_nickname">Save new nickname</string>
+    <string name="nickname_description">Once this nickname is set, it will be used in push notification (by default this is user ID ) when the receiver is using the iOS device.</string>
+    <string name="group_chat">Group chat</string>
+    <string name="chat_room">Chat room</string>
+    <string name="add_friend">Add friends</string>
+    <string name="search">Search</string>
+    <string name="black_item">Black list</string>
+    <string name="diagnose">Diagnose</string>
+    <string name="push_nick">nickname for APNS </string>
+    <string name="Current_version">Current version</string>
+    <string name="Not_Set">Not set</string>
+    <string name="Upload_the_log">Uploading the log</string>
+    <string name="The_new_group_chat">Create new group</string>
+    <string name="add_public_group_chat">Add public group</string>
+    <string name="add_public_chat_room">Add public chatroom</string>
+    <string name="group_not_found">Can not find this group</string>
+    <string name="group_name">Group name</string>
+    <string name="Group_chat_profile">Group profile</string>
+    <string name="Whether_the_public">Is public</string>
+    <string name="Open_group_members_invited">Allow members to invite</string>
+    <string name="Open_group_chat">Public groups</string>
+    <string name="join_need_owner_approval">Join need group owner approval</string>
+    <string name="blacklist">Black list</string>
+    <string name="Empty_the_chat_record">Clear conversation</string>
+    <string name="Shielding_of_the_message">Block message</string>
+    <string name="dismiss_group">Dismiss group</string>
+    <string name="Select_the_contact">Select the contact</string>
+    <string name="Group_chat_information">The group description</string>
+    <string name="Group_of_Lord">The group owner</string>
+    <string name="Introduction">Brief</string>
+    <string name="To_join_the_chat">Join the group</string>
+    <string name="login">Login</string>
+    <string name="user_name">User name</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="confirmpassword">Confirm password</string>
+    <string name="downwaiting">Downloading the file, please try again later</string>
+    <string name="mute">Mute</string>
+    <string name="Hands_free">Handsfree</string>
+    <string name="hang_up">Hang up</string>
+    <string name="answer">Answer</string>
+    <string name="unable_to_connect">Unable to connect to the server</string>
+    <string name="newchat">Create new group</string>
+    <string name="agree">Agree</string>
+    <string name="refuse">Refuse</string>
+    <string name="not_download">Did not download:</string>
+    <string name="Please_enter_a_username">Please enter a username</string>
+    <string name="is_down_please_wait">Downloading video, please try again later</string>
+    <string name="Exit_the_group_chat">Exit the group</string>
+    <string name="accept_join_group">accept join group:</string>
+    <string name="refuse_join_group">refuse join group:</string>
+
+    <string name="not_add_myself">"Can't add yourself"</string>
+    <string name="This_user_is_already_your_friend">This user is already your friend</string>
+    <string name="Add_a_friend">Let me to be your friend!</string>
+    <string name="send_successful">Request was sent, waiting for the peer to accept</string>
+    <string name="Request_add_buddy_failure">Request add buddy failure:</string>
+    <string name="Network_error">Network error</string>
+    <string name="Making_sure_your_location">Making sure your location..</string>
+    <string name="please_check">key validation error!Please on AndroidManifest.xml file check the key set</string>
+    <string name="expression">[expression]</string>
+    <string name="Removed_from_the_failure">Removed fail</string>
+    <string name="be_removing">Be removing</string>
+    <string name="call_duration">call duration</string>
+    <string name="Refused">Refused</string>
+    <string name="The_other_party_has_refused_to">Call was refused</string>
+    <string name="The_other_is_not_online">The peer is not online</string>
+    <string name="The_other_is_on_the_phone">The peer is on the phone</string>
+    <string name="The_other_party_did_not_answer">The peer did not answer</string>
+    <string name="did_not_answer">did not answer</string>
+    <string name="Has_been_cancelled">Cancelled</string>
+    <string name="unable_to_get_loaction">Unable to get to your location information!</string>
+    <string name="not_connect_to_server">Not connect to server, please try again later</string>
+    <string name="sd_card_does_not_exist">"SD card does not exist, can't take pictures"</string>
+    <string name="cant_find_pictures">"Can't find pictures"</string>
+    <string name="File_does_not_exist">File does not exist</string>
+    <string name="The_file_is_not_greater_than_10_m">The file is not greater than 10 m</string>
+    <string name="Whether_to_empty_all_chats">Clear all messages?</string>
+    <string name="Send_voice_need_sdcard_support">Send voice need sdcard support</string>
+    <string name="Recording_without_permission">Recording without permission</string>
+    <string name="The_recording_time_is_too_short">The recording time is too short</string>
+    <string name="send_failure_please">Send failure, please test whether the server connection</string>
+    <string name="Move_into_blacklist_success">Move into blacklist success</string>
+    <string name="Move_into_blacklist_failure">Move into blacklist failure</string>
+    <string name="you_are_group">You have been kicked off from the group</string>
+    <string name="the_current_group">The current group has been dismissed</string>
+    <string name="Cant_chat_with_yourself">cannot chat with yourself</string>
+    <string name="deleting">Deleting..</string>
+    <string name="Delete_failed">Failed to delete</string>
+    <string name="Is_moved_into_blacklist">Moving to blacklist..</string>
+    <string name="Log_uploaded_successfully">Log was uploaded successfully</string>
+    <string name="Log_Upload_failed">Failed to upload the log</string>
+    <string name="get_failed_please_check">Failed to retrieve, please check the network or try again later</string>
+    <string name="people">people</string>
+    <string name="being_added">added</string>
+    <string name="is_quit_the_group_chat">Exiting group</string>
+    <string name="chatting_is_dissolution">Dismissing group</string>
+    <string name="are_empty_group_of_news">Clearing messages</string>
+    <string name="messages_are_empty">Messages has been cleared</string>
+    <string name="is_modify_the_group_name">Modifying the group name..</string>
+    <string name="Modify_the_group_name_successful">Modify the group name successful</string>
+    <string name="change_the_group_name_failed_please">Failed to change the group name, please check the network or try again later</string>
+    <string name="Are_moving_to_blacklist">Moving to blacklist</string>
+    <string name="failed_to_move_into">Failed to move to the blacklist, please check the network or try again later</string>
+    <string name="Exit_the_group_chat_failure">Failed to exit the group:</string>
+    <string name="Dissolve_group_chat_tofail">Failed to dismiss the group:</string>
+    <string name="Add_group_members_fail">Add group members fail:</string>
+    <string name="Is_unblock">Unblocking group</string>
+    <string name="remove_group_of">Remove group of shielding failure, please check the network or try again later</string>
+    <string name="group_is_blocked">Blocking the group..</string>
+    <string name="group_of_shielding">Group of shielding failure, please check the network or try again later</string>
+    <string name="sure_to_empty_this">Clear all messages?</string>
+    <string name="The_delete_button_is_clicked">The delete button is clicked</string>
+    <string name="Add_a_button_was_clicked">Add a button was clicked</string>
+    <string name="not_delete_myself">Cannot delete myself</string>
+    <string name="Are_removed">Removing</string>
+    <string name="confirm_the_members">Move this member to group blacklist?</string>
+    <string name="Failed_to_get_group_chat_information">Failed to get group information:</string>
+    <string name="Is_sending_a_request">Sending the request..</string>
+    <string name="Request_to_join">Apply to join</string>
+    <string name="send_the_request_is">The request was sent and waiting for owner approval</string>
+    <string name="Join_the_group_chat">Join the group</string>
+    <string name="Failed_to_join_the_group_chat">Failed to join the group</string>
+    <string name="temporary_does_not">Currently the video size greater than 10M is not supported!</string>
+    <string name="Video_footage">Video record</string>
+    <string name="User_name_cannot_be_empty">User name cannot be empty!</string>
+    <string name="Password_cannot_be_empty">Password cannot be empty!</string>
+    <string name="please_set_the_current">"Please set the current user's nickname \ n to ios offline push not userid but Nick, see comments"</string>
+    <string name="Is_landing">logining..</string>
+    <string name="list_is_for">Retrieving the groups and contacts</string>
+    <string name="login_failure_failed">Logon failure: failed to retrieve contacts or groups</string>
+    <string name="Login_failed">Login failed:</string>
+    <string name="receive_the_passthrough">Receive cmd message : action：</string>
+    <string name="have_you_removed">Have you removed from his buddy list</string>
+    <string name="can_not_connect_chat_server_connection">Cannot connect to server</string>
+    <string name="the_current_network">The current network is not available, please check the network Settings</string>
+    <string name="Invite_you_to_join_a_group_chat"> Invite you to join this group</string>
+    <string name="Agreed_to_your_group_chat_application">Accepted your group application</string>
+    <string name="Logoff_notification">Logoff notification</string>
+    <string name="Remove_the_notification">Remove the notification</string>
+    <string name="Group_name_cannot_be_empty">Group name cannot be empty</string>
+    <string name="Is_to_create_a_group_chat">Creating the group</string>
+    <string name="Failed_to_create_groups">Failed to create groups</string>
+    <string name="The_video_to_start">The video to start</string>
+    <string name="Whether_to_send">Are you sure to send?</string>
+    <string name="Open_the_equipment_failure">Open the equipment failure!</string>
+    <string name="Confirm_password_cannot_be_empty">Confirm password cannot be empty!</string>
+    <string name="Two_input_password">Inconsistent password, please enter again!</string>
+    <string name="Is_the_registered">Registering..</string>
+    <string name="Registered_successfully">Registered successfully</string>
+    <string name="network_anomalies">Network is not available, please check the network!</string>
+    <string name="User_already_exists">User already existed!</string>
+    <string name="registration_failed_without_permission">Registration failed, without permission!</string>
+    <string name="Registration_failed">Registration failed:</string>
+    <string name="Are_logged_out">Logging out</string>
+    <string name="Download_the_pictures">Download the pictures: 0%</string>
+    <string name="Download_the_pictures_new">Download the pictures:</string>
+    <string name="Failed_to_download_file">Failed to download file:</string>
+    <string name="Version_number_is_wrong">Version number is wrong</string>
+    <string name="Are_connected_to_each_other">Connecting to peer..</string>
+    <string name="Is_not_yet_connected_to_the_server">Not connect to server</string>
+    <string name="have_connected_with">Connected to the peer and waiting for the peer to accept</string>
+    <string name="In_the_call">In the call..</string>
+    <string name="The_other_party_refused_to_accept">The call was refused</string>
+    <string name="Connection_failure">Connection failed!</string>
+    <string name="The_other_party_is_not_online">The peer is not online now, please try later</string>
+    <string name="The_other_is_on_the_phone_please">The peer is busy now, please try later</string>
+    <string name="The_other_is_hang_up">The peer has ended the call</string>
+    <string name="The_other_party_did_not_answer_new">The peer did not answer</string>
+    <string name="Into_the_blacklist">Move to the blacklist?</string>
+    <string name="Have_downloaded">Already downloaded</string>
+    <string name="Did_not_download">Not yet downloaded</string>
+    <string name="Has_agreed_to_your_friend_request">Accepted your request</string>
+    <string name="Request_to_add_you_as_a_friend">You got a friend request</string>
+    <string name="Apply_to_the_group_of">Apply to join the group</string>
+    <string name="invite_join_group">Invite to join the group</string>
+    <string name="Has_agreed_to">Accepted</string>
+    <string name="Has_refused_to">Refused</string>
+    <string name="Are_agree_with">Accepting</string>
+    <string name="Are_refuse_with">Refusing</string>
+    <string name="direct_call">Direct</string>
+    <string name="relay_call">Relay</string>
+    <string name="Agree_with_failure">Failed to accept</string>
+    <string name="Refuse_with_failure">Failed to refuse</string>
+    <string name="Is_download_voice_click_later">Downloading the voice message, click later</string>
+    <string name="Send_the_following_pictures">Send the following pictures?</string>
+    <string name="search_new">Search</string>
+
+    <string name="Delete_the_contact">Delete the contact</string>
+    <string name="Move_into_the_blacklist_new">Move into the blacklist</string>
+    <string name="Change_the_group_name">Change group name</string>
+    <string name="Sync_Groups_From_Server">Sync groups with server</string>
+
+    <string name="update_contact_list">Update contact list</string>
+    <string name="update_black_list">Update black list</string>
+    <string name="update_groups">Update groups</string>
+
+    <string name="update_contact_list_failed">Update contact list failed</string>
+    <string name="update_black_list_failed">Update black list failed</string>
+    <string name="update_groups_failed">Update groups failed</string>
+
+    <string name="no_more_messages">no more messages</string>
+    <string name="join_public_group">Join public group</string>
+    <string name="chatroom_allow_owner_leave">Allow chatroom owner leave</string>
+    <string name="delete_msg_when_exit_group">Delete messages when exit group</string>
+    <string name="auto_accept_group_invitation">Auto accept group invitation</string>
+    <string name="group_id">Group ID</string>
+    <string name="move_out_backlist">Remove from blacklist</string>
+    <string name="input_new_nick_hint">Input a new nickname</string>
+    <string name="search_pubic_group">Search public group</string>
+    <string name="group_not_existed">The group does not exist</string>
+    <string name="group_search_failed">Search failed</string>
+    <string name="error_send_invalid_content">The message content is not allowed to be sent!</string>
+    <string name="error_send_not_in_the_group">You already were not in the group</string>
+    <string name="refreshing_group_list">Refreshing group list</string>
+    <string name="failed_to_load_data">Failed to load data, please check network or try again later</string>
+    <string name="searching">searching</string>
+    <string name="hanging_up">Hanging up..</string>
+    <string name="illegal_user_name">Illegal user name</string>
+    <string name="robot_chat">Robot chat</string>
+    <string name="title_user_profile">User Profile</string>
+    <string name="nickname">Nickname</string>
+    <string name="dl_title_upload_photo">Upload Photo</string>
+    <string name="dl_msg_local_upload">Upload photo</string>
+    <string name="dl_msg_take_photo">Take Photo</string>
+    <string name="toast_no_support">No Support!</string>
+    <string name="setting_nickname">Set nickname</string>
+    <string name="dl_ok">OK</string>
+    <string name="dl_cancel">Cancel</string>
+    <string name="toast_nick_not_isnull">nickname cannot be empty!</string>
+    <string name="dl_update_nick">update nickname</string>
+    <string name="dl_update_photo">update photo</string>
+    <string name="dl_waiting">waiting...</string>
+    <string name="toast_updatenick_success">update nickname success!</string>
+    <string name="toast_updatenick_fail">update nickname fail!</string>
+    <string name="toast_updatephoto_success">update photo success!</string>
+    <string name="toast_updatephoto_fail">update photo fail!</string>
+    <string name="user_already_in_contactlist">This user already is your friend, only need remove out from the black list</string>
+    <string name="group_nick">Group Nickname:</string>
+    <string name="group_owner">Group Owner:</string>
+    <string name="user_removed_from_group">You are removed from the group</string>
+
+
+    <string name="profile">Profile</string>
+    <string name="client">Client</string>
+
+    <string name="service">Service</string>
+    <string name="assiatant">Assiatant</string>
+
+
+    <string name="sign_up">注册</string>
+    <string name="nick_name">昵称</string>
+
+    <!-- 杨德成 20150310 日期值 -->
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="cancle">取消</string>
+    <string name="ok">确定</string>
+    <string name="soft_update_no">已经是最新版本</string>
+    <string name="soft_update_title">软件更新</string>
+    <string name="soft_update_info">检测到新版本，立即更新吗</string>
+    <string name="soft_update_updatebtn">更新</string>
+    <string name="soft_update_later">稍后更新</string>
+    <string name="soft_updating">正在更新</string>
+    <string name="soft_update_cancel">取消</string>
+    <string name="qingbaoreply_fasong">发送</string>
+
+    <!-- 自定义组件 -->
+    <string name="pull_to_refresh">下拉可以刷新</string>
+    <string name="release_to_refresh">松开可以刷新</string>
+    <string name="lastUpdateTime">最近更新：%s</string>
+    <string name="load_full">已加载全部</string>
+    <string name="no_data">暂无数据</string>
+    <string name="more">加载中...</string>
+
+
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">更新于：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+
+    <string name="button_logout">退出登录</string>
+
+    <!-- 消除警告，可忽略 -->
+    <string name="d">图片描述</string>
+
+    <string name="privacy_use"></string>
+    <string name="privacy_protect"></string>
+
+    <string name="to_be_confirmed">待确认</string>
+    <string name="confirmed">已确认</string>
+    <string name="complete">已结束</string>
+
+    <string name="pay_deposit">支付定金</string>
+    <string name="pay_alipay">支付宝支付</string>
+    <string name="pay_wechat">微信支付</string>
+    <string name="pay_complete">支付完成</string>
+    <string name="pay_select_price">¥%s</string>
+
+    <string name="loading">加载中&#8230;</string>
+    <string name="main_mggw">美高顾问</string>
+    <string name="main_mbgw">美本顾问</string>
+    <string name="main_allgw">全部顾问</string>
+    <string name="main_ygzb">优顾直播</string>
+    <string name="main_more">点击查看更多</string>
+    <string name="main_recommend">为您推荐</string>
+    <string name="main_checkall">查看所有顾问</string>
+
+    <string name="nationality">国籍：</string>
+    <string name="schooling">学历：</string>
+    <string name="Workyear">从业年数：</string>
+    <string name="location">顾问位置：</string>
+    <string name="GraduateSchool">毕业院校：</string>
+    <string name="Workexperience">工作经历：</string>
+    <string name="consultants">顾问介绍:</string>
+    <string name="Friendship">友情翻译:</string>
+    <string name="Successfulcases">成功案例:</string>
+    <string name="Expectations">对学生和家长的期望:</string>
+    <string name="Consultantworks">顾问作品:</string>
+    <string name="mores">更多</string>
+    <string name="introduced">服务介绍</string>
+    <string name="guideway">指导方式：</string>
+    <string name="servicecontent">服务内容:</string>
+    <string name="Advisernote">顾问提醒:</string>
+    <string name="Immediately">聘用详情</string>
+    <string name="Employment">聘用保障计划</string>
+    <string name="tonlinecustomer">需要帮助</string>
+    <string name="make">预约顾问视频</string>
+    <string name="jiancha">请检查网络连接后重试！</string>
+    <string name="tishi">至少选择一个时间段！</string>
+    <string name="main_search">搜索</string>
+    <string name="text3">3.优顾平台入驻顾问均受严格审核，确保顾问信息真实有效。</string>
+    <string name="text2">2.所付款项将由优顾平台分阶段支付给顾问，服务期间如有任何不满，可申请退余款；</string>
+    <string name="text1">1.在顾问确认订单后，才需付款；</string>
+
+    <string name="counselorlist">顾问列表</string>
+
+    <string name="download_failed">下载失败</string>
+    <string name="download_success">下载成功，点击安装</string>
+    <string name="start_download_variable">开始下载%1$s</string>
+    <string name="downloading_variable">正在下载%1$s</string>
+
+    <string name="order_timeline_price">后，顾问收到总款的%s</string>
+
+    <string name="xiyi1">协议编号:\n海外教育信息咨询服务三方协议</string>
+    <!--<string name="xiyi2">本海外教育信息咨询服务协议三方协议（以下称“三方协议”）由下列三方在 年 月 日签订。</string>-->
+    <string name="xiyi_jia">甲方：</string>
+    <string name="xiyi_yi">乙方：</string>
+    <string name="xiyi_bing">丙方：</string>
+    <string name="xiyi_id">护照或身份证号：</string>
+    <string name="xiyi_add">联系地址：</string>
+    <string name="xiyi_phone">联系电话：</string>
+    <string name="xiyi_emil">电子邮箱：</string>
+    <string name="xiyi_name">上海畅航信息科技有限公司</string>
+    <string name="xiyi_adda">淮海西路570号红坊C3-202室</string>
+    <string name="xiyi_phonea">021-61157323</string>
+    <string name="xiyi_emila">customer@urgoo.cn</string>
+
+    <string name="xieyi">
+鉴于：\n
+1.上海畅航信息科技有限公司是一家在中国境内合法注册并具备独立经营资格的企业法\n
+人，负责运营优顾全球留学顾问共享平台（以下简称“优顾平台”）。\n
+2. 甲方是提供有偿海外教育信息咨询服务（以下简称“咨询服务”）的自然人。\n
+3. 乙方是通过优顾平台与甲方签订本协议的付费客户。\n
+4. 甲方为乙方指定的留学对象（以下简称“留学对象”）提供本协议约定的服务。\n
+\n
+依据《中华人民共和国合同法》及相关法律的规定，经由丙方撮合，甲乙双方友好协商，就甲方向乙方提供咨询服务事宜，达成如下条款：\n
+第一章 服务基本条款\n
+第一条 甲乙双方仅在本协议规定的咨询服务上存在双方约定的法律关系，甲方不对留学对象与申请的海外院校之间发生的任何纠纷负责，不对留学对象留学后的人身等合法权益承担任何直接或连带责任。\n
+第二条 甲方为留学对象在准备留学过程中提出专业建议，制定个性化的留学规划方案，指导留学对象确定合理的留学目标并进行准备。\n
+\n
+第二章 服务内容\n
+甲方为留学对象提供的咨询服务包含以下基本服务项目，并遵守工作内容规范（见附件一）。\n
+\n
+第三章 甲方的权利和义务\n
+\n
+第一条  甲方有权要求乙方或留学对象提供真实信息和资料。\n
+第二条  甲方为留学对象制定个性化的留学方案。\n
+第三条  甲方根据留学对象的执行进度和效果进行评估，并与乙方或留学对象进行沟通，对留学方案进行调整。\n
+第四条 甲方对留学对象的个人信息和申请材料保密。\n
+\n
+第四章 乙方的权利和义务\n
+\n
+第一条 乙方或留学对象应提供真实信息。\n
+第二条 乙方对录取结果有最终选择权。\n
+第三条 乙方对甲方提供的未在公开媒体上发布的资料和信息进行保密。\n
+\n
+第五章   丙方的权利和义务\n
+\n
+第一条 丙方有权督促甲方及时履行本协议所承诺的服务项目。\n
+第二条 当乙方对甲方所提供的服务提出书面投诉后，丙方有权决定是否启动调查流程，调查流程可能导致以下结果：\n
+1.	丙方认为甲方没有违约责任。\n
+2.	丙方认为甲方没有违约责任，但是在服务提供过程中存在瑕疵，要求甲方提高服务质量。\n
+3.	丙方认为甲方存在违约责任，要求甲方立刻采取措施改正，同时此违约责任将录入甲方在优顾平台的信用档案。\n
+4.	丙方认为甲方存在重大违约责任，有权暂停支付剩余的款项。\n
+\n
+第三条 咨询服务费监管\n
+\n
+丙方应在整个服务过程中，对乙方缴纳的海外教育信息咨询服务费（以下简称“咨询服务费”） 进行监管并按照“服务费用支付时间表”支付给甲方。\n
+\n
+第六章 整体服务费用和支付方式\n
+第一条 乙方应向甲方支付咨询服务费为人民币
+
+</string>
+    <string name="xieyi1">元（大写：</string>
+
+
+    <string name="xieyi2">）。\n
+本协议所收取的留学服务费，不包括考试注册费、学校申请费、国际快递费、英文成绩寄送费、公证费、翻译费、护照办理申请费、领馆签证申请费、体检费、学校定金以及学杂费等支付给第三方的费用。上述费用均由乙方按时足额自行向第三方机构支付。\n
+\n
+第二条 乙方须在本协议签订后5个工作日向丙方支付全额咨询服务费用。\n
+ 收款账号信息如下：\n
+户名：上海畅航信息科技有限公司\n
+开户行：平安银行上海分行营业部\n
+账号：11015028780004\n
+\n
+第七章 违约责任\n
+第一条  甲方在本协议有效期内，若决定终止为乙方提供咨询服务，必须以书面形式通知丙方，并接受丙方调查服务过程。若无约定原因或者法定理由终止为乙方提供咨询服务，则甲方需向乙方赔偿咨询服务费用两倍的金额。\n
+第二条  乙方中途放弃留学计划，乙方支付的咨询服务费不予退还，本协议自行终止。\n
+第八章  协议生效及期限\n
+本协议自甲方、乙方、丙方签字或盖章后生效。 服务期从   年   月   日   至    年    月    日截止。本协议一式三份，具有同等法律效力。\n
+第九章 法律适用及争议解决\n
+第一条  本协议的效力、解释、履行、变更、解除和争议解决均适用中国法律。\n
+任何由于本协议解释和履行所产生的争议应当首先通过三方协商解决。协商不成的，任一方有权向丙方所在地的人民法院提起诉讼。\n
+\n
+第十章  补充条款\n
+\n
+\n
+\n
+\n
+甲方：　　　　　　　　　　　　　　　（签字）\n\n\n\n\n\n
+乙方：　　　　　　　　　　　　　　　（签字）\n\n\n\n\n\n
+丙方：上海畅航信息科技有限公司（盖章）\n\n
+</string>
+
+    <string name="wenan">
+        Sophia has been very enthusiastic about their assignments/work, agreeable to new responsibilities, asks for new tasks. She also exceeds expectations in the complexity and difficulty of work they are able to successfully complete. Her work is always very thorough and excellent quality, few if any errors. She completes the majority of work within specified deadlines.\n
+Her problem solving skills is better than 80% of her peers. She can be relied upon to make good decisions, requires limited guidance. She also displays a strong work ethic and is present at meetings in a reliable and timely manner.\n
+Sophia takes the initiate to follow through on all feedback from counselor and to continually improve upon her approach to all tasks.
+    </string>
+
+</resources>

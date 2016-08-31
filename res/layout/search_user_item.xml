@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RadioButton
+        android:id="@+id/RadioButton3"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="right"
+        android:layout_marginBottom="1dp"
+        android:background="@color/white"
+        android:button="@null"
+        android:drawableRight="@drawable/radiobutton_bg"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="与顾问联系后取消 1"
+        android:textColor="#5c5c5c"
+        android:textSize="15sp"
+        />
+</LinearLayout>
