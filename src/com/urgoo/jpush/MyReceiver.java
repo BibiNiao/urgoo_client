@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.urgoo.message.activities.ChatActivity;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.profile.activities.UrgooVideoActivity;
 

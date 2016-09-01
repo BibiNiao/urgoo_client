@@ -31,12 +31,10 @@ import com.urgoo.base.FragmentActivityBase;
 import com.urgoo.business.imageLoadBusiness;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
-import com.urgoo.counselor.activities.CounselorActivity;
 import com.urgoo.data.SPManager;
 import com.urgoo.db.MakeManager;
 import com.urgoo.db.MakePerson;
 import com.urgoo.domain.NowMakeBean;
-import com.urgoo.message.activities.ChatActivity;
 import com.urgoo.view.BaseDialog;
 import com.urgoo.view.CircleImageView;
 import com.urgoo.view.SyncHorizontalScrollView;
@@ -412,7 +410,7 @@ public class Precontract extends FragmentActivityBase implements View.OnClickLis
                 break;
 
             case R.id.tv_make_help:
-                startActivity(new Intent(Precontract.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
+//                startActivity(new Intent(Precontract.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
                 finish();
                 break;
             // TODO H5

@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -17,11 +16,11 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.urgoo.base.ActivityBase;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.data.SPManager;
 import com.urgoo.domain.GuwenInfo;
-import com.urgoo.message.activities.BaseActivity;
 import com.urgoo.view.XListView;
 import com.urgoo.webviewmanage.BaseWebViewActivity;
 import com.zw.express.tool.UiUtil;
@@ -39,9 +38,8 @@ import java.util.Locale;
 import java.util.Map;
 
 import okhttp3.Call;
-import okhttp3.Request;
 
-public class WorksActivity extends BaseActivity {
+public class WorksActivity extends ActivityBase {
     protected XListView mListView;
     protected LinearLayout LinLyout_myorder_back;
     private ArrayList<GuwenInfo.WorksBean> mWorksList = new ArrayList<>();

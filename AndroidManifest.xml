@@ -70,7 +70,7 @@
             android:name="com.urgoo.message.activities.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name="com.urgoo.Test"
@@ -106,9 +106,6 @@
             android:name="com.urgoo.profile.activities.GulideActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.urgoo.profile.activities.UrgooSettingActivity"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name="com.urgoo.profile.activities.UpdateInformation"
             android:screenOrientation="portrait"/>
         <activity
@@ -130,9 +127,11 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name="com.urgoo.profile.activities.UrgooVideoActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="portrait"/>
         <activity
             android:name="com.urgoo.zhibo.activities.ZhiBodDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="portrait"/>
 
         <!-- 开屏页 -->
@@ -140,7 +139,7 @@
         <activity
             android:name="com.urgoo.message.activities.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -156,57 +155,52 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.urgoo.schedule.activites.SetingActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide">
-        </activity>
-        <activity
             android:name="com.urgoo.counselor.activities.CounselorSearchActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <!-- 我的规划 -->
         <activity
             android:name="com.urgoo.plan.activities.PlanTimeLineActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustResize"/>
         <!-- 支付选择页 -->
         <activity
             android:name="com.urgoo.pay.activities.PaySelectActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustResize"/>
 
         <!-- 支付完成 -->
         <activity
             android:name="com.urgoo.pay.activities.PayCompleteActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustResize"/>
         <!-- 首页 -->
         <activity
             android:name="com.urgoo.account.activity.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustResize"/>
         <!-- 登陆 -->
         <activity
             android:name="com.urgoo.account.activity.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateVisible"/>
         <!-- 问卷调查 -->
         <activity
             android:name="com.urgoo.account.activity.SurveyActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustResize"/>
         <!-- 注册 -->
         <activity
             android:name="com.urgoo.account.activity.RegistActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateVisible"/>
 
         <!-- 登陆 -->
@@ -218,22 +212,22 @@
             android:name="com.urgoo.message.activities.ChatActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name="com.urgoo.schedule.activites.PrecontractMyOrder"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name="com.urgoo.schedule.activites.PrecontractMyOrderContent"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name="com.urgoo.schedule.activites.PrecontractPingjia"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan"/>
         <!-- 顾问列表 -->
         <activity
@@ -246,76 +240,11 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="adjustPan"/>
-        <!-- 地图 -->
-        <activity
-            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"/>
-        <!-- 转发消息用户列表页面 -->
-        <activity
-            android:name="com.urgoo.message.activities.ForwardMessageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
-            android:windowSoftInputMode="adjustPan"/>
-        <!-- 自定义的contextmenu -->
-        <activity
-            android:name="com.urgoo.message.activities.ContextMenuActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/MyDialogStyle"/>
-        <!-- 显示下载大图页面 -->
-        <activity
-            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"/>
-        <!-- 下载文件 -->
-        <activity
-            android:name="com.hyphenate.easeui.ui.EaseShowNormalFileActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"/>
-        <!-- 语音通话 -->
-        <activity
-            android:name="com.urgoo.message.activities.VoiceCallActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/nornal_style"/>
-        <!-- 视频通话 -->
-        <activity
-            android:name="com.urgoo.message.activities.VideoCallActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"/>
-        <activity
-            android:name="com.hyphenate.easeui.ui.EaseShowVideoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
-        <!-- choose video -->
-        <activity
-            android:name="com.urgoo.message.activities.ImageGridActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity
-            android:name="com.urgoo.message.activities.RecorderVideoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
-        <!-- upload error log -->
-        <activity
-            android:name="com.urgoo.message.activities.DiagnoseActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
         <!-- robots list -->
         <activity
             android:name="com.urgoo.profile.activities.IpTestActivity"
             android:screenOrientation="portrait"/>
         <!-- user profile -->
-        <activity
-            android:name="com.urgoo.message.activities.UserProfileActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"/>
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -328,7 +257,7 @@
         <activity
             android:name="com.urgoo.service.activities.TaskContentActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
         <!-- 我的报告 -->
@@ -342,28 +271,10 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize">
 
-            <!--
-            	AuthorizeAdapter表示一个继承自cn.sharesdk.framework.authorize.AuthorizeAdapter
-            	的类，这个类可以监听到页面的生命周期，也可以获取授权页面的各种UI控件。
-            	开发者可以通过继承AuthorizeAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
-            -->
             <meta-data
                 android:name="AuthorizeAdapter"
                 android:value="cn.sharesdk.demo.MyAdapter"/>
 
-            <!--
-            	QZoneWebShareAdapter表示一个继承自cn.sharesdk.tencent.qzone.QZoneWebShareAdapter
-            	的类，这个类可以监听到页面的生命周期，也可以获QQ空间网页分享权页面的各种UI控件。
-            	开发者可以通过继承QZoneWebShareAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
-            <meta-data android:name="QZoneWebShareAdapter" android:value="cn.sharesdk.demo.MyQZoneWebShareAdapter" />
-            <meta-data android:name="QQWebShareAdapter" android:value="cn.sharesdk.demo.MyQQWebShareAdapter" />
-            -->
-
-
-            <!--
-            	Dropbox的SSO功能需要在此处添加一个对ACTION_VIEW事件的过滤器，其中的scheme是
-            	“db-”前缀再开发者应用的加上appKey。如果此过滤器不设置，则不能完成SSO功能授权
-            -->
             <intent-filter>
                 <data android:scheme="db-7janx53ilz11gbs"/>
 
@@ -395,34 +306,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <!-- 杨德成 20160722 微信分享回调 end -->
-
-
-        <!-- 开机自启动服务 -->
-        <receiver android:name="com.urgoo.broadcast.StartServiceReceiver">
-            <intent-filter android:priority="1000">
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </receiver>
-
-        <!-- gcm start -->
-        <receiver
-            android:name="com.hyphenate.chat.EMGCMBroadcastReceiver"
-            android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-
-                <category android:name="com.urgoo.client"/>
-            </intent-filter>
-        </receiver>
-
-        <service
-            android:name="com.hyphenate.chat.EMGCMListenerService"
-            android:exported="false"/>
-
         <receiver
             android:name="com.urgoo.broadcast.GCMPushBroadCast"
             android:exported="false">
@@ -437,33 +320,6 @@
         <meta-data
             android:name="EASEMOB_APPKEY"
             android:value="urgoo2016#urgoo2016"/>
-        <!-- 声明sdk所需的service -->
-        <service
-            android:name="com.hyphenate.chat.EMChatService"
-            android:exported="true"/>
-        <!-- 声明sdk所需的receiver -->
-        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-
-                <data android:scheme="package"/>
-            </intent-filter>
-            <!-- 可选filter -->
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.USER_PRESENT"/>
-            </intent-filter>
-        </receiver>
-
-        <!-- 百度地图所需的service -->
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote"/>
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="3ecea51f560650b1ed8a4b99808f52e8"/>
-
         <!-- Required SDK 核心功能 -->
         <!-- option since 2.0.5 可配置PushService，DaemonService,PushReceiver,AlarmReceiver的android:process参数 将JPush相关组件设置为一个独立进程 -->
         <!-- 如：android:process=":remote" -->
@@ -573,27 +429,27 @@
         <activity
             android:name="com.urgoo.schedule.activites.CancellationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
             android:name="com.urgoo.schedule.activites.PingjiaActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
             android:name="com.urgoo.profile.activities.ActivitiesActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
             android:name="com.urgoo.profile.activities.FocusOnAdvisorActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
             android:name="com.urgoo.counselor.activities.WorksActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity android:name="com.urgoo.pay.activities.PayforfailureActivity">
         </activity>
@@ -605,55 +461,72 @@
         <activity
             android:name="com.urgoo.order.ServiceActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
         <!-- 确认订单 -->
         <activity
             android:name="com.urgoo.order.OrderActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
         <!-- 三方协议 -->
         <activity
             android:name="com.urgoo.order.LinkActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
         <!-- 时间预览 -->
         <activity
             android:name="com.urgoo.order.OrderTimeLineActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
         <!-- 二维码 -->
         <activity
             android:name="com.urgoo.profile.activities.QrcodeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
         <!-- 分类详情 -->
         <activity
             android:name="com.urgoo.service.activities.PlanContentActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
         <!-- 顾问报告 -->
         <activity
             android:name="com.urgoo.service.activities.ReportActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
 
         <activity android:name="com.shrb.hrsdk.activity.PayActivity" />
         <activity android:name="com.shrb.hrsdk.activity.SecurityActivity"/>
         <activity android:name="com.shrb.hrsdk.activity.BindCardActivity"/>
+
+        <!-- 设置环信应用的AppKey -->
+        <meta-data android:name="EASEMOB_APPKEY"  android:value="urgoo2016#urgoo2016" />
+        <!-- 声明SDK所需的service SDK核心功能-->
+        <service android:name="com.hyphenate.chat.EMChatService" android:exported="true"/>
+        <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

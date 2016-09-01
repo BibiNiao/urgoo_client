@@ -14,27 +14,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 import com.urgoo.account.activity.HomeActivity;
 import com.urgoo.base.HomeFragment;
 import com.urgoo.business.BaseService;
-import com.urgoo.client.DemoHelper;
 import com.urgoo.client.R;
-import com.urgoo.common.APPManagerTool;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.data.SPManager;
 import com.urgoo.domain.NetHeaderInfoEntity;
 import com.urgoo.jpush.JpushUtlis;
+import com.urgoo.message.EaseHelper;
 import com.urgoo.schedule.activites.PrecontractMyOrder;
-import com.urgoo.schedule.activites.SetingActivity;
 import com.urgoo.webviewmanage.BaseWebViewActivity;
 import com.urgoo.webviewmanage.BaseWebViewFragment;
 import com.zw.express.tool.PickUtils;
@@ -66,11 +63,9 @@ public class ProfileFragment extends HomeFragment implements OnClickListener {
     /**
      * 退出按钮
      */
-    private Button logoutBtn;
+    private RelativeLayout logoutBtn;
     private RelativeLayout re_wanshan_ziliaos;
     private RelativeLayout I_sign_up;
-    private RelativeLayout rl_stting_Layout;
-
 
     RelativeLayout re_serviceargeement, re_help, re_wanshan_yuyue;
 
@@ -169,15 +164,15 @@ public class ProfileFragment extends HomeFragment implements OnClickListener {
                                 String status = new JSONObject(new JSONObject(j.get("body").toString()).getString("zoomInfo")).getString("status");
                                 //notificationIntent.putExtra(MainActivity.EXTRA_TAB, 1);
                                 if (!status.equals("2")) {
-                                    if (!APPManagerTool.isActivityRunning(getContext().getApplicationContext(), "UrgooVideoActivity")) {
-                                        Intent it = new Intent(getActivity(), UrgooVideoActivity.class);
-                                        it.putExtra("icon", pic);
-                                        it.putExtra("name", nickname);
-                                        it.putExtra("zoomId", zoomId);
-                                        it.putExtra("zoomNo", zoomNo);
-                                        //it.putExtra("hxCode", "");
-                                        startActivity(it);
-                                    }
+//                                    if (!APPManagerTool.isActivityRunning(getContext().getApplicationContext(), "UrgooVideoActivity")) {
+//                                        Intent it = new Intent(getActivity(), UrgooVideoActivity.class);
+//                                        it.putExtra("icon", pic);
+//                                        it.putExtra("name", nickname);
+//                                        it.putExtra("zoomId", zoomId);
+//                                        it.putExtra("zoomNo", zoomNo);
+//                                        //it.putExtra("hxCode", "");
+//                                        startActivity(it);
+//                                    }
                                 }
 
                             } else if (hentity.getCode().equals("404")) {
@@ -230,17 +225,6 @@ public class ProfileFragment extends HomeFragment implements OnClickListener {
 
 //        rl_switch_notification = (RelativeLayout) view.findViewById(R.id.rl_switch_notification);
         I_sign_up = (RelativeLayout) view.findViewById(R.id.I_sign_up);
-        rl_stting_Layout = (RelativeLayout) view.findViewById(R.id.rl_stting_Layout);
-
-
-        rl_stting_Layout.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), SetingActivity.class));
-            }
-        });
-
-
 
         I_sign_up.setOnClickListener(new OnClickListener() {
             @Override
@@ -251,7 +235,7 @@ public class ProfileFragment extends HomeFragment implements OnClickListener {
         iv_notification_icon = (ImageView) view.findViewById(R.id.iv_notification_icons);
 
 
-        logoutBtn = (Button) view.findViewById(R.id.btn_logout);
+        logoutBtn = (RelativeLayout) view.findViewById(R.id.btn_logout);
         logoutBtn.setOnClickListener(this);
 
     }
@@ -425,7 +409,7 @@ public class ProfileFragment extends HomeFragment implements OnClickListener {
         pd.setMessage(st);
         pd.setCanceledOnTouchOutside(false);
         pd.show();
-        DemoHelper.getInstance().logout(false, new EMCallBack() {
+        EaseHelper.getInstance().logout(false, new EMCallBack() {
 
             @Override
             public void onSuccess() {
@@ -455,17 +439,7 @@ public class ProfileFragment extends HomeFragment implements OnClickListener {
 
             @Override
             public void onError(int code, String message) {
-                getActivity().runOnUiThread(new Runnable() {
 
-                    @Override
-                    public void run() {
-                        // TODO Auto-generated method stub
-                        pd.dismiss();
-                        Toast.makeText(getActivity(), "unbind devicetokens failed", Toast.LENGTH_SHORT).show();
-
-
-                    }
-                });
             }
         });
     }

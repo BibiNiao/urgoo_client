@@ -10,15 +10,13 @@ import android.widget.LinearLayout;
 import com.urgoo.base.ActivityBase;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
-import com.urgoo.message.activities.BaseActivity;
-import com.urgoo.message.activities.ChatActivity;
 import com.urgoo.webviewmanage.BaseWebViewActivity;
 import com.urgoo.webviewmanage.BaseWebViewFragment;
 
 /**
  * Created by lijie on 2016/6/1.
  */
-public class PrecontractPingjia extends BaseActivity {
+public class PrecontractPingjia extends ActivityBase {
     private static final String TAG = "mtag";
     LinearLayout breaks;
     Button submit_btn, submits_btn;
@@ -59,7 +57,7 @@ public class PrecontractPingjia extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: 还有疑问？去找优宝问问吧~");
-                startActivity(new Intent(PrecontractPingjia.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
+//                startActivity(new Intent(PrecontractPingjia.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
             }
         });
     }

@@ -30,7 +30,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import okhttp3.Call;
-import okhttp3.Request;
 
 public class ActivityBase extends Activity implements ActivityInterface, StringRequestCallBack {
 
@@ -50,7 +49,6 @@ public class ActivityBase extends Activity implements ActivityInterface, StringR
     protected SPManager spManager;
 
     protected void onCreate(Bundle savedInstanceState) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         mUIThreadId = Process.myTid();
         super.onCreate(savedInstanceState);
         spManager = SPManager.getInstance(this);

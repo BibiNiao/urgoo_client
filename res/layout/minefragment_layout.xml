@@ -471,7 +471,6 @@
                     android:layout_marginRight="20dp"
                     android:src="@drawable/common_rightarrow"/>
 
-
             </RelativeLayout>
 
             <View
@@ -479,52 +478,13 @@
                 android:layout_height="0.1dp"
                 android:background="#d4d4d4"/>
 
-
             <RelativeLayout
+                android:id="@+id/btn_logout"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/btn_list_item_bg"
                 android:clickable="true"
                 android:paddingLeft="12dp">
-
-                <Button
-                    android:id="@+id/btn_logout"
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="12dp"
-                    android:background="#ffffff"
-                    android:gravity="left|center_vertical"
-                    android:text="退出登录"
-                    android:textColor="#434343"
-                    android:textSize="14sp"/>
-
-                <ImageView
-
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/common_rightarrow"/>
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:background="#d4d4d4"
-                android:visibility="gone"/>
-
-            <RelativeLayout
-                android:id="@+id/rl_stting_Layout"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/btn_list_item_bg"
-                android:clickable="true"
-                android:paddingLeft="12dp"
-
-                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -532,11 +492,12 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="12dp"
-                    android:text="设置"
+                    android:text="退出登录"
                     android:textColor="#353535"
                     android:textSize="13sp"/>
 
                 <ImageView
+
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_alignParentRight="true"

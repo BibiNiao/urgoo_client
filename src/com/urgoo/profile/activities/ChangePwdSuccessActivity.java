@@ -6,13 +6,12 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.hyphenate.EMCallBack;
 import com.urgoo.account.activity.LoginActivity;
 import com.urgoo.base.ActivityBase;
-import com.urgoo.client.DemoHelper;
 import com.urgoo.client.R;
+import com.urgoo.message.EaseHelper;
 
 /**
  * Created by lijie on 2016/4/5.
@@ -54,7 +53,7 @@ public class ChangePwdSuccessActivity extends ActivityBase {
         pd.setMessage(st);
         pd.setCanceledOnTouchOutside(false);
         pd.show();
-        DemoHelper.getInstance().logout(false, new EMCallBack() {
+        EaseHelper.getInstance().logout(false, new EMCallBack() {
 
             @Override
             public void onSuccess() {
@@ -79,17 +78,7 @@ public class ChangePwdSuccessActivity extends ActivityBase {
 
             @Override
             public void onError(int code, String message) {
-                ChangePwdSuccessActivity.this.runOnUiThread(new Runnable() {
 
-                    @Override
-                    public void run() {
-                        // TODO Auto-generated method stub
-                        pd.dismiss();
-                        Toast.makeText(ChangePwdSuccessActivity.this, "unbind devicetokens failed", Toast.LENGTH_SHORT).show();
-
-
-                    }
-                });
             }
         });
     }

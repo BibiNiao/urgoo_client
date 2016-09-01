@@ -13,8 +13,10 @@
  */
 package com.urgoo.client;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.support.multidex.MultiDex;
 
 
@@ -22,10 +24,16 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.growingio.android.sdk.collection.Configuration;
 import com.growingio.android.sdk.collection.GrowingIO;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMOptions;
 import com.shrb.hrsdk.HRSDK;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.urgoo.data.SPManager;
+import com.urgoo.message.EaseHelper;
 import com.zw.express.tool.image.ImageLoaderUtil;
+
+import java.util.Iterator;
+import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 import cn.sharesdk.framework.ShareSDK;
@@ -34,13 +42,6 @@ public class BaseApplication extends Application {
 
     public static Context applicationContext;
     private static BaseApplication instance;
-    // login user name
-    public final String PREF_USERNAME = "username";
-
-    /**
-     * 当前用户nickname,为了苹果推送不是userid而是昵称
-     */
-    public static String currentUserNick = "";
 
     @Override
     public void onCreate() {
@@ -49,9 +50,8 @@ public class BaseApplication extends Application {
         applicationContext = this;
         instance = this;
         ImageLoaderUtil.initImageLoader(this);
-        //init demo helper
-        DemoHelper.getInstance().init(applicationContext);
         SPManager.getInstance(this);
+
         //极光注册
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
@@ -73,6 +73,8 @@ public class BaseApplication extends Application {
 
         //杨德成 20160802 添加腾讯bugly
         CrashReport.initCrashReport(getApplicationContext(), "900030352", false);
+
+        EaseHelper.getInstance().init(getApplicationContext());
     }
 
     public static BaseApplication getInstance() {
@@ -84,5 +86,4 @@ public class BaseApplication extends Application {
         super.attachBaseContext(base);
         MultiDex.install(this);
     }
-
 }

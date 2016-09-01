@@ -12,7 +12,6 @@ import com.urgoo.ScreenManager;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.activities.CounselorActivity;
 import com.urgoo.counselor.activities.CounselorList;
-import com.urgoo.message.activities.ChatActivity;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.pay.activities.PaySelectActivity;
 
@@ -43,7 +42,7 @@ public class MyWebViewFragment extends BaseWebViewFragment {
         } else if (url.startsWith("urgoo://gotoConversation_")) {
             String hxID = url.substring(url.indexOf("_") + 1).toLowerCase();
             Log.d("dddd", hxID);
-            startActivity(new Intent(getActivity(), ChatActivity.class).putExtra("userId", hxID));
+//            startActivity(new Intent(getActivity(), ChatActivity.class).putExtra("userId", hxID));
             ScreenManager.getScreenManager().popOneActivity();
             view.stopLoading();
             return true;
@@ -109,8 +108,8 @@ public class MyWebViewFragment extends BaseWebViewFragment {
         } else if (url.startsWith("urgoo://gotoConversation")) {
             // 优优
             // window.location.href ='urgoo://gotoConversation' + signLink + val;
-            getActivity().startActivity(new Intent(getActivity(), ChatActivity.class)
-                    .putExtra("userId", ZWConfig.ACTION_CustomerService));
+//            getActivity().startActivity(new Intent(getActivity(), ChatActivity.class)
+//                    .putExtra("userId", ZWConfig.ACTION_CustomerService));
             view.stopLoading();
         } else if (url.startsWith("urgoo://gotoGwDtl")) {
             //dff 16-8-3 订单跳转到顾问详情

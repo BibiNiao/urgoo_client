@@ -26,6 +26,7 @@ import com.google.gson.reflect.TypeToken;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.adapter.CounselorListAdapter;
+import com.urgoo.base.ActivityBase;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.biz.CounselorManager;
@@ -34,7 +35,6 @@ import com.urgoo.domain.CountryTypeList;
 import com.urgoo.domain.GenderList;
 import com.urgoo.domain.ServiceList;
 import com.urgoo.domain.TranslateCounselorEntiy;
-import com.urgoo.message.activities.BaseActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.view.FlowRadioGroup;
 import com.zw.express.tool.Util;
@@ -45,7 +45,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CounselorSearchActivity extends BaseActivity implements View.OnClickListener {
+public class CounselorSearchActivity extends ActivityBase implements View.OnClickListener {
 
     private EditText etSearch;
     private TextView tvCancle;

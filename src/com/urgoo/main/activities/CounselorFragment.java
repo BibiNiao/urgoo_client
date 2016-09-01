@@ -16,8 +16,6 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMMessage;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.adapter.CounselorInfoAdapter;
@@ -265,27 +263,6 @@ public class CounselorFragment extends BaseFragment implements StringRequestCall
         }
     }
 
-    /**
-     * 获取消息中的扩展 weichat是否存在并返回jsonObject
-     * @param message
-     * @return
-     */
-    private JSONObject getWeichatJSONObject(EMMessage message){
-        JSONObject weichatJson = null;
-        try {
-            String weichatString = message.getStringAttribute("weichat", null);
-            if(weichatString == null){
-                weichatJson = new JSONObject();
-            }else{
-                weichatJson = new JSONObject(weichatString);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return weichatJson;
-    }
-
-
     @Override
     public void onClick(View v) {
         Bundle extras = new Bundle();
@@ -312,25 +289,6 @@ public class CounselorFragment extends BaseFragment implements StringRequestCall
 
             case R.id.btn_search:
                 startActivity(new Intent(getActivity(), CounselorSearchActivity.class));
-//                try {
-//                    EMMessage message = EMMessage.createTxtSendMessage("测试测试测试", ZWConfig.ACTION_CustomerService);
-//
-//
-//                    JSONObject weichatJson = getWeichatJSONObject(message);
-//
-//                    JSONObject agentJson = getWeichatJSONObject(message);
-//                    agentJson.put("userNickname", "aaaaaaaaaaaaaaaaaaa");
-//                    agentJson.put("avatar", "http://urgooprd.oss-cn-qingdao.aliyuncs.com/zhibo/zhibo_1471661216718.jpg");
-//                    weichatJson.put("agent", agentJson);
-//
-//
-//                    weichatJson.put("agentUsername", "lisa.zhu@urgoo.cn");
-//                    message.setAttribute("weichat", weichatJson);
-//                    message.setChatType(EMMessage.ChatType.Chat);
-//                    EMClient.getInstance().chatManager().sendMessage(message);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
                 break;
         }
     }

@@ -8,12 +8,14 @@ import java.util.concurrent.Executors;
 
 import com.zw.express.tool.FileUtils;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.util.LruCache;
+import android.util.LruCache;
 
 public class ImageLoader {
 	/**
@@ -31,14 +33,16 @@ public class ImageLoader {
 		int maxMemory = (int) Runtime.getRuntime().maxMemory();  
         int mCacheSize = maxMemory / 8;
         //给LruCache分配1/8 4M
-		mMemoryCache = new LruCache<String, Bitmap>(mCacheSize){
-			//必须重写此方法，来测量Bitmap的大小
-			@Override
-			protected int sizeOf(String key, Bitmap value) {
-				return value.getRowBytes() * value.getHeight();
-			}
-			
-		};
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {
+			mMemoryCache = new LruCache<String, Bitmap>(mCacheSize){
+                //必须重写此方法，来测量Bitmap的大小
+                @Override
+                protected int sizeOf(String key, Bitmap value) {
+                    return value.getRowBytes() * value.getHeight();
+                }
+
+            };
+		}
 	}
 	
 	
@@ -66,9 +70,11 @@ public class ImageLoader {
 	 * @param bitmap
 	 */
 	public void addBitmapToMemoryCache(String key, Bitmap bitmap) {  
-	    if (getBitmapFromMemCache(key) == null && bitmap != null) {  
-	        mMemoryCache.put(key, bitmap);  
-	    }  
+	    if (getBitmapFromMemCache(key) == null && bitmap != null) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {
+				mMemoryCache.put(key, bitmap);
+			}
+		}
 	}  
 	 
 	/**
@@ -76,8 +82,9 @@ public class ImageLoader {
 	 * @param key
 	 * @return
 	 */
-	public Bitmap getBitmapFromMemCache(String key) {  
-	    return mMemoryCache.get(key);  
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
+	public Bitmap getBitmapFromMemCache(String key) {
+	    return mMemoryCache.get(key);
 	} 
 	
 	/**

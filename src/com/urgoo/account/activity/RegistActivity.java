@@ -15,19 +15,17 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
 import com.urgoo.account.biz.AccountManager;
 import com.urgoo.base.ActivityBase;
-import com.urgoo.client.BaseApplication;
-import com.urgoo.client.DemoHelper;
 import com.urgoo.client.R;
 import com.urgoo.common.APPManagerTool;
 import com.urgoo.common.PMD5Utils;
 import com.urgoo.common.ZWConfig;
-import com.urgoo.data.SPManager;
-import com.urgoo.db.DemoDBManager;
 import com.urgoo.jpush.JpushUtlis;
+import com.urgoo.message.EaseHelper;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.net.EventCode;
 import com.zw.express.tool.Util;
 import com.zw.express.tool.VerificationTool;
+import com.zw.express.tool.log.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -189,7 +187,7 @@ public class RegistActivity extends ActivityBase implements View.OnClickListener
                     spManager.setUserId(userId);
                     spManager.setNickName(nickname);
                     spManager.setUserName(phone);
-                    longinToHuanXinserver(hxid, ZWConfig.ACTION_HXPWD);
+                    EaseHelper.longin(hxid, ZWConfig.ACTION_HXPWD);
                     // 进入主页面
                     Intent intent = new Intent(RegistActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -228,52 +226,6 @@ public class RegistActivity extends ActivityBase implements View.OnClickListener
      * @param @param pwd    设定文件
      * @return void    返回类型
      * @throws
-     * @Title: longinToHuanXinserver
-     * @Description: 登录环信服务器
-     */
-    private void longinToHuanXinserver(final String username, final String pwd) {
-        DemoDBManager.getInstance().closeDB();
-        DemoHelper.getInstance().setCurrentUserName(username);
-        final long start = System.currentTimeMillis();
-        // 调用sdk登陆方法登陆聊天服务器
-        EMClient.getInstance().login(username, pwd, new EMCallBack() {
-
-            @Override
-            public void onSuccess() {
-                // ** 第一次登录或者之前logout后再登录，加载所有本地群和回话
-                EMClient.getInstance().groupManager().loadAllGroups();
-                EMClient.getInstance().chatManager().loadAllConversations();
-                // 更新当前用户的nickname 此方法的作用是在ios离线推送时能够显示用户nick
-                boolean updatenick = EMClient.getInstance().updateCurrentUserNick(
-                        BaseApplication.currentUserNick.trim());
-                if (!updatenick) {
-                }
-                //异步获取当前用户的昵称和头像(从自己服务器获取，demo使用的一个第三方服务)
-                DemoHelper.getInstance().getUserProfileManager().asyncGetCurrentUserInfo();
-            }
-
-            @Override
-            public void onProgress(int progress, String status) {
-            }
-
-            @Override
-            public void onError(final int code, final String message) {
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        Toast.makeText(getApplicationContext(), getString(R.string.Login_failed) + message,
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
-
-    }
-
-    /**
-     * @param @param username
-     * @param @param pwd    设定文件
-     * @return void    返回类型
-     * @throws
      * @Title: registerToHuanXinserver
      * @Description: 环信服务器登录
      */
@@ -284,12 +236,7 @@ public class RegistActivity extends ActivityBase implements View.OnClickListener
                 try {
                     // 调用sdk注册方法
                     EMClient.getInstance().createAccount(username, pwd);
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            // 保存用户名
-                            DemoHelper.getInstance().setCurrentUserName(username);
-                        }
-                    });
+                    spManager.setUserName(username);
                 } catch (final HyphenateException e) {
                     runOnUiThread(new Runnable() {
                         public void run() {

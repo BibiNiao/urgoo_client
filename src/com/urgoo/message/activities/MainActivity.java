@@ -1,6 +1,6 @@
 /**
  * Copyright (C) 2013-2014 EaseMob Technologies. All rights reserved.
- * <p/>
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,47 +14,34 @@
 package com.urgoo.message.activities;
 
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.Display;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hyphenate.EMContactListener;
-import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMConversation;
-import com.hyphenate.chat.EMConversation.EMConversationType;
-import com.hyphenate.chat.EMMessage;
-import com.hyphenate.util.EMLog;
 import com.shrb.hrsdk.HRSDK;
 import com.urgoo.ScreenManager;
 import com.urgoo.account.activity.HomeActivity;
-import com.urgoo.client.Constant;
-import com.urgoo.client.DemoHelper;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
-
 import com.urgoo.data.SPManager;
-import com.urgoo.db.InviteMessgeDao;
-import com.urgoo.db.UserDao;
-import com.urgoo.domain.InviteMessage;
 import com.urgoo.jpush.JpushUtlis;
 import com.urgoo.main.activities.CounselorFragment;
+import com.urgoo.message.Constant;
+import com.urgoo.message.EaseHelper;
 import com.urgoo.profile.activities.ProfileFragment;
 import com.urgoo.service.activities.PlanFragment;
 import com.urgoo.webviewmanage.BaseWebViewFragment;
@@ -65,13 +52,12 @@ import com.zw.express.tool.log.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import cn.jpush.android.api.TagAliasCallback;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends FragmentActivity {
     protected static final String TAG = "MainActivity";
     public static final String EXTRA_TAB = "extra_tab";//需要跳转的tab
     // 未读通讯录textview
@@ -90,8 +76,6 @@ public class MainActivity extends BaseActivity {
     private android.app.AlertDialog.Builder accountRemovedBuilder;
     private boolean isConflictDialogShow;
     private boolean isAccountRemovedDialogShow;
-    private BroadcastReceiver internalDebugReceiver;
-//    private ConversationListFragment conversationListFragment;
     private BroadcastReceiver broadcastReceiver;
     private LocalBroadcastManager broadcastManager;
     int status = 0;
@@ -104,35 +88,24 @@ public class MainActivity extends BaseActivity {
     public boolean isConflict = false;
     // 账号被移除
     private boolean isCurrentAccountRemoved = false;
-//    private boolean isLogin = false;
+    //    private boolean isLogin = false;
 //    private boolean isThree = false;
 
     String openID;
     String personUnionID;
-
-    /**
-     * 检查当前用户是否被删除
-     */
-    public boolean getCurrentAccountRemoved() {
-        return isCurrentAccountRemoved;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ScreenManager.getScreenManager().pushActivity(this);
         SPManager.getInstance(this).setMyStatus("-1");
-        ZWConfig.isLogin = DemoHelper.getInstance().isLoggedIn();
+
         if (savedInstanceState != null && savedInstanceState.getBoolean(Constant.ACCOUNT_REMOVED, false)) {
-            // 防止被移除后，没点确定按钮然后按了home键，长期在后台又进app导致的crash
-            // 三个fragment里加的判断同理
-            DemoHelper.getInstance().logout(true, null);
+            EMClient.getInstance().logout(true);
             finish();
             startActivity(new Intent(this, HomeActivity.class));
             return;
         } else if (savedInstanceState != null && savedInstanceState.getBoolean("isConflict", false)) {
-            // 防止被T后，没点确定按钮然后按了home键，长期在后台又进app导致的crash
-            // 三个fragment里加的判断同理
             finish();
             startActivity(new Intent(this, HomeActivity.class));
             return;
@@ -140,21 +113,6 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.em_activity_main);
         initView();
 
-        if (getIntent().getBooleanExtra(Constant.ACCOUNT_CONFLICT, false) && !isConflictDialogShow) {
-            JpushUtlis.setAlias(getApplicationContext(), "", new TagAliasCallback() {
-                @Override
-                public void gotResult(int mI, String mS, Set<String> mSet) {
-                    android.util.Log.d("alias", "设置alias为 :  " + mS);
-                }
-            });
-            showConflictDialog();
-        } else if (getIntent().getBooleanExtra(Constant.ACCOUNT_REMOVED, false) && !isAccountRemovedDialogShow) {
-            showAccountRemovedDialog();
-        }
-
-        inviteMessgeDao = new InviteMessgeDao(this);
-        userDao = new UserDao(this);
-//        conversationListFragment = new ConversationListFragment();
         zhiBoListManageActivity = new ZhiBoListManageActivity();
         counselorFragment = new CounselorFragment();
         myWebViewFragment = new MainWebViewFragment();
@@ -164,29 +122,14 @@ public class MainActivity extends BaseActivity {
         Bundle b = new Bundle();
         b.putString(BaseWebViewFragment.EXTRA_URL, ZWConfig.ACTION_nosignsearchConsultant);
         myWebViewFragment.setArguments(b);
-        //注册local广播接收者，用于接收demohelper中发出的群组联系人的变动通知
-        registerBroadcastReceiver();
-        EMClient.getInstance().contactManager().setContactListener(new MyContactListener());
-        //内部测试方法，请忽略
-        //registerInternalDebugReceiver();
+
+        if (getIntent().getBooleanExtra(Constant.ACCOUNT_CONFLICT, false) && !isConflictDialogShow) {
+            showConflictDialog();
+        } else if (getIntent().getBooleanExtra(Constant.ACCOUNT_REMOVED, false) && !isAccountRemovedDialogShow) {
+            showAccountRemovedDialog();
+        }
 
 //        approveDev();
-        EMLog.d(TAG, "width:" + getScreenWidth(this) + "  height:" + getScreenHeight(this));
-    }
-
-    public static int getScreenWidth(Context context) {
-        WindowManager manager = (WindowManager) context
-                .getSystemService(Context.WINDOW_SERVICE);
-        Display display = manager.getDefaultDisplay();
-        return display.getWidth();
-    }
-
-    //获取屏幕的高度
-    public static int getScreenHeight(Context context) {
-        WindowManager manager = (WindowManager) context
-                .getSystemService(Context.WINDOW_SERVICE);
-        Display display = manager.getDefaultDisplay();
-        return display.getHeight();
     }
 
     /**
@@ -276,7 +219,7 @@ public class MainActivity extends BaseActivity {
     /**
      * 初始化组件
      */
-    private void initView() {
+    public void initView() {
         unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
         mTabs = new Button[4];
 
@@ -348,34 +291,6 @@ public class MainActivity extends BaseActivity {
         currentTabIndex = index;
     }
 
-    EMMessageListener messageListener = new EMMessageListener() {
-
-        @Override
-        public void onMessageReceived(List<EMMessage> messages) {
-            // 提示新消息
-            for (EMMessage message : messages) {
-                DemoHelper.getInstance().getNotifier().onNewMsg(message);
-            }
-            refreshUIWithMessage();
-        }
-
-        @Override
-        public void onCmdMessageReceived(List<EMMessage> messages) {
-        }
-
-        @Override
-        public void onMessageReadAckReceived(List<EMMessage> messages) {
-        }
-
-        @Override
-        public void onMessageDeliveryAckReceived(List<EMMessage> message) {
-        }
-
-        @Override
-        public void onMessageChanged(EMMessage message, Object change) {
-        }
-    };
-
     private void refreshUIWithMessage() {
         runOnUiThread(new Runnable() {
             public void run() {
@@ -390,75 +305,6 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void back(View view) {
-        super.back(view);
-    }
-
-    private void registerBroadcastReceiver() {
-        broadcastManager = LocalBroadcastManager.getInstance(this);
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(Constant.ACTION_CONTACT_CHANAGED);
-        intentFilter.addAction(Constant.ACTION_GROUP_CHANAGED);
-        broadcastReceiver = new BroadcastReceiver() {
-
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                updateUnreadAddressLable();
-                if (currentTabIndex == 0) {
-                    // 当前页面如果为聊天历史页面，刷新此页面
-//                    if (conversationListFragment != null) {
-//                        conversationListFragment.refresh();
-//                    }
-                }
-                String action = intent.getAction();
-                if (action.equals(Constant.ACTION_GROUP_CHANAGED)) {
-                   /* if (EaseCommonUtils.getTopActivity(MainActivity.this).equals(GroupsActivity.class.getName())) {
-                        GroupsActivity.instance.onResume();
-                    }*/
-                }
-            }
-        };
-        broadcastManager.registerReceiver(broadcastReceiver, intentFilter);
-    }
-
-    public class MyContactListener implements EMContactListener {
-        @Override
-        public void onContactAdded(String username) {
-        }
-
-        @Override
-        public void onContactDeleted(final String username) {
-            runOnUiThread(new Runnable() {
-                public void run() {
-                    if (ChatActivity.activityInstance != null && ChatActivity.activityInstance.toChatUsername != null &&
-                            username.equals(ChatActivity.activityInstance.toChatUsername)) {
-                        String st10 = getResources().getString(R.string.have_you_removed);
-                        Toast.makeText(MainActivity.this, ChatActivity.activityInstance.getToChatUsername() + st10, Toast.LENGTH_LONG)
-                                .show();
-                        ChatActivity.activityInstance.finish();
-                    }
-                }
-            });
-        }
-
-        @Override
-        public void onContactInvited(String username, String reason) {
-        }
-
-        @Override
-        public void onContactAgreed(String username) {
-        }
-
-        @Override
-        public void onContactRefused(String username) {
-        }
-    }
-
-    private void unregisterBroadcastReceiver() {
-        broadcastManager.unregisterReceiver(broadcastReceiver);
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         SPManager.getInstance(this).setMyStatus("-1");
@@ -467,13 +313,6 @@ public class MainActivity extends BaseActivity {
             conflictBuilder.create().dismiss();
             conflictBuilder = null;
         }
-        unregisterBroadcastReceiver();
-
-        try {
-            unregisterReceiver(internalDebugReceiver);
-        } catch (Exception e) {
-        }
-
     }
 
     /**
@@ -506,82 +345,17 @@ public class MainActivity extends BaseActivity {
      */
     public int getUnreadAddressCountTotal() {
         int unreadAddressCountTotal = 0;
-        unreadAddressCountTotal = inviteMessgeDao.getUnreadMessagesCount();
         return unreadAddressCountTotal;
     }
-
-    /**
-     * 获取未读消息数
-     *
-     * @return
-     */
-    public int getUnreadMsgCountTotal() {
-        int unreadMsgCountTotal = 0;
-        int chatroomUnreadMsgCount = 0;
-        unreadMsgCountTotal = EMClient.getInstance().chatManager().getUnreadMsgsCount();
-        for (EMConversation conversation : EMClient.getInstance().chatManager().getAllConversations().values()) {
-            if (conversation.getType() == EMConversationType.ChatRoom)
-                chatroomUnreadMsgCount = chatroomUnreadMsgCount + conversation.getUnreadMsgCount();
-        }
-        return unreadMsgCountTotal - chatroomUnreadMsgCount;
-    }
-
-    private InviteMessgeDao inviteMessgeDao;
-    private UserDao userDao;
-
-
-    /**
-     * 保存提示新消息
-     *
-     * @param msg
-     */
-    private void notifyNewIviteMessage(InviteMessage msg) {
-        saveInviteMsg(msg);
-        // 提示有新消息
-        DemoHelper.getInstance().getNotifier().viberateAndPlayTone(null);
-
-        // 刷新bottom bar消息未读数
-        updateUnreadAddressLable();
-    }
-
-    /**
-     * 保存邀请等msg
-     *
-     * @param msg
-     */
-    private void saveInviteMsg(InviteMessage msg) {
-        // 保存msg
-        inviteMessgeDao.saveMessage(msg);
-        //保存未读数，这里没有精确计算
-        inviteMessgeDao.saveUnreadMessageCount(1);
-    }
-
 
     @Override
     protected void onResume() {
         super.onResume();
-        ZWConfig.isLogin = DemoHelper.getInstance().isLoggedIn();
         setMainTab();
 //        getStatus();
         if (!isConflict && !isCurrentAccountRemoved) {
             updateUnreadAddressLable();
         }
-
-        // unregister this event listener when this activity enters the
-        // background
-        DemoHelper sdkHelper = DemoHelper.getInstance();
-        sdkHelper.pushActivity(this);
-
-        EMClient.getInstance().chatManager().addMessageListener(messageListener);
-    }
-
-    @Override
-    protected void onStop() {
-        EMClient.getInstance().chatManager().removeMessageListener(messageListener);
-        DemoHelper sdkHelper = DemoHelper.getInstance();
-        sdkHelper.popActivity(this);
-
-        super.onStop();
     }
 
     @Override
@@ -596,8 +370,14 @@ public class MainActivity extends BaseActivity {
      * 显示帐号在别处登录dialog
      */
     private void showConflictDialog() {
+        JpushUtlis.setAlias(getApplicationContext(), "", new TagAliasCallback() {
+            @Override
+            public void gotResult(int mI, String mS, Set<String> mSet) {
+                android.util.Log.d("alias", "设置alias为 :  " + mS);
+            }
+        });
         isConflictDialogShow = true;
-        DemoHelper.getInstance().logout(false, null);
+        EaseHelper.getInstance().logout(true, null);
         String st = getResources().getString(R.string.Logoff_notification);
         if (!MainActivity.this.isFinishing()) {
             // clear up global variables
@@ -622,7 +402,7 @@ public class MainActivity extends BaseActivity {
                 conflictBuilder.create().show();
                 isConflict = true;
             } catch (Exception e) {
-                EMLog.e(TAG, "---------color conflictBuilder error" + e.getMessage());
+
             }
 
         }
@@ -633,8 +413,14 @@ public class MainActivity extends BaseActivity {
      * 帐号被移除的dialog
      */
     private void showAccountRemovedDialog() {
+        JpushUtlis.setAlias(getApplicationContext(), "", new TagAliasCallback() {
+            @Override
+            public void gotResult(int mI, String mS, Set<String> mSet) {
+                android.util.Log.d("alias", "设置alias为 :  " + mS);
+            }
+        });
         isAccountRemovedDialogShow = true;
-        DemoHelper.getInstance().logout(false, null);
+        EMClient.getInstance().logout(true);
         String st5 = getResources().getString(R.string.Remove_the_notification);
         SPManager.getInstance(this).clearLoginInfo();
         if (!MainActivity.this.isFinishing()) {
@@ -658,7 +444,6 @@ public class MainActivity extends BaseActivity {
                 accountRemovedBuilder.create().show();
                 isCurrentAccountRemoved = true;
             } catch (Exception e) {
-                EMLog.e(TAG, "---------color userRemovedBuilder error" + e.getMessage());
             }
 
         }
@@ -682,14 +467,7 @@ public class MainActivity extends BaseActivity {
         SPManager.getInstance(this).setMyStatus("-1");
         setMainTab();
 //        getStatus();
-        ZWConfig.isLogin = DemoHelper.getInstance().isLoggedIn();
         if (intent.getBooleanExtra(Constant.ACCOUNT_CONFLICT, false) && !isConflictDialogShow) {
-            JpushUtlis.setAlias(getApplicationContext(), "", new TagAliasCallback() {
-                @Override
-                public void gotResult(int mI, String mS, Set<String> mSet) {
-                    android.util.Log.d("alias", "设置alias为 :  " + mS);
-                }
-            });
             showConflictDialog();
         } else if (intent.getBooleanExtra(Constant.ACCOUNT_REMOVED, false) && !isAccountRemovedDialogShow) {
             showAccountRemovedDialog();

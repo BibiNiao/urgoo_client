@@ -13,9 +13,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.hyphenate.chat.EMClient;
 import com.urgoo.account.activity.HomeActivity;
-import com.urgoo.client.DemoHelper;
+import com.urgoo.base.ActivityBase;
 import com.urgoo.client.R;
 import com.urgoo.common.APPManagerTool;
 import com.urgoo.common.ZWConfig;
@@ -38,7 +37,7 @@ import java.util.ArrayList;
 /**
  * 开屏页
  */
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends ActivityBase {
 
     protected static final int CODE_UPDATE_DIALOG = 0;
     protected static final int CODE_URL_ERROR = 1;
@@ -57,9 +56,7 @@ public class SplashActivity extends BaseActivity {
     private boolean isShow = false;
 
     private RelativeLayout rootLayout;
-    private TextView versionText, down;
     private VersionBean vb = null;
-    private static final int sleepTime = 2000;
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -110,8 +107,6 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.em_activity_splash);
         super.onCreate(arg0);
         rootLayout = (RelativeLayout) findViewById(R.id.splash_root);
-        versionText = (TextView) findViewById(R.id.tv_version);
-        down = (TextView) findViewById(R.id.down);
 //        checkVerson();
 //        versionText.setText(getVersion());
         AlphaAnimation animation = new AlphaAnimation(0.3f, 1.0f);
@@ -138,50 +133,9 @@ public class SplashActivity extends BaseActivity {
 //                    return;
 //                }
                 checkVerson();
-                if (DemoHelper.getInstance().isLoggedIn()) {
-                    // ** 免登陆情况 加载所有本地群和会话
-                    //不是必须的，不加sdk也会自动异步去加载(不会重复加载)；
-                    //加上的话保证进了主页面会话和群组都已经load完毕
-                    //   long start = System.currentTimeMillis();
-                    EMClient.getInstance().groupManager().loadAllGroups();
-                    EMClient.getInstance().chatManager().loadAllConversations();
-                }
             }
         }).start();
 
-    }
-
-    /**
-     * 获取当前应用程序的版本号
-     */
-    private String getVersion() {
-        return EMClient.getInstance().getChatConfig().getVersion();
-    }
-
-    /**
-     * 获取版本名称
-     *
-     * @return
-     */
-    private String getVersionName() {
-        PackageManager packageManager = getPackageManager();
-        try {
-            PackageInfo packageInfo = packageManager.getPackageInfo(
-                    getPackageName(), 0);// 获取包的信息
-
-            int versionCode = packageInfo.versionCode;
-            String versionName = packageInfo.versionName;
-
-            System.out.println("versionName=" + versionName + ";versionCode="
-                    + versionCode);
-
-            return versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            // 没有找到包名的时候会走此异常
-            e.printStackTrace();
-        }
-
-        return "";
     }
 
     /**
