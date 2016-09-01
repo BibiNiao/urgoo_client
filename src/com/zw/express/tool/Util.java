@@ -16,6 +16,7 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.urgoo.account.activity.HomeActivity;
 import com.urgoo.business.UpdateService;
 import com.urgoo.client.R;
 import com.urgoo.common.APPManagerTool;
@@ -424,10 +425,16 @@ public class Util {
         String UserId = SPManager.getInstance(context).getUserId();
         String nickName = SPManager.getInstance(context).getNickName();
         String username = SPManager.getInstance(context).getUserName();
+
         if (UserId != null && nickName != null & username != null) {
             APPManagerTool.setGrowingIOCS(UserId, nickName, username);
         }
-        Intent intent = new Intent(context, MainActivity.class);
+        Intent intent;
+        if (SPManager.getInstance(context).getToken() != null) {
+            intent = new Intent(context, MainActivity.class);
+        } else {
+            intent = new Intent(context, HomeActivity.class);
+        }
         context.startActivity(intent);
         ((Activity) context).finish();
     }
