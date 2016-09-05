@@ -8,7 +8,6 @@
     <uses-permission android:name="com.urgoo.client.permission.C2D_MESSAGE"/>
     <uses-permission android:name="com.urgoo.client.permission.JPUSH_MESSAGE"/>
     <uses-permission android:name="android.permission.READ_LOGS"/>
-    <uses-permission android:name="com.hyphenate.chatuidemo.permission.MIPUSH_RECEIVE"/>
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -205,7 +204,6 @@
 
         <!-- 登陆 -->
 
-
         <!-- 注册 -->
         <!-- 聊天页面 -->
         <activity
@@ -306,15 +304,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <!-- 杨德成 20160722 微信分享回调 end -->
-        <receiver
-            android:name="com.urgoo.broadcast.GCMPushBroadCast"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.hyphenate.sdk.push"/>
-
-                <category android:name="com.urgoo.client"/>
-            </intent-filter>
-        </receiver>
 
         <!-- 设置环信应用的appkey -->
         <meta-data
@@ -525,6 +514,29 @@
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.hyphenate.chat.EMGCMBroadcastReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.hyphenate.chatuidemo" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.hyphenate.chat.EMGCMListenerService"
+            android:exported="false" >
+        </service>
+
+        <receiver
+            android:name="com.urgoo.message.GCMPushBroadCast"
+            android:exported="false">
+            <intent-filter >
+                <action android:name="com.hyphenate.sdk.push"/>
+                <category android:name="com.hyphenate.chatuidemo"/>
             </intent-filter>
         </receiver>
     </application>

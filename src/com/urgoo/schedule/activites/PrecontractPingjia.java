@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.urgoo.base.ActivityBase;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
+import com.urgoo.message.activities.ChatActivity;
 import com.urgoo.webviewmanage.BaseWebViewActivity;
 import com.urgoo.webviewmanage.BaseWebViewFragment;
 
@@ -57,7 +58,7 @@ public class PrecontractPingjia extends ActivityBase {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: 还有疑问？去找优宝问问吧~");
-//                startActivity(new Intent(PrecontractPingjia.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
+                startActivity(new Intent(PrecontractPingjia.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
             }
         });
     }

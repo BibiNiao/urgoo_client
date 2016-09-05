@@ -47,6 +47,7 @@ import com.urgoo.data.SPManager;
 import com.urgoo.domain.NetHeaderInfoEntity;
 import com.urgoo.domain.ShareDetail;
 import com.urgoo.flashview.listener.FlashViewListener;
+import com.urgoo.message.activities.ChatActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.order.ServiceActivity;
 import com.urgoo.profile.activities.UrgooVideoActivity;
@@ -644,7 +645,7 @@ public class CounselorActivity extends ActivityBase implements View.OnClickListe
                 break;
 
             case R.id.tv_cont_urgoo:            //   优宝
-//                startActivity(new Intent(CounselorActivity.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
+                startActivity(new Intent(CounselorActivity.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
                 break;
 
             case R.id.but_cont_make:            //   预约

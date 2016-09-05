@@ -30,6 +30,7 @@ import com.urgoo.common.DataUtil;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.data.SPManager;
 import com.urgoo.domain.NetHeaderInfoEntity;
+import com.urgoo.message.activities.ChatActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.profile.activities.UrgooVideoActivity;
 import com.urgoo.schedule.activites.Bean.advanceDetail;
@@ -1115,7 +1116,7 @@ public class PrecontractMyOrderContent extends ActivityBase implements View.OnCl
     }
 
     public void start() {
-//        startActivity(new Intent(PrecontractMyOrderContent.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
+        startActivity(new Intent(PrecontractMyOrderContent.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
         finish();
     }
 

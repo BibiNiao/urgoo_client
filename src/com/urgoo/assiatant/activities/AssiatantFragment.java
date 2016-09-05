@@ -18,6 +18,7 @@ import com.urgoo.base.HomeFragment;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.domain.AssiatantBean;
+import com.urgoo.message.activities.ChatActivity;
 import com.urgoo.webviewmanage.BaseWebViewActivity;
 import com.zw.express.tool.log.Log;
 import com.zw.express.tool.net.OkHttpClientManager;
@@ -114,7 +115,7 @@ public class AssiatantFragment extends HomeFragment {
             public void onClick(View v) {
 
 
-//                startActivity(new Intent(getActivity(), ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
+                startActivity(new Intent(getActivity(), ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
             }
 
         });
