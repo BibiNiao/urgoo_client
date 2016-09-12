@@ -57,7 +57,7 @@ public class BaseApplication extends Application {
         JPushInterface.init(this);
 
         ShareSDK.initSDK(this);
-        HRSDK.getInstance().initWithAppID("0689b939-4c66-4ef0-8841-e2e390cd259e");
+        HRSDK.getInstance().initWithAppID("3ae8f6f3-7c62-4bdf-8b02-7ae4c55574ef");
 
         // Fresco初始化
         ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this).setDownsampleEnabled(true).build();

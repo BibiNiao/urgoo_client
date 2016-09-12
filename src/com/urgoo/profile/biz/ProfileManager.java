@@ -119,4 +119,58 @@ public class ProfileManager {
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetOngDataList, ZWConfig.URL_selectZoomLiveByParaentId, params, callback);
     }
 
+    /**
+     * 系统消息
+     *
+     * @param callback
+     */
+    public void getInformationPerson(StringRequestCallBack callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodegetInformationPerson, ZWConfig.URL_requestInformationPerson, params, callback);
+    }
+
+    /**
+     * 我的一级红点
+     *
+     * @param callback
+     */
+    public void getSelectRedCount(StringRequestCallBack callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("termType", "2");
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeSelectRedCount, ZWConfig.URL_requestSelectRedCount, params, callback);
+    }
+
+    /**
+     * 消息列表
+     *
+     * @param type ""系统消息 "0"个人消息
+     * @param page
+     * @param callback
+     */
+    public void getSelectInformationPerson(String type, int page, StringRequestCallBack callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("termType", "2");
+        params.put("type", type);
+        params.put("page", String.valueOf(page));
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeMessageList, ZWConfig.URL_requestSelectInformationPerson, params, callback);
+    }
+
+    /**
+     * 更新消息
+     *
+     * @param informationId
+     * @param unread
+     * @param callback
+     */
+    public void selectInformationSystemDetail(String informationId, String unread, StringRequestCallBack callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("termType", "2");
+        params.put("informationId", informationId);
+        params.put("unread",unread);
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeUpdateMessage, ZWConfig.Action_updateInformation, params, callback);
+    }
 }

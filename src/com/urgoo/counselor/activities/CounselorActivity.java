@@ -48,6 +48,8 @@ import com.urgoo.domain.NetHeaderInfoEntity;
 import com.urgoo.domain.ShareDetail;
 import com.urgoo.flashview.listener.FlashViewListener;
 import com.urgoo.message.activities.ChatActivity;
+import com.urgoo.message.activities.MainActivity;
+import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.order.ServiceActivity;
 import com.urgoo.profile.activities.UrgooVideoActivity;
@@ -669,10 +671,20 @@ public class CounselorActivity extends ActivityBase implements View.OnClickListe
                 break;
 
             case R.id.LinLyout_myorder_back:    //   回退箭头
+                if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
+                    Bundle extras = new Bundle();
+                    extras.putInt(MainActivity.EXTRA_TAB, 0);
+                    Util.openActivityWithBundle(CounselorActivity.this, MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                }
                 finish();
                 break;
 
             case R.id.LinLyout_myorder_back2:    //   回退箭头
+                if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
+                    Bundle extras = new Bundle();
+                    extras.putInt(MainActivity.EXTRA_TAB, 0);
+                    Util.openActivityWithBundle(CounselorActivity.this, MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                }
                 finish();
                 break;
 
@@ -1221,6 +1233,11 @@ public class CounselorActivity extends ActivityBase implements View.OnClickListe
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             SPManager.getInstance(this).setLogins("1");
             img_news.setVisibility(View.GONE);
+            if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
+                Bundle extras = new Bundle();
+                extras.putInt(MainActivity.EXTRA_TAB, 0);
+                Util.openActivityWithBundle(CounselorActivity.this, MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            }
             finish();
             return false;
         }

@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.zw.express.tool.net.OkHttpClientManager;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -68,7 +69,7 @@ public class HttpEngine {
 
             @Override
             public void onError(Call call, Exception e) {
-                Log.d("===> onError eventCode:", eventCode + ", onError:" + call);
+                Log.d("===> onError eventCode:", eventCode + ", onError:" + call.request());
                 if (callback != null) {
                     callback.onFailure(eventCode, call);
                 }

@@ -1,15 +1,24 @@
 package com.urgoo.jpush;
 
 import android.app.ActivityManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.urgoo.client.R;
+import com.urgoo.common.event.MessageEvent;
 import com.urgoo.message.activities.MainActivity;
+import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.profile.activities.UrgooVideoActivity;
+import com.urgoo.zhibo.activities.ZhiBodDetailActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,10 +27,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
+import de.greenrobot.event.EventBus;
 
 /**
  * 自定义接收器
- * <p/>
+ * <p>
  * 如果不定义这个 Receiver，则：
  * 1) 默认用户会打开主界面
  * 2) 接收不到自定义消息
@@ -42,6 +52,7 @@ public class MyReceiver extends BroadcastReceiver {
         String EXTRA_MESSAGE = bundle.getString(JPushInterface.EXTRA_MESSAGE);
         // 附加的键值对信息
         EXTRA_EXTRA = bundle.getString(JPushInterface.EXTRA_EXTRA);
+        EventBus.getDefault().post(new MessageEvent(EXTRA_EXTRA));
 
         //接收到消息后跳转到聊天界面
 
@@ -80,48 +91,53 @@ public class MyReceiver extends BroadcastReceiver {
             if (EXTRA_EXTRA != null) {
                 try {
                     JSONObject mObject = new JSONObject(EXTRA_EXTRA.toString());
-
-                    Log.d("xd",mObject.toString());
-                    //int type = mObject.getInt("type");
-                    //int type = mObject.optInt("type");
-
-                    //int type=Integer.parseInt(mObject.getString("type"));
-                    JSONObject mObject2=new JSONObject(mObject.getString("extra"));
+                    JSONObject mObject2 = new JSONObject(mObject.getString("extra"));
                     int type = Integer.parseInt(mObject2.getString("type"));
+
+                    NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);
+                    Intent notificationIntent = new Intent();
+                    Bundle extras = new Bundle();
                     switch (type) {
-                       case 3:
-                           //打开自定义的Activity
-                           Intent notificationIntent = new Intent();
-                           notificationIntent.putExtra(MainActivity.EXTRA_TAB, 1);
-                           notificationIntent.setClass(context.getApplicationContext(), MainActivity.class);
-                           notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                           context.getApplicationContext().startActivity(notificationIntent);
-                           break;
-
+                        case 1001:
+                            extras.putString(SplashActivity.EXTRA_JSON, mObject2.toString());
+                            extras.putInt(SplashActivity.EXTRA_TARGET, SplashActivity.TARGET_APPOINTMENT);
+                            break;
+                        case 2001:
+                            extras.putString(SplashActivity.EXTRA_JSON, mObject2.toString());
+                            extras.putInt(SplashActivity.EXTRA_TARGET, SplashActivity.TARGET_LIVE_DETAIL);
+                            break;
+                        case 3001:
+                            extras.putString(SplashActivity.EXTRA_JSON, mObject2.toString());
+                            extras.putInt(SplashActivity.EXTRA_TARGET, SplashActivity.TARGET_MESSAGE);
+                            break;
+                        case 4001:
+                            extras.putString(SplashActivity.EXTRA_JSON, mObject2.toString());
+                            extras.putInt(SplashActivity.EXTRA_TARGET, SplashActivity.TARGET_COUNSELOR);
+                            break;
+//                        case 3:
+//                            //打开自定义的Activity
+//                            Intent notificationIntent = new Intent();
+//                            notificationIntent.putExtra(MainActivity.EXTRA_TAB, 1);
+//                            notificationIntent.setClass(context.getApplicationContext(), MainActivity.class);
+//                            notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                            context.getApplicationContext().startActivity(notificationIntent);
+//                            break;
                         case 2:
-                           /* String icon=mObject.getString("icon");
-                            String name=mObject.getString("name");
-                            String  hxCode=mObject.getString("hxCode");*/
-
-                            if(!isActivityRunning(context.getApplicationContext(),"UrgooVideoActivity")){
-                                String pic=mObject2.optString("pic");
-                                String nickname=mObject2.optString("nickname");
-                                String  zoomId=mObject2.optString("zoomId");
-                                String  zoomNo=mObject2.optString("zoomNo");
-                                Intent it= new Intent(context.getApplicationContext(), UrgooVideoActivity.class);
-                                //notificationIntent.putExtra(MainActivity.EXTRA_TAB, 1);
-                                it.putExtra("icon", pic);
-                                it.putExtra("name", nickname);
-                                it.putExtra("zoomId", zoomId);
-                                it.putExtra("zoomNo", zoomNo);
-                                it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                context.getApplicationContext().startActivity(it);
-                                break;
-                            }
-
+                            extras.putString(SplashActivity.EXTRA_JSON, mObject2.toString());
+                            extras.putInt(SplashActivity.EXTRA_TARGET, SplashActivity.TARGET_VIDEO);
+                            break;
                     }
-
-
+                    notificationIntent.putExtras(extras);
+                    notificationIntent.setClass(context.getApplicationContext(), SplashActivity.class);
+                    notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mBuilder.setContentIntent(PendingIntent.getActivity(context, type, intent, PendingIntent.FLAG_UPDATE_CURRENT))
+                            .setTicker(context.getString(R.string.app_name))
+                            .setWhen(System.currentTimeMillis())
+                            .setAutoCancel(true)
+                            .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher));
+                    nm.notify(type, mBuilder.build());
+                    context.getApplicationContext().startActivity(notificationIntent);
                 } catch (JSONException mE) {
                     mE.printStackTrace();
                 }
@@ -172,13 +188,13 @@ public class MyReceiver extends BroadcastReceiver {
 
 
     //杨德成  20160801 判断Activity是否在运行
-    public static boolean isActivityRunning(Context mContext,String activityClassName){
+    public static boolean isActivityRunning(Context mContext, String activityClassName) {
         ActivityManager activityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningTaskInfo> info = activityManager.getRunningTasks(1);
-        if(info != null && info.size() > 0){
+        if (info != null && info.size() > 0) {
 
             ComponentName component = info.get(0).topActivity;
-            if(activityClassName.equals(component.getClassName())){
+            if (activityClassName.equals(component.getClassName())) {
                 return true;
             }
         }

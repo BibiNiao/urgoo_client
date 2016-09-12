@@ -3,9 +3,11 @@ package com.urgoo.message.activities;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentActivity;
 import android.view.animation.AlphaAnimation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import com.urgoo.base.ActivityBase;
 import com.urgoo.client.R;
 import com.urgoo.common.APPManagerTool;
 import com.urgoo.common.ZWConfig;
+import com.urgoo.data.SPManager;
 import com.urgoo.domain.VersionBean;
 import com.zw.express.tool.Util;
 import com.zw.express.tool.log.Log;
@@ -38,6 +41,31 @@ import java.util.ArrayList;
  * 开屏页
  */
 public class SplashActivity extends ActivityBase {
+    private int target;
+    private String pushJson;
+    public static final String EXTRA_JSON = "extra_json";
+    public static final String EXTRA_TARGET = "extra_target";
+    public static final String EXTRA_FROM_PUSH = "extra_from_push";
+    /**
+     * 视频接收拒绝页
+     */
+    public static final int TARGET_VIDEO = 1;
+    /**
+     * 直播详情
+     */
+    public static final int TARGET_LIVE_DETAIL = 2;
+    /**
+     * 预约列表
+     */
+    public static final int TARGET_APPOINTMENT = 3;
+    /**
+     * 消息列表
+     */
+    public static final int TARGET_MESSAGE = 4;
+    /**
+     * 顾问详情
+     */
+    public static final int TARGET_COUNSELOR = 5;
 
     protected static final int CODE_UPDATE_DIALOG = 0;
     protected static final int CODE_URL_ERROR = 1;
@@ -107,6 +135,11 @@ public class SplashActivity extends ActivityBase {
         setContentView(R.layout.em_activity_splash);
         super.onCreate(arg0);
         rootLayout = (RelativeLayout) findViewById(R.id.splash_root);
+        System.out.println("-----------------------" + getIntent().getIntExtra(EXTRA_TARGET, 0));
+        target = getIntent().getIntExtra(EXTRA_TARGET, 0);
+        if (!Util.isEmpty(getIntent().getStringExtra(EXTRA_JSON))) {
+            pushJson = getIntent().getStringExtra(EXTRA_JSON);
+        }
 //        checkVerson();
 //        versionText.setText(getVersion());
         AlphaAnimation animation = new AlphaAnimation(0.3f, 1.0f);
@@ -297,24 +330,39 @@ public class SplashActivity extends ActivityBase {
         enterHome();
         super.onActivityResult(requestCode, resultCode, data);
     }
+//
+//    @Override
+//    protected void onNewIntent(Intent intent) {
+//        setIntent(intent);
+//        super.onNewIntent(intent);
+//        target = getIntent().getIntExtra(EXTRA_TARGET, 0);
+//        if (!Util.isEmpty(getIntent().getStringExtra(EXTRA_JSON))) {
+//            pushJson = getIntent().getStringExtra(EXTRA_JSON);
+//        }
+//        System.out.println("=============" + target);
+//    }
 
     private void enterHome() {
 
-        String UserId = spManager.getUserId();
-        String nickName = spManager.getNickName();
-        String username = spManager.getUserName();
+        String UserId = SPManager.getInstance(this).getUserId();
+        String nickName = SPManager.getInstance(this).getNickName();
+        String username = SPManager.getInstance(this).getUserName();
 
         android.util.Log.d("testssss", "UserId:" + UserId + "  nickName:" + nickName + " username:" + username);
         if (UserId != null && nickName != null & username != null) {
             APPManagerTool.setGrowingIOCS(UserId, nickName, username);
         }
         Intent intent;
-        if (Util.isEmpty(spManager.getToken())) {
+        if (Util.isEmpty(SPManager.getInstance(this).getToken())) {
             intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
         } else {
-            intent = new Intent(this, MainActivity.class);
+            try {
+                Util.forward(target, pushJson, this);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
-        startActivity(intent);
         finish();
     }
 

@@ -48,6 +48,10 @@ public class ActivityBase extends Activity implements ActivityInterface, StringR
      */
     protected SPManager spManager;
 
+    public Handler getDefaultHandler() {
+        return mHandler;
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         mUIThreadId = Process.myTid();
         super.onCreate(savedInstanceState);

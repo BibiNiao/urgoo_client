@@ -27,15 +27,19 @@ import com.urgoo.base.HomeFragment;
 import com.urgoo.business.BaseService;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
+import com.urgoo.common.event.MessageEvent;
 import com.urgoo.data.SPManager;
 import com.urgoo.domain.NetHeaderInfoEntity;
 import com.urgoo.jpush.JpushUtlis;
 import com.urgoo.message.EaseHelper;
+import com.urgoo.net.EventCode;
+import com.urgoo.profile.biz.ProfileManager;
 import com.urgoo.schedule.activites.PrecontractMyOrder;
 import com.urgoo.webviewmanage.BaseWebViewActivity;
 import com.urgoo.webviewmanage.BaseWebViewFragment;
 import com.zw.express.tool.PickUtils;
 import com.zw.express.tool.UiUtil;
+import com.zw.express.tool.Util;
 import com.zw.express.tool.log.Log;
 import com.zw.express.tool.net.OkHttpClientManager;
 
@@ -50,6 +54,7 @@ import java.util.Map;
 import java.util.Set;
 
 import cn.jpush.android.api.TagAliasCallback;
+import de.greenrobot.event.EventBus;
 import okhttp3.Call;
 
 
@@ -66,6 +71,7 @@ public class ProfileFragment extends HomeFragment implements OnClickListener {
     private RelativeLayout logoutBtn;
     private RelativeLayout re_wanshan_ziliaos;
     private RelativeLayout I_sign_up;
+    private RelativeLayout myMessage;
 
     RelativeLayout re_serviceargeement, re_help, re_wanshan_yuyue;
 
@@ -79,8 +85,11 @@ public class ProfileFragment extends HomeFragment implements OnClickListener {
     private LinearLayout ll_Follow, order_ll, account_ll;
     private ImageView img_verified, iv_notification_icon;
     private TextView tv_fixed, iv_avatar2, experienceTv;
+    private ImageView ivMessageRed;
 
     private SimpleDraweeView iv_avatar;
+    private MessageFragmentCallback callback;
+    private boolean isShowRed;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,30 +97,66 @@ public class ProfileFragment extends HomeFragment implements OnClickListener {
         view = inflater.inflate(R.layout.minefragment_layout, null);
         initView();
         getUserInfo();
+        getSelectRedCount();
         return view;
     }
 
+    public void getSelectRedCount(){
+        ProfileManager.getInstance(getActivity()).getSelectRedCount(this);
+    }
+
+    private void invokeUnreadCallback() {
+        if (callback != null) {
+            callback.onUnreadMessageCallback(isShowRed);
+        }
+    }
+
+    /**
+     * 刷新未读消息数量
+     */
+    public interface MessageFragmentCallback {
+        void onUnreadMessageCallback(boolean isShow);
+    }
+
+    public void setMessageFragmentCallback(MessageFragmentCallback callback) {
+        this.callback = callback;
+    }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
+        switch (eventCode) {
+            case EventCodeSelectRedCount:
+                try {
+                    int count = Integer.parseInt(new JSONObject(result.get("body").toString()).getString("count")); //消息中心红点
+                    int advanceCount = Integer.parseInt(new JSONObject(result.get("body").toString()).getString("advanceCount")); //预约红点
+                    int allCount = Integer.parseInt(new JSONObject(result.get("body").toString()).getString("allCount")); //预约红点
+                    if (allCount > 0) {
+                        isShowRed = true;
+                    } else {
+                        isShowRed = false;
+                    }
+                    invokeUnreadCallback();
+                    if (advanceCount > 0) {
+                        iv_notification_icon.setVisibility(View.VISIBLE);
+                    } else {
+                        iv_notification_icon.setVisibility(View.GONE);
+                    }
+                    if (count > 0) {
+                        ivMessageRed.setVisibility(View.VISIBLE);
+                    } else {
+                        ivMessageRed.setVisibility(View.GONE);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        String urgootoken = SPManager.getInstance(getActivity()).getToken();
-        /*Toast.makeText(getActivity(),
-                "urgootoken:"+urgootoken, Toast.LENGTH_LONG).show();*/
-        if (urgootoken != null) {
-            /*Toast.makeText(getActivity(),
-                    "urgootoken未空", Toast.LENGTH_LONG).show();*/
-            iconSwitch();
-        } else {
-           /* Toast.makeText(getActivity(),
-                    "urgootoken没有值", Toast.LENGTH_LONG).show();*/
-
-        }
+        getSelectRedCount();
     }
 
     @Override
@@ -199,6 +244,9 @@ public class ProfileFragment extends HomeFragment implements OnClickListener {
         experienceTv = $(view, R.id.exprience_tv);
         re_wanshan_ziliaos = $(view, R.id.re_wanshan_ziliaos);
         re_wanshan_yuyue = $(view, R.id.re_wanshan_yuyue);
+        ivMessageRed = (ImageView) view.findViewById(R.id.iv_message_red);
+        myMessage = (RelativeLayout) view.findViewById(R.id.my_message);
+        myMessage.setOnClickListener(this);
         order_ll.setOnClickListener(this);
         account_ll.setOnClickListener(this);
         re_help.setOnClickListener(this);
@@ -356,6 +404,9 @@ public class ProfileFragment extends HomeFragment implements OnClickListener {
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
+            case R.id.my_message:
+                Util.openActivity(getActivity(), MessageActivity.class);
+                break;
             case R.id.btn_logout: //退出登陆
                 logout();
                 break;

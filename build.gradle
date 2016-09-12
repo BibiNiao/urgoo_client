@@ -97,7 +97,6 @@ dependencies {
     compile 'com.growingio.android:vds-android-agent:0.9.85@aar'
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile files('libs/ShareSDK-SinaWeibo-2.7.6.jar')
-    compile files('libs/SHRBSDK.jar')
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.alibaba:fastjson:1.2.14'
     compile files('libs/hyphenatechat_3.1.5.jar')

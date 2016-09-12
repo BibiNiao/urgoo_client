@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -29,13 +30,20 @@ import com.urgoo.common.DataUtil;
 import com.urgoo.common.ShareUtil;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.activities.CounselorActivity;
+import com.urgoo.counselor.event.CounselorEvent;
+import com.urgoo.counselor.model.CounselorDetail;
 import com.urgoo.data.SPManager;
 import com.urgoo.domain.NetHeaderInfoEntity;
 import com.urgoo.domain.OldZhiBoEntity;
 import com.urgoo.domain.ShareDetail;
 import com.urgoo.domain.ZhiBoDetailEntity;
 import com.urgoo.domain.ZhiBoPinglunEntity;
+import com.urgoo.message.activities.MainActivity;
+import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.net.EventCode;
+import com.urgoo.schedule.activites.Precontract;
+import com.urgoo.schedule.activites.PrecontractMyOrder;
+import com.urgoo.schedule.activites.PrecontractMyOrderContent;
 import com.urgoo.view.MyListView;
 import com.urgoo.zhibo.biz.LiveManager;
 import com.zw.express.tool.GsonTools;
@@ -54,6 +62,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
+import de.greenrobot.event.EventBus;
 import okhttp3.Call;
 import us.zoom.sdk.MeetingService;
 import us.zoom.sdk.MeetingServiceListener;
@@ -71,6 +80,7 @@ public class ZhiBodDetailActivity extends ActivityBase implements Constants, Zoo
     private String liveId = "";
     private String zhibo = "1";
     private TextView tv_title, tv_baomingnumber, tv_miaoshu, tv_shichangvalue, tv_shijianvalue, tv_jiabingcontent;
+    private TextView tvAppointment;
     private RelativeLayout re_zhibo;
     private SimpleDraweeView iv_mingpian;
     private ShareDetail shareDetail;
@@ -123,6 +133,7 @@ public class ZhiBodDetailActivity extends ActivityBase implements Constants, Zoo
     private ImageView iv_ImageView;
     private int size;
     private boolean isLoadMore = false;
+    private CounselorDetail mCounselorDetail;
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -159,7 +170,25 @@ public class ZhiBodDetailActivity extends ActivityBase implements Constants, Zoo
 
     @Override
     public void initView() {
+        tvAppointment = (TextView) findViewById(R.id.tv_appointment);
+        tvAppointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!Util.isEmpty(mCounselorDetail.getIsAdvanceRelation().trim())) {
+                    // 如果为 0 ，表示该家长和该顾问没有联系，点击后调转到预约界面
+                    if (mCounselorDetail.getIsAdvanceRelation().equals("0")) {
+                        startActivity(new Intent(ZhiBodDetailActivity.this, Precontract.class).putExtra("counselorId", counselorId));
+                    } else if (mCounselorDetail.getIsAdvanceRelation().equals("1")) {
 
+                        // 如果为 1 ，表示该家长和该顾问有联系，点击后调转到预约详情界面
+                        startActivity(new Intent(ZhiBodDetailActivity.this, PrecontractMyOrderContent.class)
+                                .putExtra("status", mCounselorDetail.getStatus())
+                                .putExtra("advanceId", mCounselorDetail.getAdvanceId())
+                                .putExtra("type", mCounselorDetail.getType()));
+                    }
+                }
+            }
+        });
         tv_counselor = (TextView) findViewById(R.id.tv_counselor);
         iv_ImageView = (ImageView) findViewById(R.id.iv_ImageView);
         im_sharesdk = (RelativeLayout) findViewById(R.id.im_sharesdk);
@@ -305,6 +334,11 @@ public class ZhiBodDetailActivity extends ActivityBase implements Constants, Zoo
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
+                    Bundle extras = new Bundle();
+                    extras.putInt(MainActivity.EXTRA_TAB, 1);
+                    Util.openActivityWithBundle(ZhiBodDetailActivity.this, MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                }
                 finish();
             }
         });
@@ -680,6 +714,7 @@ public class ZhiBodDetailActivity extends ActivityBase implements Constants, Zoo
                     //UiUtil.show(ZhiBodDetailActivity.this, message);
                     shareDetail = GsonTools.getTargetClass(new JSONObject(result.get("body").toString()).getString("shareDetail"), ShareDetail.class);
                     ZhiBoDetailEntity entity = GsonTools.getTargetClass(new JSONObject(result.get("body").toString()).getString("liveDetail"), ZhiBoDetailEntity.class);
+                    mCounselorDetail = GsonTools.getTargetClass(new JSONObject(result.get("body").toString()).getString("advanceRelation"), CounselorDetail.class);
                     zoomNO = entity.getZoomNo();
                     status = entity.getStatus();
                     counselorId = entity.getTargetId();
@@ -879,5 +914,19 @@ public class ZhiBodDetailActivity extends ActivityBase implements Constants, Zoo
         public void stopThread() {
             thread.cancel();
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
+                Bundle extras = new Bundle();
+                extras.putInt(MainActivity.EXTRA_TAB, 1);
+                Util.openActivityWithBundle(ZhiBodDetailActivity.this, MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            }
+            finish();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

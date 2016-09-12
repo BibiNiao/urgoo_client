@@ -304,7 +304,48 @@
                 android:layout_height="0.5dp"
                 android:layout_marginTop="10dp"
                 android:background="#d4d4d4"/>
+            <RelativeLayout
+                android:id="@+id/my_message"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_list_item_bg"
+                android:clickable="true"
+                android:paddingLeft="12dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    android:text="消息中心"
+                    android:textColor="#353535"
+                    android:textSize="14sp"/>
+
+                <ImageView
+                    android:id="@+id/iv_next"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/common_rightarrow"/>
+
+                <ImageView
+                    android:id="@+id/iv_message_red"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/iv_next"
+                    android:src="@drawable/bg_num"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="#d4d4d4"/>
             <RelativeLayout
                 android:id="@+id/I_sign_up"
                 android:layout_width="match_parent"

@@ -75,7 +75,8 @@
                     android:maxWidth="170dp"
                     android:singleLine="true"
                     android:textColor="#676767"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/tv_miaoshu"

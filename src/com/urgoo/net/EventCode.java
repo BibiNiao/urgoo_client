@@ -121,16 +121,21 @@ public enum EventCode {
      * 直播详情
      */
     EventCodeZoomLiveDetail,
-    // 二维码
+    /**
+     * 二维码
+     */
     createQrcode,
-
-    // 规划列表
+    /**
+     * 规划列表
+     */
     newTaskList,
-
-    //规划列表详情
+    /**
+     * 规划列表详情
+     */
     newTaskDetail,
-
-    //规划详情
+    /**
+     * 规划详情
+     */
     EventCodeNewTimeLine,
     /**
      * 未开始
@@ -144,34 +149,60 @@ public enum EventCode {
      * 直播评论
      */
     EventCodeGetZhiBoPinglunList,
-
-    //已确定的详情
+    /**
+     * 已确定的详情
+     */
     EvetCodeAdvanceConfirmeDetailClient2,
-
-    //待确定的详情
+    /**
+     * 待确定的详情
+     */
     EventCodeAdvanceConfirmeDetailClient1,
-
-    //已结束详情
+    /**
+     * 已结束详情
+     */
     EventCodeAdvanceDetailClosedClient3,
-
-    // 接收预约
+    /**
+     * 接收预约
+     */
     EventCodeReAdvanceAccept,
-
-    //顾问被查看调用
+    /**
+     * 顾问被查看调用
+     */
     EventCodeStatCounselorCount,
-
-    //顾问详情BANNA
+    /**
+     * 顾问详情BANNA
+     */
     EventCodeSelectCounselorDetailSubList,
-
-    //顾问详情 基本信息
+    /**
+     * 顾问详情 基本信息
+     */
     EventCodeFindCounselorDetail,
-
-    //顾问详情 服务项目
+    /**
+     * 顾问详情 服务项目
+     */
     EventCodeSelectCounselorServiceList,
-
-    //顾问详情 关注
+    /**
+     * 顾问详情 关注
+     */
     EventCodeAddFollow,
-
-    //顾问详情 取消关注
-    EventCodeCancleFollow
+    /**
+     * 顾问详情 取消关注
+     */
+    EventCodeCancleFollow,
+    /**
+     * 系统消息
+     */
+    EventCodegetInformationPerson,
+    /**
+     * 一级界面红点
+     */
+    EventCodeSelectRedCount,
+    /**
+     * 消息列表
+     */
+    EventCodeMessageList,
+    /**
+     * 更新消息
+     */
+    EventCodeUpdateMessage,
 }

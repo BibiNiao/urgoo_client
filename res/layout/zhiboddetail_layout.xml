@@ -162,7 +162,8 @@
                             android:maxWidth="180dp"
                             android:singleLine="true"
                             android:textColor="#999999"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:visibility="gone" />
 
                         <TextView
                             android:id="@+id/tv_miaoshu"
@@ -322,6 +323,19 @@
                                     android:layout_marginTop="18dp"
                                     android:textColor="#999999"
                                     android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_appointment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="25dp"
+                                    android:ellipsize="end"
+                                    android:maxWidth="170dp"
+                                    android:singleLine="true"
+                                    android:text="立即预约 >"
+                                    android:textColor="#0FB7A3"
+                                    android:textSize="16sp" />
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -373,7 +387,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/re_jiabing"
                     android:background="#d4d4d4"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <RelativeLayout
                         android:id="@+id/re_wangqizhibo"
@@ -462,7 +476,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/re_oldzhibo"
-                    android:layout_marginTop="20dp"
                     android:background="#ffffff"
                     android:paddingBottom="10dp"
                     android:visibility="visible">
@@ -472,7 +485,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="20px"
                         android:layout_alignParentTop="true"
-                        android:background="#dadada" />
+                        android:background="#dadada"
+                        android:visibility="gone" />
 
                     <RelativeLayout
                         android:id="@+id/re_pingluncontent"
@@ -497,7 +511,7 @@
                             android:layout_below="@+id/tv_pinglun"
                             android:background="@null"
                             android:divider="@null"
-                            android:paddingBottom="20dp"/>
+                            android:paddingBottom="20dp" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -574,8 +588,7 @@
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:background="#ffffff"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <RelativeLayout
                 android:id="@+id/re_pinglun"

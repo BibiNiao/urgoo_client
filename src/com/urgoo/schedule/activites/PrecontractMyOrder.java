@@ -1,5 +1,6 @@
 package com.urgoo.schedule.activites;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,7 +20,11 @@ import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.event.CounselorEvent;
 import com.urgoo.data.SPManager;
+import com.urgoo.message.activities.MainActivity;
+import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.webviewmanage.BaseWebViewActivity;
+import com.urgoo.zhibo.activities.ZhiBodDetailActivity;
+import com.zw.express.tool.Util;
 import com.zw.express.tool.net.OkHttpClientManager;
 
 import org.json.JSONArray;
@@ -51,15 +56,15 @@ public class PrecontractMyOrder extends FragmentActivityBase {
     private String TaskCount = "0";
     private String AccountCount = "0";
     private MyFragmentPageAdapter mAdapter;
+    private View red;
+    private int confirm;
+    private int close;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mine_myorder);
         ScreenManager.getScreenManager().pushActivity(this);
-        // 注册EventBus
-
-        getisshow();
         initView();
         mMyorderTabHost.setup();
         mFragments.add(new tobeconfirmedmyorderFragment());
@@ -69,6 +74,11 @@ public class PrecontractMyOrder extends FragmentActivityBase {
             @Override
             public void onClick(View v) {
                 EventBus.getDefault().post(new CounselorEvent());
+                if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
+                    Bundle extras = new Bundle();
+                    extras.putInt(MainActivity.EXTRA_TAB, 3);
+                    Util.openActivityWithBundle(PrecontractMyOrder.this, MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                }
                 finish();
             }
         });
@@ -91,9 +101,8 @@ public class PrecontractMyOrder extends FragmentActivityBase {
 
         mMyorderTabHost.setOnTabChangedListener(new MyOnTabChangeListener());
         mMyorderViewPage.addOnPageChangeListener(new MyOnPageChangeListener());
-        mMyorderTabHost.setCurrentTab(1);
         mMyorderTabHost.setCurrentTab(0);
-
+        redShowAdvance();
     }
 
     @Override
@@ -109,12 +118,41 @@ public class PrecontractMyOrder extends FragmentActivityBase {
         LinLyout_myorder_back = (LinearLayout) findViewById(R.id.LinLyout_myorder_back);
     }
 
+    private void cleanRedShowAdvance(final String flag) {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("token", SPManager.getInstance(this).getToken());
+        params.put("flag", flag);
+        OkHttpClientManager.postAsyn(ZWConfig.URL_requestCleanRedShowAdvance,
+                new OkHttpClientManager.ResultCallback<String>() {
 
-    private void getisshow() {
+                    @Override
+                    public void onError(Call call, Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(PrecontractMyOrder.this,
+                                "Network Operation failed, please try again later", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onResponse(String respon) {
+                        if (flag.equals("confirm")) {
+                            confirm = 0;
+                            red = mMyorderTabHost.getTabWidget().getChildAt(1).findViewById(R.id.point);
+                            red.setVisibility(View.GONE);
+                        } else if (flag.equals("close")) {
+                            close = 0;
+                            red = mMyorderTabHost.getTabWidget().getChildAt(2).findViewById(R.id.point);
+                            red.setVisibility(View.GONE);
+                        }
+                    }
+                }, params);
+    }
+
+
+    private void redShowAdvance() {
         Map<String, String> params = new HashMap<String, String>();
         params.put("token", SPManager.getInstance(this).getToken());
 
-        OkHttpClientManager.postAsyn(ZWConfig.Action_cleanRedShow,
+        OkHttpClientManager.postAsyn(ZWConfig.URL_requestRedShowAdvance,
                 new OkHttpClientManager.ResultCallback<String>() {
 
                     @Override
@@ -127,25 +165,33 @@ public class PrecontractMyOrder extends FragmentActivityBase {
                     @Override
                     public void onResponse(String respon) {
                         //mTv.setText(u);// 注意这里是UI线程
-                        JSONObject j;
-                        JSONArray ja = null;
                         try {
-                            j = new JSONObject(respon);
-                            String code = new JSONObject(j.get("header").toString()).getString("code");
-                            if (code.equals("200")) {
-                                Log.d("hongdian ", "200: ");
+                            JSONObject jsonObject = new JSONObject(respon);
+                            JSONObject redJson = new JSONObject(jsonObject.get("body").toString());
+                            Log.d("hongdian ", redJson.toString());
+                            confirm = Integer.parseInt(new JSONObject(redJson.get("showRed").toString()).getString("confirm"));
+                            close = Integer.parseInt(new JSONObject(redJson.get("showRed").toString()).getString("close"));
+                            if (confirm > 0) {
+                                red = mMyorderTabHost.getTabWidget().getChildAt(1).findViewById(R.id.point);
+                                red.setVisibility(View.VISIBLE);
+                            } else {
+                                red = mMyorderTabHost.getTabWidget().getChildAt(1).findViewById(R.id.point);
+                                red.setVisibility(View.GONE);
                             }
-
+                            if (close > 0) {
+                                red = mMyorderTabHost.getTabWidget().getChildAt(2).findViewById(R.id.point);
+                                red.setVisibility(View.VISIBLE);
+                            } else {
+                                red = mMyorderTabHost.getTabWidget().getChildAt(2).findViewById(R.id.point);
+                                red.setVisibility(View.GONE);
+                            }
                         } catch (JSONException e) {
                             Toast.makeText(PrecontractMyOrder.this,
                                     "Network Operation failed, please try again later", Toast.LENGTH_LONG).show();
                         }
                     }
-                }
-
-                , params);
+                }, params);
     }
-
 
     @Override
     protected void onDestroy() {
@@ -189,6 +235,11 @@ public class PrecontractMyOrder extends FragmentActivityBase {
 
         @Override
         public void onPageSelected(int i) {
+            if (i == 1 && confirm > 0) {
+                cleanRedShowAdvance("confirm");
+            } else if (i == 2 && close > 0) {
+                cleanRedShowAdvance("close");
+            }
             mMyorderTabHost.setCurrentTab(i);
         }
 
@@ -200,6 +251,11 @@ public class PrecontractMyOrder extends FragmentActivityBase {
     class MyOnTabChangeListener implements TabHost.OnTabChangeListener {
         @Override
         public void onTabChanged(String tabId) {
+            if (tabId.equals("已确认") && confirm > 0) {
+                cleanRedShowAdvance("confirm");
+            } else if (tabId.equals("已结束") && close > 0) {
+                cleanRedShowAdvance("close");
+            }
             for (int i = 0; i < ORDER_TAB_NAMES.length; ++i) {
                 TextView tvTabTitle = (TextView) mMyorderTabHost.getTabWidget().getChildAt(i).findViewById(R.id.content_vt);
                 int nColorText = getResources().getColor(R.color.btn_green_noraml);
@@ -218,6 +274,11 @@ public class PrecontractMyOrder extends FragmentActivityBase {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             EventBus.getDefault().post(new CounselorEvent());
+            if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
+                Bundle extras = new Bundle();
+                extras.putInt(MainActivity.EXTRA_TAB, 3);
+                Util.openActivityWithBundle(PrecontractMyOrder.this, MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            }
             finish();
             return false;
         }

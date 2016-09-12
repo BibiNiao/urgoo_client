@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,15 +17,21 @@ import android.util.DisplayMetrics;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.urgoo.account.activity.HomeActivity;
 import com.urgoo.business.UpdateService;
-import com.urgoo.client.R;
 import com.urgoo.common.APPManagerTool;
 import com.urgoo.common.ScreenManager;
 import com.urgoo.common.ZWConfig;
+import com.urgoo.counselor.activities.CounselorActivity;
 import com.urgoo.data.SPManager;
 import com.urgoo.message.activities.MainActivity;
+import com.urgoo.message.activities.SplashActivity;
+import com.urgoo.profile.activities.MessageActivity;
+import com.urgoo.profile.activities.UrgooVideoActivity;
+import com.urgoo.schedule.activites.PrecontractMyOrder;
+import com.urgoo.zhibo.activities.ZhiBodDetailActivity;
 import com.zw.express.tool.image.ImagePiece;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
@@ -321,6 +326,23 @@ public class Util {
     }
 
     /**
+     * 打开指定的Activity，并传入指定的Bundle参数和flag标识
+     *
+     * @param mContext
+     * @param destCls  目标Activity类名
+     * @param extras   传入目标Activity的bundle参数
+     * @param flags    传入目标Activity的FLAG
+     */
+    public static void openActivityWithBundle(Context mContext,
+                                              Class<?> destCls, Bundle extras, int flags) {
+        Intent mIntent = new Intent();
+        mIntent.setClass(mContext, destCls);
+        mIntent.putExtras(extras);
+        mIntent.setFlags(flags);
+        mContext.startActivity(mIntent);
+    }
+
+    /**
      * 打开指定的Activity，并携带请求Code
      *
      * @param mContext
@@ -438,4 +460,58 @@ public class Util {
         context.startActivity(intent);
         ((Activity) context).finish();
     }
+
+    /**
+     * 根据target推送跳转指定页面
+     *
+     * @param target
+     * @param pushJson
+     * @param context
+     * @throws JSONException
+     */
+    public static void forward(int target, String pushJson, final Context context) throws JSONException {
+        Intent intent;
+        Bundle extras = new Bundle();
+        switch (target) {
+            case SplashActivity.TARGET_MESSAGE:
+                extras.putBoolean(SplashActivity.EXTRA_FROM_PUSH, true);
+                openActivity(context, MessageActivity.class);
+                break;
+            case SplashActivity.TARGET_COUNSELOR:
+                if (!Util.isEmpty(pushJson)) {
+                    JSONObject jsonObject = new JSONObject(pushJson);
+                    extras.putBoolean(SplashActivity.EXTRA_FROM_PUSH, true);
+                    extras.putString("counselorId", jsonObject.optString("counselorId"));
+                    openActivityWithBundle(context, CounselorActivity.class, extras);
+                }
+                break;
+            case SplashActivity.TARGET_APPOINTMENT:
+                extras.putBoolean(SplashActivity.EXTRA_FROM_PUSH, true);
+                openActivity(context, PrecontractMyOrder.class);
+                break;
+            case SplashActivity.TARGET_LIVE_DETAIL:
+                if (!Util.isEmpty(pushJson)) {
+                    JSONObject jsonObject = new JSONObject(pushJson);
+                    extras.putBoolean(SplashActivity.EXTRA_FROM_PUSH, true);
+                    extras.putString("liveId", jsonObject.optString("liveId"));
+                    openActivityWithBundle(context, ZhiBodDetailActivity.class, extras);
+                }
+                break;
+            case SplashActivity.TARGET_VIDEO:
+                if (!Util.isEmpty(pushJson)) {
+                    JSONObject jsonObject = new JSONObject(pushJson);
+                    extras.putString("icon", jsonObject.optString("pic"));
+                    extras.putString("name", jsonObject.optString("nickname"));
+                    extras.putString("zoomId", jsonObject.optString("zoomId"));
+                    extras.putString("zoomNo", jsonObject.optString("zoomNo"));
+                    openActivityWithBundle(context, UrgooVideoActivity.class, extras);
+                }
+                break;
+            default:
+                intent = new Intent(context, MainActivity.class);
+                context.startActivity(intent);
+                break;
+        }
+    }
+
 }

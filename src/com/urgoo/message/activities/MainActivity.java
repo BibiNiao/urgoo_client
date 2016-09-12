@@ -28,6 +28,7 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ import com.urgoo.ScreenManager;
 import com.urgoo.account.activity.HomeActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
+import com.urgoo.common.event.MessageEvent;
 import com.urgoo.data.SPManager;
 import com.urgoo.jpush.JpushUtlis;
 import com.urgoo.main.activities.CounselorFragment;
@@ -56,14 +58,15 @@ import java.util.Map;
 import java.util.Set;
 
 import cn.jpush.android.api.TagAliasCallback;
+import de.greenrobot.event.EventBus;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements ProfileFragment.MessageFragmentCallback {
     protected static final String TAG = "MainActivity";
     public static final String EXTRA_TAB = "extra_tab";//需要跳转的tab
     // 未读通讯录textview
     private TextView unreadAddressLable;
 
-    private Button[] mTabs;
+    private TextView[] mTabs;
     private CounselorFragment counselorFragment;
 
     //    private CounselorInfoFragment counselorInfoFragment;
@@ -93,6 +96,7 @@ public class MainActivity extends FragmentActivity {
 
     String openID;
     String personUnionID;
+    private ImageView unreadService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,12 +116,15 @@ public class MainActivity extends FragmentActivity {
         }
         setContentView(R.layout.em_activity_main);
         initView();
+        EventBus.getDefault().register(this);
 
         zhiBoListManageActivity = new ZhiBoListManageActivity();
         counselorFragment = new CounselorFragment();
         myWebViewFragment = new MainWebViewFragment();
         profileFragment = new ProfileFragment();
         serviceFragment = new PlanFragment();
+
+        profileFragment.setMessageFragmentCallback(this);
 
         Bundle b = new Bundle();
         b.putString(BaseWebViewFragment.EXTRA_URL, ZWConfig.ACTION_nosignsearchConsultant);
@@ -128,8 +135,28 @@ public class MainActivity extends FragmentActivity {
         } else if (getIntent().getBooleanExtra(Constant.ACCOUNT_REMOVED, false) && !isAccountRemovedDialogShow) {
             showAccountRemovedDialog();
         }
-
+        //华润银行
 //        approveDev();
+    }
+
+    /**
+     * 接受消息显示红点
+     * @param event
+     */
+    public void onEventMainThread(MessageEvent event){
+        unreadService.setVisibility(View.VISIBLE);
+        if (profileFragment.isVisible()) {
+            profileFragment.getSelectRedCount();
+        }
+    }
+
+    @Override
+    public void onUnreadMessageCallback(boolean isShow) {
+        if (isShow) {
+            unreadService.setVisibility(View.VISIBLE);
+        } else {
+            unreadService.setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -145,8 +172,8 @@ public class MainActivity extends FragmentActivity {
                 getUserIDs();
             }
         };
-        String random = "123456";
-        HRSDK.approveDev("AFC90B23F5C533130EAC39713D1740BC", random, handler);
+        String random = "de2080c9-3286-46dd-b649-de12aba1cfc7";
+        HRSDK.approveDev("E872C9C2A964CC105D8FDAD3E1AA654E", random, handler);
     }
 
     /**
@@ -172,7 +199,7 @@ public class MainActivity extends FragmentActivity {
             }
         };
 
-        HRSDK.Users.getUserIDs("1616646", handler);
+        HRSDK.Users.getUserIDs("051004C234C825CD014473BF1EAA011233344", handler);
     }
 
     /**
@@ -196,13 +223,13 @@ public class MainActivity extends FragmentActivity {
 //        autoFillMap.put("identity", "42070419900611503X");//证件号码
 //        autoFillMap.put("revmobile", "15692125542");//银行预留手机号
         String mchName = "手机商城";
-        String mchID = "SYT002";
-        String outTradeNo = "123456789123000";
-        String body = "Android LE 1s 手机";
+        String mchID = "SYT004";
+        String outTradeNo = "08310017";
+        String body = "这是一个商品";
         String detail = "Android LE 1s 手机，￥1099，超薄";
         String confirmOrder = "N";
         String attach = "attach附加数据";
-        String totalFee = "88";
+        String totalFee = "0.01";
         String paidAmount = "50";
         String unpaidAmount = "25";
         String limitPay = "01";
@@ -210,8 +237,8 @@ public class MainActivity extends FragmentActivity {
         String goodsTag = "WXG";
         String timeValid = "120";
         String deviceInfo = "34234234";
-        String random = "123456";
-        String sign = "2537C258F911DDA060F5547A32A12992";
+        String random = "4ae94f62-fef2-4df4-b261-d4aad0f9880c";
+        String sign = "FBBDB29C7354039222C46723D34D4F7B";
         HRSDK.Pay.orderPay(openID, personUnionID, mchName, mchID, outTradeNo, body, detail, random, sign, attach, confirmOrder,
                 totalFee, paidAmount, unpaidAmount, limitPay, feeType, goodsTag, timeValid, deviceInfo, autoFillMap, callbackMap, MainActivity.this, handler);
     }
@@ -221,25 +248,26 @@ public class MainActivity extends FragmentActivity {
      */
     public void initView() {
         unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
-        mTabs = new Button[4];
+        unreadService = (ImageView) findViewById(R.id.unread_service);
+        mTabs = new TextView[4];
 
         Drawable drawable;
-        mTabs[0] = (Button) findViewById(R.id.btn_address_list);
+        mTabs[0] = (TextView) findViewById(R.id.btn_address_list);
         drawable = getResources().getDrawable(R.drawable.em_tab_contact_list_bg1);
         drawable.setBounds(0, 0, Util.dp2px(MainActivity.this, 20), Util.dp2px(MainActivity.this, 20));
         mTabs[0].setCompoundDrawables(null, drawable, null, null);
 
-        mTabs[1] = (Button) findViewById(R.id.btn_conversation);
+        mTabs[1] = (TextView) findViewById(R.id.btn_conversation);
         drawable = getResources().getDrawable(R.drawable.em_tab_chat_bg);
         drawable.setBounds(0, 0, Util.dp2px(MainActivity.this, 20), Util.dp2px(MainActivity.this, 20));
         mTabs[1].setCompoundDrawables(null, drawable, null, null);
 
-        mTabs[2] = (Button) findViewById(R.id.btn_service);
+        mTabs[2] = (TextView) findViewById(R.id.btn_service);
         drawable = getResources().getDrawable(R.drawable.urgoo_tab_service_bg);
         drawable.setBounds(0, 0, Util.dp2px(MainActivity.this, 20), Util.dp2px(MainActivity.this, 20));
         mTabs[2].setCompoundDrawables(null, drawable, null, null);
 
-        mTabs[3] = (Button) findViewById(R.id.btn_setting);
+        mTabs[3] = (TextView) findViewById(R.id.btn_setting);
         drawable = getResources().getDrawable(R.drawable.em_tab_profile_bg);
         drawable.setBounds(0, 0, Util.dp2px(MainActivity.this, 20), Util.dp2px(MainActivity.this, 20));
         mTabs[3].setCompoundDrawables(null, drawable, null, null);

@@ -115,6 +115,7 @@ public class ZWConfig {
     public static String pickPicture;
 
     public static boolean isLogin;
+    public static boolean isShowRed;
 
     /**
      * 更多的页数
@@ -142,11 +143,11 @@ public class ZWConfig {
     //测试环境
 //    public final static String URGOOURL_BASE = "http://www-test-urgoo.com/urgoo/";
     //生产环境
-    public final static String URGOOURL_BASE = "http://www-prd-urgoo.com/urgoo/";
+//    public final static String URGOOURL_BASE = "http://www-prd-urgoo.com/urgoo/";
     //线上环境
 //   public final static String URGOOURL_BASE = "http://139.129.87.232/urgoo/";
 //    小孙
-//    public final static String URGOOURL_BASE = "http://10.203.203.49:8082/urgoo/";
+    public final static String URGOOURL_BASE = "http://10.203.203.49:8082/urgoo/";
 
 //    真实环境
 //    public final static String URGOOURL_BASE = "http://139.129.164.163:8082/urgoo/";
@@ -207,10 +208,6 @@ public class ZWConfig {
 
 
     //public final static String ACTION_HXPWD = "123456";
-
-
-    public static final String Action_selectInformationCount = URGOOURL_BASE + "001/001/information/selectInformationCount";
-    public static final String Action_selectInformation = URGOOURL_BASE + "001/001/information/selectInformation";
 
     //杨德成20160509
     public static final String Action_updateInformation = URGOOURL_BASE + "/001/001/information/selectInformationSystemDetail";
@@ -286,11 +283,6 @@ public class ZWConfig {
     public static final String Action_startAdvance = URGOOURL_BASE + "/001/001/advance/startAdvance";
     public static final String Action_updateAdvanceStatus = URGOOURL_BASE + "/001/001/advance/updateAdvanceStatus";
     public static final String Action_advanceCommentClient = URGOOURL_BASE + "/001/001/advance/advanceCommentClient";
-
-
-    // 测试红点
-    public static final String Action_cleanRedShow = URGOOURL_BASE + "/001/001/advance/cleanRedShow";
-
 
     public static final String URL_cancelAdvanceClient = URGOOURL_BASE + "/001/001/advance/cancelAdvanceClient";
 
@@ -381,7 +373,7 @@ public class ZWConfig {
     //Start杨德成 20160718 直播模块接口定义
     public static final String Action_selectZoomLiveNewest = URGOOURL_BASE + "001/001/livePage/selectZoomLiveNewest";
     public static final String Action_selectZoomPassed = URGOOURL_BASE + "001/001/livePage/selectZoomPassed";
-    public static final String Action_selectZoomLiveDetail = URGOOURL_BASE + "001/001/livePage/selectZoomLiveDetail";
+    public static final String Action_selectZoomLiveDetail = URGOOURL_BASE + "001/001/livePage/selectZoomLiveDetail2";
     public static final String Action_selectLiveCommentList = URGOOURL_BASE + "001/001/livecomment/selectLiveCommentList";
     public static final String Action_insertLiveCommentContent = URGOOURL_BASE + "001/001/livecomment/insertLiveCommentContent";
     public static final String Action_addActivitySign = URGOOURL_BASE + "001/001/livePage/addActivitySign";
@@ -430,5 +422,15 @@ public class ZWConfig {
     public static final String URL_newTaskDetail = URGOOURL_BASE + "001/001/task/newTaskDetail";
     // 规划列表详情
     public static final String URL_newTimeLine = URGOOURL_BASE + "001/001/task/newTimeLine";
+    // 消息
+    public static final String URL_requestInformationPerson = URGOOURL_BASE + "001/001/information/selectInformationPerson";
+    //我的一级红点
+    public static final String URL_requestSelectRedCount = URGOOURL_BASE + "001/001/information/selectRedCount";
+    // 预约2级页面红点
+    public static final String URL_requestRedShowAdvance = URGOOURL_BASE + "001/001/advance/redShowAdvance";
+    // 预约2级界面红点清除
+    public static final String URL_requestCleanRedShowAdvance = URGOOURL_BASE + "001/001/advance/cleanRedShowAdvance";
+    // 消息列表
+    public static final String URL_requestSelectInformationPerson = URGOOURL_BASE + "001/001/information/selectInformationPerson";
 
 }
