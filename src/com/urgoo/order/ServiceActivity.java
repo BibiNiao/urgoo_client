@@ -11,30 +11,18 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import com.urgoo.base.ActivityBase;
 import com.urgoo.client.R;
 import com.urgoo.counselor.biz.CounselorData;
 import com.urgoo.counselor.model.ServiceLongList;
-import com.urgoo.net.EventCode;
-import com.urgoo.order.biz.ServerManager;
 import com.urgoo.order.event.OrderEvent;
 import com.urgoo.order.model.OrderServiceEntity;
 import com.zw.express.tool.Util;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-
-import de.greenrobot.event.EventBus;
 
 public class ServiceActivity extends ActivityBase implements View.OnClickListener {
 
-    private TextView tv_order;
     private LinearLayout ll_breakss;
     private ListView serverList;
     private String servicePrice;
@@ -51,15 +39,10 @@ public class ServiceActivity extends ActivityBase implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);
         extraService = getIntent().getStringExtra("extraService");
-        serviceId = getIntent().getStringExtra("serviceId");
-        counselorId = getIntent().getStringExtra("counselorId");
-        servicePrice = getIntent().getStringExtra("servicePrice");
         mServiceLongList = new ArrayList<>();
         mServiceLongList.clear();
         mServiceLongList.addAll(CounselorData.getArray());
-        ServerManager.getInstance(this).getInfo(this, serviceId, counselorId);
 
-        EventBus.getDefault().register(this);
         initview();
         if (!Util.isEmpty(extraService)) {
             for (int i = 1; i < 30; i++) {
@@ -81,13 +64,11 @@ public class ServiceActivity extends ActivityBase implements View.OnClickListene
     }
 
     private void initview() {
-        tv_order = (TextView) findViewById(R.id.tv_order);
         tv_note = (TextView) findViewById(R.id.tv_note);
         tv_beizhu = (TextView) findViewById(R.id.tv_beizhu);
         ll_breakss = (LinearLayout) findViewById(R.id.ll_breakss);
         serverList = (ListView) findViewById(R.id.serverList);
         ll_breakss.setOnClickListener(this);
-        tv_order.setOnClickListener(this);
     }
 
     private void getListHeight(ListView mlistview) {
@@ -110,46 +91,36 @@ public class ServiceActivity extends ActivityBase implements View.OnClickListene
             case R.id.ll_breakss:
                 finish();
                 break;
-            case R.id.tv_order:
-                if (orderServiceEntity != null) {
-                    showLoadingDialog();
-                    orderServiceEntity.setServiceId(serviceId);
-                    orderServiceEntity.setCounselorId(counselorId);
-                    orderServiceEntity.setServicePrice(servicePrice);
-                    ServerManager.getInstance(this).getPayTimeDetail(this, orderServiceEntity.getType(), orderServiceEntity.getGrade());
-                }
-                break;
+//            case R.id.tv_order:
+//                if (orderServiceEntity != null) {
+//                    showLoadingDialog();
+//                    orderServiceEntity.setServiceId(serviceId);
+//                    orderServiceEntity.setCounselorId(counselorId);
+//                    orderServiceEntity.setServicePrice(servicePrice);
+//                    ServerManager.getInstance(this).getPayTimeDetail(this, orderServiceEntity.getType(), orderServiceEntity.getGrade());
+//                }
+//                break;
         }
     }
-
-    @Override
-    protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
-        super.onResponseSuccess(eventCode, result);
-        dismissLoadingDialog();
-        switch (eventCode) {
-            case parentOrderPay:
-                try {
-                    JSONObject jsonObject = new JSONObject(result.get("body").toString());
-                    Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
-                    orderServiceEntity = gson.fromJson(jsonObject.getString("orderInfo"), new TypeToken<OrderServiceEntity>() {
-                    }.getType());
-                } catch (JSONException mE) {
-                    mE.printStackTrace();
-                }
-                break;
-            case EventCodeGetPayTimeDetail:
-                try {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("orderTimeLine", result.get("body").toString());
-                    bundle.putParcelable("orderInfo", orderServiceEntity);
-                    Util.openActivityWithBundle(this, OrderTimeLineActivity.class, bundle);
-                } catch (JSONException mE) {
-                    mE.printStackTrace();
-                }
-                break;
-
-        }
-    }
+//
+//    @Override
+//    protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
+//        super.onResponseSuccess(eventCode, result);
+//        dismissLoadingDialog();
+//        switch (eventCode) {
+//            case EventCodeGetPayTimeDetail:
+//                try {
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("orderTimeLine", result.get("body").toString());
+//                    bundle.putParcelable("orderInfo", orderServiceEntity);
+//                    Util.openActivityWithBundle(this, OrderTimeLineActivity.class, bundle);
+//                } catch (JSONException mE) {
+//                    mE.printStackTrace();
+//                }
+//                break;
+//
+//        }
+//    }
 
     //  服务内容 adapter
     private class ServiceLongListAdapter extends BaseAdapter {

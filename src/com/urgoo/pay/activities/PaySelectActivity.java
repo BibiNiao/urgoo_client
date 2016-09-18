@@ -21,6 +21,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.shrb.hrsdk.HRSDK;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
@@ -31,6 +32,7 @@ import com.urgoo.client.wxapi.Constants;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.domain.Order;
 import com.urgoo.domain.WxEntity;
+import com.urgoo.message.activities.MainActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.pay.alipay.AliConstants;
 import com.urgoo.pay.alipay.PayResult;
@@ -42,6 +44,9 @@ import com.zw.express.tool.Util;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by bb on 2016/6/28.
@@ -64,6 +69,12 @@ public class PaySelectActivity extends ActivityBase implements View.OnClickListe
     private String price;
     private String order;
     private LinearLayout back;
+    private String random;
+    private String outTradeNo;
+    private String payReqSign;
+    private String body;
+    String openID;
+    String personUnionID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +131,9 @@ public class PaySelectActivity extends ActivityBase implements View.OnClickListe
                         setCheck(ivCheck, view);
                         break;
                     case 1:
+                        setCheck(ivCheck, view);
+                        break;
+                    case 2:
                         setCheck(ivCheck, view);
                         break;
                 }
@@ -264,6 +278,11 @@ public class PaySelectActivity extends ActivityBase implements View.OnClickListe
         PayManager.getInstance(this).getWechatDetail(body, price, orderId, this);
     }
 
+    private void getHuaRui(String body, String price, String orderId) {
+        showLoadingDialog();
+        PayManager.getInstance(this).getHuaRuiPayLaunch(body, price, orderId, this);
+    }
+
     /**
      * 根据选择支付的路径进行跳转
      */
@@ -275,16 +294,125 @@ public class PaySelectActivity extends ActivityBase implements View.OnClickListe
             } else if (payPath == 1) {
                 //微信
                 getWechatDetail(mOrder.getServiceName(), price, mOrder.getPayRequestOrderId() + order);
+            } else if (payPath == 2) {
+                //银行卡
+                getHuaRui(mOrder.getServiceName(), price, orderId);
             }
         } else {
             showToastSafe("请选择支付方式");
         }
     }
 
+    /**
+     * 验证开发者
+     */
+    private void approveDev(String approveDevSign, String random) {
+        Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                Map responseMap = (Map) msg.obj;
+                android.util.Log.e("responseMap:", responseMap.toString());
+                getUserIDs();
+            }
+        };
+        HRSDK.approveDev(approveDevSign, random, handler);
+    }
+
+    /**
+     * 获取ID
+     */
+    private void getUserIDs() {
+        personUnionID = "";
+        Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                Map responseMap = (Map) msg.obj;
+                if (responseMap.get("returnCode").equals("000000")) {
+                    openID = responseMap.get("openID").toString();
+                    if (responseMap.get("personUnionID") != null) {
+                        personUnionID = responseMap.get("personUnionID").toString();
+                        android.util.Log.e("personUnionID:", personUnionID);
+                    }
+                    orderPay();
+                }
+                android.util.Log.e("responseMap:", responseMap.toString());
+                android.util.Log.e("openID:", openID);
+            }
+        };
+
+        HRSDK.Users.getUserIDs(spManager.getToken(), handler);
+    }
+
+
+    /**
+     * 绑定卡
+     */
+    private void orderPay() {
+        Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                Map responseMap = (Map) msg.obj;
+//                payID = responseMap.get("payID").toString();
+                android.util.Log.e("orderPay", responseMap.toString());
+                if (responseMap.get("returnCode").equals("000000")) {
+                    Intent i = new Intent(PaySelectActivity.this, PayCompleteActivity.class).putExtra("orderId", orderId)
+                            .putExtra("price", price).putExtra("payRequestOrderId", mOrder.getPayRequestOrderId());
+                    startActivity(i);
+                    finish();
+                } else {
+                    startActivity(new Intent(PaySelectActivity.this, PayforfailureActivity.class).putExtra("orderId", orderId)
+                            .putExtra("price", price).putExtra("payRequestOrderId", mOrder.getPayRequestOrderId()));
+                    finish();
+                }
+            }
+        };
+        Map callbackMap = new HashMap();
+        Map autoFillMap = new HashMap();
+//        autoFillMap.put("mobile", "18310839846");//弱实名手机号
+//        autoFillMap.put("realName", "刘汉明");//真实姓名
+//        autoFillMap.put("cardNo", "620904789023452324");//银行卡号
+//        autoFillMap.put("identity", "42070419900611503X");//证件号码
+//        autoFillMap.put("revmobile", "15692125542");//银行预留手机号
+        String mchName = "优顾留学";
+        String mchID = "SYT004";
+        String detail = "Android LE 1s 手机，￥1099，超薄";
+        String confirmOrder = "N";
+        String attach = "attach附加数据";
+        String paidAmount = mOrder.getPriceed();
+        String unpaidAmount;
+        if (mOrder.getPriceed().equals("0.0")) {
+            unpaidAmount = mOrder.getPriceTotal();
+        } else {
+            unpaidAmount = mOrder.getBalancePrice();
+        }
+        String limitPay = "01";
+        String feeType = "CNY";
+        String goodsTag = "WXG";
+        String timeValid = "120";
+        String deviceInfo = "34234234";
+        HRSDK.Pay.orderPay(openID, personUnionID, mchName, mchID, outTradeNo, body, detail, random, payReqSign, attach, confirmOrder,
+                unpaidAmount, paidAmount, unpaidAmount, limitPay, feeType, goodsTag, timeValid, deviceInfo, autoFillMap, callbackMap, PaySelectActivity.this, handler);
+    }
+
     @Override
     protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
         dismissLoadingDialog();
         switch (eventCode) {
+            case EventCodeHuaRuiPay:
+                try {
+                    JSONObject jsonObject = new JSONObject(result.get("body").toString());
+                    body = jsonObject.getString("body");
+                    random = jsonObject.getString("randomNumber");
+                    payReqSign = jsonObject.getString("payReqSign");
+                    outTradeNo = jsonObject.getString("outTradeNo");
+                    approveDev(jsonObject.getString("approveDevSign"), random);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
             case EventCodeGetPayOrder:
                 try {
                     Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();

@@ -42,11 +42,11 @@
 
             <ImageView
                 android:id="@+id/iv_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/em_ic_right_arrow" />
+                android:src="@drawable/common_rightarrow" />
 
             <ImageView
                 android:id="@+id/iv_red"
@@ -55,8 +55,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@id/iv_next"
-                android:src="@drawable/bg_num"
-                android:visibility="gone" />
+                android:src="@drawable/bg_num" />
 
             <TextView
                 android:id="@+id/tv_countent"

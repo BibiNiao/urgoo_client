@@ -61,6 +61,10 @@ public enum EventCode {
      */
     EventCodeWechatPayDetail,
     /**
+     * 银行卡支付详情
+     */
+    EventCodeHuaRuiPay,
+    /**
      * 获取订单详情
      */
     EventCodeGetPayOrder,
@@ -202,7 +206,11 @@ public enum EventCode {
      */
     EventCodeMessageList,
     /**
-     * 更新消息
+     * 更新系统消息
      */
     EventCodeUpdateMessage,
+    /**
+     * 更新个人消息
+     */
+    EventCodeUpdateUserMessage,
 }

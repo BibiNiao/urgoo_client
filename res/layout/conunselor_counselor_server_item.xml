@@ -61,7 +61,7 @@
                 android:layout_marginRight="@dimen/sidebar_text_size"
                 android:background="@drawable/ppw_button_bg_a"
                 android:gravity="center"
-                android:text="立即聘用"
+                android:text="了解详情"
                 android:textColor="#ffffff"
                 android:textSize="13sp"
                 />

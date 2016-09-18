@@ -51,6 +51,7 @@ import com.urgoo.message.activities.ChatActivity;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.net.EventCode;
+import com.urgoo.order.OrderActivity;
 import com.urgoo.order.ServiceActivity;
 import com.urgoo.profile.activities.UrgooVideoActivity;
 import com.urgoo.schedule.activites.Precontract;
@@ -110,7 +111,7 @@ public class CounselorActivity extends ActivityBase implements View.OnClickListe
     private ImageView img_title_xing2;
     private ImageView img_news;
     private ImageView im_cont_fenxiang;
-    private TextView tv_cont_opin;
+//    private TextView tv_cont_opin;
     private ViewGroup.LayoutParams lp;
     private ViewGroup.LayoutParams lp2;
     private MyScrollView ScrollView;
@@ -153,7 +154,7 @@ public class CounselorActivity extends ActivityBase implements View.OnClickListe
     private TextView tv_cont_advanceCount;
     private TextView tv_cont_levelEducation;
     private TextView tv_cont_slogan;
-    private TextView tv_cont_urgoo;
+//    private TextView tv_cont_urgoo;
     private TextView tv_cont_guanzhu;
     private TextView tv_cont_fenxiang;
     private TextView tv_cont_fwbz;
@@ -482,8 +483,8 @@ public class CounselorActivity extends ActivityBase implements View.OnClickListe
     private void initdata() {
         mDeviceHeight = Util.getDeviceHeight(this);
         //文本添加下划线
-        tv_cont_opin.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
-        tv_cont_opin.getPaint().setAntiAlias(true);//抗锯齿)
+//        tv_cont_opin.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+//        tv_cont_opin.getPaint().setAntiAlias(true);//抗锯齿)
         Linear_cont_Layout.setMinimumHeight(Linear_cont_Layout.getMeasuredHeight());
         lp = Linear_cont_Layout.getLayoutParams();
 //        lp.height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -502,8 +503,8 @@ public class CounselorActivity extends ActivityBase implements View.OnClickListe
         im_cont_xing2.setOnClickListener(this);
         img_title_xing.setOnClickListener(this);
         img_title_xing2.setOnClickListener(this);
-        tv_cont_opin.setOnClickListener(this);
-        tv_cont_urgoo.setOnClickListener(this);
+//        tv_cont_opin.setOnClickListener(this);
+//        tv_cont_urgoo.setOnClickListener(this);
 //        but_cont_contact.setOnClickListener(this);
         but_cont_make.setOnClickListener(this);
         LinLyout_myorder_back.setOnClickListener(this);
@@ -621,8 +622,10 @@ public class CounselorActivity extends ActivityBase implements View.OnClickListe
                 break;
 
             case R.id.Linear_cont_ljpy:          //   点了立即聘用按钮
-                RelativeLayout_top.setVisibility(View.VISIBLE);
-                ScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                startActivity(new Intent(CounselorActivity.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
+
+//                RelativeLayout_top.setVisibility(View.VISIBLE);
+//                ScrollView.fullScroll(ScrollView.FOCUS_DOWN);
                 break;
 
             case R.id.im_cont_xing:             //   关注
@@ -641,14 +644,14 @@ public class CounselorActivity extends ActivityBase implements View.OnClickListe
                 getCancleFollow();
                 break;
 
-            case R.id.tv_cont_opin:             //   拨号
-                PickUtils.doPhone(CounselorActivity.this, tv_cont_opin.getText().toString());
-                Log.d(TAG, "电话号码 ：" + tv_cont_opin.getText().toString());
-                break;
-
-            case R.id.tv_cont_urgoo:            //   优宝
-                startActivity(new Intent(CounselorActivity.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
-                break;
+//            case R.id.tv_cont_opin:             //   拨号
+//                PickUtils.doPhone(CounselorActivity.this, tv_cont_opin.getText().toString());
+//                Log.d(TAG, "电话号码 ：" + tv_cont_opin.getText().toString());
+//                break;
+//
+//            case R.id.tv_cont_urgoo:            //   优宝
+//                startActivity(new Intent(CounselorActivity.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
+//                break;
 
             case R.id.but_cont_make:            //   预约
                 if (!Util.isEmpty(mCounselorDetail.getIsAdvanceRelation().trim())) {
@@ -902,8 +905,8 @@ public class CounselorActivity extends ActivityBase implements View.OnClickListe
         im_cont_shang4 = (ImageView) findViewById(R.id.im_cont_shang4);
         im_cont_xing = (ImageView) findViewById(R.id.im_cont_xing);
         im_cont_xing2 = (ImageView) findViewById(R.id.im_cont_xing2);
-        tv_cont_opin = (TextView) findViewById(R.id.tv_cont_opin);
-        tv_cont_urgoo = (TextView) findViewById(R.id.tv_cont_urgoo);
+//        tv_cont_opin = (TextView) findViewById(R.id.tv_cont_opin);
+//        tv_cont_urgoo = (TextView) findViewById(R.id.tv_cont_urgoo);
         tv_cont_guanzhu = (TextView) findViewById(R.id.tv_cont_guanzhu);
         tv_cont_fenxiang = (TextView) findViewById(R.id.tv_cont_fenxiang);
         tv_cont_fwbz = (TextView) findViewById(R.id.tv_cont_fwbz);
@@ -1092,15 +1095,23 @@ public class CounselorActivity extends ActivityBase implements View.OnClickListe
             viewHolder.but_c_s_hire.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {       //   立即聘用的点击事件，可在此处执行操作
-
-                    Intent intent = new Intent(CounselorActivity.this, ServiceActivity.class);
+                    Bundle bundle = new Bundle();
                     if (!Util.isEmpty(mCounselorDetail.getExtraService().trim())) {
-                        intent.putExtra("extraService", String.valueOf(mCounselorDetail.getExtraService()));
+                        bundle.putString("extraService", String.valueOf(mCounselorDetail.getExtraService()));
                     }
-                    intent.putExtra("serviceId", String.valueOf(mCounselorServiceLis.get(position).getServiceId()));
-                    intent.putExtra("counselorId", String.valueOf(counselorId));
-                    intent.putExtra("servicePrice", String.valueOf((int) (mCounselorServiceLis.get(position).getServicePrice())));
-                    startActivity(intent);
+                    bundle.putString("serviceId", String.valueOf(mCounselorServiceLis.get(position).getServiceId()));
+                    bundle.putString("counselorId",  String.valueOf(counselorId));
+                    bundle.putString("servicePrice", String.valueOf(mCounselorServiceLis.get(position).getServicePrice()));
+                    Util.openActivityWithBundle(CounselorActivity.this, OrderActivity.class, bundle);
+
+//                    Intent intent = new Intent(CounselorActivity.this, ServiceActivity.class);
+//                    if (!Util.isEmpty(mCounselorDetail.getExtraService().trim())) {
+//                        intent.putExtra("extraService", String.valueOf(mCounselorDetail.getExtraService()));
+//                    }
+//                    intent.putExtra("serviceId", String.valueOf(mCounselorServiceLis.get(position).getServiceId()));
+//                    intent.putExtra("counselorId", String.valueOf(counselorId));
+//                    intent.putExtra("servicePrice", String.valueOf((int) (mCounselorServiceLis.get(position).getServicePrice())));
+//                    startActivity(intent);
                 }
             });
             return convertView;

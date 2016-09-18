@@ -66,6 +66,23 @@ public class PayManager {
     }
 
     /**
+     * 银行卡支付详情
+     *
+     * @param body
+     * @param price
+     * @param orderId
+     * @param callback
+     */
+    public void getHuaRuiPayLaunch(String body, String price, String orderId, StringRequestCallBack callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        params.put("body", body);
+        params.put("totalFee", price);
+        params.put("orderId", orderId);
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeHuaRuiPay, ZWConfig.ACTION_requestHuaRuiPay, params, callback);
+    }
+
+    /**
      * 请求订单详情
      *
      * @param orderId

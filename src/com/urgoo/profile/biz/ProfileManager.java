@@ -159,7 +159,7 @@ public class ProfileManager {
     }
 
     /**
-     * 更新消息
+     * 更新系统消息
      *
      * @param informationId
      * @param unread
@@ -172,5 +172,21 @@ public class ProfileManager {
         params.put("unread",unread);
         params.put("token", SPManager.getInstance(mContext).getToken());
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeUpdateMessage, ZWConfig.Action_updateInformation, params, callback);
+    }
+
+    /**
+     * 更新系统消息
+     *
+     * @param informationId
+     * @param unread
+     * @param callback
+     */
+    public void selectInformationUserDetail(String informationId, String unread, StringRequestCallBack callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("termType", "2");
+        params.put("informationId", informationId);
+        params.put("unread",unread);
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeUpdateUserMessage, ZWConfig.Action_updateUserInformation, params, callback);
     }
 }

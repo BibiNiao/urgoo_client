@@ -375,6 +375,7 @@
     <string name="pay_deposit">支付定金</string>
     <string name="pay_alipay">支付宝支付</string>
     <string name="pay_wechat">微信支付</string>
+    <string name="pay_huarui">银行卡支付</string>
     <string name="pay_complete">支付完成</string>
     <string name="pay_select_price">¥%s</string>
 

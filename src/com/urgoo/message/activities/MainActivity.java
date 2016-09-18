@@ -1,6 +1,6 @@
 /**
  * Copyright (C) 2013-2014 EaseMob Technologies. All rights reserved.
- * <p>
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -93,9 +93,6 @@ public class MainActivity extends FragmentActivity implements ProfileFragment.Me
     private boolean isCurrentAccountRemoved = false;
     //    private boolean isLogin = false;
 //    private boolean isThree = false;
-
-    String openID;
-    String personUnionID;
     private ImageView unreadService;
 
     @Override
@@ -141,9 +138,10 @@ public class MainActivity extends FragmentActivity implements ProfileFragment.Me
 
     /**
      * 接受消息显示红点
+     *
      * @param event
      */
-    public void onEventMainThread(MessageEvent event){
+    public void onEventMainThread(MessageEvent event) {
         unreadService.setVisibility(View.VISIBLE);
         if (profileFragment.isVisible()) {
             profileFragment.getSelectRedCount();
@@ -157,90 +155,6 @@ public class MainActivity extends FragmentActivity implements ProfileFragment.Me
         } else {
             unreadService.setVisibility(View.GONE);
         }
-    }
-
-    /**
-     * 验证开发者
-     */
-    private void approveDev() {
-        Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                Map responseMap = (Map) msg.obj;
-                android.util.Log.e("responseMap:", responseMap.toString());
-                getUserIDs();
-            }
-        };
-        String random = "de2080c9-3286-46dd-b649-de12aba1cfc7";
-        HRSDK.approveDev("E872C9C2A964CC105D8FDAD3E1AA654E", random, handler);
-    }
-
-    /**
-     * 获取ID
-     */
-    private void getUserIDs() {
-        personUnionID = "";
-        Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                Map responseMap = (Map) msg.obj;
-                if (responseMap.get("returnCode").equals("000000")) {
-                    openID = responseMap.get("openID").toString();
-                    if (responseMap.get("personUnionID") != null) {
-                        personUnionID = responseMap.get("personUnionID").toString();
-                        android.util.Log.e("personUnionID:", personUnionID);
-                    }
-                    orderPay();
-                }
-                android.util.Log.e("responseMap:", responseMap.toString());
-                android.util.Log.e("openID:", openID);
-            }
-        };
-
-        HRSDK.Users.getUserIDs("051004C234C825CD014473BF1EAA011233344", handler);
-    }
-
-    /**
-     * 绑定卡
-     */
-    private void orderPay() {
-        Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                Map responseMap = (Map) msg.obj;
-//                payID = responseMap.get("payID").toString();
-                android.util.Log.e("orderPay", responseMap.toString());
-            }
-        };
-        Map callbackMap = new HashMap();
-        Map autoFillMap = new HashMap();
-//        autoFillMap.put("mobile", "18310839846");//弱实名手机号
-//        autoFillMap.put("realName", "刘汉明");//真实姓名
-//        autoFillMap.put("cardNo", "620904789023452324");//银行卡号
-//        autoFillMap.put("identity", "42070419900611503X");//证件号码
-//        autoFillMap.put("revmobile", "15692125542");//银行预留手机号
-        String mchName = "手机商城";
-        String mchID = "SYT004";
-        String outTradeNo = "08310017";
-        String body = "这是一个商品";
-        String detail = "Android LE 1s 手机，￥1099，超薄";
-        String confirmOrder = "N";
-        String attach = "attach附加数据";
-        String totalFee = "0.01";
-        String paidAmount = "50";
-        String unpaidAmount = "25";
-        String limitPay = "01";
-        String feeType = "CNY";
-        String goodsTag = "WXG";
-        String timeValid = "120";
-        String deviceInfo = "34234234";
-        String random = "4ae94f62-fef2-4df4-b261-d4aad0f9880c";
-        String sign = "FBBDB29C7354039222C46723D34D4F7B";
-        HRSDK.Pay.orderPay(openID, personUnionID, mchName, mchID, outTradeNo, body, detail, random, sign, attach, confirmOrder,
-                totalFee, paidAmount, unpaidAmount, limitPay, feeType, goodsTag, timeValid, deviceInfo, autoFillMap, callbackMap, MainActivity.this, handler);
     }
 
     /**
@@ -407,6 +321,7 @@ public class MainActivity extends FragmentActivity implements ProfileFragment.Me
         isConflictDialogShow = true;
         EaseHelper.getInstance().logout(true, null);
         String st = getResources().getString(R.string.Logoff_notification);
+        SPManager.getInstance(this).clearLoginInfo();
         if (!MainActivity.this.isFinishing()) {
             // clear up global variables
             try {

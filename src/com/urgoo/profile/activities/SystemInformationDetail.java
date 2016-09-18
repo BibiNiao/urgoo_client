@@ -35,6 +35,7 @@ public class SystemInformationDetail extends ActivityBase {
 
     private TextView message_title;
     private TextView tv_messagecontent;
+    private int type;
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -64,10 +65,19 @@ public class SystemInformationDetail extends ActivityBase {
     @Override
     public void initData() {
         Intent it = getIntent();
+        type = it.getIntExtra("type", 0);
         String informationId = it.getStringExtra("informationId");
         String unread = it.getStringExtra("unread");
         tv_messagecontent.setText(it.getStringExtra("content"));
-        updateMessage(informationId, unread);
+        if (type == 1) {
+            updateMessage(informationId, unread);
+        } else {
+            updateUserMessage(informationId, unread);
+        }
+    }
+
+    private void updateUserMessage(String informationId, String unread) {
+        ProfileManager.getInstance(this).selectInformationUserDetail(informationId, unread, this);
     }
 
     private void updateMessage(String informationId, String unread) {

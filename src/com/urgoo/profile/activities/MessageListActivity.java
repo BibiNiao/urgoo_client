@@ -70,12 +70,12 @@ public class MessageListActivity extends ActivityBase implements View.OnClickLis
         recyclerView.setDefaultOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                if (type == 1) {
-                    getMessageList("", 0);
-                } else {
-                    getMessageList("0", 0);
-                }
                 page = 0;
+                if (type == 1) {
+                    getMessageList("", page);
+                } else {
+                    getMessageList("0", page);
+                }
             }
         });
         recyclerView.setOnLoadMoreListener(new UltimateRecyclerView.OnLoadMoreListener() {
@@ -99,6 +99,7 @@ public class MessageListActivity extends ActivityBase implements View.OnClickLis
                 extras.putString("informationId", String.valueOf(messageListAdapter.getItem(position).getInformationId()));
                 extras.putString("unread", String.valueOf(messageListAdapter.getItem(position).getUnread()));
                 extras.putString("content", messageListAdapter.getItem(position).getContent());
+                extras.putInt("type", type);
                 Util.openActivityWithBundle(MessageListActivity.this, SystemInformationDetail.class, extras);
             }
         });

@@ -27,10 +27,21 @@ public class ShareUtil {
      * @param ImageUrl
      * @param url
      */
-    public static void share(Context ctx, String title, String text, String ImageUrl, String url) {
+    public static void share(Context ctx, String title, String text, String ImageUrl, final String url) {
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
+        oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
+
+            @Override
+            public void onShare(Platform platform, Platform.ShareParams paramsToShare) {
+                switch (platform.getName()) {
+                    case "SinaWeibo":
+                        paramsToShare.setText(paramsToShare.getTitle() + url);
+                        break;
+                }
+            }
+        });
         // 分享时Notification的图标和文字  2.5.9以后的版本不调用此方法
         //oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));
         // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用

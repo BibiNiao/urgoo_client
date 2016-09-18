@@ -27,6 +27,7 @@ public class PaySelectAdapter extends BaseAdapter {
         if (items.isEmpty()) {
             items.add(new PayItem(R.drawable.ic_alipay, mContext.getString(R.string.pay_alipay)));
             items.add(new PayItem(R.drawable.ic_wechat, mContext.getString(R.string.pay_wechat)));
+            items.add(new PayItem(R.drawable.ic_paycard, mContext.getString(R.string.pay_huarui)));
         }
     }
 

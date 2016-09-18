@@ -936,7 +936,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_centerInParent="true"
-                            android:text="@string/Employment"
+                            android:text="预约说明"
                             android:textColor="#000000"
                             android:textSize="17sp"/>
                     </RelativeLayout>
@@ -955,108 +955,117 @@
                         android:orientation="vertical">
 
                         <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding9"
+                        android:text="1、为保障您与顾问有效沟通，顾问提供您首次40分钟免费视频会话。\n2、提交视频预约后，请您耐心等待，顾问在48小时内予以确认。\n3、建议学生参与视频会议，以便顾问提供您专业的建议。\n4、预约外籍顾问，优顾家长助理免费帮助您翻译。\n5、顾问确认后，请您安排时间准时参加视频会议。\n6、视频当日，请您提前10分钟做好准备，保持网络畅通并开启优顾APP。\n"
+                        android:textColor="#666"
+                        android:textSize="13sp"/>
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/padding9"
-                            android:text="@string/text1"
+                            android:layout_marginTop="10dp"
+                            android:text="服务热线：400-061-2819\n服务时间：每日9:00-18:00\n"
+                            android:layout_gravity="center"
                             android:textColor="#666"
                             android:textSize="13sp"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/sidebar_text_size"
-                            android:text="@string/text2"
-                            android:textColor="#666"
-                            android:textSize="13sp"/>
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginTop="@dimen/sidebar_text_size"-->
+                            <!--android:text="@string/text2"-->
+                            <!--android:textColor="#666"-->
+                            <!--android:textSize="13sp"/>-->
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/sidebar_text_size"
-                            android:orientation="vertical">
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginTop="@dimen/sidebar_text_size"-->
+                            <!--android:orientation="vertical">-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/text3"
-                                android:textColor="#666"
-                                android:textSize="13sp"/>
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="@string/text3"-->
+                                <!--android:textColor="#666"-->
+                                <!--android:textSize="13sp"/>-->
 
 
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tv_cont_urgoo"
-                            android:layout_width="@dimen/padding130"
-                            android:layout_height="@dimen/padding40"
-                            android:layout_marginBottom="@dimen/margin_chat_activity"
-                            android:layout_marginTop="@dimen/sidebar_text_size"
-                            android:background="@drawable/ppw_button_bg_b"
-                            android:gravity="center"
-                            android:text="@string/tonlinecustomer"
-                            android:textColor="@color/common_botton_bar_blue"
-                            android:textSize="14sp"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="点击“需要帮助”与在线客服沟通"
-                            android:textColor="#999999"
-                            android:textSize="11sp"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="或拨打客服电话："
-                            android:textColor="#999999"
-                            android:textSize="11sp"/>
-
-                        <TextView
-                            android:id="@+id/tv_cont_opin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="400-061-2819"
-                            android:textColor="#0fb7a3"
-                            android:textColorLink="#0fb7a3"
-                            android:textSize="11sp"/>
+                        <!--</LinearLayout>-->
 
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="（服务时间：每日9:00-18:00）"
-                        android:textColor="#999999"
-                        android:textSize="11sp"/>
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="15dp"-->
+                        <!--android:gravity="center"-->
+                        <!--android:orientation="vertical">-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/tv_cont_urgoo"-->
+                            <!--android:layout_width="@dimen/padding130"-->
+                            <!--android:layout_height="@dimen/padding40"-->
+                            <!--android:layout_marginBottom="@dimen/margin_chat_activity"-->
+                            <!--android:layout_marginTop="@dimen/sidebar_text_size"-->
+                            <!--android:background="@drawable/ppw_button_bg_b"-->
+                            <!--android:gravity="center"-->
+                            <!--android:text="@string/tonlinecustomer"-->
+                            <!--android:textColor="@color/common_botton_bar_blue"-->
+                            <!--android:textSize="14sp"-->
+                            <!--android:textStyle="bold"/>-->
+                    <!--</LinearLayout>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="15dp">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:gravity="center"-->
+                            <!--android:text="点击“需要帮助”与在线客服沟通"-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:textSize="11sp"/>-->
+                    <!--</LinearLayout>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:gravity="center_horizontal"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="或拨打客服电话："-->
+                            <!--android:textColor="#999999"-->
+                            <!--android:textSize="11sp"/>-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/tv_cont_opin"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="400-061-2819"-->
+                            <!--android:textColor="#0fb7a3"-->
+                            <!--android:textColorLink="#0fb7a3"-->
+                            <!--android:textSize="11sp"/>-->
+
+                    <!--</LinearLayout>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:gravity="center"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="（服务时间：每日9:00-18:00）"-->
+                        <!--android:textColor="#999999"-->
+                        <!--android:textSize="11sp"/>-->
 
                 </LinearLayout>
             </LinearLayout>
@@ -1173,18 +1182,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="立即聘用"
+                android:text="需要帮助"
                 android:textColor="#0fb7a3"
                 android:textSize="15sp"/>
         </LinearLayout>
 
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/yinying"/>
 
     <LinearLayout
         android:id="@+id/LinLyout_myorder_back2"

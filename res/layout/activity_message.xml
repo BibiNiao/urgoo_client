@@ -46,12 +46,12 @@
 
         <ImageView
             android:id="@+id/iv_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:src="@drawable/em_ic_right_arrow" />
+            android:src="@drawable/common_rightarrow" />
 
         <TextView
             android:id="@+id/tv_num_sys"
@@ -128,12 +128,12 @@
 
         <ImageView
             android:id="@id/iv_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:src="@drawable/em_ic_right_arrow" />
+            android:src="@drawable/common_rightarrow" />
 
         <TextView
             android:id="@+id/tv_num_my"

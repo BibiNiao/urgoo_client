@@ -138,7 +138,7 @@ public class ZWConfig {
     //小帅地址：
 //    public final static String URGOOURL_BASE = "http://10.203.203.49:8080/urgoo/";
     //shihui测试接口  104 8088
-//    public final static String URGOOURL_BASE = "http://10.203.203.86:8082/urgoo/";
+//    public final static String URGOOURL_BASE = "http://10.203.203.86:8080/urgoo/";
     public final static String URGOOURL_BASE3 = "http://139.129.164.163:8080/urgoo/";
     //测试环境
 //    public final static String URGOOURL_BASE = "http://www-test-urgoo.com/urgoo/";
@@ -209,8 +209,10 @@ public class ZWConfig {
 
     //public final static String ACTION_HXPWD = "123456";
 
-    //杨德成20160509
+    //系统消息
     public static final String Action_updateInformation = URGOOURL_BASE + "/001/001/information/selectInformationSystemDetail";
+    //个人消息
+    public static final String Action_updateUserInformation = URGOOURL_BASE + "/001/001/information/selectInformationDetail";
 
 
     //杨德成20160505 start
@@ -298,6 +300,8 @@ public class ZWConfig {
     public static final String ACTION_requestLaunchAliPay = URGOOURL_BASE + "001/001/order/launchAliPay";
     // 微信支付请求
     public static final String ACTION_requestLaunchWechat = URGOOURL_BASE + "001/001/pay/tenPayLaunch2";
+    // 银行卡支付请求
+    public static final String ACTION_requestHuaRuiPay = URGOOURL_BASE + "001/001/pay/huaRuiPayLaunch";
     // 更新订单接口
     public static final String ACTION_requestUpdateOrder = URGOOURL_BASE + "001/001/order/updateUserOrderAfterLaunchAliPay";
 
@@ -432,5 +436,7 @@ public class ZWConfig {
     public static final String URL_requestCleanRedShowAdvance = URGOOURL_BASE + "001/001/advance/cleanRedShowAdvance";
     // 消息列表
     public static final String URL_requestSelectInformationPerson = URGOOURL_BASE + "001/001/information/selectInformationPerson";
+    // 三方协议
+    public static final String URL_requestAgreement = URGOOURL_BASE + "001/001/client/xyJz";
 
 }
