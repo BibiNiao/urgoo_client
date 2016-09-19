@@ -18,6 +18,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.urgoo.Interface.OnItemClickListener;
+import com.urgoo.account.activity.MyActivity;
 import com.urgoo.adapter.CounselorInfoAdapter;
 import com.urgoo.base.BaseFragment;
 import com.urgoo.client.R;
@@ -288,6 +289,7 @@ public class CounselorFragment extends BaseFragment implements StringRequestCall
 
 
             case R.id.btn_search:
+//                startActivity(new Intent(getActivity(), MyActivity.class));
                 startActivity(new Intent(getActivity(), CounselorSearchActivity.class));
                 break;
         }

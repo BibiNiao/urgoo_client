@@ -15,13 +15,17 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.hyphenate.EMCallBack;
 import com.urgoo.account.activity.HomeActivity;
 import com.urgoo.business.UpdateService;
+import com.urgoo.client.R;
 import com.urgoo.common.APPManagerTool;
 import com.urgoo.common.ScreenManager;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.activities.CounselorActivity;
 import com.urgoo.data.SPManager;
+import com.urgoo.jpush.JpushUtlis;
+import com.urgoo.message.EaseHelper;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.profile.activities.MessageActivity;
@@ -45,6 +49,9 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import cn.jpush.android.api.TagAliasCallback;
 
 public class Util {
 
@@ -513,5 +520,55 @@ public class Util {
                 break;
         }
     }
+
+    /**
+     * 冻结账号、token验证失败、登录信息过期;
+     *
+     * @param context
+     * @param msg
+     */
+    public static void onFreezeAccount(final Context context, String msg) {
+        if (!((Activity) context).isFinishing()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle("提示");
+            builder.setMessage(msg);
+            builder.setPositiveButton("确定",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            EaseHelper.getInstance().logout(false, new EMCallBack() {
+
+                                @Override
+                                public void onSuccess() {
+                                    JpushUtlis.setAlias(context, "", new TagAliasCallback() {
+                                        @Override
+                                        public void gotResult(int mI, String mS, Set<String> mSet) {
+                                            android.util.Log.d("alias", "设置alias为 :  " + mS);
+                                        }
+                                    });
+                                    // 重新显示登陆页面
+                                    SPManager.getInstance(context).clearLoginInfo();
+                                    Intent intent = new Intent(context, HomeActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    context.startActivity(intent);
+                                }
+
+                                @Override
+                                public void onError(int i, String s) {
+
+                                }
+
+                                @Override
+                                public void onProgress(int i, String s) {
+
+                                }
+                            });
+                        }
+                    });
+            builder.setCancelable(false);
+            builder.show();
+        }
+    }
+
 
 }

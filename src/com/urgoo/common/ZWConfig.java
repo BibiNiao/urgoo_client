@@ -143,11 +143,9 @@ public class ZWConfig {
     //测试环境
 //    public final static String URGOOURL_BASE = "http://www-test-urgoo.com/urgoo/";
     //生产环境
-//    public final static String URGOOURL_BASE = "http://www-prd-urgoo.com/urgoo/";
-    //线上环境
-//   public final static String URGOOURL_BASE = "http://139.129.87.232/urgoo/";
+    public final static String URGOOURL_BASE = "http://www-prd-urgoo.com/urgoo/";
 //    小孙
-    public final static String URGOOURL_BASE = "http://10.203.203.49:8082/urgoo/";
+//    public final static String URGOOURL_BASE = "http://10.203.203.49:8082/urgoo/";
 
 //    真实环境
 //    public final static String URGOOURL_BASE = "http://139.129.164.163:8082/urgoo/";

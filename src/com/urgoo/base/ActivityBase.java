@@ -24,6 +24,7 @@ import com.urgoo.data.SPManager;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
 import com.urgoo.view.LoadingDialog;
+import com.zw.express.tool.Util;
 import com.zw.express.tool.image.ImageLoader;
 
 import org.json.JSONException;
@@ -318,8 +319,12 @@ public class ActivityBase extends Activity implements ActivityInterface, StringR
             JSONObject jsonObject = new JSONObject(response);
             if (jsonObject.has("header")) {
                 JSONObject jsonCode = new JSONObject(jsonObject.get("header").toString());
-                if (jsonCode.getString("code").equals("200")) {
+                String code = jsonCode.getString("code");
+                if (code.equals("200")) {
                     onResponseSuccess(eventCode, jsonObject);
+                } else if (code.equals("602")) { //token过期
+                    dismissLoadingDialog();
+                    Util.onFreezeAccount(this, jsonCode.getString("message"));
                 } else {
                     dismissLoadingDialog();
                     showToastSafe(jsonCode.getString("message"));
@@ -334,7 +339,7 @@ public class ActivityBase extends Activity implements ActivityInterface, StringR
 
     @Override
     public void onFailure(EventCode eventCode, Call call) {
-
+        dismissLoadingDialog();
     }
 
     /**

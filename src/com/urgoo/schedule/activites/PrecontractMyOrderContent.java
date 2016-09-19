@@ -283,9 +283,9 @@ public class PrecontractMyOrderContent extends ActivityBase implements View.OnCl
                 Message message = mHandler.obtainMessage(HANDLERS);
                 mHandler.sendMessageDelayed(message, 1000);
             } else {
-                rl_zoomship.setVisibility(View.VISIBLE);
-                tv_order_content_countdown.setText("00:00:00");
-                getZOOMInfo();
+//                rl_zoomship.setVisibility(View.VISIBLE);
+//                tv_order_content_countdown.setText("00:00:00");
+//                getZOOMInfo();
 
             }
         }

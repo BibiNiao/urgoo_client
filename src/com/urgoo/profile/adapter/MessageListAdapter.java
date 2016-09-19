@@ -22,14 +22,11 @@ import java.util.List;
  */
 public class MessageListAdapter extends UltimateViewAdapter<MessageListAdapter.ViewHolder> {
     private Context context;
-    private LayoutInflater mInflater;
-    private List<InformationEntity> informationEntities;
+    private List<InformationEntity> informationEntities = new ArrayList<>();
     private int type;
 
     public MessageListAdapter(Context context, int type) {
         this.context = context;
-        this.mInflater = LayoutInflater.from(context);
-        this.informationEntities = new ArrayList<>();
         this.type = type;
     }
 
@@ -45,14 +42,11 @@ public class MessageListAdapter extends UltimateViewAdapter<MessageListAdapter.V
     }
 
     public void clear() {
-        this.informationEntities.clear();
+        informationEntities.clear();
         notifyDataSetChanged();
     }
 
     public InformationEntity getItem(int position) {
-        if (position > 0) {
-            position--;
-        }
         return informationEntities.get(position);
     }
 
@@ -63,14 +57,14 @@ public class MessageListAdapter extends UltimateViewAdapter<MessageListAdapter.V
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent) {
-        View itemView = mInflater.inflate(R.layout.message_item, null);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.message_item, parent, false);
         ViewHolder vh = new ViewHolder(itemView, true);
         return vh;
     }
 
     @Override
     public int getAdapterItemCount() {
-        return informationEntities != null ? informationEntities.size() : 0;
+        return informationEntities.size();
     }
 
     @Override

@@ -124,8 +124,7 @@ public class MessageListActivity extends ActivityBase implements View.OnClickLis
                             messageListAdapter.addData(informationEntities);
                         }
                     } else {
-                        if (!informationEntities.isEmpty())
-                            messageListAdapter.addData(informationEntities);
+                        messageListAdapter.addData(informationEntities);
                     }
 
                     if (informationEntities.size() < 10) {

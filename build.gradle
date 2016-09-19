@@ -4,8 +4,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.2'
-        classpath 'com.growingio.android:vds-gradle-plugin:0.9.85'
+        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.growingio.android:vds-gradle-plugin:0.9.93'
     }
 }
 allprojects {
@@ -94,12 +94,13 @@ dependencies {
                 module: 'bolts-android'
     }
     compile project(':library')
-    compile 'com.growingio.android:vds-android-agent:0.9.85@aar'
+    compile 'com.growingio.android:vds-android-agent:0.9.93@aar'
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile files('libs/ShareSDK-SinaWeibo-2.7.6.jar')
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.alibaba:fastjson:1.2.14'
     compile files('libs/hyphenatechat_3.1.5.jar')
+    compile 'com.android.support:design:22.2.1'
 }
 repositories {
     mavenCentral()

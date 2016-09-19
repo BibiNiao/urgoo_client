@@ -87,11 +87,13 @@ public class OrderActivity extends ActivityBase implements View.OnClickListener 
     /**
      * 是否刷新图片
      */
-    private void isChangePic() {
+    private boolean isCheck() {
         if (isReedAgr && isReedPayTime && isReedService) {
             ivCheck.setImageResource(R.drawable.ic_check);
+            return true;
         } else {
             ivCheck.setImageResource(R.drawable.ic_uncheck);
+            return false;
         }
     }
 
@@ -101,19 +103,19 @@ public class OrderActivity extends ActivityBase implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.tv_paytime:
                 isReedPayTime = true;
-                isChangePic();
+                isCheck();
                 bundle.putParcelable("orderInfo", orderServiceEntitys);
                 Util.openActivityWithBundle(this, OrderTimeLineActivity.class, bundle);
                 break;
             case R.id.tv_service:
                 isReedService = true;
-                isChangePic();
+                isCheck();
                 bundle.putString("extraService", extraService);
                 Util.openActivityWithBundle(this, ServiceActivity.class, bundle);
                 break;
             case R.id.tv_agreement:
                 isReedAgr = true;
-                isChangePic();
+                isCheck();
                 String strURL = ZWConfig.URL_requestAgreement + "?token=" + spManager.getToken();
                 startActivity(new Intent(this, BaseWebViewActivity.class).putExtra(BaseWebViewActivity.EXTRA_URL, strURL));
                 break;
@@ -121,8 +123,12 @@ public class OrderActivity extends ActivityBase implements View.OnClickListener 
                 finish();
                 break;
             case R.id.tv_order:
-                showLoadingDialog();
-                ServerManager.getInstance(this).insertOrder(this, serviceId, orderServiceEntitys.getCounselorId(), orderServiceEntitys.getOrderCode());
+                if (isCheck()) {
+                    showLoadingDialog();
+                    ServerManager.getInstance(this).insertOrder(this, serviceId, orderServiceEntitys.getCounselorId(), orderServiceEntitys.getOrderCode());
+                } else {
+                    showToastSafe("请阅读三方协议、具体服务以及支付时间后再进行下单");
+                }
                 break;
         }
     }

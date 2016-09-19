@@ -15,9 +15,17 @@ import android.widget.Toast;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
 import com.urgoo.view.LoadingDialog;
+import com.zw.express.tool.Util;
 
+import org.apache.http.NoHttpResponseException;
+import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.conn.HttpHostConnectException;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 
 import okhttp3.Call;
 import okhttp3.Request;
@@ -110,8 +118,12 @@ public class BaseFragment extends Fragment implements StringRequestCallBack {
             JSONObject jsonObject = new JSONObject(response);
             if (jsonObject.has("header")) {
                 JSONObject jsonCode = new JSONObject(jsonObject.get("header").toString());
-                if (jsonCode.getString("code").equals("200")){
+                String code = jsonCode.getString("code");
+                if (code.equals("200")) {
                     onResponseSuccess(eventCode, jsonObject);
+                } else if (code.equals("602")) { //token过期
+                    dismissLoadingDialog();
+                    Util.onFreezeAccount(getActivity(), jsonCode.getString("message"));
                 } else {
                     showToastSafe(jsonCode.getString("message"));
                 }
@@ -125,7 +137,7 @@ public class BaseFragment extends Fragment implements StringRequestCallBack {
 
     @Override
     public void onFailure(EventCode eventCode, Call call) {
-
+        dismissLoadingDialog();
     }
 
     /**

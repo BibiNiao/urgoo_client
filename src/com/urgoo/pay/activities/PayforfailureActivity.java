@@ -70,6 +70,7 @@ public class PayforfailureActivity extends ActivityBase implements View.OnClickL
 
     @Override
     protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
+        dismissLoadingDialog();
         switch (eventCode) {
             case EventCodeUpdateUser:
                 break;

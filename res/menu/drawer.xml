@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_item_book"
+            android:icon="@drawable/ic_check"
+            android:title="测试" />
+        <item
+            android:id="@+id/navigation_item_example"
+            android:icon="@drawable/ic_unselected"
+            android:title="测试" />
+        <item
+            android:id="@+id/navigation_item_blog"
+            android:icon="@drawable/ic_et_username"
+            android:title="测试" />
+
+        <item
+            android:id="@+id/navigation_item_about"
+            android:icon="@drawable/ic_black_back"
+            android:title="测试" />
+    </group>
+</menu>
