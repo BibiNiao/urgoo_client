@@ -12,6 +12,20 @@
         <item name="android:backgroundDimAmount">0.6</item>
     </style>
 
+    <style name="MyTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/tab_color</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/MyTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/tab_color</item>
+        <item name="tabTextColor">@color/tv4e4e4e</item>
+        <item name="tabGravity">fill</item>
+    </style>
+
+    <style name="MyTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="chat_content_date_style">
         <item name="android:minHeight">50dp</item>
         <item name="android:gravity">center</item>

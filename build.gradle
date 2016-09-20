@@ -23,8 +23,8 @@ android {
         applicationId "com.urgoo.client"
         minSdkVersion 10
         targetSdkVersion 22
-        versionCode 7
-        versionName "2.0.1"
+        versionCode 8
+        versionName "2.0.2"
         multiDexEnabled true
         ndk {
             abiFilters 'armeabi-v7a', 'armeabi', 'x86'

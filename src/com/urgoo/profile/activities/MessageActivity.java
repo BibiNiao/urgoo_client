@@ -38,18 +38,13 @@ public class MessageActivity extends ActivityBase implements View.OnClickListene
     private TextView tvMy;
     private MessageEntity messageEntity;
     public final static String MESSAGE_TYPE = "message_type";
+    public static final int REQUEST_CODE_MESSAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
         initView();
-        getMessageList("", 0);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         getMessageList("", 0);
     }
 
@@ -79,7 +74,7 @@ public class MessageActivity extends ActivityBase implements View.OnClickListene
                     } else {
                         tvSys.setVisibility(View.GONE);
                     }
-                    if (messageEntity.getAccountCount() > 0) {
+                    if (messageEntity.getPersonCount() > 0) {
                         tvMy.setVisibility(View.VISIBLE);
                     } else {
                         tvMy.setVisibility(View.GONE);
@@ -93,15 +88,15 @@ public class MessageActivity extends ActivityBase implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        Bundle extras  = new Bundle();
+        Bundle extras = new Bundle();
         switch (v.getId()) {
             case R.id.ll_assistant_sys:
                 extras.putInt(MESSAGE_TYPE, 1);
-                Util.openActivityWithBundle(MessageActivity.this, MessageListActivity.class, extras);
+                Util.openActivityForResultWithBundle(MessageActivity.this, MessageListActivity.class, extras, REQUEST_CODE_MESSAGE);
                 break;
             case R.id.ll_assistant_my:
                 extras.putInt(MESSAGE_TYPE, 2);
-                Util.openActivityWithBundle(MessageActivity.this, MessageListActivity.class, extras);
+                Util.openActivityForResultWithBundle(MessageActivity.this, MessageListActivity.class, extras, REQUEST_CODE_MESSAGE);
                 break;
             case R.id.back:
                 if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
@@ -111,6 +106,14 @@ public class MessageActivity extends ActivityBase implements View.OnClickListene
                 finish();
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            getMessageList("", 0);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

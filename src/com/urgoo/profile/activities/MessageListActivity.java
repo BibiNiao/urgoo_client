@@ -1,8 +1,10 @@
 package com.urgoo.profile.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -15,6 +17,8 @@ import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.base.ActivityBase;
 import com.urgoo.client.R;
+import com.urgoo.message.activities.MainActivity;
+import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.profile.adapter.MessageListAdapter;
 import com.urgoo.profile.biz.ProfileManager;
@@ -143,8 +147,19 @@ public class MessageListActivity extends ActivityBase implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back:
+                setResult(RESULT_OK);
                 finish();
                 break;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            setResult(RESULT_OK);
+            finish();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

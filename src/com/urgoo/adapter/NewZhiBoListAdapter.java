@@ -96,7 +96,16 @@ public class NewZhiBoListAdapter extends BaseAdapter {
                    /* CountdownUtil c = new CountdownUtil(timeStr * 1000, vhq.tv_daojishi);
                     c.countdown();*/
                 } else {
-                    vhq.tv_daojishi.setText("进入直播");
+                    if (entity.getStatus().equals("2")) {
+                        vhq.tv_daojishi.setText("已结束");
+                        vhq.tv_daojishi.setBackgroundResource(R.drawable.linearlayoutframe_over);
+                    } else if (entity.getStatus().equals("1")) {
+                        vhq.tv_daojishi.setText("进入直播");
+                        vhq.tv_daojishi.setBackgroundResource(R.drawable.linearlayoutframe_selected);
+                    } else if (entity.getStatus().equals("3")) {
+                        vhq.tv_daojishi.setText("查看回播");
+                        vhq.tv_daojishi.setBackgroundResource(R.drawable.linearlayoutframe_selected);
+                    }
                 }
 
                 break;

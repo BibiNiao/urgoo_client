@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,7 +23,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="11dp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/urgoo_title_back"/>
+                android:src="@drawable/urgoo_title_back" />
 
         </LinearLayout>
 
@@ -35,45 +33,46 @@
             android:layout_centerInParent="true"
             android:text="告诉朋友"
             android:textColor="#fff"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        >
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="12dp" />
 
         <ImageView
             android:id="@+id/img_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/textView12"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:adjustViewBounds="true"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp"/>
+            android:paddingRight="30dp" />
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_horizontal"
-            android:text="扫描上方二维码即可下载app"/>
+            android:layout_gravity="center"
+            android:text="扫描上方二维码即可下载app" />
 
         <Button
             android:id="@+id/but_fenxiang"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@+id/textView12"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="30dp"
@@ -82,7 +81,7 @@
             android:paddingRight="80dp"
             android:text="立即分享"
             android:textColor="@color/white"
-            android:textSize="14sp"/>
-    </RelativeLayout>
+            android:textSize="14sp" />
+    </LinearLayout>
 
 </LinearLayout>

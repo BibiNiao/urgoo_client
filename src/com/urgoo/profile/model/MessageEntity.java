@@ -7,8 +7,16 @@ import java.util.List;
  */
 public class MessageEntity {
     private int systemCount;
-    private int AccountCount;
+    private int personCount;
     private List<InformationEntity> information;
+
+    public int getPersonCount() {
+        return personCount;
+    }
+
+    public void setPersonCount(int personCount) {
+        this.personCount = personCount;
+    }
 
     public int getSystemCount() {
         return systemCount;
@@ -16,14 +24,6 @@ public class MessageEntity {
 
     public void setSystemCount(int systemCount) {
         this.systemCount = systemCount;
-    }
-
-    public int getAccountCount() {
-        return AccountCount;
-    }
-
-    public void setAccountCount(int accountCount) {
-        AccountCount = accountCount;
     }
 
     public List<InformationEntity> getInformation() {

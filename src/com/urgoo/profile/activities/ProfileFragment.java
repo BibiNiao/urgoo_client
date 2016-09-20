@@ -165,7 +165,7 @@ public class ProfileFragment extends HomeFragment implements OnClickListener {
         if (hidden) {
             //UiUtil.show(getActivity(), "隐藏");
         } else {
-
+            getSelectRedCount();
             //notificationIntent.putExtra(MainActivity.EXTRA_TAB, 1);
            /* Intent it= new Intent(getActivity(), UrgooVideoActivity.class);
             it.putExtra("icon", "");

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.urgoo.base.ActivityBase;
 import com.urgoo.business.imageLoadBusiness;
@@ -22,6 +23,7 @@ public class QrcodeActivity extends ActivityBase {
     private LinearLayout ll_breakss;
     private ImageView img_code;
     private Button but_fenxiang;
+    private TextView tvTitle;
     private String pic;
     private String title;
     private String url;
@@ -34,6 +36,7 @@ public class QrcodeActivity extends ActivityBase {
         img_code = (ImageView) findViewById(R.id.img_code);
         but_fenxiang = (Button) findViewById(R.id.but_fenxiang);
         ll_breakss = (LinearLayout) findViewById(R.id.ll_break);
+        tvTitle = (TextView) findViewById(R.id.tv_title);
         showLoadingDialog("二维码生成中...");
         ServerManager.getInstance(this).getQrcode(this);
         ll_breakss.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +70,12 @@ public class QrcodeActivity extends ActivityBase {
                         title = jsonObject.getString("title");
                         url = jsonObject.getString("url");
                         desc = jsonObject.getString("desc");
+                        if (Util.isEmpty(jsonObject.getString("resultStr"))) {
+                            tvTitle.setVisibility(View.GONE);
+                        } else {
+                            tvTitle.setVisibility(View.VISIBLE);
+                            tvTitle.setText(jsonObject.getString("resultStr"));
+                        }
                         new imageLoadBusiness().imageLoadByNewURL(qrcodeUrl, img_code);
                     }
                 } catch (JSONException mE) {
