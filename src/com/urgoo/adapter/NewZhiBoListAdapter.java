@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -74,6 +75,7 @@ public class NewZhiBoListAdapter extends BaseAdapter {
                     vhq.tv_title = (TextView) view.findViewById(R.id.tv_title);
                     vhq.tv_miaoshu = (TextView) view.findViewById(R.id.tv_miaoshu);
                     vhq.iv_mingpian = (SimpleDraweeView) view.findViewById(R.id.iv_mingpian);
+                    vhq.re_daojishi = (RelativeLayout) view.findViewById(R.id.re_daojishi);
                     vhq.line = view.findViewById(R.id.line);
 
                     view.setTag(vhq);
@@ -98,13 +100,13 @@ public class NewZhiBoListAdapter extends BaseAdapter {
                 } else {
                     if (entity.getStatus().equals("2")) {
                         vhq.tv_daojishi.setText("已结束");
-                        vhq.tv_daojishi.setBackgroundResource(R.drawable.linearlayoutframe_over);
+                        vhq.re_daojishi.setBackgroundResource(R.drawable.linearlayoutframe_over);
                     } else if (entity.getStatus().equals("1")) {
                         vhq.tv_daojishi.setText("进入直播");
-                        vhq.tv_daojishi.setBackgroundResource(R.drawable.linearlayoutframe_selected);
+                        vhq.re_daojishi.setBackgroundResource(R.drawable.linearlayoutframe_selected);
                     } else if (entity.getStatus().equals("3")) {
                         vhq.tv_daojishi.setText("查看回播");
-                        vhq.tv_daojishi.setBackgroundResource(R.drawable.linearlayoutframe_selected);
+                        vhq.re_daojishi.setBackgroundResource(R.drawable.linearlayoutframe_selected);
                     }
                 }
 
@@ -124,6 +126,7 @@ public class NewZhiBoListAdapter extends BaseAdapter {
         TextView tv_baomingnumber;
         TextView tv_title;
         TextView tv_miaoshu;
+        RelativeLayout re_daojishi;
         SimpleDraweeView iv_mingpian;
         View line;
     }

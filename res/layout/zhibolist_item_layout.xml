@@ -20,13 +20,14 @@
             fresco:placeholderImageScaleType="fitCenter" />
 
         <RelativeLayout
+            android:id="@+id/re_daojishi"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/iv_mingpian"
             android:layout_marginRight="18dp"
             android:layout_marginTop="18dp"
-            android:background="@drawable/linearlayoutframe_selected"
+            android:background="@drawable/linearlayoutframe_over"
             android:gravity="center"
             android:paddingLeft="8dp"
             android:paddingRight="8dp">
@@ -35,9 +36,8 @@
                 android:id="@+id/tv_daojishi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxWidth="170dp"
-                android:singleLine="true"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
         </RelativeLayout>
