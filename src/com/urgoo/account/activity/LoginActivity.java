@@ -12,7 +12,7 @@ import android.widget.EditText;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.urgoo.account.biz.AccountManager;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.APPManagerTool;
 import com.urgoo.common.PMD5Utils;
@@ -35,7 +35,7 @@ import cn.jpush.android.api.TagAliasCallback;
 /**
  * Created by bb on 2016/8/15.
  */
-public class LoginActivity extends ActivityBase implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private EditText etUsername;
     private EditText etPassword;
     private String username;

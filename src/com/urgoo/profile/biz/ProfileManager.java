@@ -72,19 +72,6 @@ public class ProfileManager {
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeZoomAccount, ZWConfig.URL_requestInsertZoomAccount, params, callback);
     }
 
-
-    /**
-     * 我关注的顾问
-     *
-     * @param callback
-     */
-    public void ByParaentId(StringRequestCallBack callback, int page) {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("token", SPManager.getInstance(mContext).getToken());
-        params.put("page", String.valueOf(page));
-        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeCounselorListByParaentId, ZWConfig.URL_getSearchCounselorListByParaentId, params, callback);
-    }
-
     /**
      * 未开始
      *

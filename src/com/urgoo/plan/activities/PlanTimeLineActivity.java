@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.net.StringRequestCallBack;
 import com.urgoo.plan.adapter.PlanFinishAdapter;
@@ -16,7 +16,7 @@ import com.urgoo.view.TimeLineListView;
 /**
  * Created by bb on 2016/8/8.
  */
-public class PlanTimeLineActivity extends ActivityBase implements StringRequestCallBack {
+public class PlanTimeLineActivity extends BaseActivity implements StringRequestCallBack {
     private ListView lvFinish;
     private TimeLineListView lvNostart;
     private PlanFinishAdapter finishAdapter;

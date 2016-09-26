@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.business.imageLoadBusiness;
 import com.urgoo.client.R;
 import com.urgoo.common.ShareUtil;
@@ -18,7 +18,7 @@ import com.zw.express.tool.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class QrcodeActivity extends ActivityBase {
+public class QrcodeActivity extends BaseActivity {
 
     private LinearLayout ll_breakss;
     private ImageView img_code;

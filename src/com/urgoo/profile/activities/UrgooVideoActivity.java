@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.urgoo.Interface.Constants;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.zw.express.tool.UiUtil;
@@ -34,7 +34,7 @@ import us.zoom.sdk.ZoomSDKInitializeListener;
 /**
  * Created by Administrator on 2016/7/12.
  */
-public class UrgooVideoActivity extends ActivityBase implements Constants, ZoomSDKInitializeListener, MeetingServiceListener {
+public class UrgooVideoActivity extends BaseActivity implements Constants, ZoomSDKInitializeListener, MeetingServiceListener {
 
 
     private RelativeLayout re_Refuse, re_accept;

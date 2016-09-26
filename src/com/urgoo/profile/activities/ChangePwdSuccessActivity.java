@@ -9,14 +9,14 @@ import android.widget.Button;
 
 import com.hyphenate.EMCallBack;
 import com.urgoo.account.activity.LoginActivity;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.message.EaseHelper;
 
 /**
  * Created by lijie on 2016/4/5.
  */
-public class ChangePwdSuccessActivity extends ActivityBase {
+public class ChangePwdSuccessActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

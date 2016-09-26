@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 首页 -->
+    <string name="find_consultant">找顾问</string>
+    <string name="live">直播</string>
+    <string name="my">我的</string>
+    <string name="collect">收藏</string>
+    <string name="plan">规划</string>
+    <string name="share">分享</string>
+
     <string name="system_msg">系统消息</string>
     <string name="task_msg">任务</string>
     <string name="account_msg">账户</string>

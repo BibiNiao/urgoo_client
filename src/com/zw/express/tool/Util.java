@@ -18,7 +18,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.EMCallBack;
 import com.urgoo.account.activity.HomeActivity;
 import com.urgoo.business.UpdateService;
-import com.urgoo.client.R;
 import com.urgoo.common.APPManagerTool;
 import com.urgoo.common.ScreenManager;
 import com.urgoo.common.ZWConfig;
@@ -31,7 +30,7 @@ import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.profile.activities.MessageActivity;
 import com.urgoo.profile.activities.UrgooVideoActivity;
 import com.urgoo.schedule.activites.PrecontractMyOrder;
-import com.urgoo.zhibo.activities.ZhiBodDetailActivity;
+import com.urgoo.live.activities.ZhiBodDetailActivity;
 import com.zw.express.tool.image.ImagePiece;
 
 import org.json.JSONArray;

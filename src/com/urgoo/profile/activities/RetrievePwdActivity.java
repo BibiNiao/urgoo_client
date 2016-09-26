@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.net.EventCode;
@@ -30,7 +30,7 @@ import okhttp3.Request;
 /**
  * Created by lijie on 2016/3/29.
  */
-public class RetrievePwdActivity extends ActivityBase implements View.OnClickListener {
+public class RetrievePwdActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = RetrievePwdActivity.class.getName();
     private EditText mPhoneTv, mVerifyTv;
     private Button mVerifyBtn, mCommitBtn;

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.urgoo.account.biz.AccountManager;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.net.EventCode;
 import com.zw.express.tool.Util;
@@ -15,7 +15,7 @@ import org.json.JSONObject;
 /**
  * Created by bb on 2016/8/15.
  */
-public class HomeActivity extends ActivityBase implements View.OnClickListener {
+public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

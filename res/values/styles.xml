@@ -41,6 +41,24 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <!-- Main Acitivty bottom tab -->
+    <style name="MainTab">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="MainTabTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:textColor">@color/ffffff</item>
+        <item name="android:textSize">10dp</item>
+    </style>
+
     <style name="AppBaseTheme" parent="android:Theme.Light"></style>
 
     <!-- Application theme. -->
@@ -48,8 +66,18 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <style name="AppThemeDisenableSwipeBack" parent="AppTheme.Base">
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+    <!-- toolbar标题样式 -->
+    <style name="ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#4e4e4e</item>
+    </style>
+
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="actionMenuTextColor">@color/ffffff</item>
+        <item name="actionMenuTextColor">@color/black_deep</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:dropDownListViewStyle">@style/Widget.AppCompat.ListView.DropDown</item>

@@ -38,7 +38,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.util.EMLog;
 import com.hyphenate.util.ImageUtils;
 import com.hyphenate.util.PathUtil;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.message.utils.EaseImageCache;
 import com.urgoo.message.widget.EaseLoadLocalBigImgTask;
@@ -48,7 +48,7 @@ import com.urgoo.message.widget.PhotoViewAttacher;
 /**
  * 下载显示大图
  */
-public class EaseShowBigImageActivity extends ActivityBase {
+public class EaseShowBigImageActivity extends BaseActivity {
     private static final String TAG = "ShowBigImage";
     private ProgressDialog pd;
     private EasePhotoView image;

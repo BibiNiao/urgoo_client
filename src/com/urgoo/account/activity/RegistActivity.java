@@ -14,7 +14,7 @@ import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
 import com.urgoo.account.biz.AccountManager;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.APPManagerTool;
 import com.urgoo.common.PMD5Utils;
@@ -37,7 +37,7 @@ import cn.jpush.android.api.TagAliasCallback;
 /**
  * Created by bb on 2016/8/15.
  */
-public class RegistActivity extends ActivityBase implements View.OnClickListener {
+public class RegistActivity extends BaseActivity implements View.OnClickListener {
     private String question;
     private Button btnNext;
     private TextView tvCode;

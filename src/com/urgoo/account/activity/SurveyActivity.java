@@ -16,7 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.urgoo.account.model.SurveyContent;
 import com.urgoo.account.model.SurveyInfo;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.zw.express.tool.Util;
 
@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * Created by bb on 2016/8/15.
  */
-public class SurveyActivity extends ActivityBase implements View.OnClickListener {
+public class SurveyActivity extends BaseActivity implements View.OnClickListener {
     public static final String SurveyInfo = "surveyInfo";
     private String questionList;
     private List<SurveyInfo> surveyInfos;

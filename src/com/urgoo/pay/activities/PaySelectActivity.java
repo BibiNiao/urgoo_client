@@ -26,7 +26,7 @@ import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.urgoo.adapter.PaySelectAdapter;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.client.wxapi.Constants;
 import com.urgoo.common.ZWConfig;
@@ -51,7 +51,7 @@ import java.util.Map;
 /**
  * Created by bb on 2016/6/28.
  */
-public class PaySelectActivity extends ActivityBase implements View.OnClickListener {
+public class PaySelectActivity extends BaseActivity implements View.OnClickListener {
     public static final String ORDERID = "Orderid";
     private TextView tv_price;
     private String orderId;

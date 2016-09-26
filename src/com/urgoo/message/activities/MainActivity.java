@@ -13,94 +13,95 @@
  */
 package com.urgoo.message.activities;
 
-import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.LocalBroadcastManager;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hyphenate.chat.EMClient;
-import com.shrb.hrsdk.HRSDK;
 import com.urgoo.ScreenManager;
 import com.urgoo.account.activity.HomeActivity;
+import com.urgoo.account.activity.MyFragment;
 import com.urgoo.client.R;
-import com.urgoo.common.ZWConfig;
+import com.urgoo.collect.activites.CollectFragment;
 import com.urgoo.common.event.MessageEvent;
 import com.urgoo.data.SPManager;
 import com.urgoo.jpush.JpushUtlis;
+import com.urgoo.live.activities.LiveFragment;
 import com.urgoo.main.activities.CounselorFragment;
 import com.urgoo.message.Constant;
 import com.urgoo.message.EaseHelper;
 import com.urgoo.profile.activities.ProfileFragment;
 import com.urgoo.service.activities.PlanFragment;
-import com.urgoo.webviewmanage.BaseWebViewFragment;
-import com.urgoo.webviewmanage.MainWebViewFragment;
-import com.urgoo.zhibo.activities.ZhiBoListManageActivity;
-import com.zw.express.tool.Util;
+import com.urgoo.view.TabView;
 import com.zw.express.tool.log.Log;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 import cn.jpush.android.api.TagAliasCallback;
 import de.greenrobot.event.EventBus;
 
-public class MainActivity extends FragmentActivity implements ProfileFragment.MessageFragmentCallback {
+public class MainActivity extends AppCompatActivity implements ProfileFragment.MessageFragmentCallback, View.OnClickListener {
     protected static final String TAG = "MainActivity";
     public static final String EXTRA_TAB = "extra_tab";//需要跳转的tab
-    // 未读通讯录textview
-    private TextView unreadAddressLable;
+    public static final int TAB_COUNSELOR = 0;
+    public static final int TAB_LIVE = 1;
+    public static final int TAB_MY = 2;
+    public static final int TAB_COLLECT = 3;
+    public static final int TAB_PLAN = 4;
 
-    private TextView[] mTabs;
+    /**
+     * 上一次界面onSaveInstanceState之前的tab被选中的状态key和value
+     */
+    private static final String PRE_SELECTED = "pre_selected";
+    private int indexSelected = -1;
+    /**
+     * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
+     */
+    private static final String[] FRAGMENT_TAG = {
+            CounselorFragment.class.getSimpleName(),
+            LiveFragment.class.getSimpleName(),
+            MyFragment.class.getSimpleName(),
+            CollectFragment.class.getSimpleName(),
+            PlanFragment.class.getSimpleName()
+    };
+
+    private FragmentManager fragmentManager;
     private CounselorFragment counselorFragment;
+    private MyFragment myFragment;
+    private LiveFragment liveFragment;
+    private CollectFragment collectFragment;
+    private PlanFragment planFragment;
 
-    //    private CounselorInfoFragment counselorInfoFragment;
-    private ZhiBoListManageActivity zhiBoListManageActivity;
-    private MainWebViewFragment myWebViewFragment;
-    private ProfileFragment profileFragment;
-    private PlanFragment serviceFragment;
-    //    private AssiatantFragment assiatantFragment;
-    private android.app.AlertDialog.Builder conflictBuilder;
-    private android.app.AlertDialog.Builder accountRemovedBuilder;
-    private boolean isConflictDialogShow;
-    private boolean isAccountRemovedDialogShow;
-    private BroadcastReceiver broadcastReceiver;
-    private LocalBroadcastManager broadcastManager;
-    int status = 0;
-    //  private Fragment[] fragments;
-    private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
-    private int index;
-    // 当前fragment的index
-    private int currentTabIndex;
+    // --------- TabBar ---------------
+    private TabView lastTab;// 上次选中的tab
+    private TabView tabCounselor; // 寻找顾问
+    private TabView tabLive; // 直播
+    private TabView tabMy; // 我的
+    private TabView tabCollect; // 收藏
+    private TabView tabPlan; // 规划
     // 账号在别处登录
     public boolean isConflict = false;
     // 账号被移除
     private boolean isCurrentAccountRemoved = false;
-    //    private boolean isLogin = false;
-//    private boolean isThree = false;
-    private ImageView unreadService;
+//    private ZhiBoListManageActivity zhiBoListManageActivity;
+
+    private android.app.AlertDialog.Builder conflictBuilder;
+    private android.app.AlertDialog.Builder accountRemovedBuilder;
+    private boolean isConflictDialogShow;
+    private boolean isAccountRemovedDialogShow;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ScreenManager.getScreenManager().pushActivity(this);
-        SPManager.getInstance(this).setMyStatus("-1");
-
+        setContentView(R.layout.activity_main);
+        initView();
         if (savedInstanceState != null && savedInstanceState.getBoolean(Constant.ACCOUNT_REMOVED, false)) {
             EMClient.getInstance().logout(true);
             finish();
@@ -111,29 +112,57 @@ public class MainActivity extends FragmentActivity implements ProfileFragment.Me
             startActivity(new Intent(this, HomeActivity.class));
             return;
         }
-        setContentView(R.layout.em_activity_main);
-        initView();
+        fragmentManager = getSupportFragmentManager();
+        if (savedInstanceState != null && savedInstanceState.getInt(PRE_SELECTED, indexSelected) != -1) {
+            // 读取上一次界面Save时候tab选中的状态
+            indexSelected = savedInstanceState.getInt(PRE_SELECTED, indexSelected);
+            counselorFragment = (CounselorFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[0]);
+            liveFragment = (LiveFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[1]);
+            myFragment = (MyFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[2]);
+            collectFragment = (CollectFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[3]);
+            planFragment = (PlanFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[4]);
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            if (counselorFragment != null)
+                transaction.hide(counselorFragment);
+            if (liveFragment != null)
+                transaction.hide(liveFragment);
+            if (myFragment != null)
+                transaction.hide(myFragment);
+            if (collectFragment != null) {
+                transaction.hide(collectFragment);
+//                tabMy.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        collectFragment.getSelectRedCount();
+//                    }
+//                }, 1200);
+            }
+            if (planFragment != null)
+                transaction.hide(planFragment);
+            transaction.commitAllowingStateLoss();
+        } else {
+            indexSelected = getIntent().getIntExtra(EXTRA_TAB, 0);
+        }
+        tabPerformClick(indexSelected);
         EventBus.getDefault().register(this);
 
-        zhiBoListManageActivity = new ZhiBoListManageActivity();
-        counselorFragment = new CounselorFragment();
-        myWebViewFragment = new MainWebViewFragment();
-        profileFragment = new ProfileFragment();
-        serviceFragment = new PlanFragment();
+//
+//        liveFragment = new LiveFragment();
+//        counselorFragment = new CounselorFragment();
+//        myWebViewFragment = new MainWebViewFragment();
+//        profileFragment = new ProfileFragment();
+//        planFragment = new PlanFragment();
 
-        profileFragment.setMessageFragmentCallback(this);
-
-        Bundle b = new Bundle();
-        b.putString(BaseWebViewFragment.EXTRA_URL, ZWConfig.ACTION_nosignsearchConsultant);
-        myWebViewFragment.setArguments(b);
+//
+//        Bundle b = new Bundle();
+//        b.putString(BaseWebViewFragment.EXTRA_URL, ZWConfig.ACTION_nosignsearchConsultant);
+//        myWebViewFragment.setArguments(b);
 
         if (getIntent().getBooleanExtra(Constant.ACCOUNT_CONFLICT, false) && !isConflictDialogShow) {
             showConflictDialog();
         } else if (getIntent().getBooleanExtra(Constant.ACCOUNT_REMOVED, false) && !isAccountRemovedDialogShow) {
             showAccountRemovedDialog();
         }
-        //华润银行
-//        approveDev();
     }
 
     /**
@@ -142,168 +171,101 @@ public class MainActivity extends FragmentActivity implements ProfileFragment.Me
      * @param event
      */
     public void onEventMainThread(MessageEvent event) {
-        unreadService.setVisibility(View.VISIBLE);
-        if (profileFragment.isVisible()) {
-            profileFragment.getSelectRedCount();
-        }
+//        tabMy.setNewIndicator(true);
+//        if (profileFragment.isVisible()) {
+//            profileFragment.getSelectRedCount();
+//        }
     }
 
     @Override
     public void onUnreadMessageCallback(boolean isShow) {
-        if (isShow) {
-            unreadService.setVisibility(View.VISIBLE);
-        } else {
-            unreadService.setVisibility(View.GONE);
-        }
+//        tabMy.setNewIndicator(isShow);
+//        if (isShow) {
+//            unreadService.setVisibility(View.VISIBLE);
+//        } else {
+//            unreadService.setVisibility(View.GONE);
+//        }
     }
 
     /**
      * 初始化组件
      */
     public void initView() {
-        unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
-        unreadService = (ImageView) findViewById(R.id.unread_service);
-        mTabs = new TextView[4];
-
-        Drawable drawable;
-        mTabs[0] = (TextView) findViewById(R.id.btn_address_list);
-        drawable = getResources().getDrawable(R.drawable.em_tab_contact_list_bg1);
-        drawable.setBounds(0, 0, Util.dp2px(MainActivity.this, 20), Util.dp2px(MainActivity.this, 20));
-        mTabs[0].setCompoundDrawables(null, drawable, null, null);
-
-        mTabs[1] = (TextView) findViewById(R.id.btn_conversation);
-        drawable = getResources().getDrawable(R.drawable.em_tab_chat_bg);
-        drawable.setBounds(0, 0, Util.dp2px(MainActivity.this, 20), Util.dp2px(MainActivity.this, 20));
-        mTabs[1].setCompoundDrawables(null, drawable, null, null);
-
-        mTabs[2] = (TextView) findViewById(R.id.btn_service);
-        drawable = getResources().getDrawable(R.drawable.urgoo_tab_service_bg);
-        drawable.setBounds(0, 0, Util.dp2px(MainActivity.this, 20), Util.dp2px(MainActivity.this, 20));
-        mTabs[2].setCompoundDrawables(null, drawable, null, null);
-
-        mTabs[3] = (TextView) findViewById(R.id.btn_setting);
-        drawable = getResources().getDrawable(R.drawable.em_tab_profile_bg);
-        drawable.setBounds(0, 0, Util.dp2px(MainActivity.this, 20), Util.dp2px(MainActivity.this, 20));
-        mTabs[3].setCompoundDrawables(null, drawable, null, null);
-        // 把第一个tab设为选中状态
-        mTabs[0].setSelected(true);
-    }
-
-    /**
-     * button点击事件
-     *
-     * @param view
-     */
-    public void onTabClicked(View view) {
-        if (fragments.size() == 0) {
-            return;
-        }
-        switch (view.getId()) {
-
-            case R.id.btn_address_list:
-                index = 0;
-                break;
-            case R.id.btn_conversation:
-                index = 1;
-                break;
-
-            case R.id.btn_service:
-                index = 2;
-                break;
-            case R.id.btn_setting:
-                index = 3;
-                break;
-        }
-        if (currentTabIndex != index) {
-            FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
-            for (int i = 0; i < fragments.size(); i++) {
-                if (!fragments.get(i).isAdded()) {
-                    trx.add(R.id.fragment_container, fragments.get(i));
-                }
-                trx.hide(fragments.get(i));
-            }
-//            if (!fragments[index].isAdded()) {
-//                trx.add(R.id.fragment_container, fragments[index]);
-//            }
-            trx.show(fragments.get(index)).commit();
-        }
-        mTabs[currentTabIndex].setSelected(false);
-        // 把当前tab设为选中状态
-        mTabs[index].setSelected(true);
-        currentTabIndex = index;
-    }
-
-    private void refreshUIWithMessage() {
-        runOnUiThread(new Runnable() {
-            public void run() {
-                if (currentTabIndex == 0) {
-                    // 当前页面如果为聊天历史页面，刷新此页面
-//                    if (conversationListFragment != null) {
-//                        conversationListFragment.refresh();
-//                    }
-                }
-            }
-        });
+        tabCounselor = (TabView) findViewById(R.id.tab_counselor);
+        tabCounselor.setTextAndDrawableTop(R.string.find_consultant, R.drawable.tab_counselor);
+        tabCounselor.setOnClickListener(this);
+        tabLive = (TabView) findViewById(R.id.tab_live);
+        tabLive.setTextAndDrawableTop(R.string.live, R.drawable.tab_live);
+        tabLive.setOnClickListener(this);
+        tabMy = (TabView) findViewById(R.id.tab_my);
+        tabMy.setTextAndDrawableTop(R.string.my, R.drawable.tab_my);
+        tabMy.setOnClickListener(this);
+        tabCollect = (TabView) findViewById(R.id.tab_collect);
+        tabCollect.setTextAndDrawableTop(R.string.collect, R.drawable.tab_collect);
+        tabCollect.setOnClickListener(this);
+        tabPlan = (TabView) findViewById(R.id.tab_plan);
+        tabPlan.setTextAndDrawableTop(R.string.plan, R.drawable.tab_plan);
+        tabPlan.setOnClickListener(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        SPManager.getInstance(this).setMyStatus("-1");
         ScreenManager.getScreenManager().popActivity(this);
         if (conflictBuilder != null) {
             conflictBuilder.create().dismiss();
             conflictBuilder = null;
         }
     }
-
-    /**
-     * 刷新申请与通知消息数
-     */
-    public void updateUnreadAddressLable() {
-        runOnUiThread(new Runnable() {
-            public void run() {
-                int count = getUnreadAddressCountTotal();
-                if (count > 0) {
-//					unreadAddressLable.setText(String.valueOf(count));
-                    //unreadAddressLable.setVisibility(View.VISIBLE);
-                    //杨德成 20160506 隐藏小秘书对应的红点
-                    unreadAddressLable.setVisibility(View.GONE);
-
-                } else {
-                    //unreadAddressLable.setVisibility(View.INVISIBLE);
-                    //杨德成 20160506 隐藏小秘书对应的红点
-                    unreadAddressLable.setVisibility(View.GONE);
-                }
-            }
-        });
-
-    }
-
-    /**
-     * 获取未读申请与通知消息
-     *
-     * @return
-     */
-    public int getUnreadAddressCountTotal() {
-        int unreadAddressCountTotal = 0;
-        return unreadAddressCountTotal;
-    }
+//
+//    /**
+//     * 刷新申请与通知消息数
+//     */
+//    public void updateUnreadAddressLable() {
+//        runOnUiThread(new Runnable() {
+//            public void run() {
+//                int count = getUnreadAddressCountTotal();
+//                if (count > 0) {
+////					unreadAddressLable.setText(String.valueOf(count));
+//                    //unreadAddressLable.setVisibility(View.VISIBLE);
+//                    //杨德成 20160506 隐藏小秘书对应的红点
+////                    unreadAddressLable.setVisibility(View.GONE);
+//
+//                } else {
+//                    //unreadAddressLable.setVisibility(View.INVISIBLE);
+//                    //杨德成 20160506 隐藏小秘书对应的红点
+////                    unreadAddressLable.setVisibility(View.GONE);
+//                }
+//            }
+//        });
+//
+//    }
+//
+//    /**
+//     * 获取未读申请与通知消息
+//     *
+//     * @return
+//     */
+//    public int getUnreadAddressCountTotal() {
+//        int unreadAddressCountTotal = 0;
+//        return unreadAddressCountTotal;
+//    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setMainTab();
+//        setMainTab();
 //        getStatus();
-        if (!isConflict && !isCurrentAccountRemoved) {
-            updateUnreadAddressLable();
-        }
+//        if (!isConflict && !isCurrentAccountRemoved) {
+//            updateUnreadAddressLable();
+//        }
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putBoolean("isConflict", isConflict);
         outState.putBoolean(Constant.ACCOUNT_REMOVED, isCurrentAccountRemoved);
+        outState.putInt(PRE_SELECTED, indexSelected);
         super.onSaveInstanceState(outState);
     }
 
@@ -393,23 +355,41 @@ public class MainActivity extends FragmentActivity implements ProfileFragment.Me
 
     }
 
+    /**
+     * 自动点击指定的TAB
+     *
+     * @param indexSelected TAB下标
+     */
+    private void tabPerformClick(int indexSelected) {
+        switch (indexSelected) {
+            case TAB_COUNSELOR:
+                tabCounselor.performClick();
+                break;
+            case TAB_LIVE:
+                tabLive.performClick();
+                break;
+            case TAB_MY:
+                tabMy.performClick();
+                break;
+            case TAB_COLLECT:
+                tabCollect.performClick();
+                break;
+            case TAB_PLAN:
+                tabPlan.performClick();
+                break;
+            default:
+                break;
+        }
+    }
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
         int tab = getIntent().getIntExtra(EXTRA_TAB, 0);
-        if (tab != currentTabIndex) {
-            FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
-            trx.hide(fragments.get(currentTabIndex));
-            trx.show(fragments.get(tab)).commit();
-            mTabs[currentTabIndex].setSelected(false);
-            mTabs[tab].setSelected(true);
-            currentTabIndex = tab;
+        if (tab != indexSelected) {
+            tabPerformClick(tab);
         }
-
-        SPManager.getInstance(this).setMyStatus("-1");
-        setMainTab();
-//        getStatus();
         if (intent.getBooleanExtra(Constant.ACCOUNT_CONFLICT, false) && !isConflictDialogShow) {
             showConflictDialog();
         } else if (intent.getBooleanExtra(Constant.ACCOUNT_REMOVED, false) && !isAccountRemovedDialogShow) {
@@ -417,37 +397,12 @@ public class MainActivity extends FragmentActivity implements ProfileFragment.Me
         }
     }
 
-    /**
-     * 设置首页
-     */
-    private void setMainTab() {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        if (!counselorFragment.isAdded() || !zhiBoListManageActivity.isAdded() || !profileFragment.isAdded() || !serviceFragment.isAdded()) {
-            ft.add(R.id.fragment_container, profileFragment)
-                    .add(R.id.fragment_container, zhiBoListManageActivity)
-                    .add(R.id.fragment_container, counselorFragment)
-                    .add(R.id.fragment_container, serviceFragment)
-                    .hide(counselorFragment).hide(zhiBoListManageActivity).hide(profileFragment).hide(serviceFragment);
-            ft.show(counselorFragment).commit();
-        }
-        fragments.add(counselorFragment);
-        fragments.add(zhiBoListManageActivity);
-        fragments.add(serviceFragment);
-        fragments.add(profileFragment);
-    }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        //getMenuInflater().inflate(R.menu.context_tab_contact, menu);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(TAG, "here");
-        if (profileFragment != null)
-            profileFragment.onActivityResult(requestCode, resultCode, data);
+//        if (profileFragment != null)
+//            profileFragment.onActivityResult(requestCode, resultCode, data);
     }
 
     private static long backPressed;
@@ -459,6 +414,104 @@ public class MainActivity extends FragmentActivity implements ProfileFragment.Me
         } else {
             Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
             backPressed = System.currentTimeMillis();
+        }
+    }
+
+    private void switchTab(View v) {
+        TabView tab = (TabView) v;
+        tab.setTabEnable(false);
+        if (lastTab != null) {
+            lastTab.setTabEnable(true);
+        }
+        lastTab = tab;
+    }
+
+    @Override
+    public void onClick(View v) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        switch (v.getId()) {
+            case R.id.tab_counselor:
+                switchTab(v);
+                if (counselorFragment == null) {
+                    counselorFragment = new CounselorFragment();
+                    transaction.add(R.id.fragment_container, counselorFragment, CounselorFragment.class.getSimpleName());
+                } else {
+                    transaction.show(counselorFragment);
+                }
+                if (indexSelected != TAB_COUNSELOR) {
+                    // 隐藏上次展示的fragment
+                    transaction.hide(fragmentManager.findFragmentByTag(FRAGMENT_TAG[indexSelected]));
+                }
+                transaction.commitAllowingStateLoss();
+                // 更新当前展示的下标
+                indexSelected = TAB_COUNSELOR;
+                break;
+            case R.id.tab_live:
+                switchTab(v);
+                if (liveFragment == null) {
+                    liveFragment = new LiveFragment();
+                    transaction.add(R.id.fragment_container, liveFragment, LiveFragment.class.getSimpleName());
+                } else {
+                    transaction.show(liveFragment);
+                }
+                if (indexSelected != TAB_LIVE) {
+                    // 隐藏上次展示的fragment
+                    transaction.hide(fragmentManager.findFragmentByTag(FRAGMENT_TAG[indexSelected]));
+                }
+                transaction.commitAllowingStateLoss();
+                // 更新当前展示的下标
+                indexSelected = TAB_LIVE;
+                break;
+            case R.id.tab_my:
+                switchTab(v);
+                if (myFragment == null) {
+                    myFragment = new MyFragment();
+                    transaction.add(R.id.fragment_container, myFragment, MyFragment.class.getSimpleName());
+                } else {
+                    transaction.show(myFragment);
+                }
+                if (indexSelected != TAB_MY) {
+                    // 隐藏上次展示的fragment
+                    transaction.hide(fragmentManager.findFragmentByTag(FRAGMENT_TAG[indexSelected]));
+                }
+                transaction.commitAllowingStateLoss();
+                // 更新当前展示的下标
+                indexSelected = TAB_MY;
+                break;
+            case R.id.tab_collect:
+                switchTab(v);
+                if (collectFragment == null) {
+                    collectFragment = new CollectFragment();
+                    transaction.add(R.id.fragment_container, collectFragment, CollectFragment.class.getSimpleName());
+                } else {
+                    transaction.show(collectFragment);
+                }
+                if (indexSelected != TAB_COLLECT) {
+                    // 隐藏上次展示的fragment
+                    transaction.hide(fragmentManager.findFragmentByTag(FRAGMENT_TAG[indexSelected]));
+                }
+                transaction.commitAllowingStateLoss();
+                // 更新当前展示的下标
+                indexSelected = TAB_COLLECT;
+                break;
+            case R.id.tab_plan:
+                switchTab(v);
+                if (planFragment == null) {
+                    planFragment = new PlanFragment();
+                    transaction.add(R.id.fragment_container, planFragment, PlanFragment.class.getSimpleName());
+                } else {
+                    transaction.show(planFragment);
+                }
+                if (indexSelected != TAB_PLAN) {
+                    // 隐藏上次展示的fragment
+                    transaction.hide(fragmentManager.findFragmentByTag(FRAGMENT_TAG[indexSelected]));
+                }
+                transaction.commitAllowingStateLoss();
+                // 更新当前展示的下标
+                indexSelected = TAB_PLAN;
+                break;
+            default:
+                break;
         }
     }
 }

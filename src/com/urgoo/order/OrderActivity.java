@@ -15,7 +15,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.net.EventCode;
@@ -28,7 +28,7 @@ import com.zw.express.tool.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class OrderActivity extends ActivityBase implements View.OnClickListener {
+public class OrderActivity extends BaseActivity implements View.OnClickListener {
     private OrderServiceEntity orderServiceEntitys;
     private String extraService;
     private String serviceId;

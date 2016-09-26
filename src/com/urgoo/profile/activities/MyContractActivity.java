@@ -5,11 +5,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 
 
-public class MyContractActivity extends  ActivityBase {
+public class MyContractActivity extends BaseActivity {
 	private LinearLayout back;
 	
 	protected void onCreate(Bundle savedInstanceState) { 

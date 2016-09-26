@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.data.SPManager;
@@ -39,7 +39,7 @@ import java.util.Map;
 
 import okhttp3.Call;
 
-public class WorksActivity extends ActivityBase {
+public class WorksActivity extends BaseActivity {
     protected XListView mListView;
     protected LinearLayout LinLyout_myorder_back;
     private ArrayList<GuwenInfo.WorksBean> mWorksList = new ArrayList<>();

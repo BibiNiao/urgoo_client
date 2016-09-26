@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.util.EasyUtils;
 import com.urgoo.Interface.Constants;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.business.imageLoadBusiness;
 import com.urgoo.client.R;
 import com.urgoo.common.DataUtil;

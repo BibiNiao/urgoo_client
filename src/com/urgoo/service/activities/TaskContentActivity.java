@@ -17,7 +17,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.business.imageLoadBusiness;
 import com.urgoo.client.R;
 import com.urgoo.domain.TaskEntity;
@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
 
-public class TaskContentActivity extends ActivityBase implements View.OnClickListener {
+public class TaskContentActivity extends BaseActivity implements View.OnClickListener {
 
     private LinearLayout ll_break;
     private MyListView mListView;

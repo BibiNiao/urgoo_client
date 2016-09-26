@@ -15,7 +15,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.urgoo.Interface.OnItemClickListener;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.message.activities.SplashActivity;
@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * Created by bb on 2016/9/7.
  */
-public class MessageListActivity extends ActivityBase implements View.OnClickListener {
+public class MessageListActivity extends BaseActivity implements View.OnClickListener {
     private int page;
     private int type;
     private TextView tvTitle;

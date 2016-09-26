@@ -11,7 +11,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.counselor.biz.CounselorData;
 import com.urgoo.counselor.model.ServiceLongList;
@@ -21,7 +21,7 @@ import com.zw.express.tool.Util;
 
 import java.util.ArrayList;
 
-public class ServiceActivity extends ActivityBase implements View.OnClickListener {
+public class ServiceActivity extends BaseActivity implements View.OnClickListener {
 
     private LinearLayout ll_breakss;
     private ListView serverList;

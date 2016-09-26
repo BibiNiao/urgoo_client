@@ -24,7 +24,7 @@ import com.urgoo.domain.ZhiBoEntity;
 import com.urgoo.net.EventCode;
 import com.urgoo.profile.biz.ProfileManager;
 import com.urgoo.view.XListView;
-import com.urgoo.zhibo.activities.ZhiBodDetailActivity;
+import com.urgoo.live.activities.ZhiBodDetailActivity;
 import com.zw.express.tool.GsonTools;
 
 import org.json.JSONArray;

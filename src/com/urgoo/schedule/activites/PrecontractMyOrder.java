@@ -23,11 +23,9 @@ import com.urgoo.data.SPManager;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.webviewmanage.BaseWebViewActivity;
-import com.urgoo.zhibo.activities.ZhiBodDetailActivity;
 import com.zw.express.tool.Util;
 import com.zw.express.tool.net.OkHttpClientManager;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

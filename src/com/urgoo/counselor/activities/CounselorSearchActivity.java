@@ -26,7 +26,7 @@ import com.google.gson.reflect.TypeToken;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.adapter.CounselorListAdapter;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.biz.CounselorManager;
@@ -34,7 +34,7 @@ import com.urgoo.data.SPManager;
 import com.urgoo.domain.CountryTypeList;
 import com.urgoo.domain.GenderList;
 import com.urgoo.domain.ServiceList;
-import com.urgoo.domain.TranslateCounselorEntiy;
+import com.urgoo.collect.model.CounselorEntiy;
 import com.urgoo.net.EventCode;
 import com.urgoo.view.FlowRadioGroup;
 import com.zw.express.tool.Util;
@@ -45,7 +45,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CounselorSearchActivity extends ActivityBase implements View.OnClickListener {
+public class CounselorSearchActivity extends BaseActivity implements View.OnClickListener {
 
     private EditText etSearch;
     private TextView tvCancle;
@@ -59,7 +59,7 @@ public class CounselorSearchActivity extends ActivityBase implements View.OnClic
     private List<CountryTypeList> countryTypeList;
     private List<GenderList> genderList;
     private CounselorListAdapter counselorListAdapter;
-    private ArrayList<TranslateCounselorEntiy> tcEntiys = new ArrayList<>();
+    private ArrayList<CounselorEntiy> tcEntiys = new ArrayList<>();
     private TextView tvNoSearch;
     private String serviceType = "";
     private String gender = "";
@@ -239,7 +239,7 @@ public class CounselorSearchActivity extends ActivityBase implements View.OnClic
                 try {
                     JSONObject jsonObject = new JSONObject(result.get("body").toString());
                     Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
-                    tcEntiys = gson.fromJson(jsonObject.getJSONArray("counselorListInfoList").toString(), new TypeToken<List<TranslateCounselorEntiy>>() {
+                    tcEntiys = gson.fromJson(jsonObject.getJSONArray("counselorListInfoList").toString(), new TypeToken<List<CounselorEntiy>>() {
                     }.getType());
                     btnHistory.setVisibility(View.GONE);
                     llSearch.setVisibility(View.GONE);

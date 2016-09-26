@@ -5,10 +5,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 
-public class ServiceArgeementActivity extends  ActivityBase{
+public class ServiceArgeementActivity extends BaseActivity {
 
 
 	private LinearLayout back;

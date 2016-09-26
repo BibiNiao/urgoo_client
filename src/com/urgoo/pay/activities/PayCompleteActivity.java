@@ -12,7 +12,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.domain.Order;
@@ -27,7 +27,7 @@ import org.json.JSONObject;
 /**
  * Created by bb on 2016/6/28.
  */
-public class PayCompleteActivity extends ActivityBase implements View.OnClickListener {
+public class PayCompleteActivity extends BaseActivity implements View.OnClickListener {
     private Button btn_order_details;
     private Button btn_complete;
     private TextView tv_ordertotal;

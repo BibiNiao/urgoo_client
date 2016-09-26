@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.net.EventCode;
@@ -16,7 +16,7 @@ import com.urgoo.webviewmanage.BaseWebViewFragment;
 
 import org.json.JSONObject;
 
-public class PayforfailureActivity extends ActivityBase implements View.OnClickListener {
+public class PayforfailureActivity extends BaseActivity implements View.OnClickListener {
 
     private Button btn_complete;
     private Button btn_order_details;

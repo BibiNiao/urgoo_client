@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.Toast;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.zw.express.tool.UiUtil;
@@ -24,7 +24,7 @@ import java.util.Map;
 
 import okhttp3.Call;
 
-public class PingjiaActivity extends ActivityBase {
+public class PingjiaActivity extends BaseActivity {
     private String advanceId;
     private String TAG = "cancell";
     private String str_EditText = "未填写";

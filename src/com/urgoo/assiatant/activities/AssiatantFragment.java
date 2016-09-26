@@ -126,11 +126,6 @@ public class AssiatantFragment extends HomeFragment {
             @Override
             public void onClick(View v) {
 
-               /* Intent it = new Intent(getActivity(), TestAcitity.class);
-
-				startActivity(it);*/
-
-
                 Intent it = new Intent(getActivity(), BaseWebViewActivity.class);
                 it.putExtra("EXTRA_URL", ZWConfig.ACTION_parentPlanningHtml);
 

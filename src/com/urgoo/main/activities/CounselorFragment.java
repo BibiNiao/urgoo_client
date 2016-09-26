@@ -18,15 +18,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.urgoo.Interface.OnItemClickListener;
-import com.urgoo.account.activity.MyActivity;
 import com.urgoo.adapter.CounselorInfoAdapter;
 import com.urgoo.base.BaseFragment;
 import com.urgoo.client.R;
-import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.activities.CounselorActivity;
 import com.urgoo.counselor.activities.CounselorSearchActivity;
 import com.urgoo.domain.CounselorBannerListEntiy;
-import com.urgoo.domain.TranslateCounselorEntiy;
+import com.urgoo.collect.model.CounselorEntiy;
 import com.urgoo.domain.ZoomLiveEntiy;
 import com.urgoo.main.biz.MainManager;
 import com.urgoo.net.EventCode;
@@ -45,7 +43,7 @@ import java.util.List;
 public class CounselorFragment extends BaseFragment implements StringRequestCallBack, View.OnClickListener {
     private UltimateRecyclerView recyclerView;
     private CounselorInfoAdapter counselorInfoAdapter;
-    private ArrayList<TranslateCounselorEntiy> tcEntiys = new ArrayList<>();
+    private ArrayList<CounselorEntiy> tcEntiys = new ArrayList<>();
     private List<ZoomLiveEntiy> zoomLiveEntiys = new ArrayList<>();
     private List<CounselorBannerListEntiy> cblEntiys = new ArrayList<>();
     private View mHeaderCounselorView;
@@ -218,7 +216,7 @@ public class CounselorFragment extends BaseFragment implements StringRequestCall
                 try {
                     JSONObject jsonObject = new JSONObject(result.get("body").toString());
                     Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
-                    tcEntiys = gson.fromJson(jsonObject.getJSONArray("counselorListInfoList").toString(), new TypeToken<List<TranslateCounselorEntiy>>() {
+                    tcEntiys = gson.fromJson(jsonObject.getJSONArray("counselorListInfoList").toString(), new TypeToken<List<CounselorEntiy>>() {
                     }.getType());
                     if (tcEntiys != null) {
                         counselorInfoAdapter.clear();
@@ -289,7 +287,6 @@ public class CounselorFragment extends BaseFragment implements StringRequestCall
 
 
             case R.id.btn_search:
-//                startActivity(new Intent(getActivity(), MyActivity.class));
                 startActivity(new Intent(getActivity(), CounselorSearchActivity.class));
                 break;
         }

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.message.activities.ChatActivity;
@@ -17,7 +17,7 @@ import com.urgoo.webviewmanage.BaseWebViewFragment;
 /**
  * Created by lijie on 2016/6/1.
  */
-public class PrecontractPingjia extends ActivityBase {
+public class PrecontractPingjia extends BaseActivity {
     private static final String TAG = "mtag";
     LinearLayout breaks;
     Button submit_btn, submits_btn;

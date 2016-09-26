@@ -2,7 +2,6 @@ package com.urgoo.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +15,8 @@ import com.marshalchen.ultimaterecyclerview.UltimateRecyclerviewViewHolder;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.client.R;
-import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.activities.CounselorList;
-import com.urgoo.domain.TranslateCounselorEntiy;
-import com.zw.express.tool.Util;
+import com.urgoo.collect.model.CounselorEntiy;
 
 import java.util.List;
 
@@ -28,15 +25,15 @@ import java.util.List;
  */
 public class CounselorInfoAdapter extends UltimateViewAdapter<CounselorInfoAdapter.ViewHolder> {
     private Context context;
-    private List<TranslateCounselorEntiy> tcEntiys;
+    private List<CounselorEntiy> tcEntiys;
     private OnItemClickListener onItemClickListener;
 
-    public CounselorInfoAdapter(Context context, List<TranslateCounselorEntiy> tcEntiys) {
+    public CounselorInfoAdapter(Context context, List<CounselorEntiy> tcEntiys) {
         this.context = context;
         this.tcEntiys = tcEntiys;
     }
 
-    public void addData(List<TranslateCounselorEntiy> tcEntiys) {
+    public void addData(List<CounselorEntiy> tcEntiys) {
         this.tcEntiys.addAll(tcEntiys);
         notifyDataSetChanged();
     }
@@ -46,7 +43,7 @@ public class CounselorInfoAdapter extends UltimateViewAdapter<CounselorInfoAdapt
         notifyDataSetChanged();
     }
 
-    public TranslateCounselorEntiy getItem(int position) {
+    public CounselorEntiy getItem(int position) {
         if (customHeaderView != null && position > 0) {
             position--;
         } else if (position < 0) {
@@ -88,52 +85,51 @@ public class CounselorInfoAdapter extends UltimateViewAdapter<CounselorInfoAdapt
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         if (position < getItemCount() && headerCheck(position) && !tcEntiys.isEmpty()) {
-            TranslateCounselorEntiy tcEntiy = getItem(position);
-            if (tcEntiy.getTagArray() != null && tcEntiy.getTagArray().size() > 0) {
-                int tagSize = tcEntiy.getTagArray().size();
-                tagForVis(tagSize, holder, tcEntiy);
-            } else {
-                holder.tvTag1.setVisibility(View.GONE);
-                holder.tvTag2.setVisibility(View.GONE);
-                holder.tvTag3.setVisibility(View.GONE);
-                holder.tvTag4.setVisibility(View.GONE);
-                holder.tvTag5.setVisibility(View.GONE);
-            }
-            if (tcEntiy.getServiceTypeArray() != null && tcEntiy.getServiceTypeArray().size() > 0) {
-                int serviceType = tcEntiy.getServiceTypeArray().size();
-                serviceForVis(serviceType, holder, tcEntiy);
-            } else {
-                holder.tvService1.setVisibility(View.GONE);
-                holder.tvService2.setVisibility(View.GONE);
-                holder.tvService3.setVisibility(View.GONE);
-            }
-            if (Util.isEmpty(tcEntiy.getSchool())) {
-                holder.tvSchool.setVisibility(View.GONE);
-            } else {
-                holder.tvSchool.setVisibility(View.VISIBLE);
-                holder.tvSchool.setText(tcEntiy.getSchool());
-            }
-            if (!Util.isEmpty(tcEntiy.getHabitualResidence())) {
-                holder.tvCountry.setText(tcEntiy.getHabitualResidence());
-                holder.ivLocation.setVisibility(View.VISIBLE);
-            } else {
-                holder.ivLocation.setVisibility(View.GONE);
-            }
-            if (tcEntiy.getUserIcon().contains("qingdao")) {
-                holder.sdvAvatar.setImageURI(Uri.parse(tcEntiy.getUserIcon()));
-            } else {
-                String userIcon = ZWConfig.URGOOURL_BASE3 + tcEntiy.getUserIcon();
-                holder.sdvAvatar.setImageURI(Uri.parse(userIcon));
-            }
-            Util.setImage(holder.sdvAvatar, tcEntiy.getUserIcon());
-            holder.tvName.setText(tcEntiy.getEnName());
-            holder.tvDes.setText(tcEntiy.getSlogan());
-
-            if (position == getItemCount() - 1) {
-                holder.tvAll.setVisibility(View.VISIBLE);
-            } else {
-                holder.tvAll.setVisibility(View.GONE);
-            }
+//            if (tcEntiy.getTagArray() != null && tcEntiy.getTagArray().size() > 0) {
+//                int tagSize = tcEntiy.getTagArray().size();
+//                tagForVis(tagSize, holder, tcEntiy);
+//            } else {
+//                holder.tvTag1.setVisibility(View.GONE);
+//                holder.tvTag2.setVisibility(View.GONE);
+//                holder.tvTag3.setVisibility(View.GONE);
+//                holder.tvTag4.setVisibility(View.GONE);
+//                holder.tvTag5.setVisibility(View.GONE);
+//            }
+//            if (tcEntiy.getServiceTypeArray() != null && tcEntiy.getServiceTypeArray().size() > 0) {
+//                int serviceType = tcEntiy.getServiceTypeArray().size();
+//                serviceForVis(serviceType, holder, tcEntiy);
+//            } else {
+//                holder.tvService1.setVisibility(View.GONE);
+//                holder.tvService2.setVisibility(View.GONE);
+//                holder.tvService3.setVisibility(View.GONE);
+//            }
+//            if (Util.isEmpty(tcEntiy.getSchool())) {
+//                holder.tvSchool.setVisibility(View.GONE);
+//            } else {
+//                holder.tvSchool.setVisibility(View.VISIBLE);
+//                holder.tvSchool.setText(tcEntiy.getSchool());
+//            }
+//            if (!Util.isEmpty(tcEntiy.getHabitualResidence())) {
+//                holder.tvCountry.setText(tcEntiy.getHabitualResidence());
+//                holder.ivLocation.setVisibility(View.VISIBLE);
+//            } else {
+//                holder.ivLocation.setVisibility(View.GONE);
+//            }
+//            if (tcEntiy.getUserIcon().contains("qingdao")) {
+//                holder.sdvAvatar.setImageURI(Uri.parse(tcEntiy.getUserIcon()));
+//            } else {
+//                String userIcon = ZWConfig.URGOOURL_BASE3 + tcEntiy.getUserIcon();
+//                holder.sdvAvatar.setImageURI(Uri.parse(userIcon));
+//            }
+//            Util.setImage(holder.sdvAvatar, tcEntiy.getUserIcon());
+//            holder.tvName.setText(tcEntiy.getEnName());
+//            holder.tvDes.setText(tcEntiy.getSlogan());
+//
+//            if (position == getItemCount() - 1) {
+//                holder.tvAll.setVisibility(View.VISIBLE);
+//            } else {
+//                holder.tvAll.setVisibility(View.GONE);
+//            }
         }
     }
 
@@ -144,7 +140,7 @@ public class CounselorInfoAdapter extends UltimateViewAdapter<CounselorInfoAdapt
      * @param holder
      * @param tcEntiy
      */
-    private void serviceForVis(int serviceType, ViewHolder holder, TranslateCounselorEntiy tcEntiy) {
+    private void serviceForVis(int serviceType, ViewHolder holder, CounselorEntiy tcEntiy) {
         holder.tvService1.setVisibility(View.VISIBLE);
         holder.tvService2.setVisibility(View.VISIBLE);
         holder.tvService3.setVisibility(View.VISIBLE);
@@ -170,7 +166,7 @@ public class CounselorInfoAdapter extends UltimateViewAdapter<CounselorInfoAdapt
      * @param holder
      * @param tcEntiy
      */
-    private void tagForVis(int tagSize, ViewHolder holder, TranslateCounselorEntiy tcEntiy) {
+    private void tagForVis(int tagSize, ViewHolder holder, CounselorEntiy tcEntiy) {
         holder.tvTag1.setVisibility(View.VISIBLE);
         holder.tvTag2.setVisibility(View.VISIBLE);
         holder.tvTag3.setVisibility(View.VISIBLE);

@@ -1,15 +1,11 @@
 package com.urgoo.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -17,8 +13,7 @@ import com.marshalchen.ultimaterecyclerview.UltimateRecyclerviewViewHolder;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.client.R;
-import com.urgoo.common.ZWConfig;
-import com.urgoo.domain.TranslateCounselorEntiy;
+import com.urgoo.collect.model.CounselorEntiy;
 import com.zw.express.tool.Util;
 
 import java.util.List;
@@ -28,17 +23,17 @@ import java.util.List;
  */
 public class CounselorListAdapter extends UltimateViewAdapter<CounselorListAdapter.ViewHolder> {
     private Context context;
-    private List<TranslateCounselorEntiy> tcEntiys;
+    private List<CounselorEntiy> tcEntiys;
     private OnItemClickListener onItemClickListener;
     private int displayWidth;
 
-    public CounselorListAdapter(Context context, List<TranslateCounselorEntiy> tcEntiys) {
+    public CounselorListAdapter(Context context, List<CounselorEntiy> tcEntiys) {
         this.context = context;
         this.tcEntiys = tcEntiys;
         displayWidth = Util.getDeviceWidth(context);
     }
 
-    public void addData(List<TranslateCounselorEntiy> tcEntiys) {
+    public void addData(List<CounselorEntiy> tcEntiys) {
         this.tcEntiys.addAll(tcEntiys);
         notifyDataSetChanged();
     }
@@ -48,7 +43,7 @@ public class CounselorListAdapter extends UltimateViewAdapter<CounselorListAdapt
         notifyDataSetChanged();
     }
 
-    public TranslateCounselorEntiy getItem(int position) {
+    public CounselorEntiy getItem(int position) {
         if (customHeaderView != null && position > 0) {
             position--;
         } else if (position < 0) {
@@ -90,7 +85,7 @@ public class CounselorListAdapter extends UltimateViewAdapter<CounselorListAdapt
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         if (position < getItemCount() && headerCheck(position) && !tcEntiys.isEmpty()) {
-            TranslateCounselorEntiy tcEntiy = getItem(position);
+            CounselorEntiy tcEntiy = getItem(position);
             if (tcEntiy.getTagArray() != null && tcEntiy.getTagArray().size() > 0) {
                 int tagSize = tcEntiy.getTagArray().size();
                 tagForVis(tagSize, holder, tcEntiy);
@@ -138,7 +133,7 @@ public class CounselorListAdapter extends UltimateViewAdapter<CounselorListAdapt
      * @param holder
      * @param tcEntiy
      */
-    private void serviceForVis(int serviceType, ViewHolder holder, TranslateCounselorEntiy tcEntiy) {
+    private void serviceForVis(int serviceType, ViewHolder holder, CounselorEntiy tcEntiy) {
         holder.tvService1.setVisibility(View.VISIBLE);
         holder.tvService2.setVisibility(View.VISIBLE);
         holder.tvService3.setVisibility(View.VISIBLE);
@@ -164,7 +159,7 @@ public class CounselorListAdapter extends UltimateViewAdapter<CounselorListAdapt
      * @param holder
      * @param tcEntiy
      */
-    private void tagForVis(int tagSize, ViewHolder holder, TranslateCounselorEntiy tcEntiy) {
+    private void tagForVis(int tagSize, ViewHolder holder, CounselorEntiy tcEntiy) {
         holder.tvTag1.setVisibility(View.VISIBLE);
         holder.tvTag2.setVisibility(View.VISIBLE);
         holder.tvTag3.setVisibility(View.VISIBLE);

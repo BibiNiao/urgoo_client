@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.net.EventCode;
 import com.urgoo.order.biz.ServerManager;
@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 import de.greenrobot.event.EventBus;
 
-public class LinkActivity extends ActivityBase {
+public class LinkActivity extends BaseActivity {
     private RelativeLayout rrl_subit;
     private LinearLayout ll_breakss;
     private OrderServiceEntity orderServiceEntity;

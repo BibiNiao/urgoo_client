@@ -143,9 +143,9 @@ public class ZWConfig {
     //测试环境
 //    public final static String URGOOURL_BASE = "http://www-test-urgoo.com/urgoo/";
     //生产环境
-    public final static String URGOOURL_BASE = "http://www-prd-urgoo.com/urgoo/";
+//    public final static String URGOOURL_BASE = "http://www-prd-urgoo.com/urgoo/";
 //    小孙
-//    public final static String URGOOURL_BASE = "http://10.203.203.49:8082/urgoo/";
+    public final static String URGOOURL_BASE = "http://10.203.203.49:8082/urgoo/";
 
 //    真实环境
 //    public final static String URGOOURL_BASE = "http://139.129.164.163:8082/urgoo/";
@@ -365,8 +365,6 @@ public class ZWConfig {
     //顾问作品
     public static final String URL_selectCounselorWorksList = URGOOURL_BASE + "001/001/attention/selectCounselorWorksList";
 
-    //我关注的顾问
-    public static final String URL_getSearchCounselorListByParaentId = URGOOURL_BASE + "001/001/user/getSearchCounselorListByParaentId";
     //我报名的活动
     public static final String URL_selectZoomLiveByParaentId = URGOOURL_BASE + "001/001/user/selectZoomLiveByParaentId";
     //我报名的活动-未开始
@@ -436,5 +434,11 @@ public class ZWConfig {
     public static final String URL_requestSelectInformationPerson = URGOOURL_BASE + "001/001/information/selectInformationPerson";
     // 三方协议
     public static final String URL_requestAgreement = URGOOURL_BASE + "001/001/client/xyJz";
+    // 专辑列表
+    public static final String URL_requestGetAlbumList = URGOOURL_BASE + "001/001/album/selectAlbumList";
+    // 直播列表
+    public static final String URL_requestGetLiveList = URGOOURL_BASE + "001/001/live/findZoomLiveList";
+    //我关注的顾问
+    public static final String URL_requestFollowConsultants = URGOOURL_BASE + "001/001/user/getSearchCounselorListByParaentId";
 
 }

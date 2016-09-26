@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.urgoo.account.activity.HomeActivity;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.APPManagerTool;
 import com.urgoo.common.ZWConfig;
@@ -40,7 +40,7 @@ import java.util.ArrayList;
 /**
  * 开屏页
  */
-public class SplashActivity extends ActivityBase {
+public class SplashActivity extends BaseActivity {
     private int target;
     private String pushJson;
     public static final String EXTRA_JSON = "extra_json";
@@ -132,8 +132,8 @@ public class SplashActivity extends ActivityBase {
 
     @Override
     protected void onCreate(Bundle arg0) {
-        setContentView(R.layout.em_activity_splash);
         super.onCreate(arg0);
+        setContentView(R.layout.em_activity_splash);
         rootLayout = (RelativeLayout) findViewById(R.id.splash_root);
         System.out.println("-----------------------" + getIntent().getIntExtra(EXTRA_TARGET, 0));
         target = getIntent().getIntExtra(EXTRA_TARGET, 0);
@@ -146,9 +146,9 @@ public class SplashActivity extends ActivityBase {
         animation.setDuration(1500);
         rootLayout.startAnimation(animation);
     }
-//
+
+    //显示广告页面
 //    private void showGulide() {
-//        Intent intent = new Intent(this, GulideActivity.class);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //        startActivity(intent);
 //        finish();

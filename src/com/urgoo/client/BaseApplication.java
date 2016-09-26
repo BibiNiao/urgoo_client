@@ -17,6 +17,7 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.multidex.MultiDex;
 
 
@@ -81,9 +82,40 @@ public class BaseApplication extends Application {
         return instance;
     }
 
+//    @Override
+//    protected void attachBaseContext(Context base) {
+//        super.attachBaseContext(base);
+//        MultiDex.install(this);
+//    }
+
     @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
+    public void onLowMemory() {
+        // onTrimMemory()是在api14后加入的，而onLowMemory()一直都存在
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+//			clearCache();
+            System.gc();
+        }
+
+        super.onLowMemory();
+    }
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        switch (level) {
+            case TRIM_MEMORY_COMPLETE:
+            case TRIM_MEMORY_BACKGROUND:
+            case TRIM_MEMORY_RUNNING_CRITICAL:
+            case TRIM_MEMORY_RUNNING_LOW:
+//				clearCache();
+            case TRIM_MEMORY_MODERATE:
+            case TRIM_MEMORY_UI_HIDDEN:
+            case TRIM_MEMORY_RUNNING_MODERATE:
+                System.gc();
+                break;
+
+            default:
+                break;
+        }
     }
 }

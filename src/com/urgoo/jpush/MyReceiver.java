@@ -1,7 +1,6 @@
 package com.urgoo.jpush;
 
 import android.app.ActivityManager;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -15,10 +14,7 @@ import android.util.Log;
 
 import com.urgoo.client.R;
 import com.urgoo.common.event.MessageEvent;
-import com.urgoo.message.activities.MainActivity;
 import com.urgoo.message.activities.SplashActivity;
-import com.urgoo.profile.activities.UrgooVideoActivity;
-import com.urgoo.zhibo.activities.ZhiBodDetailActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;

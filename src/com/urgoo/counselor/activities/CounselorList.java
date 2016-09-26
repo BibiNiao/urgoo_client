@@ -3,7 +3,6 @@ package com.urgoo.counselor.activities;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,12 +22,12 @@ import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.adapter.CounselorListAdapter;
 import com.urgoo.adapter.NationalityListDropDownAdapter;
 import com.urgoo.adapter.ServiceListDropDownAdapter;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.biz.CounselorManager;
 import com.urgoo.domain.CounselorFilterInfo;
-import com.urgoo.domain.TranslateCounselorEntiy;
+import com.urgoo.collect.model.CounselorEntiy;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
 import com.urgoo.view.FlowRadioGroup;
@@ -37,7 +36,6 @@ import com.zw.express.tool.Util;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,7 +44,7 @@ import java.util.List;
 /**
  * Created by bb on 2016/7/16.
  */
-public class CounselorList extends ActivityBase implements StringRequestCallBack, View.OnClickListener {
+public class CounselorList extends BaseActivity implements StringRequestCallBack, View.OnClickListener {
     private String headers[] = {"所有服务", "顾问国籍", "高级筛选"};
     private String seniors[] = {"服务类型", "指导方式", "中文水平", "顾问经验", "顾问位置", "协会认证", "顾问性别"};
     public static final String SERVICE_TYPE = "serviceType";
@@ -58,7 +56,7 @@ public class CounselorList extends ActivityBase implements StringRequestCallBack
     private UltimateRecyclerView recyclerView;
     private CounselorListAdapter counselorListAdapter;
     private CounselorFilterInfo counselorFilterInfo;
-    private ArrayList<TranslateCounselorEntiy> tcEntiys = new ArrayList<>();
+    private ArrayList<CounselorEntiy> tcEntiys = new ArrayList<>();
 
     private ListView serviceView;
     private ListView nationalityView;
@@ -412,7 +410,7 @@ public class CounselorList extends ActivityBase implements StringRequestCallBack
                 try {
                     JSONObject jsonObject = new JSONObject(result.get("body").toString());
                     Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
-                    tcEntiys = gson.fromJson(jsonObject.getJSONArray("counselorListInfoList").toString(), new TypeToken<List<TranslateCounselorEntiy>>() {
+                    tcEntiys = gson.fromJson(jsonObject.getJSONArray("counselorListInfoList").toString(), new TypeToken<List<CounselorEntiy>>() {
                     }.getType());
                     if (recyclerView.mSwipeRefreshLayout.isRefreshing() || isUpdate) {
                         if (tcEntiys.size() > 0) {
@@ -444,7 +442,7 @@ public class CounselorList extends ActivityBase implements StringRequestCallBack
                 try {
                     JSONObject jsonObject = new JSONObject(result.get("body").toString());
                     Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
-                    tcEntiys = gson.fromJson(jsonObject.getJSONArray("counselorListInfoList").toString(), new TypeToken<List<TranslateCounselorEntiy>>() {
+                    tcEntiys = gson.fromJson(jsonObject.getJSONArray("counselorListInfoList").toString(), new TypeToken<List<CounselorEntiy>>() {
                     }.getType());
                     if (recyclerView.mSwipeRefreshLayout.isRefreshing() || isUpdate) {
                         if (tcEntiys.size() > 0) {

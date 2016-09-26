@@ -440,7 +440,6 @@ public class ProfileFragment extends HomeFragment implements OnClickListener {
 //                intent.putExtra(BaseWebViewFragment.EXTRA_URL, ZWConfig.ACTION_searchConsultant);
 //                startActivity(intent);
 //                startActivity(new Intent(getActivity(), PrecontractMyOrder.class));
-                startActivity(new Intent(getActivity(), FocusOnAdvisorActivity.class));
 
                 break;
             case R.id.re_wanshan_yuyue:

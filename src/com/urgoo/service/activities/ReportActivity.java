@@ -5,10 +5,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 
-public class ReportActivity extends ActivityBase implements View.OnClickListener {
+public class ReportActivity extends BaseActivity implements View.OnClickListener {
 
     private LinearLayout ll_break_report;
 

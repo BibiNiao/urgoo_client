@@ -14,7 +14,7 @@ import com.urgoo.net.EventCode;
 import com.urgoo.net.HttpEngine;
 import com.urgoo.net.StringRequestCallBack;
 import com.urgoo.webviewmanage.BaseWebViewActivity;
-import com.urgoo.zhibo.activities.ZhiBodDetailActivity;
+import com.urgoo.live.activities.ZhiBodDetailActivity;
 import com.zw.express.tool.Util;
 
 import org.json.JSONArray;
@@ -26,7 +26,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.Call;
-import okhttp3.Request;
 
 public class BannerView extends FlashView implements StringRequestCallBack, FlashViewListener {
 

@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.domain.Reason;
@@ -39,7 +39,7 @@ import java.util.Map;
 
 import okhttp3.Call;
 
-public class CancellationActivity extends ActivityBase {
+public class CancellationActivity extends BaseActivity {
     private String advanceId;
     private static int HANDLER = 0;
     private String TAG = "duan";

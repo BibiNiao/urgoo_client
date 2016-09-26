@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg">
+
+    <LinearLayout
+        android:id="@+id/main_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_alignParentBottom="true"
+        android:background="#2E2E2E"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.urgoo.view.TabView
+            android:id="@+id/tab_counselor"
+            style="@style/MainTab"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <com.urgoo.view.TabView
+            android:id="@+id/tab_live"
+            style="@style/MainTab"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <com.urgoo.view.TabView
+            android:id="@+id/tab_my"
+            style="@style/MainTab"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <com.urgoo.view.TabView
+            android:id="@+id/tab_collect"
+            style="@style/MainTab"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <com.urgoo.view.TabView
+            android:id="@+id/tab_plan"
+            style="@style/MainTab"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/vi_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/main_bottom"
+        android:background="#dadada" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/vi_line" />
+
+</RelativeLayout>

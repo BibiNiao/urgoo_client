@@ -15,7 +15,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.net.EventCode;
 import com.urgoo.order.adapter.OrderTimeLineAdatper;
@@ -30,7 +30,7 @@ import org.json.JSONObject;
 /**
  * Created by bb on 2016/8/11.
  */
-public class OrderTimeLineActivity extends ActivityBase implements View.OnClickListener {
+public class OrderTimeLineActivity extends BaseActivity implements View.OnClickListener {
     private OrderTimeLine orderTimeLine;
     private OrderServiceEntity orderServiceEntity;
     private OrderTimeLineAdatper adatper;

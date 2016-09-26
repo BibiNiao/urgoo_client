@@ -1,7 +1,6 @@
 package com.urgoo.counselor.activities;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,7 +25,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.business.BaseService;
 import com.urgoo.client.R;
 import com.urgoo.common.ShareUtil;
@@ -52,15 +51,13 @@ import com.urgoo.message.activities.MainActivity;
 import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.order.OrderActivity;
-import com.urgoo.order.ServiceActivity;
 import com.urgoo.profile.activities.UrgooVideoActivity;
 import com.urgoo.schedule.activites.Precontract;
 import com.urgoo.schedule.activites.PrecontractMyOrderContent;
 import com.urgoo.view.CounselorBannerView;
 import com.urgoo.view.FlowRadioGroup;
 import com.urgoo.view.MyScrollView;
-import com.urgoo.zhibo.activities.ZhiBodDetailActivity;
-import com.zw.express.tool.PickUtils;
+import com.urgoo.live.activities.ZhiBodDetailActivity;
 import com.zw.express.tool.Util;
 import com.zw.express.tool.net.OkHttpClientManager;
 
@@ -75,12 +72,11 @@ import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 import okhttp3.Call;
-import okhttp3.Request;
 
 /**
  * Created by dff on 2016/7/7.
  */
-public class CounselorActivity extends ActivityBase implements View.OnClickListener,
+public class CounselorActivity extends BaseActivity implements View.OnClickListener,
         MyScrollView.OnScrollListener {
     private static final int HANDLER_SERVER = 1;
     private static final int HANDLER_BANNA = 2;
@@ -252,7 +248,8 @@ public class CounselorActivity extends ActivityBase implements View.OnClickListe
                     if (mDetailSubList.get(position).getType().equals("1")) {          //  type 为1 表示当前为视频
                         broadcastVideo(mDetailSubList.get(position).getUrl());
                     } else {
-                        Intent intent = new Intent(CounselorActivity.this, CounselorContActivity.class);
+                        Intent intent = new Intent(CounselorActivity.this,
+                                CounselorContActivity.class);
                         intent.putExtra("postion", String.valueOf(position));
                         intent.putExtra("counselorId", counselorId);
                         startActivity(intent);

@@ -22,7 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.urgoo.Interface.Constants;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.business.BaseService;
 import com.urgoo.business.imageLoadBusiness;
 import com.urgoo.client.R;
@@ -62,7 +62,7 @@ import us.zoom.sdk.ZoomSDKInitializeListener;
  * Created by duanfei on 2016/6/15.
  */
 
-public class PrecontractMyOrderContent extends ActivityBase implements View.OnClickListener, Constants, ZoomSDKInitializeListener, MeetingServiceListener {
+public class PrecontractMyOrderContent extends BaseActivity implements View.OnClickListener, Constants, ZoomSDKInitializeListener, MeetingServiceListener {
 
     public static final String TAG = "mtag";
     private Button but_order_content_cancelmake;//取消_取消

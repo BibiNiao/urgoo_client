@@ -51,7 +51,7 @@ public enum EventCode {
     /**
      * 我关注的顾问
      */
-    EventCodeCounselorListByParaentId,
+    EventCodeFollowConsultants,
     /**
      * 支付宝详情
      */
@@ -213,4 +213,12 @@ public enum EventCode {
      * 更新个人消息
      */
     EventCodeUpdateUserMessage,
+    /**
+     * 专辑列表
+     */
+    EventCodeGetAlbumList,
+    /**
+     * 直播列表
+     */
+    EventCodeGetLiveList
 }

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.urgoo.account.activity.HomeActivity;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.client.R;
 import com.urgoo.domain.InformationDetailEntity;
@@ -30,7 +30,7 @@ import okhttp3.Request;
 /**
  * Created by Administrator on 2016/5/9.
  */
-public class SystemInformationDetail extends ActivityBase {
+public class SystemInformationDetail extends BaseActivity {
 
 
     private TextView message_title;

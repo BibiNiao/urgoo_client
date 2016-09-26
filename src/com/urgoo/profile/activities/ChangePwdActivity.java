@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.PMD5Utils;
 import com.urgoo.common.ZWConfig;
@@ -32,7 +32,7 @@ import okhttp3.Request;
 /**
  * Created by lijie on 2016/3/29.
  */
-public class ChangePwdActivity extends ActivityBase implements View.OnClickListener {
+public class ChangePwdActivity extends BaseActivity implements View.OnClickListener {
 
     private EditText mCurrentPwdEt, mNewPwdEt1, mNewPwdEt2;
     private Button mCommit;

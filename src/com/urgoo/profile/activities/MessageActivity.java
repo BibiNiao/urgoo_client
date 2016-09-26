@@ -2,7 +2,6 @@ package com.urgoo.profile.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -11,29 +10,22 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.urgoo.base.ActivityBase;
+import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
-import com.urgoo.counselor.event.CounselorEvent;
-import com.urgoo.domain.TranslateCounselorEntiy;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.profile.biz.ProfileManager;
 import com.urgoo.profile.model.MessageEntity;
-import com.urgoo.schedule.activites.PrecontractMyOrder;
 import com.zw.express.tool.Util;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
-
-import de.greenrobot.event.EventBus;
-
 /**
  * Created by bb on 2016/9/7.
  */
-public class MessageActivity extends ActivityBase implements View.OnClickListener {
+public class MessageActivity extends BaseActivity implements View.OnClickListener {
     private TextView tvSys;
     private TextView tvMy;
     private MessageEntity messageEntity;
