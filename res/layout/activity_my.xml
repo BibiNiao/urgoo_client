@@ -1,45 +1,86 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffeaeaea"
     android:orientation="vertical">
 
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+        android:layout_height="match_parent"
+        android:background="#ffeaeaea"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
-    <android.support.v4.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!--主布局-->
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/rl_my"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:paddingLeft="25dp"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdv_avatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                fresco:actualImageScaleType="focusCrop"
+                fresco:placeholderImage="@drawable/default_useravatar"
+                fresco:placeholderImageScaleType="fitCenter"
+                fresco:roundAsCircle="true" />
 
             <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:text="测试下" />
+                android:id="@+id/tv_nick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sdv_avatar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:maxEms="10"
+                android:shadowColor="#30343434"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="1"
+                android:singleLine="true"
+                android:textColor="@color/tv1d1d1d"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
-        </LinearLayout>
+            <!--<TextView-->
+            <!--android:id="@+id/tv_grade"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/tv_nick"-->
+            <!--android:layout_marginLeft="16dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_toRightOf="@id/sdv_avatar" />-->
 
-        <!--第二个，不显示的抽屉布局-->
-        <android.support.design.widget.NavigationView
-            android:id="@+id/navigation_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:menu="@menu/drawer" />
+            <!--<ImageView-->
+            <!--android:id="@+id/iv_next"-->
+            <!--android:layout_width="8dp"-->
+            <!--android:layout_height="14dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:contentDescription="@string/app_name"-->
+            <!--android:src="@drawable/ic_next" />-->
+        </RelativeLayout>
 
-    </android.support.v4.widget.DrawerLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5px" />
 
-</LinearLayout>
+        <com.urgoo.view.MyListView
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:background="@color/ffffff"
+            android:footerDividersEnabled="false"
+            android:listSelector="@color/transparent" />
+    </LinearLayout>
+</ScrollView>

@@ -1,6 +1,5 @@
 package com.urgoo.order;
 
-import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
@@ -15,7 +14,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.urgoo.base.BaseActivity;
+import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
 import com.urgoo.net.EventCode;
 import com.urgoo.order.adapter.OrderTimeLineAdatper;
@@ -30,7 +29,7 @@ import org.json.JSONObject;
 /**
  * Created by bb on 2016/8/11.
  */
-public class OrderTimeLineActivity extends BaseActivity implements View.OnClickListener {
+public class OrderTimeLineActivity extends NavToolBarActivity {
     private OrderTimeLine orderTimeLine;
     private OrderServiceEntity orderServiceEntity;
     private OrderTimeLineAdatper adatper;
@@ -40,12 +39,11 @@ public class OrderTimeLineActivity extends BaseActivity implements View.OnClickL
     private View line;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_timeline);
-        orderServiceEntity = getIntent().getParcelableExtra("orderInfo");
-        initView();
-        getTimeLine();
+    protected View createContentView() {
+        View view = inflaterViewWithLayoutID(R.layout.activity_order_timeline, null);
+        setNavTitleText("优顾支付时间预览");
+        initViews(view);
+        return view;
     }
 
     private void getTimeLine() {
@@ -84,26 +82,12 @@ public class OrderTimeLineActivity extends BaseActivity implements View.OnClickL
         }
     }
 
-    public void initView() {
-//        findViewById(R.id.btn_read).setOnClickListener(this);
-        listView = (TimeLineListView) findViewById(R.id.lv_timeline);
-        line = findViewById(R.id.line2);
-        findViewById(R.id.back).setOnClickListener(this);
-        tvPrice = (TextView) findViewById(R.id.tv_price);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.back:
-                finish();
-                break;
-//            case R.id.btn_read:
-//                Bundle bundle = new Bundle();
-//                bundle.putParcelable("orderInfo", orderServiceEntity);
-//                Util.openActivityWithBundle(this, LinkActivity.class, bundle);
-//                break;
-        }
+    public void initViews(View view) {
+        listView = (TimeLineListView) view.findViewById(R.id.lv_timeline);
+        line = view.findViewById(R.id.line2);
+        tvPrice = (TextView) view.findViewById(R.id.tv_price);
+        orderServiceEntity = getIntent().getParcelableExtra("orderInfo");
+        getTimeLine();
     }
 
     //  计算list实际高度

@@ -1,13 +1,11 @@
-package com.urgoo.profile.activities;
+package com.urgoo.account.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.urgoo.base.BaseActivity;
+import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.business.imageLoadBusiness;
 import com.urgoo.client.R;
 import com.urgoo.common.ShareUtil;
@@ -18,11 +16,9 @@ import com.zw.express.tool.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class QrcodeActivity extends BaseActivity {
-
-    private LinearLayout ll_breakss;
-    private ImageView img_code;
-    private Button but_fenxiang;
+public class QrcodeActivity extends NavToolBarActivity {
+    private ImageView imgCode;
+    private Button btnShare;
     private TextView tvTitle;
     private String pic;
     private String title;
@@ -30,22 +26,19 @@ public class QrcodeActivity extends BaseActivity {
     private String desc;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qrcode);
-        img_code = (ImageView) findViewById(R.id.img_code);
-        but_fenxiang = (Button) findViewById(R.id.but_fenxiang);
-        ll_breakss = (LinearLayout) findViewById(R.id.ll_break);
-        tvTitle = (TextView) findViewById(R.id.tv_title);
-        showLoadingDialog("二维码生成中...");
-        ServerManager.getInstance(this).getQrcode(this);
-        ll_breakss.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        but_fenxiang.setOnClickListener(new View.OnClickListener() {
+    protected View createContentView() {
+        View view = inflaterViewWithLayoutID(R.layout.activity_qrcode, null);
+        initViews(view);
+        getQrcode();
+        return view;
+    }
+
+    private void initViews(View view) {
+        setNavTitleText("告诉朋友");
+        imgCode = (ImageView) view.findViewById(R.id.img_code);
+        btnShare = (Button) view.findViewById(R.id.btn_share);
+        tvTitle = (TextView) view.findViewById(R.id.tv_title);
+        btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!Util.isEmpty(title) && !Util.isEmpty(desc) && !Util.isEmpty(pic) && !Util.isEmpty(url)) {
@@ -53,6 +46,11 @@ public class QrcodeActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    private void getQrcode() {
+        showLoadingDialog("二维码生成中...");
+        ServerManager.getInstance(this).getQrcode(this);
     }
 
     @Override
@@ -76,7 +74,7 @@ public class QrcodeActivity extends BaseActivity {
                             tvTitle.setVisibility(View.VISIBLE);
                             tvTitle.setText(jsonObject.getString("resultStr"));
                         }
-                        new imageLoadBusiness().imageLoadByNewURL(qrcodeUrl, img_code);
+                        new imageLoadBusiness().imageLoadByNewURL(qrcodeUrl, imgCode);
                     }
                 } catch (JSONException mE) {
                     mE.printStackTrace();

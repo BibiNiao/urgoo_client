@@ -1,216 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/ffffff"
-              android:orientation="vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:background="#26BDAB">
-
-        <LinearLayout
-            android:id="@+id/back"
-            android:layout_width="45dip"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="11dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/urgoo_title_back"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="优顾支付时间预览"
-            android:textColor="#fff"
-            android:textSize="18sp"/>
-
-    </RelativeLayout>
-
-
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="10dp"-->
-        <!--android:layout_marginTop="20dp"-->
-        <!--android:gravity="center">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textView13"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_marginEnd="48dp"-->
-            <!--android:layout_marginRight="48dp"-->
-            <!--android:layout_toLeftOf="@+id/relativeLayout1"-->
-            <!--android:layout_toStartOf="@+id/relativeLayout1"-->
-            <!--android:text="具体服务"-->
-            <!--android:textColor="@color/tv26bdab"-->
-            <!--android:textSize="10sp"/>-->
-
-        <!--<RelativeLayout-->
-            <!--android:id="@+id/relativeLayout7"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_below="@+id/textView13"-->
-            <!--android:layout_marginBottom="5dp"-->
-            <!--android:layout_marginLeft="19dp"-->
-            <!--android:layout_marginStart="19dp">-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/im1"-->
-                <!--android:layout_width="20dp"-->
-                <!--android:layout_height="20dp"-->
-                <!--android:background="@drawable/glv"-->
-                <!--android:gravity="center"-->
-                <!--android:text="1"-->
-                <!--android:textColor="@color/white"-->
-                <!--android:textSize="10sp"-->
-                <!--/>-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="60dp"-->
-                <!--android:layout_height="2dp"-->
-                <!--android:layout_alignParentTop="true"-->
-                <!--android:layout_marginBottom="8dp"-->
-                <!--android:layout_marginTop="9dp"-->
-                <!--android:layout_toRightOf="@+id/im1"-->
-                <!--android:background="@color/tv25b7a6"-->
-                <!--android:visibility="visible"-->
-                <!--/>-->
-        <!--</RelativeLayout>-->
-
-        <!--<RelativeLayout-->
-            <!--android:id="@+id/relativeLayout1"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignTop="@+id/relativeLayout7"-->
-            <!--android:layout_toEndOf="@+id/relativeLayout7"-->
-            <!--android:layout_toRightOf="@+id/relativeLayout7">-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/im2"-->
-                <!--android:layout_width="20dp"-->
-                <!--android:layout_height="20dp"-->
-                <!--android:background="@drawable/glv"-->
-                <!--android:gravity="center"-->
-                <!--android:text="2"-->
-                <!--android:textColor="@color/white"-->
-                <!--android:textSize="10sp"-->
-                <!--/>-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="60dp"-->
-                <!--android:layout_height="2dp"-->
-                <!--android:layout_alignParentTop="true"-->
-                <!--android:layout_marginBottom="8dp"-->
-                <!--android:layout_marginTop="9dp"-->
-                <!--android:layout_toRightOf="@+id/im2"-->
-                <!--android:background="@color/linecccccc"-->
-
-                <!--/>-->
-
-        <!--</RelativeLayout>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textView"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignEnd="@+id/relativeLayout1"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_alignRight="@+id/relativeLayout1"-->
-            <!--android:layout_marginEnd="50dp"-->
-            <!--android:layout_marginRight="50dp"-->
-            <!--android:text="支付保障"-->
-            <!--android:textColor="@color/tv26bdab"-->
-            <!--android:textSize="10sp"/>-->
-
-        <!--<RelativeLayout-->
-            <!--android:id="@+id/relativeLayout8"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/textView14"-->
-            <!--android:layout_toRightOf="@+id/relativeLayout1">-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/im3"-->
-                <!--android:layout_width="20dp"-->
-                <!--android:layout_height="20dp"-->
-                <!--android:background="@drawable/ghui"-->
-                <!--android:gravity="center"-->
-                <!--android:text="3"-->
-                <!--android:textColor="#999"-->
-                <!--android:textSize="10sp"-->
-                <!--/>-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="60dp"-->
-                <!--android:layout_height="2dp"-->
-                <!--android:layout_alignParentTop="true"-->
-                <!--android:layout_marginBottom="8dp"-->
-                <!--android:layout_marginTop="9dp"-->
-                <!--android:layout_toRightOf="@+id/im3"-->
-                <!--android:background="@color/linecccccc"-->
-                <!--/>-->
-        <!--</RelativeLayout>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textView14"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_marginEnd="51dp"-->
-            <!--android:layout_marginRight="51dp"-->
-            <!--android:layout_toLeftOf="@+id/relativeLayout9"-->
-            <!--android:layout_toStartOf="@+id/relativeLayout9"-->
-            <!--android:text="三方协议"-->
-            <!--android:textColor="@color/color_text_brief"-->
-            <!--android:textSize="10sp"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textView15"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_toEndOf="@+id/relativeLayout8"-->
-            <!--android:layout_toRightOf="@+id/relativeLayout8"-->
-            <!--android:text="订单"-->
-            <!--android:textColor="@color/color_text_brief"-->
-            <!--android:textSize="10sp"/>-->
-
-        <!--<RelativeLayout-->
-            <!--android:id="@+id/relativeLayout9"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/textView15"-->
-            <!--android:layout_toRightOf="@+id/relativeLayout8">-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/im4"-->
-                <!--android:layout_width="20dp"-->
-                <!--android:layout_height="20dp"-->
-                <!--android:background="@drawable/ghui"-->
-                <!--android:gravity="center"-->
-                <!--android:text="4"-->
-                <!--android:textColor="@color/linecccccc"-->
-                <!--android:textSize="10sp"-->
-                <!--/>-->
-
-        <!--</RelativeLayout>-->
-
-    <!--</RelativeLayout>-->
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ffffff"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -242,7 +35,7 @@
                         android:layout_width="10dp"
                         android:layout_height="10dp"
                         android:layout_marginTop="3dp"
-                        android:background="@drawable/circle_green"/>
+                        android:background="@drawable/circle_green" />
 
                     <View
                         android:id="@+id/line"
@@ -250,7 +43,7 @@
                         android:layout_height="30dp"
                         android:layout_below="@id/iv"
                         android:layout_marginLeft="5dp"
-                        android:background="@color/color_light_background"/>
+                        android:background="@color/color_light_background" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -258,7 +51,7 @@
                         android:layout_marginLeft="18dp"
                         android:layout_toRightOf="@id/iv"
                         android:text="客户支付平台费用"
-                        android:textSize="14dp"/>
+                        android:textSize="14dp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -273,7 +66,7 @@
                         android:layout_width="10dp"
                         android:layout_height="10dp"
                         android:layout_marginTop="3dp"
-                        android:background="@drawable/circle_green"/>
+                        android:background="@drawable/circle_green" />
 
                     <View
                         android:id="@+id/line1"
@@ -281,7 +74,7 @@
                         android:layout_height="30dp"
                         android:layout_below="@id/iv1"
                         android:layout_marginLeft="5dp"
-                        android:background="@color/color_light_background"/>
+                        android:background="@color/color_light_background" />
 
                     <TextView
                         android:id="@+id/tv_price"
@@ -290,7 +83,7 @@
                         android:layout_marginLeft="18dp"
                         android:layout_toRightOf="@id/iv1"
                         android:text="后，顾问收到总款的"
-                        android:textSize="14dp"/>
+                        android:textSize="14dp" />
                 </RelativeLayout>
 
                 <com.urgoo.view.TimeLineListView
@@ -300,7 +93,7 @@
                     android:layout_below="@id/linearLayout2"
                     android:layout_marginLeft="0.5dp"
                     android:divider="@null"
-                    android:listSelector="@android:color/transparent"/>
+                    android:listSelector="@android:color/transparent" />
 
                 <View
                     android:id="@+id/line2"
@@ -308,7 +101,7 @@
                     android:layout_height="30dp"
                     android:layout_below="@id/lv_timeline"
                     android:layout_marginLeft="5dp"
-                    android:background="@color/color_light_background"/>
+                    android:background="@color/color_light_background" />
 
                 <LinearLayout
                     android:id="@+id/ll"
@@ -322,7 +115,7 @@
                         android:layout_width="10dp"
                         android:layout_height="10dp"
                         android:layout_marginTop="3dp"
-                        android:background="@drawable/circle_green"/>
+                        android:background="@drawable/circle_green" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -330,95 +123,9 @@
                         android:layout_marginLeft="18dp"
                         android:layout_toRightOf="@id/iv2"
                         android:text="客户确认合同内服务完成，顾问收取剩余费用"
-                        android:textSize="14dp"/>
+                        android:textSize="14dp" />
                 </LinearLayout>
-
             </RelativeLayout>
-
-            <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_below="@id/rl_timeline"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_marginLeft="36dp"-->
-                <!--android:layout_marginRight="36dp"-->
-                <!--android:layout_marginTop="30dp"-->
-                <!--android:gravity="center">-->
-
-                <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:src="@drawable/mark"-->
-                    <!--/>-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/tv_tip"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="5dp"-->
-                    <!--android:text="提示"-->
-                    <!--android:textColor="@color/tv4a4a4a"-->
-                    <!--android:textSize="13dp"/>-->
-            <!--</LinearLayout>-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/tv_tip_detail"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_below="@id/tv_tip"-->
-                <!--android:layout_centerHorizontal="true"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_marginLeft="36dp"-->
-                <!--android:layout_marginRight="36dp"-->
-                <!--android:layout_marginTop="18dp"-->
-                <!--android:text="客户与顾问签订协议后，费用支付至优顾平台，优顾将会在第一时间把第一笔比列款项支付给顾问。-->
-<!--您可以在平台余额中查看到平台还未支付给顾问的费用。如果您还有任何与费用相关的疑问，请与我们联系。"-->
-                <!--android:textColor="@color/color_text_brief"-->
-                <!--android:textSize="12dp"/>-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/tv_phone"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_below="@id/tv_tip_detail"-->
-                <!--android:layout_centerHorizontal="true"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_marginLeft="36dp"-->
-                <!--android:layout_marginRight="36dp"-->
-                <!--android:layout_marginTop="40dp"-->
-                <!--android:text="客服电话：400-061-2819"-->
-                <!--android:textColor="@color/color_text_brief"-->
-                <!--android:textSize="12dp"/>-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/tv_time"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_below="@id/tv_phone"-->
-                <!--android:layout_centerHorizontal="true"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_marginBottom="20dp"-->
-                <!--android:layout_marginLeft="36dp"-->
-                <!--android:layout_marginRight="36dp"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:text="工作日：9:00 － 18:00"-->
-                <!--android:textColor="@color/color_text_brief"-->
-                <!--android:textSize="12dp"/>-->
-
-
         </LinearLayout>
-
     </ScrollView>
-
-    <!--<Button-->
-        <!--android:id="@+id/btn_read"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="49dp"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:background="@color/common_botton_bar_blue"-->
-        <!--android:paddingBottom="3dp"-->
-        <!--android:paddingTop="4dp"-->
-        <!--android:text="阅读三方协议"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:textSize="14sp"/>-->
 </LinearLayout>

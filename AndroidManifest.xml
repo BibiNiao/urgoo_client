@@ -65,8 +65,8 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:largeHeap="true">
+        android:largeHeap="true"
+        android:theme="@style/AppTheme">
         <activity
             android:name="com.urgoo.message.activities.MainActivity"
             android:screenOrientation="portrait"
@@ -77,11 +77,11 @@
         <activity
             android:name="com.urgoo.profile.activities.MyContractActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"/>
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name="com.urgoo.profile.activities.ServiceArgeementActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"/>
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name="com.urgoo.main.activities.AboutUrgoo"
             android:screenOrientation="portrait" />
@@ -116,7 +116,7 @@
         <activity
             android:name="com.urgoo.schedule.activites.Precontract"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"/>
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name="com.urgoo.profile.activities.UrgooVideoActivity"
             android:screenOrientation="portrait"
@@ -139,6 +139,7 @@
             <intent-filter>
                 <data android:scheme="growing.7c5e86390298801a" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
@@ -238,7 +239,7 @@
             android:name="com.urgoo.service.activities.TaskContentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <!-- 杨德成 20160722 微信分享 -->
         <activity
@@ -404,7 +405,7 @@
             android:theme="@style/AppTheme.Base"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.urgoo.profile.activities.ActivitiesActivity"
+            android:name="com.urgoo.account.activity.ActivitiesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -425,55 +426,55 @@
             android:name="com.urgoo.order.ServiceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <!-- 确认订单 -->
         <activity
             android:name="com.urgoo.order.OrderActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <!-- 三方协议 -->
         <activity
             android:name="com.urgoo.order.LinkActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <!-- 时间预览 -->
         <activity
             android:name="com.urgoo.order.OrderTimeLineActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <!-- 二维码 -->
         <activity
-            android:name="com.urgoo.profile.activities.QrcodeActivity"
+            android:name="com.urgoo.account.activity.QrcodeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <!-- 分类详情 -->
         <activity
             android:name="com.urgoo.service.activities.PlanContentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <!-- 顾问报告 -->
         <activity
             android:name="com.urgoo.service.activities.ReportActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <!-- 我的消息 -->
         <activity
             android:name="com.urgoo.profile.activities.MessageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <!-- 消息列表 -->
         <activity
             android:name="com.urgoo.profile.activities.MessageListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
             android:name="com.shrb.hrsdk.activity.PayActivity"
@@ -485,11 +486,18 @@
         <activity
             android:name="com.shrb.hrsdk.activity.BindCardActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
+        <!-- 修改页面 -->
+        <activity
+            android:name="com.urgoo.account.activity.EditUserProfileActivity"
+            android:screenOrientation="portrait" />
         <!-- 顾问详情 -->
         <activity
             android:name="com.urgoo.counselor.activities.CounselorDetailActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <!-- 设置 -->
+        <activity
+            android:name="com.urgoo.account.activity.SettingActivity"
+            android:screenOrientation="portrait" />
 
         <!-- 设置环信应用的AppKey -->
         <meta-data

@@ -19,6 +19,7 @@ import com.urgoo.collect.adapter.FollowConsultantAdapter;
 import com.urgoo.collect.biz.CollectManager;
 import com.urgoo.collect.model.CounselorEntiy;
 import com.urgoo.counselor.activities.CounselorDetailActivity;
+import com.urgoo.counselor.event.FocusEvent;
 import com.urgoo.counselor.model.CounselorDetail;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
@@ -28,6 +29,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by bb on 2016/9/23.
@@ -43,12 +46,17 @@ public class FollowCounselorFragment extends BaseFragment implements StringReque
                              Bundle savedInstanceState) {
         viewContent = inflater.inflate(R.layout.activity_follow_consultant_list, container, false);
         initViews();
+        EventBus.getDefault().register(this);
         getCounselorList();
         return viewContent;
     }
 
     private void getCounselorList() {
         CollectManager.getInstance(getActivity()).followConsultants(this, currentPage);
+    }
+
+    public void onEventMainThread(FocusEvent event) {
+        getCounselorList();
     }
 
     private void initViews() {

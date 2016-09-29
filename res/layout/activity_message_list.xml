@@ -4,42 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:background="#26BDAB">
-
-        <LinearLayout
-            android:id="@+id/back"
-            android:layout_width="45dip"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/urgoo_title_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="11dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/urgoo_title_back" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="消息"
-            android:textColor="#fff"
-            android:textSize="18sp" />
-    </RelativeLayout>
-
     <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
         android:id="@+id/recycler_view"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp" />
 </LinearLayout>

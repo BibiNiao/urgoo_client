@@ -2,6 +2,8 @@ package com.urgoo.service.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,10 +73,12 @@ public class PlanFragment extends HomeFragment implements View.OnClickListener {
     private ArrayList<PlanEntity> mEntities = new ArrayList<>();
     private ArrayList<PlanTypeEntity> listType = new ArrayList<>();
 
+    protected Toolbar mToolbar;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.plan_layout, null);
-
         ServerManager.getInstance(getActivity()).getPlan(this);
         initView();
         initLiener();
@@ -139,6 +143,10 @@ public class PlanFragment extends HomeFragment implements View.OnClickListener {
         tv_bythe_red = (TextView) view.findViewById(R.id.tv_bythe_red);
         tv_plan_remain_red = (TextView) view.findViewById(R.id.tv_plan_remain_red);
 
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        activity.setSupportActionBar(mToolbar);
+        mToolbar.setTitle("规划模板");
     }
 
     @Override

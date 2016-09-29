@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f7f7f7"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:background="#26BDAB">
+        android:layout_height="wrap_content"
+        android:background="@color/ffffff"
+        android:minHeight="?attr/actionBarSize"
+        android:elevation="2dp"
+        app:titleTextAppearance="@style/ToolbarTitle" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="规划模板"
-            android:textColor="#fff"
-            android:textSize="16sp"/>
-
-    </RelativeLayout>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/toolbar"
+        android:background="#ffdddddd" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,8 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingBottom="50dp"
-            >
+            android:paddingBottom="50dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,8 +74,7 @@
                                 android:paddingTop="8dp"
                                 android:text="语言能力"
                                 android:textColor="#26bdab"
-                                android:textSize="14sp"
-                                />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/tv_yuyan"
@@ -88,8 +85,7 @@
                                 android:paddingBottom="8dp"
                                 android:text="已完成3项"
                                 android:textColor="#26bdab"
-                                android:textSize="11sp"
-                                />
+                                android:textSize="11sp" />
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
 
@@ -119,8 +115,7 @@
                                 android:paddingTop="8dp"
                                 android:text="学术能力"
                                 android:textColor="#43a5ed"
-                                android:textSize="14sp"
-                                />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/tv_xueshu"
@@ -131,8 +126,7 @@
                                 android:paddingBottom="8dp"
                                 android:text="已完成3项"
                                 android:textColor="#43a5ed"
-                                android:textSize="11sp"
-                                />
+                                android:textSize="11sp" />
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
 
@@ -162,8 +156,7 @@
                                 android:paddingTop="8dp"
                                 android:text="批判思维"
                                 android:textColor="#b578ff"
-                                android:textSize="14sp"
-                                />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/tv_bipan"
@@ -174,8 +167,7 @@
                                 android:paddingBottom="8dp"
                                 android:text="已完成3项"
                                 android:textColor="#b578ff"
-                                android:textSize="11sp"
-                                />
+                                android:textSize="11sp" />
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
 
@@ -212,8 +204,7 @@
                                 android:paddingTop="8dp"
                                 android:text="领导力"
                                 android:textColor="#ffbb40"
-                                android:textSize="14sp"
-                                />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/tv_lingdao"
@@ -224,8 +215,7 @@
                                 android:paddingBottom="8dp"
                                 android:text="已完成3项"
                                 android:textColor="#ffbb40"
-                                android:textSize="11sp"
-                                />
+                                android:textSize="11sp" />
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
 
@@ -255,8 +245,7 @@
                                 android:paddingTop="8dp"
                                 android:text="自我认知"
                                 android:textColor="#fa86ff"
-                                android:textSize="14sp"
-                                />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/tv_ziwo"
@@ -267,8 +256,7 @@
                                 android:paddingBottom="8dp"
                                 android:text="已完成3项"
                                 android:textColor="#fa86ff"
-                                android:textSize="11sp"
-                                />
+                                android:textSize="11sp" />
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
 
@@ -298,8 +286,7 @@
                                 android:paddingTop="8dp"
                                 android:text="创造力"
                                 android:textColor="#ff7878"
-                                android:textSize="14sp"
-                                />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/tv_chuangzhao"
@@ -310,8 +297,7 @@
                                 android:paddingBottom="8dp"
                                 android:text="已完成3项"
                                 android:textColor="#ff7878"
-                                android:textSize="11sp"
-                                />
+                                android:textSize="11sp" />
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
 
@@ -334,19 +320,18 @@
                     android:layout_centerVertical="true"
                     android:text="距离下一次的视频见面还有8天"
                     android:textColor="#434343"
-                    android:textSize="12sp"
-                    />
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/imageView18"
                     android:layout_width="10dp"
-                    android:layout_marginRight="5dp"
                     android:layout_height="12dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
                     android:layout_toLeftOf="@+id/tv_report"
                     android:layout_toStartOf="@+id/tv_report"
-                    android:src="@drawable/fill"/>
+                    android:src="@drawable/fill" />
 
                 <TextView
                     android:id="@+id/tv_report"
@@ -358,7 +343,7 @@
                     android:layout_centerVertical="true"
                     android:text="顾问的报告"
                     android:textColor="#434343"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <LinearLayout
@@ -374,8 +359,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
-                    android:src="@drawable/xian"
-                    />
+                    android:src="@drawable/xian" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -386,7 +370,7 @@
                     <View
                         android:layout_width="4dp"
                         android:layout_height="match_parent"
-                        android:background="#26bdab"/>
+                        android:background="#26bdab" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -405,15 +389,13 @@
                                 android:layout_height="wrap_content"
                                 android:text="下一个任务："
                                 android:textColor="#434343"
-                                android:textSize="12sp"
-                                />
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="9dp"
                                 android:layout_height="16dp"
                                 android:layout_alignParentRight="true"
-                                android:background="@drawable/jian_lv"
-                                />
+                                android:background="@drawable/jian_lv" />
 
                         </RelativeLayout>
 
@@ -425,7 +407,7 @@
                             android:gravity="center_vertical"
                             android:text="        "
                             android:textColor="#434343"
-                            android:textSize="15sp"/>
+                            android:textSize="15sp" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -437,7 +419,7 @@
                                 android:layout_width="14dp"
                                 android:layout_height="15dp"
                                 android:layout_centerVertical="true"
-                                android:src="@drawable/time_lv"/>
+                                android:src="@drawable/time_lv" />
 
                             <TextView
                                 android:id="@+id/tv_bythe_lv"
@@ -450,7 +432,7 @@
                                 android:layout_toRightOf="@+id/imageView17"
                                 android:text="        "
                                 android:textColor="#a5a5a5"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/tv_plan_remain_lv"
@@ -461,7 +443,7 @@
                                 android:layout_marginLeft="6dp"
                                 android:text="        "
                                 android:textColor="#a5a5a5"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="18dp"
@@ -469,7 +451,7 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_toLeftOf="@+id/tv_plan_remain_lv"
                                 android:layout_toStartOf="@+id/tv_plan_remain_lv"
-                                android:src="@drawable/tan_lv"/>
+                                android:src="@drawable/tan_lv" />
                         </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -488,8 +470,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
-                    android:src="@drawable/xian"
-                    />
+                    android:src="@drawable/xian" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -500,7 +481,7 @@
                     <View
                         android:layout_width="4dp"
                         android:layout_height="match_parent"
-                        android:background="#4aa1fe"/>
+                        android:background="#4aa1fe" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -519,15 +500,13 @@
                                 android:layout_height="wrap_content"
                                 android:text="下一个任务："
                                 android:textColor="#434343"
-                                android:textSize="12sp"
-                                />
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="9dp"
                                 android:layout_height="16dp"
                                 android:layout_alignParentRight="true"
-                                android:background="@drawable/jian_lan"
-                                />
+                                android:background="@drawable/jian_lan" />
 
                         </RelativeLayout>
 
@@ -539,7 +518,7 @@
                             android:gravity="center_vertical"
                             android:text="        "
                             android:textColor="#434343"
-                            android:textSize="15sp"/>
+                            android:textSize="15sp" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -550,7 +529,7 @@
                                 android:layout_width="14dp"
                                 android:layout_height="15dp"
                                 android:layout_centerVertical="true"
-                                android:src="@drawable/time_lan"/>
+                                android:src="@drawable/time_lan" />
 
                             <TextView
                                 android:id="@+id/tv_bythe_lan"
@@ -563,7 +542,7 @@
                                 android:layout_toRightOf="@+id/image"
                                 android:text="        "
                                 android:textColor="#a5a5a5"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/tv_plan_remain_lan"
@@ -574,7 +553,7 @@
                                 android:layout_marginLeft="6dp"
                                 android:text="        "
                                 android:textColor="#a5a5a5"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="18dp"
@@ -583,7 +562,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_toLeftOf="@+id/tv_plan_remain_lan"
                                 android:layout_toStartOf="@+id/tv_plan_remain_lan"
-                                android:src="@drawable/tan_lan"/>
+                                android:src="@drawable/tan_lan" />
                         </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -602,8 +581,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
-                    android:src="@drawable/xian"
-                    />
+                    android:src="@drawable/xian" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -614,7 +592,7 @@
                     <View
                         android:layout_width="4dp"
                         android:layout_height="match_parent"
-                        android:background="#9d78f9"/>
+                        android:background="#9d78f9" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -633,15 +611,13 @@
                                 android:layout_height="wrap_content"
                                 android:text="下一个任务："
                                 android:textColor="#434343"
-                                android:textSize="12sp"
-                                />
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="9dp"
                                 android:layout_height="16dp"
                                 android:layout_alignParentRight="true"
-                                android:background="@drawable/jian_zi"
-                                />
+                                android:background="@drawable/jian_zi" />
 
                         </RelativeLayout>
 
@@ -653,7 +629,7 @@
                             android:gravity="center_vertical"
                             android:text="        "
                             android:textColor="#434343"
-                            android:textSize="15sp"/>
+                            android:textSize="15sp" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -664,7 +640,7 @@
                                 android:layout_width="14dp"
                                 android:layout_height="15dp"
                                 android:layout_centerVertical="true"
-                                android:src="@drawable/time_zi"/>
+                                android:src="@drawable/time_zi" />
 
                             <TextView
                                 android:id="@+id/tv_bythe_zi"
@@ -677,7 +653,7 @@
                                 android:layout_toRightOf="@+id/imagezi"
                                 android:text="        "
                                 android:textColor="#a5a5a5"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/tv_plan_remain_zi"
@@ -688,7 +664,7 @@
                                 android:layout_marginLeft="6dp"
                                 android:text="        "
                                 android:textColor="#a5a5a5"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="18dp"
@@ -696,7 +672,7 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_toLeftOf="@+id/tv_plan_remain_zi"
                                 android:layout_toStartOf="@+id/tv_plan_remain_zi"
-                                android:src="@drawable/tan_zi"/>
+                                android:src="@drawable/tan_zi" />
                         </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -715,8 +691,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
-                    android:src="@drawable/xian"
-                    />
+                    android:src="@drawable/xian" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -727,7 +702,7 @@
                     <View
                         android:layout_width="4dp"
                         android:layout_height="match_parent"
-                        android:background="#ffc654"/>
+                        android:background="#ffc654" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -746,15 +721,13 @@
                                 android:layout_height="wrap_content"
                                 android:text="下一个任务："
                                 android:textColor="#434343"
-                                android:textSize="12sp"
-                                />
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="9dp"
                                 android:layout_height="16dp"
                                 android:layout_alignParentRight="true"
-                                android:background="@drawable/jian_yellow"
-                                />
+                                android:background="@drawable/jian_yellow" />
 
                         </RelativeLayout>
 
@@ -766,7 +739,7 @@
                             android:gravity="center_vertical"
                             android:text="        "
                             android:textColor="#434343"
-                            android:textSize="15sp"/>
+                            android:textSize="15sp" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -777,7 +750,7 @@
                                 android:layout_width="14dp"
                                 android:layout_height="15dp"
                                 android:layout_centerVertical="true"
-                                android:src="@drawable/time_yellow"/>
+                                android:src="@drawable/time_yellow" />
 
                             <TextView
                                 android:id="@+id/tv_bythe_yellow"
@@ -790,7 +763,7 @@
                                 android:layout_toRightOf="@+id/imageyellow"
                                 android:text="        "
                                 android:textColor="#a5a5a5"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/tv_plan_remain_yellow"
@@ -801,7 +774,7 @@
                                 android:layout_marginLeft="6dp"
                                 android:text="        "
                                 android:textColor="#a5a5a5"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="18dp"
@@ -809,7 +782,7 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_toLeftOf="@+id/tv_plan_remain_yellow"
                                 android:layout_toStartOf="@+id/tv_plan_remain_yellow"
-                                android:src="@drawable/tan_yellow"/>
+                                android:src="@drawable/tan_yellow" />
                         </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -828,8 +801,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
-                    android:src="@drawable/xian"
-                    />
+                    android:src="@drawable/xian" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -840,7 +812,7 @@
                     <View
                         android:layout_width="4dp"
                         android:layout_height="match_parent"
-                        android:background="#fb9dff"/>
+                        android:background="#fb9dff" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -859,15 +831,13 @@
                                 android:layout_height="wrap_content"
                                 android:text="下一个任务："
                                 android:textColor="#434343"
-                                android:textSize="12sp"
-                                />
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="9dp"
                                 android:layout_height="16dp"
                                 android:layout_alignParentRight="true"
-                                android:background="@drawable/jian_fen"
-                                />
+                                android:background="@drawable/jian_fen" />
 
                         </RelativeLayout>
 
@@ -879,7 +849,7 @@
                             android:gravity="center_vertical"
                             android:text="        "
                             android:textColor="#434343"
-                            android:textSize="15sp"/>
+                            android:textSize="15sp" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -890,7 +860,7 @@
                                 android:layout_width="14dp"
                                 android:layout_height="15dp"
                                 android:layout_centerVertical="true"
-                                android:src="@drawable/time_fen"/>
+                                android:src="@drawable/time_fen" />
 
                             <TextView
                                 android:id="@+id/tv_bythe_fen"
@@ -903,7 +873,7 @@
                                 android:layout_toRightOf="@+id/imagefen"
                                 android:text="        "
                                 android:textColor="#a5a5a5"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/tv_plan_remain_fen"
@@ -914,7 +884,7 @@
                                 android:layout_marginLeft="6dp"
                                 android:text="        "
                                 android:textColor="#a5a5a5"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="18dp"
@@ -922,7 +892,7 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_toLeftOf="@+id/tv_plan_remain_fen"
                                 android:layout_toStartOf="@+id/tv_plan_remain_fen"
-                                android:src="@drawable/tan_fen"/>
+                                android:src="@drawable/tan_fen" />
                         </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -941,8 +911,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
-                    android:src="@drawable/xian"
-                    />
+                    android:src="@drawable/xian" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -953,7 +922,7 @@
                     <View
                         android:layout_width="4dp"
                         android:layout_height="match_parent"
-                        android:background="#ff3f57"/>
+                        android:background="#ff3f57" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -972,15 +941,13 @@
                                 android:layout_height="wrap_content"
                                 android:text="下一个任务："
                                 android:textColor="#434343"
-                                android:textSize="12sp"
-                                />
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="9dp"
                                 android:layout_height="16dp"
                                 android:layout_alignParentRight="true"
-                                android:background="@drawable/jian_red"
-                                />
+                                android:background="@drawable/jian_red" />
 
                         </RelativeLayout>
 
@@ -992,7 +959,7 @@
                             android:gravity="center_vertical"
                             android:text="        "
                             android:textColor="#434343"
-                            android:textSize="15sp"/>
+                            android:textSize="15sp" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -1003,7 +970,7 @@
                                 android:layout_width="14dp"
                                 android:layout_height="15dp"
                                 android:layout_centerVertical="true"
-                                android:src="@drawable/time_red"/>
+                                android:src="@drawable/time_red" />
 
                             <TextView
                                 android:id="@+id/tv_bythe_red"
@@ -1016,7 +983,7 @@
                                 android:layout_toRightOf="@+id/imagered"
                                 android:text="        "
                                 android:textColor="#a5a5a5"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/tv_plan_remain_red"
@@ -1027,7 +994,7 @@
                                 android:layout_marginLeft="6dp"
                                 android:text="        "
                                 android:textColor="#a5a5a5"
-                                android:textSize="12sp"/>
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="18dp"
@@ -1035,7 +1002,7 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_toLeftOf="@+id/tv_plan_remain_red"
                                 android:layout_toStartOf="@+id/tv_plan_remain_red"
-                                android:src="@drawable/tan_red"/>
+                                android:src="@drawable/tan_red" />
                         </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>

@@ -1,56 +1,51 @@
 package com.urgoo.order;
 
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.urgoo.base.BaseActivity;
+import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
 import com.urgoo.counselor.biz.CounselorData;
 import com.urgoo.counselor.model.ServiceLongList;
-import com.urgoo.order.event.OrderEvent;
-import com.urgoo.order.model.OrderServiceEntity;
 import com.zw.express.tool.Util;
 
 import java.util.ArrayList;
 
-public class ServiceActivity extends BaseActivity implements View.OnClickListener {
+public class ServiceActivity extends NavToolBarActivity {
 
-    private LinearLayout ll_breakss;
     private ListView serverList;
-    private String servicePrice;
     private TextView tv_beizhu;
     private String extraService;
-    private String serviceId;
-    private String counselorId;
     private TextView tv_note;
-    private ArrayList<ServiceLongList> mServiceLongList;
-    private OrderServiceEntity orderServiceEntity;
+    private ArrayList<ServiceLongList> mServiceLongList = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service);
+    protected View createContentView() {
+        View view = inflaterViewWithLayoutID(R.layout.activity_service, null);
+        setNavTitleText("具体服务");
+        initViews(view);
+        return view;
+    }
+
+    private void initViews(View view) {
+        tv_note = (TextView) view.findViewById(R.id.tv_note);
+        tv_beizhu = (TextView) view.findViewById(R.id.tv_beizhu);
+        serverList = (ListView) view.findViewById(R.id.serverList);
+
         extraService = getIntent().getStringExtra("extraService");
-        mServiceLongList = new ArrayList<>();
         mServiceLongList.clear();
         mServiceLongList.addAll(CounselorData.getArray());
 
-        initview();
         if (!Util.isEmpty(extraService)) {
             for (int i = 1; i < 30; i++) {
                 extraService = extraService.replace(i + ".", "");
             }
         }
-
-        Log.d(" 服务方式 ", "" + mServiceLongList);
 
         //同理，有备注，显示
         if (!Util.isEmpty(extraService)) {
@@ -61,14 +56,6 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
         tv_note.setText(extraService);
         serverList.setAdapter(new ServiceLongListAdapter());
         getListHeight(serverList);
-    }
-
-    private void initview() {
-        tv_note = (TextView) findViewById(R.id.tv_note);
-        tv_beizhu = (TextView) findViewById(R.id.tv_beizhu);
-        ll_breakss = (LinearLayout) findViewById(R.id.ll_breakss);
-        serverList = (ListView) findViewById(R.id.serverList);
-        ll_breakss.setOnClickListener(this);
     }
 
     private void getListHeight(ListView mlistview) {
@@ -84,43 +71,6 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
                 + (mlistview.getDividerHeight() * (listAdapter.getCount() - 1));
         mlistview.setLayoutParams(params);
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ll_breakss:
-                finish();
-                break;
-//            case R.id.tv_order:
-//                if (orderServiceEntity != null) {
-//                    showLoadingDialog();
-//                    orderServiceEntity.setServiceId(serviceId);
-//                    orderServiceEntity.setCounselorId(counselorId);
-//                    orderServiceEntity.setServicePrice(servicePrice);
-//                    ServerManager.getInstance(this).getPayTimeDetail(this, orderServiceEntity.getType(), orderServiceEntity.getGrade());
-//                }
-//                break;
-        }
-    }
-//
-//    @Override
-//    protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
-//        super.onResponseSuccess(eventCode, result);
-//        dismissLoadingDialog();
-//        switch (eventCode) {
-//            case EventCodeGetPayTimeDetail:
-//                try {
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("orderTimeLine", result.get("body").toString());
-//                    bundle.putParcelable("orderInfo", orderServiceEntity);
-//                    Util.openActivityWithBundle(this, OrderTimeLineActivity.class, bundle);
-//                } catch (JSONException mE) {
-//                    mE.printStackTrace();
-//                }
-//                break;
-//
-//        }
-//    }
 
     //  服务内容 adapter
     private class ServiceLongListAdapter extends BaseAdapter {
@@ -159,9 +109,4 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
             private TextView tv_content_serverName;
         }
     }
-
-    public void onEvent(OrderEvent event) {
-        finish();
-    }
-
 }

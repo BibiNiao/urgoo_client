@@ -38,7 +38,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/btn_normal_bg"
             android:text="新用户"
-            android:textColor="@color/tv26bcaa"
+            android:textColor="@color/tab_color"
             android:textSize="16dp" />
 
     </LinearLayout>

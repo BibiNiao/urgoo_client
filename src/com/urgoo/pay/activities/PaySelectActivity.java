@@ -7,6 +7,7 @@ import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -26,13 +27,12 @@ import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.urgoo.adapter.PaySelectAdapter;
-import com.urgoo.base.BaseActivity;
+import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
 import com.urgoo.client.wxapi.Constants;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.domain.Order;
 import com.urgoo.domain.WxEntity;
-import com.urgoo.message.activities.MainActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.pay.alipay.AliConstants;
 import com.urgoo.pay.alipay.PayResult;
@@ -51,7 +51,7 @@ import java.util.Map;
 /**
  * Created by bb on 2016/6/28.
  */
-public class PaySelectActivity extends BaseActivity implements View.OnClickListener {
+public class PaySelectActivity extends NavToolBarActivity implements View.OnClickListener {
     public static final String ORDERID = "Orderid";
     private TextView tv_price;
     private String orderId;
@@ -77,22 +77,47 @@ public class PaySelectActivity extends BaseActivity implements View.OnClickListe
     String personUnionID;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_pay);
-        initView();
+    protected View createContentView() {
+        View view = inflaterViewWithLayoutID(R.layout.activity_select_pay, null);
+        setNavTitleText("优顾收银台");
+        initViews(view);
         getOrder(orderId);
+        return view;
     }
 
-    public void initView() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setSwipeBackEnable(false);
+    }
+
+    @Override
+    protected void onNavLeftClick(View v) {
+        if (statu != null) {
+            startActivity(new Intent(PaySelectActivity.this, BaseWebViewActivity.class).putExtra(BaseWebViewFragment.EXTRA_URL, ZWConfig.ACTION_parentOrder));
+            finish();
+        } else {
+            finish();
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            onNavLeftClick(null);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void initViews(View view) {
         mOrder = new Order();
         orderId = getIntent().getExtras().getString(ORDERID);
         statu = getIntent().getExtras().getString("statu");
         order = "-" + orderId;
-        lv = (ListView) findViewById(R.id.lv_pay);
-        findViewById(R.id.submit_btn).setOnClickListener(this);
-        tv_price = (TextView) findViewById(R.id.tv_price);
-        et_price = (EditText) findViewById(R.id.et_price);
+        lv = (ListView) view.findViewById(R.id.lv_pay);
+        view.findViewById(R.id.submit_btn).setOnClickListener(this);
+        tv_price = (TextView) view.findViewById(R.id.tv_price);
+        et_price = (EditText) view.findViewById(R.id.et_price);
         et_price.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -111,9 +136,9 @@ public class PaySelectActivity extends BaseActivity implements View.OnClickListe
             }
         });
 
-        tv_Paid = (TextView) findViewById(R.id.tv_Paid);
-        tobe_Paid = (TextView) findViewById(R.id.tobe_Paid);
-        back = (LinearLayout) findViewById(R.id.back);
+        tv_Paid = (TextView) view.findViewById(R.id.tv_Paid);
+        tobe_Paid = (TextView) view.findViewById(R.id.tobe_Paid);
+        back = (LinearLayout) view.findViewById(R.id.back);
         back.setOnClickListener(this);
         adapter = new PaySelectAdapter(this);
         lv.setAdapter(adapter);
@@ -161,14 +186,6 @@ public class PaySelectActivity extends BaseActivity implements View.OnClickListe
                 }
                 break;
             default:
-                break;
-            case R.id.back:
-                if (statu != null) {
-                    startActivity(new Intent(PaySelectActivity.this, BaseWebViewActivity.class).putExtra(BaseWebViewFragment.EXTRA_URL, ZWConfig.ACTION_parentOrder));
-                    finish();
-                } else {
-                    finish();
-                }
                 break;
         }
     }

@@ -7,11 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.base.BaseFragment;
 import com.urgoo.client.R;
 import com.urgoo.collect.adapter.FollowVideoAdapter;
+import com.urgoo.collect.biz.CollectManager;
+import com.urgoo.collect.model.CounselorEntiy;
 import com.urgoo.collect.model.Video;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
@@ -35,7 +41,12 @@ public class FollowVideoFragment extends BaseFragment implements StringRequestCa
                              Bundle savedInstanceState) {
         viewContent = inflater.inflate(R.layout.activity_follow_video_list, container, false);
         initViews();
+        getVideoList();
         return viewContent;
+    }
+
+    private void getVideoList() {
+        CollectManager.getInstance(getActivity()).followVideos(this, currentPage);
     }
 
     private void initViews() {
@@ -56,7 +67,7 @@ public class FollowVideoFragment extends BaseFragment implements StringRequestCa
             @Override
             public void onRefresh() {
                 currentPage = 0;
-//                getLiveList();
+                getVideoList();
             }
         });
 
@@ -64,7 +75,7 @@ public class FollowVideoFragment extends BaseFragment implements StringRequestCa
             @Override
             public void loadMore(int itemsCount, final int maxLastVisiblePosition) {
                 currentPage++;
-//                getLiveList();
+                getVideoList();
             }
         });
         adapter.setOnItemClickListener(new OnItemClickListener() {
@@ -91,6 +102,30 @@ public class FollowVideoFragment extends BaseFragment implements StringRequestCa
 
     @Override
     protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
-        super.onResponseSuccess(eventCode, result);
+        switch (eventCode) {
+            case EventCodeFollowVideos:
+                Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
+                try {
+                    JSONObject jsonObject = new JSONObject(result.getString("body"));
+                    List<Video> videos = gson.fromJson(jsonObject.getJSONArray("myVideo").toString(), new TypeToken<List<Video>>() {
+                    }.getType());
+                    if (recyclerView.mSwipeRefreshLayout.isRefreshing()) {
+                        adapter.clear();
+                        adapter.addData(videos);
+                    } else {
+                        if (!videos.isEmpty()) {
+                            adapter.addData(videos);
+                        }
+                    }
+                    if (videos.size() < 10) {
+                        recyclerView.disableLoadmore();
+                    } else {
+                        recyclerView.enableLoadmore();
+                    }
+                } catch (Exception e) {
+                    showToastSafe("解析数据信息时出错，请稍后再试~");
+                }
+                break;
+        }
     }
 }

@@ -3,11 +3,34 @@
     <!-- 首页 -->
     <string name="find_consultant">找顾问</string>
     <string name="live">直播</string>
-    <string name="my">我的</string>
+    <string name="my">我</string>
     <string name="collect">收藏</string>
     <string name="plan">规划</string>
     <string name="share">分享</string>
-    
+    <string name="is_advanced">%s人已预约</string>
+    <string name="is_checked">%s人已看过</string>
+    <string name="is_collected">%s人已关注</string>
+    <string name="my_message">我的消息</string>
+    <string name="my_advance">我的预约</string>
+    <string name="my_order">我的订单</string>
+    <string name="my_sys_message">系统消息</string>
+    <string name="my_activities">我的活动</string>
+    <string name="my_share">告诉朋友</string>
+    <string name="my_help">帮助</string>
+    <string name="my_setting">设置</string>
+    <string name="setting_psw">修改密码</string>
+    <string name="setting_aboutus">关于我们</string>
+    <string name="setting_logout">退出登录</string>
+    <string name="my_grade">年纪:%s</string>
+    <string name="setting_school">就读学校</string>
+    <string name="setting_type">课程类型</string>
+    <string name="setting_grade">当前年级</string>
+    <string name="setting_score">校内成绩</string>
+    <string name="setting_school_score">标准化考试成绩</string>
+    <string name="setting_awards">学术奖项</string>
+    <string name="setting_activities">主要课外活动</string>
+
+
     <string name="app_name">优顾</string>
     <string name="privacy_use"></string>
     <string name="privacy_protect"></string>

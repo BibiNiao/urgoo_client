@@ -1,46 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#f6f6f6"
-                android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f6f6f6"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:background="#26BDAB">
-
-            <LinearLayout
-                android:id="@+id/back"
-                android:layout_width="45dip"
-                android:layout_height="match_parent"
-                android:clickable="true"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="11dp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/urgoo_title_back"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="优顾收银台"
-                android:textColor="#fff"
-                android:textSize="18sp"/>
-
-        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,7 +24,7 @@
                 android:layout_marginTop="20dp"
                 android:text="共需支付"
                 android:textColor="#383838"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tv_price"
@@ -66,7 +34,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:textColor="#383838"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,48 +45,42 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    >
+                    android:gravity="center">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="已支付："
                         android:textColor="#383838"
-                        android:textSize="12sp"
-                        />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_Paid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#26bdab"
-                        android:textSize="12sp"
-                        />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    >
+                    android:gravity="center">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="待支付："
                         android:textColor="#383838"
-                        android:textSize="12sp"
-                        />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tobe_Paid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#26bdab"
-                        android:textSize="12sp"
-                        />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -128,13 +90,13 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#d9d9d9"/>
+            android:background="#d9d9d9" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="10dp"
-            android:background="#d9d9d9"/>
+            android:background="#d9d9d9" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -150,8 +112,7 @@
                 android:layout_height="wrap_content"
                 android:text="本次支付金额(元):"
                 android:textColor="#383838"
-                android:textSize="14sp"
-                />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/et_price"
@@ -163,20 +124,19 @@
                 android:inputType="numberDecimal"
                 android:singleLine="true"
                 android:textColorHint="#b7b7b7"
-                android:textSize="14sp"
-                />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#d9d9d9"/>
+            android:background="#d9d9d9" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="10dp"
-            android:background="#d9d9d9"/>
+            android:background="#d9d9d9" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -191,19 +151,18 @@
                 android:layout_marginTop="@dimen/call_button_padding_vertical"
                 android:text="支付方式"
                 android:textColor="#383838"
-                android:textSize="13sp"/>
+                android:textSize="13sp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginTop="@dimen/call_button_padding_vertical"
-                android:background="#d9d9d9"/>
+                android:background="#d9d9d9" />
 
             <ListView
                 android:id="@+id/lv_pay"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </ListView>
+                android:layout_height="wrap_content"></ListView>
 
         </LinearLayout>
 
@@ -211,7 +170,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="@dimen/margin_chat_activity"
-            android:background="#d9d9d9"/>
+            android:background="#d9d9d9" />
 
     </LinearLayout>
 
@@ -222,5 +181,5 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/btn_selector"
         android:text="确认"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white" />
 </RelativeLayout>

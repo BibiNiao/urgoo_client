@@ -2,7 +2,6 @@ package com.urgoo.order;
 
 import android.content.Intent;
 import android.graphics.Paint;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.urgoo.base.BaseActivity;
+import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.net.EventCode;
@@ -28,7 +28,7 @@ import com.zw.express.tool.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class OrderActivity extends BaseActivity implements View.OnClickListener {
+public class OrderActivity extends NavToolBarActivity implements View.OnClickListener {
     private OrderServiceEntity orderServiceEntitys;
     private String extraService;
     private String serviceId;
@@ -43,14 +43,15 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
     private ImageView ivCheck;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
+    protected View createContentView() {
+        View view = inflaterViewWithLayoutID(R.layout.activity_order, null);
+        setNavTitleText("订单");
+        initViews(view);
         extraService = getIntent().getStringExtra("extraService");
         serviceId = getIntent().getStringExtra("serviceId");
         counselorId = getIntent().getStringExtra("counselorId");
         getOrderInfo();
-        initview();
+        return view;
     }
 
     private void getOrderInfo() {
@@ -68,16 +69,15 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
         tv.getPaint().setAntiAlias(true);//抗锯齿
     }
 
-    private void initview() {
-        findViewById(R.id.ll_breakss).setOnClickListener(this);
-        findViewById(R.id.tv_order).setOnClickListener(this);
-        ivCheck = (ImageView) findViewById(R.id.iv_check);
-        iv_avatar = (SimpleDraweeView) findViewById(R.id.img_order_icon);
-        tvAgreement = (TextView) findViewById(R.id.tv_agreement);
+    private void initViews(View view) {
+        view.findViewById(R.id.tv_order).setOnClickListener(this);
+        ivCheck = (ImageView) view.findViewById(R.id.iv_check);
+        iv_avatar = (SimpleDraweeView) view.findViewById(R.id.img_order_icon);
+        tvAgreement = (TextView) view.findViewById(R.id.tv_agreement);
         tvAgreement.setOnClickListener(this);
-        tvService = (TextView) findViewById(R.id.tv_service);
+        tvService = (TextView) view.findViewById(R.id.tv_service);
         tvService.setOnClickListener(this);
-        tvPayTime = (TextView) findViewById(R.id.tv_paytime);
+        tvPayTime = (TextView) view.findViewById(R.id.tv_paytime);
         tvPayTime.setOnClickListener(this);
         setUnderLine(tvAgreement);
         setUnderLine(tvService);
@@ -89,7 +89,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
      */
     private boolean isCheck() {
         if (isReedAgr && isReedPayTime && isReedService) {
-            ivCheck.setImageResource(R.drawable.ic_check);
+            ivCheck.setImageResource(R.drawable.ic_checked);
             return true;
         } else {
             ivCheck.setImageResource(R.drawable.ic_uncheck);
@@ -118,9 +118,6 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
                 isCheck();
                 String strURL = ZWConfig.URL_requestAgreement + "?token=" + spManager.getToken();
                 startActivity(new Intent(this, BaseWebViewActivity.class).putExtra(BaseWebViewActivity.EXTRA_URL, strURL));
-                break;
-            case R.id.ll_breakss:
-                finish();
                 break;
             case R.id.tv_order:
                 if (isCheck()) {
@@ -174,18 +171,6 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
                     mE.printStackTrace();
                 }
                 break;
-
-//            case EventCodeAddFollow:
-//                try {
-//                    JSONObject jsonObject = new JSONObject(result.get("header").toString());
-//                    String code = jsonObject.getString("code");
-//                    if (code.equals("200")) {   //  关注成功
-//                        Log.d("uuuu", "成功下单，就关注下单的顾问");
-//                    }
-//                } catch (JSONException mE) {
-//                    mE.printStackTrace();
-//                }
-//                break;
         }
     }
 }

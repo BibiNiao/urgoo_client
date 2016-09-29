@@ -973,7 +973,7 @@ public class CounselorActivity extends BaseActivity implements View.OnClickListe
             ViewHolder viewHolder;
             if (convertView == null) {
                 viewHolder = new ViewHolder();
-                convertView = layoutInflater.inflate(R.layout.conunselor_workyers_item, parent, false);
+                convertView = layoutInflater.inflate(R.layout.item_counselor_workyears, parent, false);
                 viewHolder.tv_content_position = (TextView) convertView.findViewById(R.id.tv_content_position);
                 viewHolder.tv_content_timedata = (TextView) convertView.findViewById(R.id.tv_content_timedata);
                 viewHolder.tv_content_companyName = (TextView) convertView.findViewById(R.id.tv_content_companyName);
@@ -1075,10 +1075,10 @@ public class CounselorActivity extends BaseActivity implements View.OnClickListe
             ViewHolder viewHolder;
             if (convertView == null) {
                 viewHolder = new ViewHolder();
-                convertView = layoutInflater.inflate(R.layout.conunselor_counselor_server_item, parent, false);
-                viewHolder.tv_c_s_name = (TextView) convertView.findViewById(R.id.tv_c_s_name);
-                viewHolder.tv_c_s_rmb = (TextView) convertView.findViewById(R.id.tv_c_s_rmb);
-                viewHolder.but_c_s_hire = (Button) convertView.findViewById(R.id.but_c_s_hire);
+                convertView = layoutInflater.inflate(R.layout.item_counselor_server, parent, false);
+                viewHolder.tv_c_s_name = (TextView) convertView.findViewById(R.id.tv_service);
+                viewHolder.tv_c_s_rmb = (TextView) convertView.findViewById(R.id.tv_rmb);
+                viewHolder.but_c_s_hire = (Button) convertView.findViewById(R.id.btn_video);
                 convertView.setTag(viewHolder);
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
@@ -1143,7 +1143,7 @@ public class CounselorActivity extends BaseActivity implements View.OnClickListe
             ViewHolder viewHolder;
             if (convertView == null) {
                 viewHolder = new ViewHolder();
-                convertView = layoutInflater.inflate(R.layout.conunselor_workyers_item, parent, false);
+                convertView = layoutInflater.inflate(R.layout.item_counselor_workyears, parent, false);
                 viewHolder.tv_content_position = (TextView) convertView.findViewById(R.id.tv_content_position);
                 viewHolder.tv_content_timedata = (TextView) convertView.findViewById(R.id.tv_content_timedata);
                 viewHolder.tv_content_companyName = (TextView) convertView.findViewById(R.id.tv_content_companyName);

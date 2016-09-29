@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.urgoo.common.PMD5Utils;
 import com.urgoo.common.ZWConfig;
+import com.urgoo.data.SPManager;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.HttpEngine;
 import com.urgoo.net.StringRequestCallBack;
@@ -98,4 +99,26 @@ public class AccountManager {
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeRegist, ZWConfig.ACTION_ClientRegist, params, callback);
     }
 
+    /**
+     * 获取用户信息
+     *
+     * @param callback
+     */
+    public void getUserInfo(StringRequestCallBack callback){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetUserInfo, ZWConfig.URL_requestGetUserInfo, params, callback);
+    }
+
+    /**
+     * 活动页面
+     *
+     * @param callback
+     */
+    public void getMyAcitivtes(int pageNo, StringRequestCallBack callback){
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        params.put("page", String.valueOf(pageNo));
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetMyAcitivites, ZWConfig.URL_requestMyActivites, params, callback);
+    }
 }

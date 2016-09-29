@@ -90,23 +90,6 @@ public class ProfileManager {
     }
 
     /**
-     * @param type
-     * @param termType
-     * @param pageNo
-     * @param callback
-     * @param status   1进行中 2已结束
-     */
-    public void getOngDataList(String status, String type, String termType, int pageNo, StringRequestCallBack callback) {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("token", SPManager.getInstance(mContext).getToken());
-        params.put("status", status);
-        params.put("type", type);
-        params.put("termType", termType);
-        params.put("page", String.valueOf(pageNo));
-        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetOngDataList, ZWConfig.URL_selectZoomLiveByParaentId, params, callback);
-    }
-
-    /**
      * 系统消息
      *
      * @param callback

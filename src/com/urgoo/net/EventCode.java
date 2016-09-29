@@ -53,6 +53,10 @@ public enum EventCode {
      */
     EventCodeFollowConsultants,
     /**
+     * 我收藏的视频
+     */
+    EventCodeFollowVideos,
+    /**
      * 支付宝详情
      */
     EventCodeAliPayDetail,
@@ -220,5 +224,13 @@ public enum EventCode {
     /**
      * 直播列表
      */
-    EventCodeGetLiveList
+    EventCodeGetLiveList,
+    /**
+     * 获取个人信息
+     */
+    EventCodeGetUserInfo,
+    /**
+     * 我的活动
+     */
+    EventCodeGetMyAcitivites,
 }

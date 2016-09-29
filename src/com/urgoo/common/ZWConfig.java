@@ -191,9 +191,6 @@ public class ZWConfig {
 
     public final static String ACTION_reportSemesterJz = URGOOURL_BASE + "001/001/student/reportSemesterJz";
 
-
-    public final static String ACTION_selectParentInfo = URGOOURL_BASE + "001/001/user/selectParentInfo";
-
     public final static String Action_perfectInformation = URGOOURL_BASE + "001/001/user/perfectInformation";
 
 
@@ -364,9 +361,6 @@ public class ZWConfig {
 
     //顾问作品
     public static final String URL_selectCounselorWorksList = URGOOURL_BASE + "001/001/attention/selectCounselorWorksList";
-
-    //我报名的活动
-    public static final String URL_selectZoomLiveByParaentId = URGOOURL_BASE + "001/001/user/selectZoomLiveByParaentId";
     //我报名的活动-未开始
     public static final String URL_selectZoomLiveByParaentIdNoSatrt = URGOOURL_BASE + "001/001/user/selectZoomLiveByParaentIdNoSatrt";
 
@@ -383,7 +377,7 @@ public class ZWConfig {
     //规划标签页任务列表
     public static final String URL_getStudentTaskListNewest = URGOOURL_BASE + "001/001/task/getStudentTaskListNewest";
 
-
+    public final static String ACTION_selectParentInfo = URGOOURL_BASE + "001/001/user/selectParentInfo";
     public static final String Action_getZoomRoom = URGOOURL_BASE + "001/001/zoom/getZoomRoom";
 
 
@@ -438,7 +432,12 @@ public class ZWConfig {
     public static final String URL_requestGetAlbumList = URGOOURL_BASE + "001/001/album/selectAlbumList";
     // 直播列表
     public static final String URL_requestGetLiveList = URGOOURL_BASE + "001/001/live/findZoomLiveList";
-    //我关注的顾问
+    // 我关注的顾问
     public static final String URL_requestFollowConsultants = URGOOURL_BASE + "001/001/user/getSearchCounselorListByParaentId";
-
+    // 我收藏的视频
+    public static final String URL_requestFollowVideos = URGOOURL_BASE + "001/001/album/selectMyVideo";
+    // 个人详情
+    public final static String URL_requestGetUserInfo = URGOOURL_BASE + "001/001/user/selectParentInfo";
+    //我报名的活动
+    public static final String URL_requestMyActivites = URGOOURL_BASE + "001/001/user/selectZoomLiveByParaentId";
 }

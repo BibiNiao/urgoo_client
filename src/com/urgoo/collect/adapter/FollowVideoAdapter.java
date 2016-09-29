@@ -1,6 +1,7 @@
 package com.urgoo.collect.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,8 +72,13 @@ public class FollowVideoAdapter extends UltimateViewAdapter<FollowVideoAdapter.V
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-
+    public void onBindViewHolder(FollowVideoAdapter.ViewHolder holder, int position) {
+        if (position < getAdapterItemCount()) {
+            Video video = getItem(position);
+            holder.sdvLive.setImageURI(Uri.parse(video.getPic()));
+            holder.tvTitle.setText(video.getPerson());
+            holder.tvDes.setText(video.getTitle());
+        }
     }
 
     @Override

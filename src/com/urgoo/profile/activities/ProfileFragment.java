@@ -21,13 +21,13 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.EMCallBack;
-import com.hyphenate.chat.EMClient;
+import com.urgoo.account.activity.ActivitiesActivity;
 import com.urgoo.account.activity.HomeActivity;
+import com.urgoo.account.activity.QrcodeActivity;
 import com.urgoo.base.HomeFragment;
 import com.urgoo.business.BaseService;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
-import com.urgoo.common.event.MessageEvent;
 import com.urgoo.data.SPManager;
 import com.urgoo.domain.NetHeaderInfoEntity;
 import com.urgoo.jpush.JpushUtlis;
@@ -54,7 +54,6 @@ import java.util.Map;
 import java.util.Set;
 
 import cn.jpush.android.api.TagAliasCallback;
-import de.greenrobot.event.EventBus;
 import okhttp3.Call;
 
 

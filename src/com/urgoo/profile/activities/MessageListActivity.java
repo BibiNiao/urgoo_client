@@ -1,13 +1,11 @@
 package com.urgoo.profile.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -15,10 +13,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.urgoo.Interface.OnItemClickListener;
-import com.urgoo.base.BaseActivity;
+import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
-import com.urgoo.message.activities.MainActivity;
-import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.profile.adapter.MessageListAdapter;
 import com.urgoo.profile.biz.ProfileManager;
@@ -33,33 +29,31 @@ import java.util.List;
 /**
  * Created by bb on 2016/9/7.
  */
-public class MessageListActivity extends BaseActivity implements View.OnClickListener {
+public class MessageListActivity extends NavToolBarActivity {
     private int page;
     private int type;
-    private TextView tvTitle;
     private UltimateRecyclerView recyclerView;
     private MessageListAdapter messageListAdapter;
+    public final static String MESSAGE_TYPE = "message_type";
+    public static final int REQUEST_CODE_MESSAGE = 1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_message_list);
+    protected View createContentView() {
+        View view = inflaterViewWithLayoutID(R.layout.activity_message_list, null);
         type = getIntent().getIntExtra(MessageActivity.MESSAGE_TYPE, 0);
-        initView();
+        initViews(view);
         if (type == 1) {
-            tvTitle.setText("系统消息");
+            setNavTitleText("系统消息");
             getMessageList("", 0);
         } else {
-            tvTitle.setText("个人消息");
+            setNavTitleText("个人消息");
             getMessageList("0", 0);
         }
+        return view;
     }
 
-    @Override
-    public void initView() {
-        tvTitle = (TextView) findViewById(R.id.tv_title);
-        findViewById(R.id.back).setOnClickListener(this);
-        recyclerView = (UltimateRecyclerView) findViewById(R.id.recycler_view);
+    public void initViews(View view) {
+        recyclerView = (UltimateRecyclerView) view.findViewById(R.id.recycler_view);
         messageListAdapter = new MessageListAdapter(this, type);
 
         recyclerView.setAdapter(messageListAdapter);
@@ -144,13 +138,9 @@ public class MessageListActivity extends BaseActivity implements View.OnClickLis
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.back:
-                setResult(RESULT_OK);
-                finish();
-                break;
-        }
+    protected void onNavLeftClick(View v) {
+        setResult(RESULT_OK);
+        finish();
     }
 
     @Override

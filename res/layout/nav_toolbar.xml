@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/ffffff"
         android:minHeight="?attr/actionBarSize"
+        android:elevation="2dp"
         app:titleTextAppearance="@style/ToolbarTitle" />
 
     <View

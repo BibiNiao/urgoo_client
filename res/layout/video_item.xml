@@ -11,14 +11,13 @@
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/sdv_avatar"
-            android:layout_width="60dp"
+            android:layout_width="85dp"
             android:layout_height="60dp"
             android:layout_centerVertical="true"
             android:layout_marginTop="40dp"
             fresco:actualImageScaleType="focusCrop"
             fresco:placeholderImage="@drawable/img_empty_counselor"
-            fresco:placeholderImageScaleType="centerCrop"
-            fresco:roundAsCircle="true" />
+            fresco:placeholderImageScaleType="focusCrop" />
 
         <ImageView
             android:id="@+id/iv_next"
@@ -51,8 +50,6 @@
                 android:id="@+id/tv_des"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:singleLine="true"
                 android:text="你猜呢才是的阿萨德"
                 android:textColor="@color/tv7a7a7a"
                 android:textSize="14dp" />
