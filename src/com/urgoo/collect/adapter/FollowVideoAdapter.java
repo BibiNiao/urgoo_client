@@ -56,7 +56,7 @@ public class FollowVideoAdapter extends UltimateViewAdapter<FollowVideoAdapter.V
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.video_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video, parent, false);
         ViewHolder vh = new ViewHolder(itemView, true);
         return vh;
     }

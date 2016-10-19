@@ -5,7 +5,7 @@ package com.urgoo.collect.model;
  */
 public class Video {
     /**
-     * 抬头
+     * title
      */
     private String person;
     private String pic;

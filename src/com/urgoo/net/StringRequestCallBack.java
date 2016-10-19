@@ -6,7 +6,6 @@ import okhttp3.Call;
 /**
  * 字符串协议回调接口
  * 
- * @author 51offer
  */
 public interface StringRequestCallBack {
 

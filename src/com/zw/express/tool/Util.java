@@ -13,6 +13,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.EMCallBack;
@@ -394,6 +397,16 @@ public class Util {
     }
 
     /**
+     * 短时间显示 Toast
+     *
+     * @param mContext 上下文Context实例
+     * @param text    显示消息内容的资源ID
+     */
+    public static void shortToast(Context mContext, String text) {
+        Toast.makeText(mContext, text, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
      * 显示升级对话框
      *
      * @param context
@@ -570,4 +583,15 @@ public class Util {
     }
 
 
+    /**
+     * 弹出软键盘
+     *
+     * @param mContext
+     * @param viewHolder
+     */
+    public static void popSoftKeyBoard(Context mContext, View viewHolder) {
+        InputMethodManager imm = (InputMethodManager) mContext
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(viewHolder, 0);
+    }
 }

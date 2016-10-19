@@ -1,9 +1,9 @@
-package com.urgoo.domain;
+package com.urgoo.counselor.model;
 
 /**
  * Created by Administrator on 2016/7/18.
  */
-public class ZhiBoDetailEntity {
+public class LiveDetail {
     private String masterPic;
     private String des;
     private String paticipateCount;
@@ -129,25 +129,5 @@ public class ZhiBoDetailEntity {
 
     public void setVideo(String video) {
         this.video = video;
-    }
-
-    @Override
-    public String toString() {
-        return "ZhiBoDetailEntity{" +
-                "masterPic='" + masterPic + '\'' +
-                ", des='" + des + '\'' +
-                ", paticipateCount='" + paticipateCount + '\'' +
-                ", introduce='" + introduce + '\'' +
-                ", liveTimeLong='" + liveTimeLong + '\'' +
-                ", zoomNo='" + zoomNo + '\'' +
-                ", title='" + title + '\'' +
-                ", liveStartTime='" + liveStartTime + '\'' +
-                ", liveNotice='" + liveNotice + '\'' +
-                ", targetId='" + targetId + '\'' +
-                ", balanceTime=" + balanceTime +
-                ", video='" + video + '\'' +
-                ", isSign='" + isSign + '\'' +
-                ", status='" + status + '\'' +
-                '}';
     }
 }

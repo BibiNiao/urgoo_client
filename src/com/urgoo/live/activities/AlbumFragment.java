@@ -83,8 +83,8 @@ public class AlbumFragment extends BaseFragment implements StringRequestCallBack
             @Override
             public void onItemClick(View v, int position) {
                 Bundle extras = new Bundle();
-                extras.putInt("id", adapter.getItem(position).getAlbumTypeId());
-//                Util.openActivityWithBundle(getActivity(), ArticleDetailActivity.class, extras);
+                extras.putInt(AlbumActivity.EXTRA_ALBUM_ID, adapter.getItem(position).getAlbumTypeId());
+                Util.openActivityWithBundle(getActivity(), AlbumActivity.class, extras);
             }
         });
     }

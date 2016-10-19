@@ -104,7 +104,7 @@ public class AccountManager {
      *
      * @param callback
      */
-    public void getUserInfo(StringRequestCallBack callback){
+    public void getUserInfo(StringRequestCallBack callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", SPManager.getInstance(mContext).getToken());
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetUserInfo, ZWConfig.URL_requestGetUserInfo, params, callback);
@@ -115,10 +115,21 @@ public class AccountManager {
      *
      * @param callback
      */
-    public void getMyAcitivtes(int pageNo, StringRequestCallBack callback){
+    public void getMyAcitivtes(int pageNo, StringRequestCallBack callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", SPManager.getInstance(mContext).getToken());
         params.put("page", String.valueOf(pageNo));
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetMyAcitivites, ZWConfig.URL_requestMyActivites, params, callback);
+    }
+
+    /**
+     * 获取用户资料
+     *
+     * @param callback
+     */
+    public void getUserData(StringRequestCallBack callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetUserData, ZWConfig.URL_requestGetUserData, params, callback);
     }
 }

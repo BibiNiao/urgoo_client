@@ -29,6 +29,7 @@ import com.urgoo.account.activity.MyFragment;
 import com.urgoo.client.R;
 import com.urgoo.collect.activites.CollectFragment;
 import com.urgoo.common.event.MessageEvent;
+import com.urgoo.counselor.activities.FindCounselorFragment;
 import com.urgoo.data.SPManager;
 import com.urgoo.jpush.JpushUtlis;
 import com.urgoo.live.activities.LiveFragment;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements ProfileFragment.M
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
      */
     private static final String[] FRAGMENT_TAG = {
-            CounselorFragment.class.getSimpleName(),
+            FindCounselorFragment.class.getSimpleName(),
             LiveFragment.class.getSimpleName(),
             MyFragment.class.getSimpleName(),
             CollectFragment.class.getSimpleName(),
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements ProfileFragment.M
     };
 
     private FragmentManager fragmentManager;
-    private CounselorFragment counselorFragment;
+    private FindCounselorFragment findCounselorFragment;
     private MyFragment myFragment;
     private LiveFragment liveFragment;
     private CollectFragment collectFragment;
@@ -116,14 +117,14 @@ public class MainActivity extends AppCompatActivity implements ProfileFragment.M
         if (savedInstanceState != null && savedInstanceState.getInt(PRE_SELECTED, indexSelected) != -1) {
             // 读取上一次界面Save时候tab选中的状态
             indexSelected = savedInstanceState.getInt(PRE_SELECTED, indexSelected);
-            counselorFragment = (CounselorFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[0]);
+            findCounselorFragment = (FindCounselorFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[0]);
             liveFragment = (LiveFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[1]);
             myFragment = (MyFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[2]);
             collectFragment = (CollectFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[3]);
             planFragment = (PlanFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG[4]);
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            if (counselorFragment != null)
-                transaction.hide(counselorFragment);
+            if (findCounselorFragment != null)
+                transaction.hide(findCounselorFragment);
             if (liveFragment != null)
                 transaction.hide(liveFragment);
             if (myFragment != null)
@@ -432,11 +433,11 @@ public class MainActivity extends AppCompatActivity implements ProfileFragment.M
         switch (v.getId()) {
             case R.id.tab_counselor:
                 switchTab(v);
-                if (counselorFragment == null) {
-                    counselorFragment = new CounselorFragment();
-                    transaction.add(R.id.fragment_container, counselorFragment, CounselorFragment.class.getSimpleName());
+                if (findCounselorFragment == null) {
+                    findCounselorFragment = new FindCounselorFragment();
+                    transaction.add(R.id.fragment_container, findCounselorFragment, FindCounselorFragment.class.getSimpleName());
                 } else {
-                    transaction.show(counselorFragment);
+                    transaction.show(findCounselorFragment);
                 }
                 if (indexSelected != TAB_COUNSELOR) {
                     // 隐藏上次展示的fragment

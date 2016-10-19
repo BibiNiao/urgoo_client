@@ -37,7 +37,6 @@ import com.urgoo.counselor.model.CounselorDetail;
 import com.urgoo.counselor.model.CounselorDetailSubList;
 import com.urgoo.counselor.model.CounselorServiceList;
 import com.urgoo.counselor.model.EduList;
-import com.urgoo.counselor.event.FocusEvent;
 import com.urgoo.counselor.model.LabelList;
 import com.urgoo.counselor.model.ServiceLongList;
 import com.urgoo.counselor.model.Works;
@@ -744,12 +743,12 @@ public class CounselorActivity extends BaseActivity implements View.OnClickListe
 
     //  取消关注 interface
     private void getCancleFollow() {
-        CounselorManager.getInstance(this).getCancleFollow(this, counselorId);
+//        CounselorManager.getInstance(this).getCancleFollow(this, counselorId);
     }
 
     //  关注 interface
     private void getaddFollow() {
-        CounselorManager.getInstance(this).getaddFollow(this, counselorId);
+//        CounselorManager.getInstance(this).getAddFollow(this, counselorId);
     }
 
     @Override
@@ -772,7 +771,6 @@ public class CounselorActivity extends BaseActivity implements View.OnClickListe
                         im_cont_xing2.setVisibility(View.VISIBLE);
                         img_title_xing.setVisibility(View.GONE);
                         img_title_xing2.setVisibility(View.VISIBLE);
-                        EventBus.getDefault().post(new FocusEvent());
                     }
                 } catch (JSONException mE) {
                     mE.printStackTrace();
@@ -790,7 +788,6 @@ public class CounselorActivity extends BaseActivity implements View.OnClickListe
                         im_cont_xing2.setVisibility(View.GONE);
                         img_title_xing.setVisibility(View.VISIBLE);
                         img_title_xing2.setVisibility(View.GONE);
-                        EventBus.getDefault().post(new FocusEvent());
                     }
                 } catch (JSONException mE) {
                     mE.printStackTrace();

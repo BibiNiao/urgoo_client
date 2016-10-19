@@ -151,7 +151,7 @@ public class CounselorFragment extends BaseFragment implements StringRequestCall
     }
 
     private void getMyCounselorListTop() {
-        MainManager.getInstance(getActivity()).getMyCounselorListTop(this);
+//        MainManager.getInstance(getActivity()).getMyCounselorListTop(this);
     }
 
 //    /**

@@ -49,7 +49,7 @@ public class CollectManager {
      */
     public void followVideos(StringRequestCallBack callback, int page) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("token", "4bbd8a8dd5ea20617fa283660302d136");
+        params.put("token", SPManager.getInstance(mContext).getToken());
         params.put("page", String.valueOf(page));
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeFollowVideos, ZWConfig.URL_requestFollowVideos, params, callback);
     }

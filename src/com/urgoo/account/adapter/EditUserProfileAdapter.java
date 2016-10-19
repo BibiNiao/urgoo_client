@@ -30,13 +30,13 @@ public class EditUserProfileAdapter extends BaseAdapter {
         this.user = user;
         mInflater = LayoutInflater.from(context);
         if (items.isEmpty()) {
-            items.add(new SettingItem(mContext.getString(R.string.setting_school), ""));
-            items.add(new SettingItem(mContext.getString(R.string.setting_type), ""));
-            items.add(new SettingItem(mContext.getString(R.string.setting_grade), ""));
-            items.add(new SettingItem(mContext.getString(R.string.setting_score), ""));
-            items.add(new SettingItem(mContext.getString(R.string.setting_school_score), ""));
-            items.add(new SettingItem(mContext.getString(R.string.setting_awards), ""));
-            items.add(new SettingItem(mContext.getString(R.string.setting_activities), ""));
+            items.add(new SettingItem(mContext.getString(R.string.setting_school), user.getSchoolName()));
+            items.add(new SettingItem(mContext.getString(R.string.setting_type), user.getSchoolCourse()));
+            items.add(new SettingItem(mContext.getString(R.string.setting_grade), user.getGradeName()));
+            items.add(new SettingItem(mContext.getString(R.string.setting_score), user.getSchoolScoreName()));
+            items.add(new SettingItem(mContext.getString(R.string.setting_school_score), user.getExamType().equals("1") ? "已填写" : "未填写"));
+            items.add(new SettingItem(mContext.getString(R.string.setting_awards), user.getAcademicAwardsType().equals("1")  ? "已填写" : "未填写"));
+            items.add(new SettingItem(mContext.getString(R.string.setting_activities), user.getExtracurricularActivitiesStatus().equals("1") ? "已填写" : "未填写"));
         }
     }
 

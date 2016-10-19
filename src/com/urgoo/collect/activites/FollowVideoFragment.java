@@ -17,15 +17,24 @@ import com.urgoo.base.BaseFragment;
 import com.urgoo.client.R;
 import com.urgoo.collect.adapter.FollowVideoAdapter;
 import com.urgoo.collect.biz.CollectManager;
+import com.urgoo.collect.event.FollowEvent;
 import com.urgoo.collect.model.CounselorEntiy;
 import com.urgoo.collect.model.Video;
+import com.urgoo.live.activities.AlbumActivity;
+import com.urgoo.live.activities.LiveDetailActivity;
+import com.urgoo.live.activities.VideoDetailActivity;
+import com.urgoo.live.model.AlbumDetail;
+import com.urgoo.live.model.LiveDetail;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
+import com.zw.express.tool.Util;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by bb on 2016/9/23.
@@ -35,14 +44,22 @@ public class FollowVideoFragment extends BaseFragment implements StringRequestCa
     private int currentPage = 0;
     private FollowVideoAdapter adapter;
     private List<Video> videoList = new ArrayList<>();
+    private boolean isOther = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewContent = inflater.inflate(R.layout.activity_follow_video_list, container, false);
         initViews();
+        EventBus.getDefault().register(this);
         getVideoList();
         return viewContent;
+    }
+
+    public void onEventMainThread(FollowEvent event) {
+        isOther = true;
+        currentPage = 0;
+        getVideoList();
     }
 
     private void getVideoList() {
@@ -82,8 +99,20 @@ public class FollowVideoFragment extends BaseFragment implements StringRequestCa
             @Override
             public void onItemClick(View v, int position) {
                 Bundle extras = new Bundle();
-//                extras.putInt("id", adapter.getItem(position).getLiveId());
-//                Util.openActivityWithBundle(getActivity(), ArticleDetailActivity.class, extras);
+                switch (adapter.getItem(position).getType()) {
+                    case "4":
+                        extras.putInt(AlbumActivity.EXTRA_ALBUM_ID, Integer.parseInt(adapter.getItem(position).getTargetId()));
+                        Util.openActivityWithBundle(getActivity(), AlbumActivity.class, extras);
+                        break;
+                    case "5":
+                        extras.putString(VideoDetailActivity.EXTRA_VIDEO_ID, adapter.getItem(position).getTargetId());
+                        Util.openActivityWithBundle(getActivity(), VideoDetailActivity.class, extras);
+                        break;
+                    case "6":
+                        extras.putString(LiveDetailActivity.EXTRA_LIVE_ID, adapter.getItem(position).getTargetId());
+                        Util.openActivityWithBundle(getActivity(), LiveDetailActivity.class, extras);
+                        break;
+                }
             }
         });
     }
@@ -114,6 +143,10 @@ public class FollowVideoFragment extends BaseFragment implements StringRequestCa
                         adapter.addData(videos);
                     } else {
                         if (!videos.isEmpty()) {
+                            if (isOther) {
+                                adapter.clear();
+                                isOther = false;
+                            }
                             adapter.addData(videos);
                         }
                     }

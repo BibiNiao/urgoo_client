@@ -17,6 +17,15 @@ public class Album {
      */
     private String title;
     private int albumTypeId;
+    private String videoCount;
+
+    public String getVideoCount() {
+        return videoCount;
+    }
+
+    public void setVideoCount(String videoCount) {
+        this.videoCount = videoCount;
+    }
 
     public int getAlbumTypeId() {
         return albumTypeId;

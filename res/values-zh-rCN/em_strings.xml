@@ -29,6 +29,11 @@
     <string name="setting_school_score">标准化考试成绩</string>
     <string name="setting_awards">学术奖项</string>
     <string name="setting_activities">主要课外活动</string>
+    <string name="find_pingjia">%s条学生评价</string>
+    <string name="alubm_video">%s个视频</string>
+    <string name="alubm_time">时长:%s</string>
+    <string name="host_name">主讲人: %s</string>
+    <string name="host_time">时间: %s</string>
 
 
     <string name="app_name">优顾</string>

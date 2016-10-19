@@ -8,13 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.backends.pipeline.PipelineDraweeControllerBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerviewViewHolder;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.client.R;
 import com.urgoo.live.model.Album;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -75,9 +81,18 @@ public class AlbumAdapter extends UltimateViewAdapter<AlbumAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         if (position < getAdapterItemCount()) {
             Album album = getItem(position);
-            holder.sdvAlbum.setImageURI(Uri.parse(album.getCover()));
+//            holder.sdvAlbum.setImageURI(Uri.parse(album.getCover()));
             holder.tvTitle.setText(album.getTitle());
-            holder.tvDes.setText(album.getDes());
+            holder.tvDes.setText(album.getVideoCount() + "个视频");
+            ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(album.getCover()))
+                    .setLocalThumbnailPreviewsEnabled(true)
+                    .setResizeOptions(new ResizeOptions(225, 225))
+                    .build();
+
+            PipelineDraweeControllerBuilder controller = Fresco.newDraweeControllerBuilder();
+            controller.setImageRequest(request);
+            controller.setOldController(holder.sdvAlbum.getController());
+            holder.sdvAlbum.setController(controller.build());
         }
     }
 

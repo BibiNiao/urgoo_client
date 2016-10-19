@@ -35,7 +35,7 @@ import com.urgoo.data.SPManager;
 import com.urgoo.domain.NetHeaderInfoEntity;
 import com.urgoo.domain.OldZhiBoEntity;
 import com.urgoo.domain.ShareDetail;
-import com.urgoo.domain.ZhiBoDetailEntity;
+import com.urgoo.counselor.model.LiveDetail;
 import com.urgoo.domain.ZhiBoPinglunEntity;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.message.activities.SplashActivity;
@@ -710,7 +710,7 @@ public class ZhiBodDetailActivity extends BaseActivity implements Constants, Zoo
                 try {
                     //UiUtil.show(ZhiBodDetailActivity.this, message);
                     shareDetail = GsonTools.getTargetClass(new JSONObject(result.get("body").toString()).getString("shareDetail"), ShareDetail.class);
-                    ZhiBoDetailEntity entity = GsonTools.getTargetClass(new JSONObject(result.get("body").toString()).getString("liveDetail"), ZhiBoDetailEntity.class);
+                    LiveDetail entity = GsonTools.getTargetClass(new JSONObject(result.get("body").toString()).getString("liveDetail"), LiveDetail.class);
                     mCounselorDetail = GsonTools.getTargetClass(new JSONObject(result.get("body").toString()).getString("advanceRelation"), CounselorDetail.class);
                     zoomNO = entity.getZoomNo();
                     status = entity.getStatus();
@@ -726,7 +726,7 @@ public class ZhiBodDetailActivity extends BaseActivity implements Constants, Zoo
     }
 
     //刷新主接口UI
-    private void refreshUIView(ZhiBoDetailEntity entity) {
+    private void refreshUIView(LiveDetail entity) {
 
 
         if (entity.getTargetId().equals("0")) {

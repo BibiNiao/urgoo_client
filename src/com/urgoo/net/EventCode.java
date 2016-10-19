@@ -233,4 +233,36 @@ public enum EventCode {
      * 我的活动
      */
     EventCodeGetMyAcitivites,
+    /**
+     * 用户资料
+     */
+    EventCodeGetUserData,
+    /**
+     * 学生评价
+     */
+    EventCodeGetStuEvaluation,
+    /**
+     * 专辑详情
+     */
+    EventCodeGetAlbumDetail,
+    /**
+     * 视频详情
+     */
+    EventCodeGetVideoDetail,
+    /**
+     * 获取评论
+     */
+    EventCodeGetCommentList,
+    /**
+     * 发表评论
+     */
+    EventCodePostComment,
+    /**
+     * 回复列表
+     */
+    EventCodeReplyList,
+    /**
+     * 删除评论
+     */
+    EventCodeDelComment,
 }

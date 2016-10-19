@@ -498,6 +498,32 @@
         <activity
             android:name="com.urgoo.account.activity.SettingActivity"
             android:screenOrientation="portrait" />
+        <!-- 就读学校 -->
+        <activity
+            android:name="com.urgoo.account.activity.SchoolActivity"
+            android:screenOrientation="portrait" />
+        <!-- 学生评价 -->
+        <activity
+            android:name="com.urgoo.counselor.activities.StuEvaluationAcitivity"
+            android:screenOrientation="portrait" />
+        <!-- 直播详情 -->
+        <activity
+            android:name="com.urgoo.live.activities.LiveDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <!-- 专辑详情 -->
+        <activity
+            android:name="com.urgoo.live.activities.AlbumActivity"
+            android:screenOrientation="portrait" />
+        <!-- 视频详情 -->
+        <activity
+            android:name="com.urgoo.live.activities.VideoDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <!-- 回复列表 -->
+        <activity
+            android:name="com.urgoo.live.activities.CommentListActivity"
+            android:screenOrientation="portrait" />
 
         <!-- 设置环信应用的AppKey -->
         <meta-data

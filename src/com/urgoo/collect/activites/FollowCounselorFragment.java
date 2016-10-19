@@ -17,10 +17,9 @@ import com.urgoo.base.BaseFragment;
 import com.urgoo.client.R;
 import com.urgoo.collect.adapter.FollowConsultantAdapter;
 import com.urgoo.collect.biz.CollectManager;
+import com.urgoo.collect.event.FollowEvent;
 import com.urgoo.collect.model.CounselorEntiy;
 import com.urgoo.counselor.activities.CounselorDetailActivity;
-import com.urgoo.counselor.event.FocusEvent;
-import com.urgoo.counselor.model.CounselorDetail;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
 import com.zw.express.tool.Util;
@@ -40,6 +39,7 @@ public class FollowCounselorFragment extends BaseFragment implements StringReque
     private FollowConsultantAdapter adapter;
     private int currentPage = 0;
     private List<CounselorEntiy> counselorEntiys = new ArrayList<>();
+    private boolean isOther = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,7 +55,9 @@ public class FollowCounselorFragment extends BaseFragment implements StringReque
         CollectManager.getInstance(getActivity()).followConsultants(this, currentPage);
     }
 
-    public void onEventMainThread(FocusEvent event) {
+    public void onEventMainThread(FollowEvent event) {
+        isOther = true;
+        currentPage = 0;
         getCounselorList();
     }
 
@@ -125,6 +127,10 @@ public class FollowCounselorFragment extends BaseFragment implements StringReque
                         adapter.addData(counselorEntiys);
                     } else {
                         if (!counselorEntiys.isEmpty()) {
+                            if (isOther) {
+                                adapter.clear();
+                                isOther = false;
+                            }
                             adapter.addData(counselorEntiys);
                         }
                     }

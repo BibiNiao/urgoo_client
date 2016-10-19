@@ -1,15 +1,10 @@
 package com.urgoo.counselor.activities;
 
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,21 +17,19 @@ import com.google.gson.reflect.TypeToken;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
+import com.urgoo.collect.event.FollowEvent;
 import com.urgoo.common.ShareUtil;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.adapter.CounselorExperienceAdapter;
 import com.urgoo.counselor.adapter.CounselorSchoolAdapter;
 import com.urgoo.counselor.adapter.CounselorServerAdapter;
 import com.urgoo.counselor.biz.CounselorManager;
-import com.urgoo.counselor.event.FocusEvent;
 import com.urgoo.counselor.model.CounselorDetail;
 import com.urgoo.counselor.model.CounselorServiceList;
 import com.urgoo.counselor.model.EduList;
-import com.urgoo.counselor.model.LabelList;
-import com.urgoo.counselor.model.ServiceLongList;
-import com.urgoo.counselor.model.Works;
 import com.urgoo.counselor.model.experienceList;
 import com.urgoo.domain.ShareDetail;
+import com.urgoo.live.activities.LiveDetailActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.order.OrderActivity;
 import com.urgoo.view.MyListView;
@@ -163,6 +156,7 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
         ivReopen = (ImageView) view.findViewById(R.id.iv_reopen);
         ivReclose = (ImageView) view.findViewById(R.id.iv_reclose);
         btnVideo = (Button) view.findViewById(R.id.btn_video);
+        btnVideo.setOnClickListener(this);
         cvWorks = (CardView) view.findViewById(R.id.cv_works);
         cvRequires = (CardView) view.findViewById(R.id.cv_requires);
         cvRequires.setOnClickListener(this);
@@ -197,14 +191,15 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
         if (mCounselorDetail != null) {
             showLoadingDialog();
             if (mCounselorDetail.getIsAttention().equals("1")) {
-                CounselorManager.getInstance(this).getCancleFollow(this, counselorId);
+                CounselorManager.getInstance(this).getCancleFollow(this, counselorId, "1");
             } else {
-                CounselorManager.getInstance(this).getaddFollow(this, counselorId);
+                CounselorManager.getInstance(this).getAddFollow(this, counselorId, "1");
             }
         }
     }
 
     private void getCounselorDetail() {
+        showLoadingDialog();
         CounselorManager.getInstance(this).getCounselorInfo(this, counselorId);
     }
 
@@ -214,19 +209,19 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
 
     @Override
     protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
+        dismissLoadingDialog();
         switch (eventCode) {
             case EventCodeCancleFollow:
-                dismissLoadingDialog();
                 showToastSafe("取消收藏");
                 mCounselorDetail.setIsAttention("0");
                 onPrepareOptionsMenu(mToolbar.getMenu());
-                EventBus.getDefault().post(new FocusEvent());
+                EventBus.getDefault().post(new FollowEvent(counselorId, "0"));
                 break;
             case EventCodeAddFollow:
-                dismissLoadingDialog();
                 showToastSafe("收藏成功");
                 mCounselorDetail.setIsAttention("1");
                 onPrepareOptionsMenu(mToolbar.getMenu());
+                EventBus.getDefault().post(new FollowEvent(counselorId, "1"));
                 break;
             case EventCodeSelectCounselorServiceList:
                 try {
@@ -283,6 +278,11 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
                     } else {
                         tvGuidance.setVisibility(View.GONE);
                     }
+                    if (Util.isEmpty(mCounselorDetail.getLiveId())) {
+                        btnVideo.setVisibility(View.GONE);
+                    } else {
+                        btnVideo.setVisibility(View.VISIBLE);
+                    }
                     shareDetail = gson.fromJson(jsonObject.getJSONObject("shareDetail").toString(), new TypeToken<ShareDetail>() {
                     }.getType());
 //                    mLabelList = gson.fromJson(jsonObject.getJSONArray("labelList").toString(), new TypeToken<ArrayList<LabelList>>() {
@@ -316,6 +316,11 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btn_video:
+                Bundle bundle = new Bundle();
+                bundle.putString(LiveDetailActivity.EXTRA_LIVE_ID, mCounselorDetail.getLiveId());
+                Util.openActivityWithBundle(this, LiveDetailActivity.class, bundle);
+                break;
             case R.id.cv_requires:
                 if (RequiresState == SPREAD_STATE) {
                     tvRequires.setMaxLines(CONTENT_DESC_MAX_LINE);

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp"
+        android:text="评论:"
+        android:textColor="@color/tv2b2b2b"
+        android:textSize="15dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdv_avatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            fresco:actualImageScaleType="focusCrop"
+            fresco:placeholderImage="@drawable/img_empty_counselor"
+            fresco:placeholderImageScaleType="focusCrop"
+            fresco:roundAsCircle="true" />
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/sdv_avatar"
+            android:textColor="@color/tv4a4a4a"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="2dp"
+            android:textColor="#b5b5b5"
+            android:textSize="13dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_countent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="20dp"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/ic_comment"
+        android:drawablePadding="5dp"
+        android:text="0"
+        android:textSize="13dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#f7f7f7"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_comment1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/sdv_icon1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    fresco:actualImageScaleType="focusCrop"
+                    fresco:placeholderImage="@drawable/img_empty_counselor"
+                    fresco:placeholderImageScaleType="focusCrop"
+                    fresco:roundAsCircle="true" />
+
+                <TextView
+                    android:id="@+id/tv_nickname1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="111"
+                    android:textColor="#585858"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_comment1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll1"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:text="123123123123"
+                android:textColor="#585858"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/tv_del1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/tv_comment1"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:text="删除"
+                android:textColor="#b5b5b5"
+                android:textSize="12dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_comment2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/ll2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/sdv_icon2"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    fresco:actualImageScaleType="focusCrop"
+                    fresco:placeholderImage="@drawable/img_empty_counselor"
+                    fresco:placeholderImageScaleType="focusCrop"
+                    fresco:roundAsCircle="true" />
+
+                <TextView
+                    android:id="@+id/tv_nickname2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="111"
+                    android:textColor="#585858"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_comment2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll2"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:text="123123123123"
+                android:textColor="#585858"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/tv_del2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/tv_comment2"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:text="删除"
+                android:textColor="#b5b5b5"
+                android:textSize="12dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_comment3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/ll3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/sdv_icon3"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    fresco:actualImageScaleType="focusCrop"
+                    fresco:placeholderImage="@drawable/img_empty_counselor"
+                    fresco:placeholderImageScaleType="focusCrop"
+                    fresco:roundAsCircle="true" />
+
+                <TextView
+                    android:id="@+id/tv_nickname3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="111"
+                    android:textColor="#585858"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_comment3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll3"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:text="123123123123"
+                android:textColor="#585858"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/tv_del3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/tv_comment3"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:text="删除"
+                android:textColor="#b5b5b5"
+                android:textSize="12dp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="查看全部"
+            android:textColor="#26a69a"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_del"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:text="删除评论"
+        android:textColor="#b5b5b5"
+        android:textSize="12dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="10dp"
+        android:background="#e9eaea" />
+</LinearLayout>

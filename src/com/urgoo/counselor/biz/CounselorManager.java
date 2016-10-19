@@ -129,22 +129,40 @@ public class CounselorManager {
 
     /**
      * 顾问详情 关注
+     * 1 顾问  4：收藏专辑 5：收藏专辑视频 6.收藏直播
      */
-    public void getaddFollow(StringRequestCallBack callback, String counselorId) {
+    public void getAddFollow(StringRequestCallBack callback, String targetId, String followType) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", SPManager.getInstance(mContext).getToken());
-        params.put("counselorId", counselorId);
+        params.put("targetId", targetId);
+        params.put("followType", followType);
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeAddFollow, ZWConfig.URL_addFollow, params, callback);
     }
 
     /**
      * 顾问详情 取消关注
+     * 1 顾问  4：收藏专辑 5：收藏专辑视频 6.收藏直播
      */
-    public void getCancleFollow(StringRequestCallBack callback, String counselorId) {
+    public void getCancleFollow(StringRequestCallBack callback, String targetId, String followType) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", SPManager.getInstance(mContext).getToken());
-        params.put("counselorId", counselorId);
+        params.put("targetId", targetId);
+        params.put("followType", followType);
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeCancleFollow, ZWConfig.URL_cancleFollow, params, callback);
     }
 
+    /**
+     * 学生评价
+     *
+     * @param callBack
+     * @param counselorId
+     * @param page
+     */
+    public void getStuEvaluation(StringRequestCallBack callBack, String counselorId, int page) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        params.put("counselorId", counselorId);
+        params.put("page", String.valueOf(page));
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetStuEvaluation, ZWConfig.URL_requestGetStuEvaluation, params, callBack);
+    }
 }

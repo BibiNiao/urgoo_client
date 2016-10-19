@@ -55,9 +55,10 @@ public class MainManager {
      *
      * @param callback
      */
-    public void getMyCounselorListTop(StringRequestCallBack callback) {
+    public void getMyCounselorListTop(StringRequestCallBack callback, int page) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", SPManager.getInstance(mContext).getToken());
-        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetMyCounselorListTop, ZWConfig.URL_requestGetMyCounselorListTop, params, callback);
+        params.put("page", String.valueOf(page));
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetMyCounselorListTop, ZWConfig.URL_requestGetMyCounselorList, params, callback);
     }
 }

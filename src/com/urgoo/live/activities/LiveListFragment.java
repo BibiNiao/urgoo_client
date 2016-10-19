@@ -21,6 +21,7 @@ import com.urgoo.live.biz.LiveManager;
 import com.urgoo.live.model.Live;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
+import com.zw.express.tool.Util;
 
 import org.json.JSONObject;
 
@@ -82,8 +83,8 @@ public class LiveListFragment extends BaseFragment implements StringRequestCallB
             @Override
             public void onItemClick(View v, int position) {
                 Bundle extras = new Bundle();
-                extras.putInt("id", adapter.getItem(position).getLiveId());
-//                Util.openActivityWithBundle(getActivity(), ArticleDetailActivity.class, extras);
+                extras.putString(LiveDetailActivity.EXTRA_LIVE_ID, String.valueOf(adapter.getItem(position).getLiveId()));
+                Util.openActivityWithBundle(getActivity(), LiveDetailActivity.class, extras);
             }
         });
     }
