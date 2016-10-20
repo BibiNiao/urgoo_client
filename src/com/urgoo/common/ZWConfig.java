@@ -138,14 +138,14 @@ public class ZWConfig {
     //小帅地址：
 //    public final static String URGOOURL_BASE = "http://10.203.203.49:8080/urgoo/";
     //shihui测试接口  104 8088
-    public final static String URGOOURL_BASE = "http://139.129.164.163:8083/urgoo/";
+//    public final static String URGOOURL_BASE = "http://139.129.164.163:8083/urgoo/";
     public final static String URGOOURL_BASE3 = "http://139.129.164.163:8080/urgoo/";
     //测试环境
 //    public final static String URGOOURL_BASE = "http://www-test-urgoo.com/urgoo/";
     //生产环境
 //    public final static String URGOOURL_BASE = "http://www-prd-urgoo.com/urgoo/";
 //    小孙
-//    public final static String URGOOURL_BASE = "http://10.203.203.49:8082/urgoo/";
+    public final static String URGOOURL_BASE = "http://10.203.203.49:8082/urgoo/";
 
 //    真实环境
 //    public final static String URGOOURL_BASE = "http://139.129.164.163:8082/urgoo/";
@@ -454,5 +454,7 @@ public class ZWConfig {
     public static final String URL_requestGetReplyList = URGOOURL_BASE + "001/001/comment/selectReplyList";
     // 删除评论
     public static final String URL_requestDelComment = URGOOURL_BASE + "001/001/comment/delComment";
+    //顾问详情
+    public static final String URL_requestMyCounselorDetail = URGOOURL_BASE + "/001/001/attention/findMyCounselorDetail";
 
 }

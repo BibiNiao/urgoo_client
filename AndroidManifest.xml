@@ -524,6 +524,10 @@
         <activity
             android:name="com.urgoo.live.activities.CommentListActivity"
             android:screenOrientation="portrait" />
+        <!-- 顾问简介(非首页) -->
+        <activity
+            android:name="com.urgoo.counselor.activities.CounselorMainActivity"
+            android:screenOrientation="portrait" />
 
         <!-- 设置环信应用的AppKey -->
         <meta-data

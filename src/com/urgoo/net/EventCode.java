@@ -265,4 +265,8 @@ public enum EventCode {
      * 删除评论
      */
     EventCodeDelComment,
+    /**
+     * 顾问介绍(非首页)
+     */
+    EventCodeMyCounselor,
 }

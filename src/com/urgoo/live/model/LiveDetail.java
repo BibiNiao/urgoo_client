@@ -27,6 +27,15 @@ public class LiveDetail {
      * 大于0表示直播未开始 小于0表示已经开始
      */
     private long balanceTime;
+    private String targetId;
+
+    public String getTargetId() {
+        return targetId;
+    }
+
+    public void setTargetId(String targetId) {
+        this.targetId = targetId;
+    }
 
     public long getBalanceTime() {
         return balanceTime;

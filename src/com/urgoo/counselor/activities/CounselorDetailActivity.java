@@ -48,6 +48,7 @@ import de.greenrobot.event.EventBus;
 public class CounselorDetailActivity extends NavToolBarActivity implements View.OnClickListener {
     public static final String EXTRA_COUNSELOR_ID = "counselor_id";
     public static final String EXTRA_TITLE = "title";
+    public static final String EXTRA_FROM = "is_from";
     private static final int SHRINK_UP_STATE = 1;// 收起状态
     private static final int SPREAD_STATE = 2;// 展开状态
     private static int IntroductionState = SHRINK_UP_STATE;//默认收起状态
@@ -59,11 +60,14 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
     private MyListView lvGraduate;
     private MyListView lvWork;
     private Button btnVideo;
+    private Button btnEvaluate;
+    private Button btnContact;
     private CardView cvWorks;
     private CardView cvIntroduction;
     private CardView cvSuccess;
     private CardView cvRequires;
     private LinearLayout llOrganization;
+    private View llFrom;
     private ImageView ivInopen;
     private ImageView ivInclose;
     private ImageView ivSuopen;
@@ -84,6 +88,7 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
     private TextView tvRequires;
 
     private String counselorId;
+    private boolean isFrom;
     private CounselorDetail mCounselorDetail;
     private ShareDetail shareDetail;
     private ArrayList<CounselorServiceList> mCounselorServiceLis = new ArrayList<>();
@@ -97,6 +102,7 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
     protected View createContentView() {
         View mRootView = inflaterViewWithLayoutID(R.layout.activity_counselor, null);
         counselorId = getIntent().getStringExtra(EXTRA_COUNSELOR_ID);
+        isFrom = getIntent().getBooleanExtra(EXTRA_FROM, false);
         initViews(mRootView);
         getCounselorDetail();
         getCounselorServer();
@@ -106,7 +112,9 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.share:
-                ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url);
+                if (shareDetail != null) {
+                    ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url);
+                }
                 break;
             case R.id.collect:
                 onFavoriteArticle();
@@ -133,6 +141,7 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
     }
 
     private void initViews(View view) {
+        llFrom = view.findViewById(R.id.ll_from);
         tvAdvance = (TextView) view.findViewById(R.id.tv_advance);
         tvCheck = (TextView) view.findViewById(R.id.tv_check);
         tvCollect = (TextView) view.findViewById(R.id.tv_collect);
@@ -157,6 +166,10 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
         ivReclose = (ImageView) view.findViewById(R.id.iv_reclose);
         btnVideo = (Button) view.findViewById(R.id.btn_video);
         btnVideo.setOnClickListener(this);
+        btnEvaluate = (Button) view.findViewById(R.id.btn_evaluate);
+        btnEvaluate.setOnClickListener(this);
+        btnContact = (Button) view.findViewById(R.id.btn_contact);
+        btnContact.setOnClickListener(this);
         cvWorks = (CardView) view.findViewById(R.id.cv_works);
         cvRequires = (CardView) view.findViewById(R.id.cv_requires);
         cvRequires.setOnClickListener(this);
@@ -278,11 +291,18 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
                     } else {
                         tvGuidance.setVisibility(View.GONE);
                     }
-                    if (Util.isEmpty(mCounselorDetail.getLiveId())) {
+                    if (isFrom) {
+                        llFrom.setVisibility(View.VISIBLE);
                         btnVideo.setVisibility(View.GONE);
                     } else {
-                        btnVideo.setVisibility(View.VISIBLE);
+                        llFrom.setVisibility(View.GONE);
+                        if (Util.isEmpty(mCounselorDetail.getLiveId())) {
+                            btnVideo.setVisibility(View.GONE);
+                        } else {
+                            btnVideo.setVisibility(View.VISIBLE);
+                        }
                     }
+                    btnEvaluate.setText(getString(R.string.find_pingjia, mCounselorDetail.getStudentWords()));
                     shareDetail = gson.fromJson(jsonObject.getJSONObject("shareDetail").toString(), new TypeToken<ShareDetail>() {
                     }.getType());
 //                    mLabelList = gson.fromJson(jsonObject.getJSONArray("labelList").toString(), new TypeToken<ArrayList<LabelList>>() {
@@ -315,9 +335,15 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
 
     @Override
     public void onClick(View v) {
+        Bundle bundle;
         switch (v.getId()) {
+            case R.id.btn_evaluate:
+                bundle = new Bundle();
+                bundle.putString(EXTRA_COUNSELOR_ID, mCounselorDetail.getCounselorId());
+                Util.openActivityWithBundle(this, StuEvaluationAcitivity.class, bundle);
+                break;
             case R.id.btn_video:
-                Bundle bundle = new Bundle();
+                bundle = new Bundle();
                 bundle.putString(LiveDetailActivity.EXTRA_LIVE_ID, mCounselorDetail.getLiveId());
                 Util.openActivityWithBundle(this, LiveDetailActivity.class, bundle);
                 break;

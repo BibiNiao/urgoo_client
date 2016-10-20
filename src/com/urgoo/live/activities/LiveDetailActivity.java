@@ -1,6 +1,5 @@
 package com.urgoo.live.activities;
 
-import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,20 +26,20 @@ import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ShareUtil;
 import com.urgoo.common.ZWConfig;
+import com.urgoo.counselor.activities.CounselorDetailActivity;
 import com.urgoo.counselor.biz.CounselorManager;
 import com.urgoo.domain.ShareDetail;
-import com.urgoo.live.adapter.CommentAdapter;
 import com.urgoo.live.adapter.LiveCommentAdapter;
 import com.urgoo.live.biz.LiveManager;
 import com.urgoo.live.event.FollowVideoEvent;
 import com.urgoo.live.model.Comment;
 import com.urgoo.live.model.LiveDetail;
-import com.urgoo.live.model.VideoDetial;
 import com.urgoo.live.view.CommentInputBox;
 import com.urgoo.live.view.CommentInputToolBoxListener;
 import com.urgoo.live.view.UniversalMediaController;
 import com.urgoo.live.view.UniversalVideoView;
 import com.urgoo.net.EventCode;
+import com.zw.express.tool.Util;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -75,6 +74,7 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
     private TextView tvName;
     private TextView tvDate;
     private TextView tvDes;
+    private TextView tvNotice;
     private ImageView ivShare;
     private ImageView ivCollect;
     private ImageView ivBack;
@@ -82,6 +82,7 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
     private CommentInputBox commentInputBox;
     private View mVideoLayout;
     private View mFmVideo;
+    private View llNotice;
     private UniversalVideoView mVideoView;
     private UniversalMediaController mMediaController;
     private int cachedHeight;
@@ -207,9 +208,12 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
 
         mHeaderCounselorView = LayoutInflater.from(this).inflate(R.layout.activity_live_detail_header, recyclerView, false);
         sdvAvater = (SimpleDraweeView) mHeaderCounselorView.findViewById(R.id.sdv_avatar);
+        sdvAvater.setOnClickListener(this);
         tvName = (TextView) mHeaderCounselorView.findViewById(R.id.tv_name);
         tvDate = (TextView) mHeaderCounselorView.findViewById(R.id.tv_date);
         tvDes = (TextView) mHeaderCounselorView.findViewById(R.id.tv_des);
+        tvNotice = (TextView) mHeaderCounselorView.findViewById(R.id.tv_notice);
+        llNotice = mHeaderCounselorView.findViewById(R.id.ll_notice);
 
         adapter = new LiveCommentAdapter(this, comments, liveId);
         recyclerView.setAdapter(adapter);
@@ -341,6 +345,12 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
                     tvDate.setText(getString(R.string.host_time, liveDetail.getLiveStartTime()));
                     tvDes.setText(liveDetail.getIntroduce());
                     mVideoView.setVideoPath(liveDetail.getVideo());
+                    if (Util.isEmpty(liveDetail.getLiveNotice())) {
+                        llNotice.setVisibility(View.GONE);
+                    } else {
+                        tvNotice.setText(liveDetail.getLiveNotice());
+                        llNotice.setVisibility(View.VISIBLE);
+                    }
                     setCollect();
                     shareDetail = gson.fromJson(jsonObject.getJSONObject("shareDetail").toString(), new TypeToken<ShareDetail>() {
                     }.getType());
@@ -417,6 +427,15 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.sdv_avatar:
+                if (!liveDetail.getTargetId().equals("0")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(CounselorDetailActivity.EXTRA_COUNSELOR_ID, liveDetail.getTargetId());
+                    bundle.putString(CounselorDetailActivity.EXTRA_TITLE, liveDetail.getEnName());
+                    bundle.putBoolean(CounselorDetailActivity.EXTRA_FROM, true);
+                    Util.openActivityWithBundle(this, CounselorDetailActivity.class, bundle);
+                }
+                break;
             case R.id.iv_play:
                 if (liveDetail.getStatus().equals("1")) {
                     if (liveDetail.getBalanceTime() > 0) {

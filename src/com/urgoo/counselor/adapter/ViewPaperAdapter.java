@@ -22,7 +22,6 @@ import com.urgoo.common.ShareUtil;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.activities.CounselorDetailActivity;
 import com.urgoo.counselor.activities.CounselorMoreInterface;
-import com.urgoo.counselor.activities.FindCounselorFragment;
 import com.urgoo.counselor.activities.StuEvaluationAcitivity;
 import com.urgoo.counselor.biz.CounselorManager;
 import com.urgoo.counselor.model.Counselor;
@@ -116,7 +115,7 @@ public class ViewPaperAdapter extends PagerAdapter implements View.OnClickListen
         TextView tvTag1 = ViewHolder.get(view, R.id.tv_tag1);
         TextView tvTag2 = ViewHolder.get(view, R.id.tv_tag2);
         showTag(tvTag1, tvTag2, position);
-        tvName.setText(counselorList.get(position).getCnName());
+        tvName.setText(counselorList.get(position).getEnName());
         tvLocation.setText(counselorList.get(position).getHabitualResidence());
         tvSchool.setText(counselorList.get(position).getSchool());
         if (Util.isEmpty(counselorList.get(position).getLinkedin())) {
@@ -187,15 +186,17 @@ public class ViewPaperAdapter extends PagerAdapter implements View.OnClickListen
                 break;
             case R.id.iv_play:
                 position = (Integer) v.getTag();
-                intent = new Intent(Intent.ACTION_VIEW);
-                intent.setDataAndType(Uri.parse(counselorList.get(position).getShareVedio()), "video/mp4");
-                mContext.startActivity(intent);
+                if (!Util.isEmpty(counselorList.get(position).getShareVedio())) {
+                    intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(Uri.parse(counselorList.get(position).getShareVedio()), "video/mp4");
+                    mContext.startActivity(intent);
+                }
                 break;
             case R.id.btn_data:
                 position = (Integer) v.getTag();
                 bundle = new Bundle();
                 bundle.putString(CounselorDetailActivity.EXTRA_COUNSELOR_ID, counselorList.get(position).getCounselorId());
-                bundle.putString(CounselorDetailActivity.EXTRA_TITLE, counselorList.get(position).getCnName());
+                bundle.putString(CounselorDetailActivity.EXTRA_TITLE, counselorList.get(position).getEnName());
                 Util.openActivityWithBundle(mContext, CounselorDetailActivity.class, bundle);
                 break;
             case R.id.iv_in:

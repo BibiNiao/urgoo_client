@@ -23,6 +23,7 @@ import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ShareUtil;
 import com.urgoo.common.ZWConfig;
+import com.urgoo.counselor.activities.CounselorDetailActivity;
 import com.urgoo.counselor.biz.CounselorManager;
 import com.urgoo.domain.ShareDetail;
 import com.urgoo.live.adapter.CommentAdapter;
@@ -35,6 +36,7 @@ import com.urgoo.live.view.CommentInputToolBoxListener;
 import com.urgoo.live.view.UniversalMediaController;
 import com.urgoo.live.view.UniversalVideoView;
 import com.urgoo.net.EventCode;
+import com.zw.express.tool.Util;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -151,6 +153,7 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
 
         mHeaderCounselorView = LayoutInflater.from(this).inflate(R.layout.activity_video_detail_header, recyclerView, false);
         sdvAvater = (SimpleDraweeView) mHeaderCounselorView.findViewById(R.id.sdv_avatar);
+        sdvAvater.setOnClickListener(this);
         tvName = (TextView) mHeaderCounselorView.findViewById(R.id.tv_name);
         tvDate = (TextView) mHeaderCounselorView.findViewById(R.id.tv_date);
         tvDes = (TextView) mHeaderCounselorView.findViewById(R.id.tv_des);
@@ -362,6 +365,15 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.sdv_avatar:
+                if (!videoDetial.getUserInfoSubId().equals("0")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(CounselorDetailActivity.EXTRA_COUNSELOR_ID, videoDetial.getUserInfoSubId());
+                    bundle.putString(CounselorDetailActivity.EXTRA_TITLE, videoDetial.getEnName());
+                    bundle.putBoolean(CounselorDetailActivity.EXTRA_FROM, true);
+                    Util.openActivityWithBundle(this, CounselorDetailActivity.class, bundle);
+                }
+                break;
             case R.id.iv_play:
                 sdvBack.setVisibility(View.GONE);
                 ivPlay.setVisibility(View.GONE);

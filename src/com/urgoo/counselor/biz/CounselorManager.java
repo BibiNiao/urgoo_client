@@ -165,4 +165,14 @@ public class CounselorManager {
         params.put("page", String.valueOf(page));
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetStuEvaluation, ZWConfig.URL_requestGetStuEvaluation, params, callBack);
     }
+
+    /**
+     * 顾问详情 基本信息(非首页)
+     */
+    public void getCounselorInfoMain(StringRequestCallBack callback, String counselorId) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        params.put("counselorId", counselorId);
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeMyCounselor, ZWConfig.URL_requestMyCounselorDetail, params, callback);
+    }
 }

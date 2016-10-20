@@ -19,7 +19,7 @@ import com.urgoo.collect.adapter.FollowConsultantAdapter;
 import com.urgoo.collect.biz.CollectManager;
 import com.urgoo.collect.event.FollowEvent;
 import com.urgoo.collect.model.CounselorEntiy;
-import com.urgoo.counselor.activities.CounselorDetailActivity;
+import com.urgoo.counselor.activities.CounselorMainActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
 import com.zw.express.tool.Util;
@@ -94,9 +94,8 @@ public class FollowCounselorFragment extends BaseFragment implements StringReque
             @Override
             public void onItemClick(View v, int position) {
                 Bundle extras = new Bundle();
-                extras.putString(CounselorDetailActivity.EXTRA_COUNSELOR_ID, adapter.getItem(position).getCounselorId());
-                extras.putString(CounselorDetailActivity.EXTRA_TITLE, adapter.getItem(position).getCnName());
-                Util.openActivityWithBundle(getActivity(), CounselorDetailActivity.class, extras);
+                extras.putString(CounselorMainActivity.EXTRA_COUNSELOR_ID, adapter.getItem(position).getCounselorId());
+                Util.openActivityWithBundle(getActivity(), CounselorMainActivity.class, extras);
             }
         });
     }

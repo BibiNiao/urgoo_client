@@ -35,6 +35,7 @@ public class CounselorDetail {
     private String advanceId;
     private String status;
     private String type;
+    private String studentWords;
 
     @Override
     public String toString() {
@@ -70,6 +71,14 @@ public class CounselorDetail {
                 ", status='" + status + '\'' +
                 ", type='" + type + '\'' +
                 '}';
+    }
+
+    public String getStudentWords() {
+        return studentWords;
+    }
+
+    public void setStudentWords(String studentWords) {
+        this.studentWords = studentWords;
     }
 
     public String getHabitualResidence() {

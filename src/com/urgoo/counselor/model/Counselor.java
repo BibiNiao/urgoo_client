@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Counselor implements Parcelable {
     private String userIcon;
-    private String cnName;
+    private String enName;
     private String shareVedio;
     private String school;
     /**
@@ -45,7 +45,7 @@ public class Counselor implements Parcelable {
 
     protected Counselor(Parcel in) {
         userIcon = in.readString();
-        cnName = in.readString();
+        enName = in.readString();
         shareVedio = in.readString();
         school = in.readString();
         habitualResidence = in.readString();
@@ -77,12 +77,12 @@ public class Counselor implements Parcelable {
         this.userIcon = userIcon;
     }
 
-    public String getCnName() {
-        return cnName;
+    public String getEnName() {
+        return enName;
     }
 
-    public void setCnName(String cnName) {
-        this.cnName = cnName;
+    public void setEnName(String enName) {
+        this.enName = enName;
     }
 
     public String getShareVedio() {
@@ -173,7 +173,7 @@ public class Counselor implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(userIcon);
-        dest.writeString(cnName);
+        dest.writeString(enName);
         dest.writeString(shareVedio);
         dest.writeString(school);
         dest.writeString(habitualResidence);
