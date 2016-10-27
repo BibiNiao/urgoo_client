@@ -209,7 +209,7 @@ public class PlanFragment extends HomeFragment implements View.OnClickListener {
         super.onResponseSuccess(eventCode, result);
         dismissLoadingDialog();
         switch (eventCode) {
-            case newTaskList:
+            case EventCodeGetTaskList:
                 try {
                     JSONObject jsonObject = new JSONObject(result.get("body").toString());
                     Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();

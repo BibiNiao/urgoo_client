@@ -7,6 +7,8 @@ import android.os.Parcelable;
  * Created by bb on 2016/9/28.
  */
 public class UserBean implements Parcelable {
+    private String nickName;
+    private String userIcon;
     /**
      * 英文标签
      */
@@ -68,7 +70,13 @@ public class UserBean implements Parcelable {
      */
     private String schoolCourse;
 
+    public UserBean() {
+
+    }
+
     protected UserBean(Parcel in) {
+        nickName = in.readString();
+        userIcon = in.readString();
         lableNameEn = in.readString();
         gradeName = in.readString();
         lableNameCn = in.readString();
@@ -97,6 +105,22 @@ public class UserBean implements Parcelable {
             return new UserBean[size];
         }
     };
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getUserIcon() {
+        return userIcon;
+    }
+
+    public void setUserIcon(String userIcon) {
+        this.userIcon = userIcon;
+    }
 
     public String getLableNameEn() {
         return lableNameEn;
@@ -225,6 +249,8 @@ public class UserBean implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nickName);
+        dest.writeString(userIcon);
         dest.writeString(lableNameEn);
         dest.writeString(gradeName);
         dest.writeString(lableNameCn);

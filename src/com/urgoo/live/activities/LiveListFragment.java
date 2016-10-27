@@ -84,6 +84,7 @@ public class LiveListFragment extends BaseFragment implements StringRequestCallB
             public void onItemClick(View v, int position) {
                 Bundle extras = new Bundle();
                 extras.putString(LiveDetailActivity.EXTRA_LIVE_ID, String.valueOf(adapter.getItem(position).getLiveId()));
+                extras.putBoolean(LiveDetailActivity.EXTRA_FROM, false);
                 Util.openActivityWithBundle(getActivity(), LiveDetailActivity.class, extras);
             }
         });

@@ -390,7 +390,7 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.iv_share:
                 if (shareDetail != null) {
-                    ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url);
+                    ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, shareDetail.url);
                 }
                 break;
             case R.id.iv_collect:

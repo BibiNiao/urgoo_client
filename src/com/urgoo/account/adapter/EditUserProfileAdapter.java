@@ -30,13 +30,16 @@ public class EditUserProfileAdapter extends BaseAdapter {
         this.user = user;
         mInflater = LayoutInflater.from(context);
         if (items.isEmpty()) {
-            items.add(new SettingItem(mContext.getString(R.string.setting_school), user.getSchoolName()));
-            items.add(new SettingItem(mContext.getString(R.string.setting_type), user.getSchoolCourse()));
-            items.add(new SettingItem(mContext.getString(R.string.setting_grade), user.getGradeName()));
-            items.add(new SettingItem(mContext.getString(R.string.setting_score), user.getSchoolScoreName()));
-            items.add(new SettingItem(mContext.getString(R.string.setting_school_score), user.getExamType().equals("1") ? "已填写" : "未填写"));
-            items.add(new SettingItem(mContext.getString(R.string.setting_awards), user.getAcademicAwardsType().equals("1")  ? "已填写" : "未填写"));
-            items.add(new SettingItem(mContext.getString(R.string.setting_activities), user.getExtracurricularActivitiesStatus().equals("1") ? "已填写" : "未填写"));
+            items.add(new SettingItem(mContext.getString(R.string.setting_nickname), SPManager.getInstance(mContext).getNickName()));
+            items.add(new SettingItem(mContext.getString(R.string.setting_modify), ""));
+
+//            items.add(new SettingItem(mContext.getString(R.string.setting_school), user.getSchoolName()));
+//            items.add(new SettingItem(mContext.getString(R.string.setting_type), user.getSchoolCourse()));
+//            items.add(new SettingItem(mContext.getString(R.string.setting_grade), user.getGradeName()));
+//            items.add(new SettingItem(mContext.getString(R.string.setting_score), user.getSchoolScoreName()));
+//            items.add(new SettingItem(mContext.getString(R.string.setting_school_score), user.getExamType().equals("1") ? "已填写" : "未填写"));
+//            items.add(new SettingItem(mContext.getString(R.string.setting_awards), user.getAcademicAwardsType().equals("1")  ? "已填写" : "未填写"));
+//            items.add(new SettingItem(mContext.getString(R.string.setting_activities), user.getExtracurricularActivitiesStatus().equals("1") ? "已填写" : "未填写"));
         }
     }
 
@@ -78,36 +81,11 @@ public class EditUserProfileAdapter extends BaseAdapter {
             holder.tvSubTitle.setText(item.subTitle);
         }
 
-//        if (position == 1) {
-//            holder.tvSubTitle.setText(SPManager.getInstance(mContext).getBetterCode());
-//            if (SPManager.getInstance(mContext).getBetterCodeStatus() == 1) {
-//                holder.ivNext.setVisibility(View.GONE);
-//            } else {
-//                holder.ivNext.setVisibility(View.VISIBLE);
-//            }
-//        } else {
-//            holder.ivNext.setVisibility(View.VISIBLE);
-//        }
-//        switch (position) {
-//            case 0:
-//                holder.tvSubTitle.setText(SPManager.getInstance(mContext).getNickName());
-//                break;
-//            case 2:
-//                if (!Utils.isEmpty(user.getCountryName()) || !Utils.isEmpty(user.getAreaName())) {
-//                    holder.tvSubTitle.setText(Utils.getRegionDisplay(user.getCountryName(), user.getAreaName()));
-//                }
-//                break;
-//            case 3:
-//                if (user.getSex() == 1) {
-//                    holder.tvSubTitle.setText(mContext.getString(R.string.man));
-//                } else {
-//                    holder.tvSubTitle.setText(mContext.getString(R.string.girl));
-//                }
-//                break;
-//            case 5:
-//                holder.tvSubTitle.setText(SPManager.getInstance(mContext).getIntroduction());
-//                break;
-//        }
+        switch (position) {
+            case 0:
+                holder.tvSubTitle.setText(SPManager.getInstance(mContext).getNickName());
+                break;
+        }
         return convertView;
     }
 

@@ -22,22 +22,35 @@
             android:paddingLeft="25dp"
             android:paddingRight="@dimen/activity_horizontal_margin">
 
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/sdv_avatar"
+            <RelativeLayout
+                android:id="@+id/rl_avatar"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                fresco:actualImageScaleType="focusCrop"
-                fresco:placeholderImage="@drawable/default_useravatar"
-                fresco:placeholderImageScaleType="fitCenter"
-                fresco:roundAsCircle="true" />
+                android:layout_marginTop="20dp">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/sdv_avatar"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    fresco:actualImageScaleType="focusCrop"
+                    fresco:placeholderImage="@drawable/default_useravatar"
+                    fresco:placeholderImageScaleType="fitCenter"
+                    fresco:roundAsCircle="true" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_edit" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/tv_nick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/sdv_avatar"
+                android:layout_below="@id/rl_avatar"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="10dp"
@@ -78,8 +91,8 @@
             android:id="@+id/lv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@null"
             android:background="@color/ffffff"
+            android:divider="@null"
             android:footerDividersEnabled="false"
             android:listSelector="@color/transparent" />
     </LinearLayout>

@@ -36,8 +36,8 @@ import com.urgoo.live.activities.LiveFragment;
 import com.urgoo.main.activities.CounselorFragment;
 import com.urgoo.message.Constant;
 import com.urgoo.message.EaseHelper;
+import com.urgoo.plan.activities.PlanFragment;
 import com.urgoo.profile.activities.ProfileFragment;
-import com.urgoo.service.activities.PlanFragment;
 import com.urgoo.view.TabView;
 import com.zw.express.tool.log.Log;
 

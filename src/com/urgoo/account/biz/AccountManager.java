@@ -70,6 +70,18 @@ public class AccountManager {
     }
 
     /**
+     * 获取登录验证码
+     *
+     * @param phoneNum
+     * @param callback
+     */
+    public void getVerifyCodeLogin(String phoneNum, StringRequestCallBack callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("phoneNum", phoneNum);
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetVerifyCodeLogin, ZWConfig.URL_requestGetLoginCode, params, callback);
+    }
+
+    /**
      * 获取验证码
      *
      * @param phoneNum
@@ -89,13 +101,13 @@ public class AccountManager {
      * @param identifyingCode
      * @param callback
      */
-    public void regist(String nickName, String phoneNum, String identifyingCode, String password, String confirmPassword, StringRequestCallBack callback) {
+    public void regist(String nickName, String phoneNum, String identifyingCode, StringRequestCallBack callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("nickName", nickName);
         params.put("phoneNum", phoneNum);
         params.put("identifyingCode", identifyingCode);
-        params.put("password", PMD5Utils.encodeByMD5(password.toLowerCase()));
-        params.put("confirmPassword", PMD5Utils.encodeByMD5(confirmPassword.toLowerCase()));
+        params.put("password", PMD5Utils.encodeByMD5("12345"));
+        params.put("confirmPassword", PMD5Utils.encodeByMD5("12345"));
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeRegist, ZWConfig.ACTION_ClientRegist, params, callback);
     }
 
@@ -131,5 +143,18 @@ public class AccountManager {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", SPManager.getInstance(mContext).getToken());
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetUserData, ZWConfig.URL_requestGetUserData, params, callback);
+    }
+
+
+    /**
+     * 修改昵称
+     *
+     * @param callback
+     */
+    public void updateNickName(String nickName, StringRequestCallBack callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("nickName", nickName);
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeUpdateNickName, ZWConfig.URL_requestUpdateNickName, params, callback);
     }
 }

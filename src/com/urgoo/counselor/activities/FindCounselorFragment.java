@@ -13,7 +13,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.urgoo.base.BaseFragment;
 import com.urgoo.client.R;
-import com.urgoo.collect.event.FollowEvent;
+import com.urgoo.collect.event.FollowCounselorEvent;
 import com.urgoo.counselor.adapter.ViewPaperAdapter;
 import com.urgoo.counselor.model.Counselor;
 import com.urgoo.main.biz.MainManager;
@@ -66,7 +66,7 @@ public class FindCounselorFragment extends BaseFragment{
         viewPager.setAdapter(viewPaperAdapter);
     }
 
-    public void onEventMainThread(FollowEvent event) {
+    public void onEventMainThread(FollowCounselorEvent event) {
         for (int i = 0; i < counselorList.size(); i++) {
             if (counselorList.get(i).getCounselorId().equals(event.getCounselorId())) {
                 counselorList.get(i).setIsAttention(event.getIsAttention());

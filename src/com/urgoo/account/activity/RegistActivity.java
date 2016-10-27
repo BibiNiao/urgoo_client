@@ -1,7 +1,6 @@
 package com.urgoo.account.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
@@ -9,23 +8,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hyphenate.EMCallBack;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
 import com.urgoo.account.biz.AccountManager;
-import com.urgoo.base.BaseActivity;
+import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.APPManagerTool;
-import com.urgoo.common.PMD5Utils;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.jpush.JpushUtlis;
 import com.urgoo.message.EaseHelper;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.net.EventCode;
 import com.zw.express.tool.Util;
-import com.zw.express.tool.VerificationTool;
-import com.zw.express.tool.log.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,43 +32,35 @@ import cn.jpush.android.api.TagAliasCallback;
 /**
  * Created by bb on 2016/8/15.
  */
-public class RegistActivity extends BaseActivity implements View.OnClickListener {
-    private String question;
+public class RegistActivity extends NavToolBarActivity implements View.OnClickListener {
     private Button btnNext;
     private TextView tvCode;
     private TimeCount timeCount;
     private EditText etPhone;
     private EditText etNickName;
     private EditText etCode;
-    private EditText etPassword;
-    private EditText etConfirmPassword;
 
     private String nickname;
     private String phone;
-    private String password;
-    private String confirmPassword;
     private String code;
     private String userId;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_regist);
-        question = getIntent().getStringExtra("question");
+    protected View createContentView() {
+        View view = inflaterViewWithLayoutID(R.layout.activity_regist, null);
         timeCount = new TimeCount(60000, 1000);
-        initView();
+        setNavTitleText("注册");
+        initViews(view);
+        return view;
     }
 
-    @Override
-    public void initView() {
-        etPhone = (EditText) findViewById(R.id.et_phone);
-        etNickName = (EditText) findViewById(R.id.et_nickname);
-        etCode = (EditText) findViewById(R.id.et_code);
-        etPassword = (EditText) findViewById(R.id.et_password);
-        etConfirmPassword = (EditText) findViewById(R.id.et_password2);
-        tvCode = (TextView) findViewById(R.id.tv_code);
+    public void initViews(View view) {
+        etPhone = (EditText) view.findViewById(R.id.et_phone);
+        etNickName = (EditText) view.findViewById(R.id.et_nickname);
+        etCode = (EditText) view.findViewById(R.id.et_code);
+        tvCode = (TextView) view.findViewById(R.id.tv_code);
         tvCode.setOnClickListener(this);
-        btnNext = (Button) findViewById(R.id.btn_next);
+        btnNext = (Button) view.findViewById(R.id.btn_next);
         btnNext.setOnClickListener(this);
     }
 
@@ -106,13 +93,9 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         AccountManager.getInstance(this).getVerifyCode(phone, this);
     }
 
-    private void regist(String nickName, String phoneNum, String identifyingCode, String password, String confirmPassword) {
+    private void regist(String nickName, String phoneNum, String identifyingCode) {
         showLoadingDialog();
-        AccountManager.getInstance(this).regist(nickName, phoneNum, identifyingCode, password, confirmPassword, this);
-    }
-
-    private void setRegistContent(String userId, String questionJson) {
-        AccountManager.getInstance(this).setRegistContent(userId, questionJson, this);
+        AccountManager.getInstance(this).regist(nickName, phoneNum, identifyingCode, this);
     }
 
     private void loginUrgoo(String username, String password) {
@@ -128,8 +111,6 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         nickname = etNickName.getText().toString();
         phone = etPhone.getText().toString();
         code = etCode.getText().toString();
-        password = etPassword.getText().toString();
-        confirmPassword = etConfirmPassword.getText().toString();
         if (Util.isEmpty(nickname)) {
             showToastSafe("昵称不能为空");
             return false;
@@ -146,27 +127,6 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
             showToastSafe("验证码不能为空");
             return false;
         }
-        if (Util.isEmpty(password)) {
-            showToastSafe("密码不能为空");
-            return false;
-        }
-        if (password.length() >= 6 && password.length() < 18) {
-            if (VerificationTool.verificationStr(password)) {
-                showToastSafe("密码只能由数字和字母组合");
-                return false;
-            }
-        } else {
-            showToastSafe("请输入6到18位的密码");
-            return false;
-        }
-        if (Util.isEmpty(confirmPassword)) {
-            showToastSafe("请输入确认密码");
-            return false;
-        }
-        if (!password.equals(confirmPassword)) {
-            showToastSafe("两个输入密码不一致");
-            return false;
-        }
         return true;
     }
 
@@ -174,8 +134,6 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
     protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
         switch (eventCode) {
             case EventCodeRegistContent:
-                password = PMD5Utils.encodeByMD5(password.toLowerCase());
-                loginUrgoo(phone, password);
                 break;
             case EventCodeLoginUrgoo:
                 dismissLoadingDialog();
@@ -188,11 +146,15 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                     spManager.setNickName(nickname);
                     spManager.setUserName(phone);
                     EaseHelper.longin(hxid, ZWConfig.ACTION_HXPWD);
-                    // 进入主页面
-                    Intent intent = new Intent(RegistActivity.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    finish();
+                    if (new JSONObject(result.get("body").toString()).getInt("question") == 0) {
+                        Util.openActivity(this, SurveyActivity.class);
+                    } else {
+                        // 进入主页面
+                        Intent intent = new Intent(RegistActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
                 } catch (JSONException e) {
                     // TODO 自动生成的 catch 块
                     e.printStackTrace();
@@ -212,7 +174,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                             android.util.Log.d("alias", "设置alias为 :  " + mS);
                         }
                     });
-                    setRegistContent(userId, question);
+                    loginUrgoo(phone, code);
                     registerToHuanXinserver(hxId, ZWConfig.ACTION_HXPWD);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -273,7 +235,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.btn_next:
                 if (check()) {
-                    regist(nickname, phone, code, password, confirmPassword);
+                    regist(nickname, phone, code);
                 }
                 break;
         }

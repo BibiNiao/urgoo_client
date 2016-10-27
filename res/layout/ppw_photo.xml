@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@drawable/ppw_bg"
-              android:orientation="vertical"
-              android:paddingTop="10dp"
-              android:paddingBottom="10dp"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ppw_bg"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
 
     <Button
         android:id="@+id/but_album"
@@ -18,7 +17,7 @@
         android:background="@drawable/ppw_but_bg"
         android:text="本地上传"
         android:textColor="@drawable/ppw_but_bg_tv"
-        android:textSize="15sp"/>
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/but_pictures"
@@ -30,7 +29,7 @@
         android:background="@drawable/ppw_but_bg"
         android:text="拍照上传"
         android:textColor="@drawable/ppw_but_bg_tv"
-        android:textSize="15sp"/>
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/but_cancel"
@@ -43,6 +42,6 @@
         android:background="@drawable/ppw_but_bg2"
         android:text="取消"
         android:textColor="@drawable/ppw_but_bg_tv2"
-        android:textSize="15sp"/>
+        android:textSize="15sp" />
 
 </LinearLayout>

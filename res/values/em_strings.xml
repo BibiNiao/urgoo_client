@@ -22,6 +22,8 @@
     <string name="setting_aboutus">关于我们</string>
     <string name="setting_logout">退出登录</string>
     <string name="my_grade">年纪:%s</string>
+    <string name="setting_nickname">修改昵称</string>
+    <string name="setting_modify">修改资料</string>
     <string name="setting_school">就读学校</string>
     <string name="setting_type">课程类型</string>
     <string name="setting_grade">当前年级</string>
@@ -34,6 +36,10 @@
     <string name="alubm_time">时长:%s</string>
     <string name="host_name">主讲人: %s</string>
     <string name="host_time">时间: %s</string>
+    <string name="plan_time">截止时间 %s</string>
+    <string name="plan_day">剩余%s天</string>
+    <string name="plan_complete">完成%s项</string>
+    <string name="plan_doing">计划中%s项</string>
 
 
     <string name="system_msg">系统消息</string>
@@ -341,7 +347,6 @@
     <string name="dl_msg_local_upload">Upload photo</string>
     <string name="dl_msg_take_photo">Take Photo</string>
     <string name="toast_no_support">No Support!</string>
-    <string name="setting_nickname">Set nickname</string>
     <string name="dl_ok">OK</string>
     <string name="dl_cancel">Cancel</string>
     <string name="toast_nick_not_isnull">nickname cannot be empty!</string>

@@ -5,21 +5,6 @@
     android:background="@drawable/img_loginbg"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/img_fffff_bg">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="注册"
-            android:textColor="@color/tv4e4e4e"
-            android:textSize="17dp" />
-    </RelativeLayout>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -48,9 +33,10 @@
             style="@style/EditText"
             android:layout_toLeftOf="@id/view_user_right"
             android:layout_toRightOf="@id/view_user_left"
-            android:singleLine="true"
             android:hint="昵称"
+            android:maxLength="20"
             android:padding="15dp"
+            android:singleLine="true"
             android:textColorHint="@color/tva0cbc6"
             android:textSize="14dp" />
     </RelativeLayout>
@@ -128,6 +114,7 @@
                 android:hint="验证码"
                 android:inputType="number"
                 android:padding="15dp"
+                android:singleLine="true"
                 android:textColorHint="@color/tva0cbc6"
                 android:textSize="14dp" />
 
@@ -154,71 +141,6 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:background="@drawable/img_fffff_bg" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <View
-            android:id="@+id/view_password_right"
-            android:layout_width="30dp"
-            android:layout_height="46dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/img_fffff_bg" />
-
-        <View
-            android:id="@+id/view_password_left"
-            android:layout_width="30dp"
-            android:layout_height="46dp"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/img_fffff_bg" />
-
-        <EditText
-            android:id="@+id/et_password"
-            style="@style/EditText"
-            android:layout_toLeftOf="@id/view_password_right"
-            android:layout_toRightOf="@id/view_password_left"
-            android:hint="密码"
-            android:inputType="textPassword"
-            android:padding="15dp"
-            android:textColorHint="@color/tva0cbc6"
-            android:textSize="14dp" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@drawable/img_fffff_bg" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <View
-            android:id="@+id/view_password2_right"
-            android:layout_width="30dp"
-            android:layout_height="46dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/img_fffff_bg" />
-
-        <View
-            android:id="@+id/view_password2_left"
-            android:layout_width="30dp"
-            android:layout_height="46dp"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/img_fffff_bg" />
-
-        <EditText
-            android:id="@+id/et_password2"
-            style="@style/EditText"
-            android:layout_toLeftOf="@id/view_password2_right"
-            android:layout_toRightOf="@id/view_password2_left"
-            android:hint="确认密码"
-            android:inputType="textPassword"
-            android:padding="15dp"
-            android:textColorHint="@color/tva0cbc6"
-            android:textSize="14dp" />
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

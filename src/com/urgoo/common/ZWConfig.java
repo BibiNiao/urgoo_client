@@ -162,7 +162,7 @@ public class ZWConfig {
     public final static String ACTION_Task = URGOOURL_BASE + "001/001/task/task";
 
     public final static String ACTION_Regist = URGOOURL_BASE + "001/001/login/regist";
-    public final static String ACTION_Login = URGOOURL_BASE + "001/001/login/clientLogin";
+    public final static String ACTION_Login = URGOOURL_BASE + "001/001/login/clientLoginByCode";
 
     public final static String URGOOURL_BASE2 = " http://10.203.203.124:8080/urgoo/";
     public final static String ACTION_ClientRegist = URGOOURL_BASE + "001/001/login/clientRegist";
@@ -337,9 +337,9 @@ public class ZWConfig {
     //首页顾问推荐列表
     public static final String URL_requestGetMyCounselorListTop = URGOOURL_BASE + "001/001/client/getMyCounselorListTop";
     //顾问列表
-    public static final String URL_requestGetCounselorList = URGOOURL_BASE + "001/001/nosign/getSearchCounselorList2";
+    public static final String URL_requestGetCounselorList = URGOOURL_BASE + "001/001/nosign/getSearchCounselorList111";
     //筛选条件
-    public static final String URL_requestGetCounselorFilter = URGOOURL_BASE + "001/001/nosign/screen2";
+    public static final String URL_requestGetCounselorFilter = URGOOURL_BASE + "001/001/nosign/screen111";
     //所有顾问
     public static final String URL_requestGetMyCounselorList = URGOOURL_BASE + "001/001/client/getMyCounselorList";
     //热门搜索
@@ -361,7 +361,6 @@ public class ZWConfig {
     //Start杨德成 20160718 直播模块接口定义
     public static final String Action_selectZoomLiveNewest = URGOOURL_BASE + "001/001/livePage/selectZoomLiveNewest";
     public static final String Action_selectZoomPassed = URGOOURL_BASE + "001/001/livePage/selectZoomPassed";
-    public static final String Action_selectZoomLiveDetail = URGOOURL_BASE + "001/001/livePage/selectZoomLiveDetail2";
     public static final String Action_selectLiveCommentList = URGOOURL_BASE + "001/001/livecomment/selectLiveCommentList";
     public static final String Action_insertLiveCommentContent = URGOOURL_BASE + "001/001/livecomment/insertLiveCommentContent";
     public static final String Action_addActivitySign = URGOOURL_BASE + "001/001/livePage/addActivitySign";
@@ -403,11 +402,6 @@ public class ZWConfig {
     // 二维码
     public static final String URL_createQrcode = URGOOURL_BASE + "001/001/cqrcode/createQrcode";
 
-    // 规划列表
-    public static final String URL_newTaskList = URGOOURL_BASE + "001/001/task/newTaskList";
-
-    // 规划列表详情
-    public static final String URL_newTaskDetail = URGOOURL_BASE + "001/001/task/newTaskDetail";
     // 规划列表详情
     public static final String URL_newTimeLine = URGOOURL_BASE + "001/001/task/newTimeLine";
     // 消息
@@ -456,5 +450,18 @@ public class ZWConfig {
     public static final String URL_requestDelComment = URGOOURL_BASE + "001/001/comment/delComment";
     //顾问详情
     public static final String URL_requestMyCounselorDetail = URGOOURL_BASE + "/001/001/attention/findMyCounselorDetail";
-
+    // 规划列表详情
+    public static final String URL_requestGetTaskDetail = URGOOURL_BASE + "001/001/task/newTaskDetail";
+    // 规划列表
+    public static final String URL_requestGetTaskList = URGOOURL_BASE + "001/001/task/newTaskList";
+    // 登录验证码
+    public static final String URL_requestGetLoginCode = URGOOURL_BASE + "001/001/login/getIdentifyingCodeLogin";
+    // 直播详情
+    public static final String Action_selectZoomLiveDetail = URGOOURL_BASE + "001/001/livePage/selectZoomLiveDetail111";
+    // 修改用户昵称
+    public static final String URL_requestUpdateNickName = URGOOURL_BASE + "001/001/user/updateUserNickName";
+    // 获取系统消息列表
+    public static final String URL_requestGetMessageList = URGOOURL_BASE + "001/001/information/selectSystemInformationGroup";
+    // 获取系统消息详情
+    public static final String URL_requestGetSysMessageList = URGOOURL_BASE + "001/001/information/selectSystemInformation111";
 }

@@ -59,7 +59,9 @@ import us.zoom.sdk.ZoomSDKInitializeListener;
  */
 public class LiveDetailActivity extends BaseActivity implements Constants, ZoomSDKInitializeListener, MeetingServiceListener, UniversalVideoView.VideoViewCallback, View.OnClickListener {
     public static final String EXTRA_LIVE_ID = "live_id";
+    public static final String EXTRA_FROM = "is_from_detail";
     private String liveId;
+    private boolean isFromDetail;
     private ShareDetail shareDetail;
     private LiveDetail liveDetail;
     private List<Comment> comments = new ArrayList<>();
@@ -102,6 +104,7 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
             registerMeetingServiceListener();
         }
         liveId = getIntent().getStringExtra(EXTRA_LIVE_ID);
+        isFromDetail = getIntent().getBooleanExtra(EXTRA_FROM, false);
         initViews();
         getZoomLiveDetail();
         getCommentList();
@@ -429,11 +432,15 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
         switch (v.getId()) {
             case R.id.sdv_avatar:
                 if (!liveDetail.getTargetId().equals("0")) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString(CounselorDetailActivity.EXTRA_COUNSELOR_ID, liveDetail.getTargetId());
-                    bundle.putString(CounselorDetailActivity.EXTRA_TITLE, liveDetail.getEnName());
-                    bundle.putBoolean(CounselorDetailActivity.EXTRA_FROM, true);
-                    Util.openActivityWithBundle(this, CounselorDetailActivity.class, bundle);
+                    if (isFromDetail) {
+                        finish();
+                    } else {
+                        Bundle bundle = new Bundle();
+                        bundle.putString(CounselorDetailActivity.EXTRA_COUNSELOR_ID, liveDetail.getTargetId());
+                        bundle.putString(CounselorDetailActivity.EXTRA_TITLE, liveDetail.getEnName());
+                        bundle.putBoolean(CounselorDetailActivity.EXTRA_FROM, true);
+                        Util.openActivityWithBundle(this, CounselorDetailActivity.class, bundle);
+                    }
                 }
                 break;
             case R.id.iv_play:
@@ -462,7 +469,7 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
                 break;
             case R.id.iv_share:
                 if (shareDetail != null) {
-                    ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url);
+                    ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, shareDetail.url);
                 }
                 break;
             case R.id.iv_collect:

@@ -30,6 +30,8 @@ import android.widget.Toast;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.data.SPManager;
+import com.urgoo.net.EventCode;
+import com.urgoo.net.StringRequestCallBack;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -151,8 +153,6 @@ public class PickUtils {
      * @param
      */
     public static void doPickPhotoAction(final Activity context) {
-        final Context dialogContext = new ContextThemeWrapper(context,
-                android.R.style.Theme_Light);
         View contentView = context.getLayoutInflater().inflate(
                 R.layout.ppw_photo, null);
         Button but_album = (Button) contentView.findViewById(R.id.but_album);
@@ -168,7 +168,6 @@ public class PickUtils {
         pw.setFocusable(true);
         android.view.WindowManager.LayoutParams params = context
                 .getWindow().getAttributes();
-        params.alpha = 0.5F;
         context.getWindow().setAttributes(params);
         pw.showAtLocation(new View(context), Gravity.CENTER, 0, 0);
         pw.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -332,35 +331,24 @@ public class PickUtils {
      * @param path
      */
     public static void uploadImage(final Activity context, String path) {
-        OkHttpClient client = new OkHttpClient();
-        // mImgUrls为存放图片的url集合
-        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-        //遍历paths中所有图片绝对路径到builder，并约定key如“upload”作为后台接受多张图片的key
-        RequestBody fileBody = RequestBody.create(MediaType.parse("image/png"), new File(path));
-        builder.addFormDataPart("userIconFile", path, fileBody);
-        builder.addFormDataPart("token", SPManager.getInstance(context).getToken());
-        //构建请求体
-        RequestBody requestBody = builder.build();
-        //构建请求
-        Request request = new Request.Builder()
-                .url(ZWConfig.ACTION_updateUserIcon)//地址
-                .post(requestBody)//添加请求体
-                .build();
-        //发送异步请求，同步会报错，Android4.0以后禁止在主线程中进行耗时操作
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d("request = ", String.valueOf(call));
-                Looper.prepare();
-                Toast.makeText(context, "上传头像失败重新上传", Toast.LENGTH_SHORT).show();
-                Looper.loop();
-            }
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.d("response = ", response.body().string());
-            }
-        });
+//        new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                Log.d("request = ", String.valueOf(call));
+//                Looper.prepare();
+//                Toast.makeText(context, "上传头像失败重新上传", Toast.LENGTH_SHORT).show();
+//                Looper.loop();
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                Log.d("response = ", response.body().string());
+//                Looper.prepare();
+//                Toast.makeText(context, "头像修改成功", Toast.LENGTH_SHORT).show();
+//                Looper.loop();
+//            }
+//        }
     }
 
     /**

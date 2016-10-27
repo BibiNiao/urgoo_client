@@ -20,7 +20,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
-import com.urgoo.collect.event.FollowEvent;
+import com.urgoo.collect.event.FollowCounselorEvent;
 import com.urgoo.common.ShareUtil;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.biz.CounselorManager;
@@ -131,18 +131,19 @@ public class CounselorMainActivity extends NavToolBarActivity implements View.On
 
     @Override
     protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
+        dismissLoadingDialog();
         switch (eventCode) {
             case EventCodeCancleFollow:
                 showToastSafe("取消收藏");
                 counselor.setIsAttention("0");
                 onPrepareOptionsMenu(mToolbar.getMenu());
-                EventBus.getDefault().post(new FollowEvent(counselorId, "0"));
+                EventBus.getDefault().post(new FollowCounselorEvent(counselorId, "0"));
                 break;
             case EventCodeAddFollow:
                 showToastSafe("收藏成功");
                 counselor.setIsAttention("1");
                 onPrepareOptionsMenu(mToolbar.getMenu());
-                EventBus.getDefault().post(new FollowEvent(counselorId, "1"));
+                EventBus.getDefault().post(new FollowCounselorEvent(counselorId, "1"));
                 break;
             case EventCodeMyCounselor:
                 try {

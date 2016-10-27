@@ -1,29 +1,24 @@
 package com.urgoo.service.activities;
 
-import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.urgoo.base.BaseActivity;
+import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
 import com.urgoo.domain.TaskEntity;
 import com.urgoo.net.EventCode;
 import com.urgoo.service.biz.ServerManager;
 import com.urgoo.service.model.PlanContentEntity;
 import com.urgoo.view.MyListView;
-import com.zw.express.tool.Util;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,9 +27,7 @@ import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
 
-public class PlanContentActivity extends BaseActivity implements View.OnClickListener {
-
-    private LinearLayout ll_breakss;
+public class PlanContentActivity extends NavToolBarActivity {
     private String type;
     private MyListView plan_listView;
     private ArrayList<PlanContentEntity> mContentEntities = new ArrayList<>();
@@ -44,47 +37,20 @@ public class PlanContentActivity extends BaseActivity implements View.OnClickLis
     private View views;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plan_content);
-        if (!Util.isEmpty(getIntent().getStringExtra("type"))) {
-            type = getIntent().getStringExtra("type");
-            showLoadingDialog();
-            ServerManager.getInstance(PlanContentActivity.this).getPlanContent(this, type);
-        } else {
-            Toast.makeText(PlanContentActivity.this, "网络链接超时，请稍后再试!", Toast.LENGTH_SHORT).show();
-            finish();
-        }
-
-        initview();
-        switch (Integer.valueOf(type)) {
-            case 1:
-                myorder_message_title.setText("语言能力");
-                break;
-            case 2:
-                myorder_message_title.setText("学术能力");
-                break;
-            case 3:
-                myorder_message_title.setText("批判思维");
-                break;
-            case 4:
-                myorder_message_title.setText("领导力");
-                break;
-            case 5:
-                myorder_message_title.setText("自我认知");
-                break;
-            case 6:
-                myorder_message_title.setText("创造力");
-                break;
-        }
+    protected View createContentView() {
+        View view = inflaterViewWithLayoutID(R.layout.activity_plan_content, null);
+        initView(view);
+        setNavTitleText(getIntent().getStringExtra("title"));
+        type = getIntent().getStringExtra("type");
+        showLoadingDialog();
+        ServerManager.getInstance(PlanContentActivity.this).getPlanContent(this, type);
+        return view;
     }
 
-    private void initview() {
-        ll_breakss = (LinearLayout) findViewById(R.id.ll_breakss);
-        plan_listView = (MyListView) findViewById(R.id.plan_listView);
-        myorder_message_title = (TextView) findViewById(R.id.myorder_message_title);
-        views = (View) findViewById(R.id.view);
-        ll_breakss.setOnClickListener(this);
+    private void initView(View view) {
+        plan_listView = (MyListView) view.findViewById(R.id.plan_listView);
+        myorder_message_title = (TextView) view.findViewById(R.id.myorder_message_title);
+        views = view.findViewById(R.id.view);
     }
 
     //  监听返回按钮
@@ -98,15 +64,6 @@ public class PlanContentActivity extends BaseActivity implements View.OnClickLis
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ll_breakss:
-                finish();
-                break;
-        }
-    }
-
-    @Override
     protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
         super.onResponseSuccess(eventCode, result);
         dismissLoadingDialog();
@@ -117,8 +74,6 @@ public class PlanContentActivity extends BaseActivity implements View.OnClickLis
                     Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
                     mContentEntities = gson.fromJson(jsonObject.getString("timeLine"), new TypeToken<ArrayList<PlanContentEntity>>() {
                     }.getType());
-                    Log.d("uuu ", "mContentEntities: " + mContentEntities.toString());
-                    views.setVisibility(View.VISIBLE);
                     mAdapter = new TaskContentListAdapter();
                     plan_listView.setAdapter(mAdapter);
                 } catch (JSONException mE) {

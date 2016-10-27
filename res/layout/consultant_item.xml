@@ -14,6 +14,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="40dp"
             fresco:actualImageScaleType="focusCrop"
             fresco:placeholderImage="@drawable/img_empty_counselor"
@@ -26,7 +27,18 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
             android:src="@drawable/ic_next" />
+
+        <ImageView
+            android:id="@+id/iv_unread"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/iv_next"
+            android:src="@drawable/bg_num"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -34,7 +46,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@id/iv_next"
+            android:layout_toLeftOf="@id/iv_unread"
             android:layout_toRightOf="@id/sdv_avatar"
             android:orientation="vertical">
 
@@ -62,5 +74,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
         android:background="#e9eaea" />
 </LinearLayout>

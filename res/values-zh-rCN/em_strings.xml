@@ -18,6 +18,8 @@
     <string name="my_share">告诉朋友</string>
     <string name="my_help">帮助</string>
     <string name="my_setting">设置</string>
+    <string name="setting_nickname">修改昵称</string>
+    <string name="setting_modify">修改资料</string>
     <string name="setting_psw">修改密码</string>
     <string name="setting_aboutus">关于我们</string>
     <string name="setting_logout">退出登录</string>
@@ -34,6 +36,10 @@
     <string name="alubm_time">时长:%s</string>
     <string name="host_name">主讲人: %s</string>
     <string name="host_time">时间: %s</string>
+    <string name="plan_time">截止时间 %s</string>
+    <string name="plan_day">剩余%s天</string>
+    <string name="plan_complete">完成%s项</string>
+    <string name="plan_doing">计划中%s项</string>
 
 
     <string name="app_name">优顾</string>
@@ -367,7 +373,6 @@
     <string name="dl_msg_local_upload">本地上传</string>
     <string name="dl_msg_take_photo">拍照上传</string>
     <string name="toast_no_support">暂不支持！</string>
-    <string name="setting_nickname">设置昵称</string>
     <string name="dl_ok">确定</string>
     <string name="dl_cancel">取消</string>
     <string name="toast_nick_not_isnull">昵称不能为空！</string>

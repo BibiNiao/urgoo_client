@@ -1,11 +1,15 @@
 package com.urgoo.domain;
 
+import com.urgoo.counselor.model.PositonList;
+import com.urgoo.counselor.model.SurpriseList;
+
 import java.util.List;
 
 /**
  * Created by bb on 2016/7/20.
  */
 public class CounselorFilterInfo {
+    private List<SurpriseList> surpriseList;
     private List<CounselorExperanceList> counselorExperanceList;
     private List<ChineselevelList> chineselevelList;
     private List<ServiceList> serviceList;
@@ -13,6 +17,23 @@ public class CounselorFilterInfo {
     private List<OrgList> orgList;
     private List<CountryTypeList> countryTypeList;
     private List<GenderList> genderList;
+    private List<PositonList> positonList;
+
+    public List<PositonList> getPositonList() {
+        return positonList;
+    }
+
+    public void setPositonList(List<PositonList> positonList) {
+        this.positonList = positonList;
+    }
+
+    public List<SurpriseList> getSurpriseList() {
+        return surpriseList;
+    }
+
+    public void setSurpriseList(List<SurpriseList> surpriseList) {
+        this.surpriseList = surpriseList;
+    }
 
     public List<ServiceModeList> getServiceModeList() {
         return serviceModeList;

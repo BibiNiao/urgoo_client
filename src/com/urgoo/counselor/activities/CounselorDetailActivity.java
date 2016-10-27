@@ -17,7 +17,7 @@ import com.google.gson.reflect.TypeToken;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
-import com.urgoo.collect.event.FollowEvent;
+import com.urgoo.collect.event.FollowCounselorEvent;
 import com.urgoo.common.ShareUtil;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.adapter.CounselorExperienceAdapter;
@@ -228,13 +228,13 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
                 showToastSafe("取消收藏");
                 mCounselorDetail.setIsAttention("0");
                 onPrepareOptionsMenu(mToolbar.getMenu());
-                EventBus.getDefault().post(new FollowEvent(counselorId, "0"));
+                EventBus.getDefault().post(new FollowCounselorEvent(counselorId, "0"));
                 break;
             case EventCodeAddFollow:
                 showToastSafe("收藏成功");
                 mCounselorDetail.setIsAttention("1");
                 onPrepareOptionsMenu(mToolbar.getMenu());
-                EventBus.getDefault().post(new FollowEvent(counselorId, "1"));
+                EventBus.getDefault().post(new FollowCounselorEvent(counselorId, "1"));
                 break;
             case EventCodeSelectCounselorServiceList:
                 try {
@@ -345,6 +345,7 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
             case R.id.btn_video:
                 bundle = new Bundle();
                 bundle.putString(LiveDetailActivity.EXTRA_LIVE_ID, mCounselorDetail.getLiveId());
+                bundle.putBoolean(LiveDetailActivity.EXTRA_FROM, true);
                 Util.openActivityWithBundle(this, LiveDetailActivity.class, bundle);
                 break;
             case R.id.cv_requires:

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ffffff">
+
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_black_back" />
+
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/edit_style_input">
+
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_search" />
+
+            <EditText
+                android:id="@+id/edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="12dp"
+                android:layout_toRightOf="@+id/iv"
+                android:background="@null"
+                android:focusable="true"
+                android:hint="搜索顾问名"
+                android:imeOptions="actionSearch"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:singleLine="true"
+                android:textColor="#dedede"
+                android:textSize="14dp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_btns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#b2b2b2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_rest"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/ffffff"
+                android:text="重置" />
+
+            <Button
+                android:id="@+id/btn_true"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#26a69a"
+                android:text="搜索"
+                android:textColor="@color/ffffff" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/ll_search"
+        android:background="#b2b2b2" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_btns"
+        android:layout_below="@id/view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="来点惊喜"
+                android:textColor="#26a69a"
+                android:textSize="14dp" />
+
+            <com.urgoo.view.MyListView
+                android:id="@+id/lv_surprise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ffffff"
+                android:cacheColorHint="@android:color/transparent"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:footerDividersEnabled="false"
+                android:listSelector="@color/transparent"
+                android:scrollbars="none" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="服务类型搜索"
+                android:textColor="#26a69a"
+                android:textSize="14dp" />
+
+            <com.urgoo.view.MyListView
+                android:id="@+id/lv_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ffffff"
+                android:cacheColorHint="@android:color/transparent"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:footerDividersEnabled="false"
+                android:listSelector="@color/transparent"
+                android:scrollbars="none" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="顾问来自"
+                android:textColor="#26a69a"
+                android:textSize="14dp" />
+
+            <com.urgoo.view.MyListView
+                android:id="@+id/lv_from"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ffffff"
+                android:cacheColorHint="@android:color/transparent"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:footerDividersEnabled="false"
+                android:listSelector="@color/transparent"
+                android:scrollbars="none" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="顾问性别"
+                android:textColor="#26a69a"
+                android:textSize="14dp" />
+
+            <com.urgoo.view.MyListView
+                android:id="@+id/lv_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ffffff"
+                android:cacheColorHint="@android:color/transparent"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:footerDividersEnabled="false"
+                android:listSelector="@color/transparent"
+                android:scrollbars="none" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="顾问位置"
+                android:textColor="#26a69a"
+                android:textSize="14dp" />
+
+            <com.urgoo.view.MyListView
+                android:id="@+id/lv_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ffffff"
+                android:cacheColorHint="@android:color/transparent"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:footerDividersEnabled="false"
+                android:listSelector="@color/transparent"
+                android:scrollbars="none" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="工作年数"
+                android:textColor="#26a69a"
+                android:textSize="14dp" />
+
+            <com.urgoo.view.MyListView
+                android:id="@+id/lv_year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/ffffff"
+                android:cacheColorHint="@android:color/transparent"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:footerDividersEnabled="false"
+                android:listSelector="@color/transparent"
+                android:scrollbars="none" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -17,7 +17,7 @@ import com.urgoo.base.BaseFragment;
 import com.urgoo.client.R;
 import com.urgoo.collect.adapter.FollowConsultantAdapter;
 import com.urgoo.collect.biz.CollectManager;
-import com.urgoo.collect.event.FollowEvent;
+import com.urgoo.collect.event.FollowCounselorEvent;
 import com.urgoo.collect.model.CounselorEntiy;
 import com.urgoo.counselor.activities.CounselorMainActivity;
 import com.urgoo.net.EventCode;
@@ -55,7 +55,7 @@ public class FollowCounselorFragment extends BaseFragment implements StringReque
         CollectManager.getInstance(getActivity()).followConsultants(this, currentPage);
     }
 
-    public void onEventMainThread(FollowEvent event) {
+    public void onEventMainThread(FollowCounselorEvent event) {
         isOther = true;
         currentPage = 0;
         getCounselorList();

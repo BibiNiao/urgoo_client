@@ -1,46 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
-    >
-
-    <RelativeLayout
-        android:id="@+id/rrl"
-        android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:background="#26BDAB">
-
-        <LinearLayout
-            android:id="@+id/ll_breakss"
-            android:layout_width="45dip"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/img_myorder_title_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="11dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/urgoo_title_back"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/myorder_message_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="语言能力"
-            android:textColor="#fff"
-            android:textSize="16sp"/>
-
-    </RelativeLayout>
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,8 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            >
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/im1"
@@ -64,8 +26,7 @@
                 android:background="@drawable/dian_lv"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="10sp"
-                />
+                android:textSize="10sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,15 +36,14 @@
                 android:layout_toRightOf="@+id/im1"
                 android:text="已完成任务"
                 android:textColor="#434343"
-                android:textSize="11sp"/>
+                android:textSize="11sp" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            >
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/im2"
@@ -94,8 +54,7 @@
                 android:background="@drawable/dian_hui"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="10sp"
-                />
+                android:textSize="10sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -105,7 +64,7 @@
                 android:layout_toRightOf="@+id/im2"
                 android:text="计划中的任务"
                 android:textColor="#434343"
-                android:textSize="11sp"/>
+                android:textSize="11sp" />
         </RelativeLayout>
 
     </LinearLayout>
@@ -122,22 +81,20 @@
             android:paddingBottom="50dp">
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/img_da"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:background="@drawable/dian_lv"
-                />
+                android:visibility="gone" />
 
             <View
-                android:visibility="gone"
                 android:id="@+id/view"
                 android:layout_width="2dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="8.5dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/dian_lv"
-                />
+                android:visibility="gone" />
 
             <com.urgoo.view.MyListView
                 android:id="@+id/plan_listView"
@@ -145,8 +102,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/white"
                 android:divider="@null"
-                android:listSelector="@android:color/transparent"
-                />
+                android:listSelector="@android:color/transparent" />
 
         </LinearLayout>
 

@@ -1,6 +1,5 @@
 package com.urgoo.service.activities;
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -17,7 +16,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.urgoo.base.BaseActivity;
+import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.business.imageLoadBusiness;
 import com.urgoo.client.R;
 import com.urgoo.domain.TaskEntity;
@@ -35,9 +34,7 @@ import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
 
-public class TaskContentActivity extends BaseActivity implements View.OnClickListener {
-
-    private LinearLayout ll_break;
+public class TaskContentActivity extends NavToolBarActivity {
     private MyListView mListView;
     private ArrayList<PlanTaskEntity> mContentEntities = new ArrayList<>();
     private ArrayList<PlanTaskEntity.AttachedFile> mFiles = new ArrayList<>();
@@ -48,9 +45,10 @@ public class TaskContentActivity extends BaseActivity implements View.OnClickLis
     private MyScrollView sw_pl;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task_content);
+    protected View createContentView() {
+        View view = inflaterViewWithLayoutID(R.layout.activity_task_content, null);
+        initViews(view);
+        setNavTitleText("任务详情");
         if (!Util.isEmpty(getIntent().getStringExtra("taskId"))) {
             taskId = getIntent().getStringExtra("taskId");
             ServerManager.getInstance(TaskContentActivity.this).getTaskContent(this, taskId);
@@ -58,26 +56,15 @@ public class TaskContentActivity extends BaseActivity implements View.OnClickLis
             Toast.makeText(TaskContentActivity.this, "网络链接超时，请稍后再试!", Toast.LENGTH_SHORT).show();
             finish();
         }
-        initviews();
+        return view;
     }
 
-    private void initviews() {
-        ll_break = (LinearLayout) findViewById(R.id.ll_breakss);
-        ll_break.setOnClickListener(this);
-        mListView = (MyListView) findViewById(R.id.tasak_cont_listView);
-        tv_task_titele = (TextView) findViewById(R.id.tv_task_titele);
-        tv_task_content = (TextView) findViewById(R.id.tv_task_content);
-        sw_pl = (MyScrollView) findViewById(R.id.sw_pl);
+    private void initViews(View view) {
+        mListView = (MyListView) view.findViewById(R.id.tasak_cont_listView);
+        tv_task_titele = (TextView) view.findViewById(R.id.tv_task_titele);
+        tv_task_content = (TextView) view.findViewById(R.id.tv_task_content);
+        sw_pl = (MyScrollView) view.findViewById(R.id.sw_pl);
         MyAdapter = new TaskContentListAdapter();
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ll_breakss:
-                finish();
-                break;
-        }
     }
 
     public class TaskContentListAdapter extends BaseAdapter {
@@ -168,7 +155,7 @@ public class TaskContentActivity extends BaseActivity implements View.OnClickLis
         super.onResponseSuccess(eventCode, result);
         dismissLoadingDialog();
         switch (eventCode) {
-            case newTaskDetail:
+            case EventCodeGetTaskDetial:
                 try {
                     JSONObject jsonObject = new JSONObject(result.get("body").toString());
                     JSONObject jsonObjects = jsonObject.getJSONObject("taskDetail");

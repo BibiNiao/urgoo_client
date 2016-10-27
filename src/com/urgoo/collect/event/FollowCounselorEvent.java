@@ -1,10 +1,10 @@
 package com.urgoo.collect.event;
 
-public class FollowEvent {
+public class FollowCounselorEvent {
     private String counselorId;
     private String isAttention;
 
-    public FollowEvent(String counselorId, String isAttention) {
+    public FollowCounselorEvent(String counselorId, String isAttention) {
         this.counselorId = counselorId;
         this.isAttention = isAttention;
     }

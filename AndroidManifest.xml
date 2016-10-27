@@ -528,6 +528,26 @@
         <activity
             android:name="com.urgoo.counselor.activities.CounselorMainActivity"
             android:screenOrientation="portrait" />
+        <!-- 搜索顾问 -->
+        <activity
+            android:name="com.urgoo.counselor.activities.CounselorFilterActivity"
+            android:screenOrientation="portrait" />
+        <!-- 搜索结果 -->
+        <activity
+            android:name="com.urgoo.counselor.activities.SearchResultAcivity"
+            android:screenOrientation="portrait" />
+        <!-- 修改昵称 -->
+        <activity
+            android:name="com.urgoo.account.activity.EditNickNameActivity"
+            android:screenOrientation="portrait" />
+        <!-- 系统消息列表 -->
+        <activity
+            android:name="com.urgoo.message.activities.SysMessageActivity"
+            android:screenOrientation="portrait" />
+        <!-- 系统消息列表 -->
+        <activity
+            android:name="com.urgoo.message.activities.SysMessageDetailActivity"
+            android:screenOrientation="portrait" />
 
         <!-- 设置环信应用的AppKey -->
         <meta-data

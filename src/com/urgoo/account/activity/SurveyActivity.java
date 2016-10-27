@@ -1,5 +1,6 @@
 package com.urgoo.account.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -14,10 +15,13 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.urgoo.account.biz.AccountManager;
 import com.urgoo.account.model.SurveyContent;
 import com.urgoo.account.model.SurveyInfo;
 import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
+import com.urgoo.message.activities.MainActivity;
+import com.urgoo.net.EventCode;
 import com.zw.express.tool.Util;
 
 import org.json.JSONArray;
@@ -26,14 +30,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by bb on 2016/8/15.
  */
 public class SurveyActivity extends BaseActivity implements View.OnClickListener {
     public static final String SurveyInfo = "surveyInfo";
-    private String questionList;
     private List<SurveyInfo> surveyInfos;
     private List<SurveyContent> questions;
     private int page = 0;
@@ -47,11 +49,31 @@ public class SurveyActivity extends BaseActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
-        questionList = getIntent().getStringExtra(SurveyInfo);
-        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
-        surveyInfos = gson.fromJson(questionList, new TypeToken<List<SurveyInfo>>() {
-        }.getType());
-        initView();
+        getQuestionList();
+    }
+
+    @Override
+    protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
+        dismissLoadingDialog();
+        switch (eventCode) {
+            case EventCodeRegistContent:
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+                break;
+            case EventCodeQuestionList:
+                try {
+                    JSONObject jsonObject = new JSONObject(result.getString("body").toString());
+                    Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
+                    surveyInfos = gson.fromJson(jsonObject.getString("questionList"), new TypeToken<List<SurveyInfo>>() {
+                    }.getType());
+                    initView();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
     }
 
     @Override
@@ -185,10 +207,12 @@ public class SurveyActivity extends BaseActivity implements View.OnClickListener
      */
     private void toRegist() {
         if (page == surveyInfos.size() - 1) {
-            Bundle bundle = new Bundle();
-            bundle.putString("question", questionArray.toString());
-            Util.openActivityWithBundle(SurveyActivity.this, RegistActivity.class, bundle);
-            finish();
+            setRegistContent(spManager.getUserId(), questionArray.toString());
+
+//            Bundle bundle = new Bundle();
+//            bundle.putString("question", questionArray.toString());
+//            Util.openActivityWithBundle(SurveyActivity.this, RegistActivity.class, bundle);
+//            finish();
         } else {
             page++;
             llQuestion.removeAllViews();
@@ -210,6 +234,15 @@ public class SurveyActivity extends BaseActivity implements View.OnClickListener
         return false;
     }
 
+    private void getQuestionList() {
+        showLoadingDialog();
+        AccountManager.getInstance(this).selectQuestionListAll(this);
+    }
+
+    private void setRegistContent(String userId, String questionJson) {
+        AccountManager.getInstance(this).setRegistContent(userId, questionJson, this);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -222,8 +255,9 @@ public class SurveyActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.back:
                 if (page == 0) {
-                    finish();
+                    v.setVisibility(View.GONE);
                 } else {
+                    v.setVisibility(View.VISIBLE);
                     page--;
                     llQuestion.removeAllViews();
                     initView();

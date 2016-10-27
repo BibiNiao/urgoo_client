@@ -8,7 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.backends.pipeline.PipelineDraweeControllerBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerviewViewHolder;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.urgoo.Interface.OnItemClickListener;
@@ -75,9 +80,17 @@ public class FollowVideoAdapter extends UltimateViewAdapter<FollowVideoAdapter.V
     public void onBindViewHolder(FollowVideoAdapter.ViewHolder holder, int position) {
         if (position < getAdapterItemCount()) {
             Video video = getItem(position);
-            holder.sdvLive.setImageURI(Uri.parse(video.getPic()));
             holder.tvTitle.setText(video.getPerson());
             holder.tvDes.setText(video.getTitle());
+            ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(video.getPic()))
+                    .setLocalThumbnailPreviewsEnabled(true)
+                    .setResizeOptions(new ResizeOptions(225, 225))
+                    .build();
+
+            PipelineDraweeControllerBuilder controller = Fresco.newDraweeControllerBuilder();
+            controller.setImageRequest(request);
+            controller.setOldController(holder.sdvLive.getController());
+            holder.sdvLive.setController(controller.build());
         }
     }
 

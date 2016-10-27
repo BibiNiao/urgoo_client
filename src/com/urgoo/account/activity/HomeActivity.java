@@ -29,11 +29,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.btn_regist).setOnClickListener(this);
     }
 
-    private void getQuestionList() {
-        showLoadingDialog();
-        AccountManager.getInstance(this).selectQuestionListAll(this);
-    }
-
     @Override
     protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
         dismissLoadingDialog();
@@ -58,7 +53,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 Util.openActivity(this, LoginActivity.class);
                 break;
             case R.id.btn_regist:
-                getQuestionList();
+                Util.openActivity(this, RegistActivity.class);
+
+//                getQuestionList();
                 break;
         }
     }

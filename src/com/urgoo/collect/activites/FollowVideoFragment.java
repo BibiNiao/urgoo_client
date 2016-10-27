@@ -17,14 +17,11 @@ import com.urgoo.base.BaseFragment;
 import com.urgoo.client.R;
 import com.urgoo.collect.adapter.FollowVideoAdapter;
 import com.urgoo.collect.biz.CollectManager;
-import com.urgoo.collect.event.FollowEvent;
-import com.urgoo.collect.model.CounselorEntiy;
 import com.urgoo.collect.model.Video;
 import com.urgoo.live.activities.AlbumActivity;
 import com.urgoo.live.activities.LiveDetailActivity;
 import com.urgoo.live.activities.VideoDetailActivity;
-import com.urgoo.live.model.AlbumDetail;
-import com.urgoo.live.model.LiveDetail;
+import com.urgoo.live.event.FollowVideoEvent;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
 import com.zw.express.tool.Util;
@@ -56,7 +53,7 @@ public class FollowVideoFragment extends BaseFragment implements StringRequestCa
         return viewContent;
     }
 
-    public void onEventMainThread(FollowEvent event) {
+    public void onEventMainThread(FollowVideoEvent event) {
         isOther = true;
         currentPage = 0;
         getVideoList();
@@ -110,6 +107,7 @@ public class FollowVideoFragment extends BaseFragment implements StringRequestCa
                         break;
                     case "6":
                         extras.putString(LiveDetailActivity.EXTRA_LIVE_ID, adapter.getItem(position).getTargetId());
+                        extras.putBoolean(LiveDetailActivity.EXTRA_FROM, false);
                         Util.openActivityWithBundle(getActivity(), LiveDetailActivity.class, extras);
                         break;
                 }

@@ -35,17 +35,18 @@ public class CounselorManager {
      * @param callback
      * @param page
      */
-    public void getCounselorList(StringRequestCallBack callback, int page, String countryType, String gender,
-                                 String serviceType, String serviceMode, String chineseLevelType, String counselorExperanceType, String organizationType, String name) {
+    public void getCounselorList(StringRequestCallBack callback, int page, String name, String countryType, String gender,
+                                 String serviceType, String chineseLevelType, String counselorExperanceType, String organizationType, String positionType, String surpriseType) {
         HashMap<String, String> params = new HashMap<>();
+        params.put("name", name);
         params.put("countryType", countryType);
         params.put("gender", gender);
         params.put("serviceType", serviceType);
-        params.put("serviceMode", serviceMode);
         params.put("chineseLevelType", chineseLevelType);
         params.put("counselorExperanceType", counselorExperanceType);
         params.put("organizationType", organizationType);
-        params.put("name", name);
+        params.put("positionType", positionType);
+        params.put("surpriseType", surpriseType);
         params.put("page", String.valueOf(page));
         params.put("token", SPManager.getInstance(mContext).getToken());
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetCounselorList, ZWConfig.URL_requestGetCounselorList, params, callback);

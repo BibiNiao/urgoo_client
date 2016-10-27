@@ -17,10 +17,11 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.urgoo.client.R;
-import com.urgoo.collect.event.FollowEvent;
+import com.urgoo.collect.event.FollowCounselorEvent;
 import com.urgoo.common.ShareUtil;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.activities.CounselorDetailActivity;
+import com.urgoo.counselor.activities.CounselorFilterActivity;
 import com.urgoo.counselor.activities.CounselorMoreInterface;
 import com.urgoo.counselor.activities.StuEvaluationAcitivity;
 import com.urgoo.counselor.biz.CounselorManager;
@@ -79,6 +80,8 @@ public class ViewPaperAdapter extends PagerAdapter implements View.OnClickListen
         SimpleDraweeView sdvAvatar = ViewHolder.get(view, R.id.sdv_avatar);
         RelativeLayout rlAvatar = ViewHolder.get(view, R.id.rl_avatar);
         RatingBar ratingbar = ViewHolder.get(view, R.id.ratingbar);
+        ImageView ivSearch = ViewHolder.get(view, R.id.iv_search);
+        ivSearch.setOnClickListener(this);
         Button btnData = ViewHolder.get(view, R.id.btn_data);
         btnData.setTag(position);
         btnData.setOnClickListener(this);
@@ -163,7 +166,6 @@ public class ViewPaperAdapter extends PagerAdapter implements View.OnClickListen
     @Override
     public void setPrimaryItem(ViewGroup container, int position, Object object) {
         if (counselorList.size() > 0 && isLoad) {
-            System.out.println("调用接口" + position);
             if (position == (page * 10) + 8) {
                 isLoad = false;
                 listener.loadMore();
@@ -178,6 +180,9 @@ public class ViewPaperAdapter extends PagerAdapter implements View.OnClickListen
         Intent intent;
         Bundle bundle;
         switch (v.getId()) {
+            case R.id.iv_search:
+                Util.openActivity(mContext, CounselorFilterActivity.class);
+                break;
             case R.id.tv_evaluate:
                 position = (Integer) v.getTag();
                 bundle = new Bundle();
@@ -251,7 +256,7 @@ public class ViewPaperAdapter extends PagerAdapter implements View.OnClickListen
                             Util.shortToast(mContext, "取消收藏");
                             counselor.setIsAttention("0");
                             setCollectStatus(v, "0");
-                            EventBus.getDefault().post(new FollowEvent(counselor.getCounselorId(), counselor.getIsAttention()));
+                            EventBus.getDefault().post(new FollowCounselorEvent(counselor.getCounselorId(), counselor.getIsAttention()));
                         } else {
                             Util.shortToast(mContext, "操作失败");
                         }
@@ -280,7 +285,7 @@ public class ViewPaperAdapter extends PagerAdapter implements View.OnClickListen
                             Util.shortToast(mContext, "收藏成功");
                             counselor.setIsAttention("1");
                             setCollectStatus(v, "1");
-                            EventBus.getDefault().post(new FollowEvent(counselor.getCounselorId(), counselor.getIsAttention()));
+                            EventBus.getDefault().post(new FollowCounselorEvent(counselor.getCounselorId(), counselor.getIsAttention()));
                         } else {
                             Util.shortToast(mContext, "操作失败");
                         }

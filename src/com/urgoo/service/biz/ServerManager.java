@@ -37,7 +37,7 @@ public class ServerManager {
     public void getPlan(StringRequestCallBack callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", SPManager.getInstance(mContext).getToken());
-        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.newTaskList, ZWConfig.URL_newTaskList, params, callback);
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetTaskList, ZWConfig.URL_requestGetTaskList, params, callback);
     }
 
     /**
@@ -49,7 +49,7 @@ public class ServerManager {
         HashMap<String, String> params = new HashMap<>();
         params.put("token", SPManager.getInstance(mContext).getToken());
         params.put("taskId", taskId);
-        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.newTaskDetail, ZWConfig.URL_newTaskDetail, params, callback);
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetTaskDetial, ZWConfig.URL_requestGetTaskDetail, params, callback);
     }
 
     /**

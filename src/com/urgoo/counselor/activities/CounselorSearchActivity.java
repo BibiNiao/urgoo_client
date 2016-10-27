@@ -102,7 +102,7 @@ public class CounselorSearchActivity extends BaseActivity implements View.OnClic
                 page = 0;
                 isUpdate = true;
                 showLoadingDialog();
-                getTranslateCounselor(page, "", "", "", name);
+//                getTranslateCounselor(page, "", "", "", name);
             }
         });
 
@@ -117,7 +117,7 @@ public class CounselorSearchActivity extends BaseActivity implements View.OnClic
                         page = 0;
                         isUpdate = true;
                         showLoadingDialog();
-                        getTranslateCounselor(page, countryType, gender, serviceType, etSearch.getText().toString());
+//                        getTranslateCounselor(page, countryType, gender, serviceType, etSearch.getText().toString());
                     }
                     etSearch.setText("");
                     return true;
@@ -156,7 +156,7 @@ public class CounselorSearchActivity extends BaseActivity implements View.OnClic
             public void loadMore(int itemsCount, int maxLastVisiblePosition) {
                 page++;
                 isUpdate = false;
-                getTranslateCounselor(page, countryType, gender, serviceType, etSearch.getText().toString());
+//                getTranslateCounselor(page, countryType, gender, serviceType, etSearch.getText().toString());
             }
         });
 
@@ -216,7 +216,7 @@ public class CounselorSearchActivity extends BaseActivity implements View.OnClic
                 page = 0;
                 isUpdate = true;
                 showLoadingDialog();
-                getTranslateCounselor(page, countryType, gender, serviceType, etSearch.getText().toString());
+//                getTranslateCounselor(page, countryType, gender, serviceType, etSearch.getText().toString());
             }
 
         });
@@ -227,9 +227,9 @@ public class CounselorSearchActivity extends BaseActivity implements View.OnClic
         CounselorManager.getInstance(this).getHotFilter(this);
     }
 
-    private void getTranslateCounselor(int page, String countryType, String gender, String serviceType, String name) {
-        CounselorManager.getInstance(this).getCounselorList(this, page, countryType, gender, serviceType, "", "", "", "", name);
-    }
+//    private void getTranslateCounselor(int page, String countryType, String gender, String serviceType, String name) {
+//        CounselorManager.getInstance(this).getCounselorList(this, page, countryType, gender, serviceType, "", "", "", "", name);
+//    }
 
     @Override
     protected void onResponseSuccess(EventCode eventCode, JSONObject result) {

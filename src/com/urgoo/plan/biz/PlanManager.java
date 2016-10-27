@@ -40,4 +40,16 @@ public class PlanManager {
         params.put("token", SPManager.getInstance(mContext).getToken());
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetStudentTaskListNewest, ZWConfig.URL_getStudentTaskListNewest, params, callback);
     }
+
+    /**
+     * 规划列表
+     *
+     * @param callback
+     */
+    public void getPlan(StringRequestCallBack callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetTaskList, ZWConfig.URL_requestGetTaskList, params, callback);
+    }
+
 }

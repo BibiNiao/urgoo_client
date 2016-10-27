@@ -305,7 +305,7 @@ public class CounselorList extends BaseActivity implements StringRequestCallBack
                 mDropDownMenu.setTabText(position == 0 ? headers[0] : counselorFilterInfo.getServiceList().get(position).getServiceName());
                 mDropDownMenu.closeMenu();
                 clearWithOut();
-                getTranslateCounselor(page, countryType, gender, serviceType, serviceMode, chineseLevelType, counselorExperanceType, organizationType);
+//                getTranslateCounselor(page, countryType, gender, serviceType, serviceMode, chineseLevelType, counselorExperanceType, organizationType);
             }
         });
 
@@ -322,7 +322,7 @@ public class CounselorList extends BaseActivity implements StringRequestCallBack
                 mDropDownMenu.setTabText(position == 0 ? headers[1] : counselorFilterInfo.getCountryTypeList().get(position).getCountryName());
                 mDropDownMenu.closeMenu();
                 clearWithOut();
-                getTranslateCounselor(page, countryType, gender, serviceType, serviceMode, chineseLevelType, counselorExperanceType, organizationType);
+//                getTranslateCounselor(page, countryType, gender, serviceType, serviceMode, chineseLevelType, counselorExperanceType, organizationType);
             }
         });
 
@@ -356,7 +356,7 @@ public class CounselorList extends BaseActivity implements StringRequestCallBack
                 if (isAll) {
                     getMyCounselorList(page);
                 } else {
-                    getTranslateCounselor(page, countryType, gender, serviceType, serviceMode, chineseLevelType, counselorExperanceType, organizationType);
+//                    getTranslateCounselor(page, countryType, gender, serviceType, serviceMode, chineseLevelType, counselorExperanceType, organizationType);
                 }
             }
         });
@@ -367,11 +367,11 @@ public class CounselorList extends BaseActivity implements StringRequestCallBack
         mDropDownMenu.setDropDownMenu(Arrays.asList(headers), popupViews, recyclerView);
     }
 
-    private void getTranslateCounselor(int page, String countryType, String gender, String serviceType, String serviceMode,
-                                       String chineseLevelType, String counselorExperanceType, String organizationType) {
-        CounselorManager.getInstance(this).getCounselorList(this, page, countryType, gender, serviceType,
-                serviceMode, chineseLevelType, counselorExperanceType, organizationType, "");
-    }
+//    private void getTranslateCounselor(int page, String countryType, String gender, String serviceType, String serviceMode,
+//                                       String chineseLevelType, String counselorExperanceType, String organizationType) {
+//        CounselorManager.getInstance(this).getCounselorList(this, page, countryType, gender, serviceType,
+//                serviceMode, chineseLevelType, counselorExperanceType, organizationType, "");
+//    }
 
     private void getMyCounselorList(int page) {
         CounselorManager.getInstance(this).getMyCounselorList(page, this);
@@ -529,7 +529,7 @@ public class CounselorList extends BaseActivity implements StringRequestCallBack
                 isAll = false;
                 page = 0;
                 isUpdate = true;
-                getTranslateCounselor(page, countryType, gender, serviceType, serviceMode, chineseLevelType, counselorExperanceType, organizationType);
+//                getTranslateCounselor(page, countryType, gender, serviceType, serviceMode, chineseLevelType, counselorExperanceType, organizationType);
                 mDropDownMenu.closeMenu();
                 break;
             case R.id.tv_reset:

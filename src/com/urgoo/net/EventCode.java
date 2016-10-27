@@ -114,6 +114,10 @@ public enum EventCode {
      */
     EventCodeGetVerifyCode,
     /**
+     * 获取登录验证码
+     */
+    EventCodeGetVerifyCodeLogin,
+    /**
      * 注册
      */
     EventCodeRegist,
@@ -136,11 +140,11 @@ public enum EventCode {
     /**
      * 规划列表
      */
-    newTaskList,
+    EventCodeGetTaskList,
     /**
      * 规划列表详情
      */
-    newTaskDetail,
+    EventCodeGetTaskDetial,
     /**
      * 规划详情
      */
@@ -269,4 +273,16 @@ public enum EventCode {
      * 顾问介绍(非首页)
      */
     EventCodeMyCounselor,
+    /**
+     * 修改昵称
+     */
+    EventCodeUpdateNickName,
+    /**
+     * 系统消息列表
+     */
+    EventCodeSysMessageList,
+    /**
+     * 系统消息详情列表
+     */
+    EventCodeSysMessageDetailList,
 }
