@@ -30,6 +30,16 @@
             android:textSize="14dp" />
 
         <ImageView
+            android:id="@+id/iv_unread"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/iv_next"
+            android:src="@drawable/bg_num"
+            android:visibility="gone"/>
+
+        <ImageView
             android:id="@+id/iv_next"
             android:layout_width="8dp"
             android:layout_height="14dp"

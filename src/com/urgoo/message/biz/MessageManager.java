@@ -77,11 +77,11 @@ public class MessageManager {
      * @param unread
      * @param callback
      */
-    public void selectInformationUserDetail(String informationId, String unread, StringRequestCallBack callback) {
+    public void selectInformationUserDetail(int informationId, int unread, StringRequestCallBack callback) {
         HashMap<String, String> params = new HashMap<>();
         params.put("termType", "2");
-        params.put("informationId", informationId);
-        params.put("unread",unread);
+        params.put("informationId", String.valueOf(informationId));
+        params.put("unread", String.valueOf(unread));
         params.put("token", SPManager.getInstance(mContext).getToken());
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeUpdateUserMessage, ZWConfig.Action_updateUserInformation, params, callback);
     }

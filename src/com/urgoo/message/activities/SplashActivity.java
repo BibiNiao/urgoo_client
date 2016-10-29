@@ -66,6 +66,10 @@ public class SplashActivity extends BaseActivity {
      * 顾问详情
      */
     public static final int TARGET_COUNSELOR = 5;
+    /**
+     * 顾问详情
+     */
+    public static final int TARGET_VIDEO_DETAIL = 6;
 
     protected static final int CODE_UPDATE_DIALOG = 0;
     protected static final int CODE_URL_ERROR = 1;

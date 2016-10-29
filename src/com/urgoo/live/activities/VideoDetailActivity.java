@@ -1,10 +1,12 @@
 package com.urgoo.live.activities;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +37,8 @@ import com.urgoo.live.view.CommentInputBox;
 import com.urgoo.live.view.CommentInputToolBoxListener;
 import com.urgoo.live.view.UniversalMediaController;
 import com.urgoo.live.view.UniversalVideoView;
+import com.urgoo.message.activities.MainActivity;
+import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.net.EventCode;
 import com.zw.express.tool.Util;
 
@@ -317,15 +321,6 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
     }
 
     @Override
-    public void onBackPressed() {
-        if (this.isFullscreen) {
-            mVideoView.setFullscreen(false);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
     public void onPause(MediaPlayer mediaPlayer) {
 
     }
@@ -382,11 +377,7 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
                 mVideoView.requestFocus();
                 break;
             case R.id.iv_back:
-                if (this.isFullscreen) {
-                    mVideoView.setFullscreen(false);
-                } else {
-                    finish();
-                }
+                onBackPressed();
                 break;
             case R.id.iv_share:
                 if (shareDetail != null) {
@@ -397,5 +388,28 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
                 onFavoriteArticle();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (this.isFullscreen) {
+            mVideoView.setFullscreen(false);
+        } else if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
+            Bundle extras = new Bundle();
+            extras.putInt(MainActivity.EXTRA_TAB, 1);
+            Util.openActivityWithBundle(VideoDetailActivity.this, MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            finish();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    //  监听返回按钮
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            onBackPressed();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

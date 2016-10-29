@@ -111,6 +111,10 @@ public class MyReceiver extends BroadcastReceiver {
                             extras.putString(SplashActivity.EXTRA_JSON, mObject2.toString());
                             extras.putInt(SplashActivity.EXTRA_TARGET, SplashActivity.TARGET_COUNSELOR);
                             break;
+                        case 5001:
+                            extras.putString(SplashActivity.EXTRA_JSON, mObject2.toString());
+                            extras.putInt(SplashActivity.EXTRA_TARGET, SplashActivity.TARGET_VIDEO_DETAIL);
+                            break;
 //                        case 3:
 //                            //打开自定义的Activity
 //                            Intent notificationIntent = new Intent();

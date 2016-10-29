@@ -9,6 +9,15 @@ public class SysMessage {
     private String title111;
     private String icon111;
     private String content111;
+    private String informationId;
+
+    public String getInformationId() {
+        return informationId;
+    }
+
+    public void setInformationId(String informationId) {
+        this.informationId = informationId;
+    }
 
     public String getUnread() {
         return unread;

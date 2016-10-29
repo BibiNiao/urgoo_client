@@ -36,6 +36,7 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <!-- 杨德成 20160722  ShareSDK START -->
 
@@ -547,6 +548,10 @@
         <!-- 系统消息列表 -->
         <activity
             android:name="com.urgoo.message.activities.SysMessageDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人消息列表 -->
+        <activity
+            android:name="com.urgoo.message.activities.UserMessageActivity"
             android:screenOrientation="portrait" />
 
         <!-- 设置环信应用的AppKey -->

@@ -66,7 +66,7 @@ import us.zoom.sdk.ZoomSDKInitializeListener;
 /**
  * 聊天页面，需要fragment的使用{@link EaseChatFragment}
  */
-public class ChatActivity extends FragmentActivity implements ExpansionInterface, Constants, ZoomSDKInitializeListener, MeetingServiceListener {
+public class ChatActivity extends FragmentActivity implements ExpansionInterface {
     public static ChatActivity activityInstance;
     private EaseChatFragment chatFragment;
     String toChatUsername;
@@ -91,7 +91,6 @@ public class ChatActivity extends FragmentActivity implements ExpansionInterface
     ProgressDialog pd;
 
     String toZoomChatUsername;
-    ZoomSDK sdk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,15 +98,6 @@ public class ChatActivity extends FragmentActivity implements ExpansionInterface
         setContentView(R.layout.activity_chat);
         activityInstance = this;
         pd = new ProgressDialog(ChatActivity.this);
-        sdk = ZoomSDK.getInstance();
-        if (savedInstanceState == null) {
-            sdk.initialize(ChatActivity.this, APP_KEY, APP_SECRET, WEB_DOMAIN, ChatActivity.this);
-            sdk.setDropBoxAppKeyPair(ChatActivity.this, DROPBOX_APP_KEY, DROPBOX_APP_SECRET);
-            sdk.setOneDriveClientId(ChatActivity.this, ONEDRIVE_CLIENT_ID);
-            sdk.setGoogleDriveClientId(ChatActivity.this, GOOGLE_DRIVE_CLIENT_ID);
-        } else {
-            registerMeetingServiceListener();
-        }
         //聊天人或群id
         toChatUsername = getIntent().getExtras().getString("userId");
         //可以直接new EaseChatFratFragment使用
@@ -234,17 +224,8 @@ public class ChatActivity extends FragmentActivity implements ExpansionInterface
 
     @Override
     protected void onDestroy() {
-
-        ZoomSDK zoomSDK = ZoomSDK.getInstance();
-
-        if (zoomSDK.isInitialized()) {
-            MeetingService meetingService = zoomSDK.getMeetingService();
-            meetingService.removeListener(this);
-        }
         super.onDestroy();
         activityInstance = null;
-
-
     }
 
     @Override
@@ -661,36 +642,6 @@ public class ChatActivity extends FragmentActivity implements ExpansionInterface
                 }
 
                 , params);
-    }
-
-    @Override
-    public void onMeetingEvent(int meetingEvent, int errorCode,
-                               int internalErrorCode) {
-       /* if (meetingEvent == MeetingEvent.MEETING_CONNECT_FAILED && errorCode == MeetingError.MEETING_ERROR_CLIENT_INCOMPATIBLE) {
-            Toast.makeText(this, "Version of ZoomSDK is too low!", Toast.LENGTH_LONG).show();
-        } else if (meetingEvent == MeetingEvent.MEETING_CONNECTED) {
-            //发送视频邀请
-            chatFragment.sendTextMessage("Connecting");
-        }*/
-    }
-
-    @Override
-    public void onZoomSDKInitializeResult(int errorCode, int internalErrorCode) {
-        if (errorCode != ZoomError.ZOOM_ERROR_SUCCESS) {
-            Toast.makeText(this, "Failed to initialize Zoom SDK. Error: " + errorCode + ", internalErrorCode=" + internalErrorCode, Toast.LENGTH_LONG).show();
-        } else {
-            //Toast.makeText(this, "Initialize Zoom SDK successfully.", Toast.LENGTH_LONG).show();
-            registerMeetingServiceListener();
-            //getZoomAccount();
-        }
-    }
-
-    private void registerMeetingServiceListener() {
-        ZoomSDK zoomSDK = ZoomSDK.getInstance();
-        MeetingService meetingService = zoomSDK.getMeetingService();
-        if (meetingService != null) {
-            meetingService.addListener(this);
-        }
     }
 
     /**

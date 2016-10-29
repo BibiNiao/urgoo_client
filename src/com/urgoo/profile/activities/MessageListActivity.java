@@ -11,6 +11,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.hyphenate.chat.EMClient;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.base.NavToolBarActivity;

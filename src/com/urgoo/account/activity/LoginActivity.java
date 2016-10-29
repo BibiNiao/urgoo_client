@@ -131,6 +131,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         spManager.setUserId(UserId);
                         spManager.setNickName(nickName);
                         spManager.setUserName(username);
+                        spManager.setHxCode(hxid);
                         EaseHelper.longin(hxid, ZWConfig.ACTION_HXPWD);
                         // 进入主页面
                         if (new JSONObject(result.get("body").toString()).getInt("question") == 0) {

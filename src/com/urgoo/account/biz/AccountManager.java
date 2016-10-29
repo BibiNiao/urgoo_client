@@ -157,4 +157,16 @@ public class AccountManager {
         params.put("token", SPManager.getInstance(mContext).getToken());
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeUpdateNickName, ZWConfig.URL_requestUpdateNickName, params, callback);
     }
+
+    /**
+     * 我的一级红点
+     *
+     * @param callback
+     */
+    public void getSelectRedCount(StringRequestCallBack callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("termType", "2");
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeSelectRedCount, ZWConfig.URL_requestSelectRedCount, params, callback);
+    }
 }

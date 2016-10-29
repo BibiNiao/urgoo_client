@@ -464,4 +464,8 @@ public class ZWConfig {
     public static final String URL_requestGetMessageList = URGOOURL_BASE + "001/001/information/selectSystemInformationGroup";
     // 获取系统消息详情
     public static final String URL_requestGetSysMessageList = URGOOURL_BASE + "001/001/information/selectSystemInformation111";
+    // 规划TIMELINE
+    public final static String URL_requestGetPlanTimeLine = "http://bbs.urgoo.cn/leoFile/AppShare/timeAxis.html";
+    // 修改资料
+    public static final String URL_requestEditMy = URGOOURL_BASE + "001/001/student/editData?termType=2";
 }

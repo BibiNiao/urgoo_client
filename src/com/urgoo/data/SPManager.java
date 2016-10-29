@@ -3,7 +3,6 @@ package com.urgoo.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,16 @@ public class SPManager {
     public final static String ORDER_ID = "orderId";
     public final static String PRICE = "price";
     public final static String PAYORDER_ID = "payRequestOrderId";
+    public final static String HXCODE = "userHxCode";
 
+
+    public boolean setHxCode(String hxCode) {
+        return getEditor().putString(HXCODE, hxCode).commit();
+    }
+
+    public String getHxCode() {
+        return getSharedPreferences().getString(HXCODE, "");
+    }
 
     public boolean setUserName(String username) {
         return getEditor().putString(USERNAME, username).commit();
@@ -195,6 +203,7 @@ public class SPManager {
         editor.remove(ORDER_ID);
         editor.remove(PRICE);
         editor.remove(PAYORDER_ID);
+        editor.remove(HXCODE);
         return editor.commit();
     }
 

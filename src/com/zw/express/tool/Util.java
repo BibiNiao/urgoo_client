@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,11 +27,15 @@ import com.urgoo.common.APPManagerTool;
 import com.urgoo.common.ScreenManager;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.activities.CounselorActivity;
+import com.urgoo.counselor.activities.CounselorMainActivity;
 import com.urgoo.data.SPManager;
 import com.urgoo.jpush.JpushUtlis;
+import com.urgoo.live.activities.LiveDetailActivity;
+import com.urgoo.live.activities.VideoDetailActivity;
 import com.urgoo.message.EaseHelper;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.message.activities.SplashActivity;
+import com.urgoo.message.activities.UserMessageActivity;
 import com.urgoo.profile.activities.MessageActivity;
 import com.urgoo.profile.activities.UrgooVideoActivity;
 import com.urgoo.schedule.activites.PrecontractMyOrder;
@@ -492,16 +498,24 @@ public class Util {
         Intent intent;
         Bundle extras = new Bundle();
         switch (target) {
+            case SplashActivity.TARGET_VIDEO_DETAIL:
+                if (!Util.isEmpty(pushJson)) {
+                    JSONObject jsonObject = new JSONObject(pushJson);
+                    extras.putBoolean(SplashActivity.EXTRA_FROM_PUSH, true);
+                    extras.putString(VideoDetailActivity.EXTRA_VIDEO_ID, jsonObject.optString("albumId"));
+                    openActivityWithBundle(context, VideoDetailActivity.class, extras);
+                }
+                break;
             case SplashActivity.TARGET_MESSAGE:
                 extras.putBoolean(SplashActivity.EXTRA_FROM_PUSH, true);
-                openActivity(context, MessageActivity.class);
+                openActivity(context, UserMessageActivity.class);
                 break;
             case SplashActivity.TARGET_COUNSELOR:
                 if (!Util.isEmpty(pushJson)) {
                     JSONObject jsonObject = new JSONObject(pushJson);
                     extras.putBoolean(SplashActivity.EXTRA_FROM_PUSH, true);
-                    extras.putString("counselorId", jsonObject.optString("counselorId"));
-                    openActivityWithBundle(context, CounselorActivity.class, extras);
+                    extras.putString(CounselorMainActivity.EXTRA_COUNSELOR_ID, jsonObject.optString("counselorId"));
+                    openActivityWithBundle(context, CounselorMainActivity.class, extras);
                 }
                 break;
             case SplashActivity.TARGET_APPOINTMENT:
@@ -512,8 +526,8 @@ public class Util {
                 if (!Util.isEmpty(pushJson)) {
                     JSONObject jsonObject = new JSONObject(pushJson);
                     extras.putBoolean(SplashActivity.EXTRA_FROM_PUSH, true);
-                    extras.putString("liveId", jsonObject.optString("liveId"));
-                    openActivityWithBundle(context, ZhiBodDetailActivity.class, extras);
+                    extras.putString(LiveDetailActivity.EXTRA_LIVE_ID, jsonObject.optString("liveId"));
+                    openActivityWithBundle(context, LiveDetailActivity.class, extras);
                 }
                 break;
             case SplashActivity.TARGET_VIDEO:
@@ -619,5 +633,56 @@ public class Util {
             }
         }
         return valueLength;
+    }
+
+    /**
+     * 判断当前网络是否可用
+     *
+     * @param context
+     * @return
+     */
+    public static boolean isNetworkAvailable(Context context) {
+        return getNetworkType(context) != 0;
+    }
+
+
+    /**
+     * 获取当前连接的网络类型：
+     * <ul>
+     * <li>0：无网络</li>
+     * <li>1：WIFI</li>
+     * <li>2：CMWAP</li>
+     * <li>3：CMNET</li>
+     * </ul>
+     *
+     * @param context
+     * @return
+     */
+    public static int getNetworkType(Context context) {
+        ConnectivityManager connManager = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connManager == null) {
+            return 0;
+        } else {
+            NetworkInfo[] info = connManager.getAllNetworkInfo();
+            if (info != null) {
+                for (NetworkInfo anInfo : info) {
+                    if (anInfo.getState() == NetworkInfo.State.CONNECTED) {
+                        NetworkInfo netWorkInfo = anInfo;
+                        if (netWorkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+                            return 1;
+                        } else if (netWorkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
+                            String extraInfo = netWorkInfo.getExtraInfo();
+                            if ("cmwap".equalsIgnoreCase(extraInfo)
+                                    || "cmwap:gsm".equalsIgnoreCase(extraInfo)) {
+                                return 2;
+                            }
+                            return 3;
+                        }
+                    }
+                }
+            }
+        }
+        return 0;
     }
 }

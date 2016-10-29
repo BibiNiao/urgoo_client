@@ -16,6 +16,7 @@ package com.urgoo.message.activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +40,7 @@ import com.urgoo.message.EaseHelper;
 import com.urgoo.plan.activities.PlanFragment;
 import com.urgoo.profile.activities.ProfileFragment;
 import com.urgoo.view.TabView;
+import com.zw.express.tool.Util;
 import com.zw.express.tool.log.Log;
 
 import java.util.Set;
@@ -46,7 +48,7 @@ import java.util.Set;
 import cn.jpush.android.api.TagAliasCallback;
 import de.greenrobot.event.EventBus;
 
-public class MainActivity extends AppCompatActivity implements ProfileFragment.MessageFragmentCallback, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, MyFragment.MessageFragmentCallback {
     protected static final String TAG = "MainActivity";
     public static final String EXTRA_TAB = "extra_tab";//需要跳转的tab
     public static final int TAB_COUNSELOR = 0;
@@ -172,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements ProfileFragment.M
      * @param event
      */
     public void onEventMainThread(MessageEvent event) {
-//        tabMy.setNewIndicator(true);
+        tabMy.setNewIndicator(true);
 //        if (profileFragment.isVisible()) {
 //            profileFragment.getSelectRedCount();
 //        }
@@ -180,6 +182,8 @@ public class MainActivity extends AppCompatActivity implements ProfileFragment.M
 
     @Override
     public void onUnreadMessageCallback(boolean isShow) {
+        tabMy.setNewIndicator(isShow);
+
 //        tabMy.setNewIndicator(isShow);
 //        if (isShow) {
 //            unreadService.setVisibility(View.VISIBLE);
@@ -427,6 +431,29 @@ public class MainActivity extends AppCompatActivity implements ProfileFragment.M
         lastTab = tab;
     }
 
+    private void delayLoadMessage() {
+        if (!isFinishing()) {
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    if (isFinishing() || fragmentManager == null) {
+                        return;
+                    }
+                    // 主动加载消息tab
+                    if (myFragment == null) {
+                        myFragment = new MyFragment();
+                        myFragment.setMessageFragmentCallback(MainActivity.this);
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.add(R.id.fragment_container, myFragment, MyFragment.class.getSimpleName());
+                        transaction.hide(myFragment);
+                        transaction.commitAllowingStateLoss();
+                    }
+                }
+            }, 1000);
+        }
+    }
+
     @Override
     public void onClick(View v) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -436,6 +463,8 @@ public class MainActivity extends AppCompatActivity implements ProfileFragment.M
                 if (findCounselorFragment == null) {
                     findCounselorFragment = new FindCounselorFragment();
                     transaction.add(R.id.fragment_container, findCounselorFragment, FindCounselorFragment.class.getSimpleName());
+                    if (Util.isNetworkAvailable(getApplicationContext()))
+                        delayLoadMessage();
                 } else {
                     transaction.show(findCounselorFragment);
                 }
@@ -467,6 +496,7 @@ public class MainActivity extends AppCompatActivity implements ProfileFragment.M
                 switchTab(v);
                 if (myFragment == null) {
                     myFragment = new MyFragment();
+                    myFragment.setMessageFragmentCallback(this);
                     transaction.add(R.id.fragment_container, myFragment, MyFragment.class.getSimpleName());
                 } else {
                     transaction.show(myFragment);

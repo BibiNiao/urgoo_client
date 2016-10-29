@@ -19,7 +19,8 @@
             android:layout_centerVertical="true"
             fresco:actualImageScaleType="focusCrop"
             fresco:placeholderImage="@drawable/img_empty_counselor"
-            fresco:placeholderImageScaleType="centerCrop"/>
+            fresco:placeholderImageScaleType="centerCrop"
+            fresco:roundAsCircle="true"/>
 
         <ImageView
             android:id="@+id/iv_next"

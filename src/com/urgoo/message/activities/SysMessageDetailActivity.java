@@ -17,6 +17,7 @@ import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
 import com.urgoo.counselor.activities.CounselorDetailActivity;
+import com.urgoo.counselor.activities.CounselorMainActivity;
 import com.urgoo.live.activities.LiveDetailActivity;
 import com.urgoo.live.activities.VideoDetailActivity;
 import com.urgoo.message.adapter.SysMessageAdapter;
@@ -98,9 +99,8 @@ public class SysMessageDetailActivity extends NavToolBarActivity {
                         break;
                     case 2:
                         bundle = new Bundle();
-                        bundle.putString(CounselorDetailActivity.EXTRA_COUNSELOR_ID, adapter.getItem(position).getTargetId());
-                        bundle.putString(CounselorDetailActivity.EXTRA_TITLE, adapter.getItem(position).getTitle111());
-                        Util.openActivityWithBundle(SysMessageDetailActivity.this, CounselorDetailActivity.class, bundle);
+                        bundle.putString(CounselorMainActivity.EXTRA_COUNSELOR_ID, adapter.getItem(position).getTargetId());
+                        Util.openActivityWithBundle(SysMessageDetailActivity.this, CounselorMainActivity.class, bundle);
                         break;
                     case 4:
                         bundle = new Bundle();
@@ -110,7 +110,7 @@ public class SysMessageDetailActivity extends NavToolBarActivity {
                     case 5:
                         break;
                 }
-                updateSysMessage(adapter.getItem(position).getTargetId(), adapter.getItem(position).getUnread());
+                updateSysMessage(adapter.getItem(position).getInformationId(), adapter.getItem(position).getUnread());
                 if (adapter.getItem(position).getUnread().equals("2")) {
                     adapter.getItem(position).setUnread("1");
                     adapter.notifyDataSetChanged();

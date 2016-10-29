@@ -3,6 +3,7 @@ package com.urgoo.counselor.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,8 @@ import com.urgoo.common.ShareUtil;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.biz.CounselorManager;
 import com.urgoo.counselor.model.Counselor;
+import com.urgoo.message.activities.MainActivity;
+import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.net.EventCode;
 import com.zw.express.tool.Util;
 
@@ -61,6 +64,9 @@ public class CounselorMainActivity extends NavToolBarActivity implements View.On
         counselorId = getIntent().getStringExtra(EXTRA_COUNSELOR_ID);
         setNavTitleText("顾问简介");
         initViews(view);
+        if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
+            setSwipeBackEnable(false);
+        }
         return view;
     }
 
@@ -231,5 +237,32 @@ public class CounselorMainActivity extends NavToolBarActivity implements View.On
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
+            Bundle extras = new Bundle();
+            extras.putInt(MainActivity.EXTRA_TAB, 0);
+            Util.openActivityWithBundle(CounselorMainActivity.this, MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            finish();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onNavLeftClick(View v) {
+        onBackPressed();
+    }
+
+
+    //  监听返回按钮
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            onBackPressed();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -70,13 +70,15 @@ public class UserBean implements Parcelable {
      */
     private String schoolCourse;
 
-    public UserBean() {
-
+    public UserBean(String nickName, String userIcon) {
+        super();
+        this.nickName = nickName;
+        this.userIcon = userIcon;
     }
 
     protected UserBean(Parcel in) {
-        nickName = in.readString();
-        userIcon = in.readString();
+        this.nickName = in.readString();
+        this.userIcon = in.readString();
         lableNameEn = in.readString();
         gradeName = in.readString();
         lableNameCn = in.readString();
@@ -105,6 +107,10 @@ public class UserBean implements Parcelable {
             return new UserBean[size];
         }
     };
+
+    public UserBean() {
+        super();
+    }
 
     public String getNickName() {
         return nickName;

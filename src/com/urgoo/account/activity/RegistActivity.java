@@ -145,6 +145,7 @@ public class RegistActivity extends NavToolBarActivity implements View.OnClickLi
                     spManager.setUserId(userId);
                     spManager.setNickName(nickname);
                     spManager.setUserName(phone);
+                    spManager.setHxCode(hxid);
                     EaseHelper.longin(hxid, ZWConfig.ACTION_HXPWD);
                     if (new JSONObject(result.get("body").toString()).getInt("question") == 0) {
                         Util.openActivity(this, SurveyActivity.class);

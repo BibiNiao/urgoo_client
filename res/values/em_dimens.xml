@@ -49,4 +49,5 @@
     <dimen name="main_text_size">16dp</dimen>
     <dimen name="main_margin_tv_bottom">12dp</dimen>
     <dimen name="main_search_margin">70dp</dimen>
+    <dimen name="thumb_avatar_user_center_height">80dp</dimen>
 </resources>

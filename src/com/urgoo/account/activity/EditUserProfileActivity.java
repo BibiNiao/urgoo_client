@@ -18,6 +18,7 @@ import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.data.SPManager;
+import com.urgoo.webviewmanage.BaseWebViewActivity;
 import com.zw.express.tool.PickUtils;
 import com.zw.express.tool.Util;
 import com.zw.express.tool.log.Log;
@@ -85,6 +86,8 @@ public class EditUserProfileActivity extends NavToolBarActivity implements View.
                         Util.openActivityForResult(EditUserProfileActivity.this, EditNickNameActivity.class, REQUEST_CODE_EDIT_NAME);
                         break;
                     case 1:
+                        String strURL = ZWConfig.URL_requestEditMy + "?token=" + spManager.getToken();
+                        startActivity(new Intent(EditUserProfileActivity.this, BaseWebViewActivity.class).putExtra(BaseWebViewActivity.EXTRA_URL, strURL));
                         break;
                 }
             }
@@ -109,6 +112,9 @@ public class EditUserProfileActivity extends NavToolBarActivity implements View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rl_avatar:
+                PickUtils.doPickPhotoAction(this);
+                break;
+            case R.id.iv_avatar:
                 PickUtils.doPickPhotoAction(this);
                 break;
         }
@@ -152,6 +158,7 @@ public class EditUserProfileActivity extends NavToolBarActivity implements View.
 
                         @Override
                         public void onFailure(Call call, IOException e) {
+                            dismissLoadingDialog();
                             showToastSafe("修改失败请重新上传");
                         }
 

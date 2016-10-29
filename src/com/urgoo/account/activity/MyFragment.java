@@ -3,13 +3,10 @@ package com.urgoo.account.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -21,9 +18,10 @@ import com.urgoo.base.BaseFragment;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.message.activities.SysMessageActivity;
+import com.urgoo.message.activities.UserMessageActivity;
 import com.urgoo.net.EventCode;
-import com.urgoo.profile.activities.MessageActivity;
 import com.urgoo.profile.activities.MessageListActivity;
+import com.urgoo.schedule.activites.PrecontractMyOrder;
 import com.urgoo.view.MyListView;
 import com.urgoo.webviewmanage.BaseWebViewActivity;
 import com.urgoo.webviewmanage.BaseWebViewFragment;
@@ -45,6 +43,20 @@ public class MyFragment extends BaseFragment implements AdapterView.OnItemClickL
     private View rlMy;
     public static final String EXTRA_USER = "extra_user";
     private UserBean userBean;
+    private MessageFragmentCallback callback;
+    private boolean isShowRed;
+    /**
+     * 系统消息红点
+     */
+    private int systemCount;
+    /**
+     * 我的消息红点
+     */
+    private int individualCount;
+    /**
+     * 预约红点
+     */
+    private int advanceCount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,11 +65,22 @@ public class MyFragment extends BaseFragment implements AdapterView.OnItemClickL
         EventBus.getDefault().register(this);
         initViews();
         getUserInfo();
+        getSelectRedCount();
         return viewContent;
+    }
+
+    public void getSelectRedCount() {
+        AccountManager.getInstance(getActivity()).getSelectRedCount(this);
     }
 
     private void getUserInfo() {
         AccountManager.getInstance(getActivity()).getUserInfo(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getSelectRedCount();
     }
 
     private void initViews() {
@@ -66,7 +89,7 @@ public class MyFragment extends BaseFragment implements AdapterView.OnItemClickL
         rlMy = viewContent.findViewById(R.id.rl_my);
         rlMy.setOnClickListener(this);
         listView = (MyListView) viewContent.findViewById(R.id.lv);
-        myAdapter = new MyAdapter(getActivity());
+        myAdapter = new MyAdapter(getActivity(), systemCount, individualCount, advanceCount);
         listView.setAdapter(myAdapter);
         listView.setOnItemClickListener(this);
     }
@@ -77,9 +100,7 @@ public class MyFragment extends BaseFragment implements AdapterView.OnItemClickL
      * @param event
      */
     public void onEventMainThread(EditProfileEvent event) {
-        userBean = event.getUserBean();
-        sdvAvatar.setImageURI(Uri.parse(userBean.getUserIcon()));
-        tvNick.setText(userBean.getNickName());
+        getUserInfo();
     }
 
     @Override
@@ -88,8 +109,10 @@ public class MyFragment extends BaseFragment implements AdapterView.OnItemClickL
         Bundle extras = new Bundle();
         switch (i) {
             case 0:
-                extras.putInt(MessageListActivity.MESSAGE_TYPE, 2);
-                Util.openActivityForResultWithBundle(getActivity(), MessageListActivity.class, extras,MessageListActivity.REQUEST_CODE_MESSAGE);
+                Util.openActivityForResult(getActivity(), UserMessageActivity.class, MessageListActivity.REQUEST_CODE_MESSAGE);
+                break;
+            case 1:
+                Util.openActivity(getActivity(), PrecontractMyOrder.class);
                 break;
             case 2:
                 extras.putString(BaseWebViewFragment.EXTRA_URL, ZWConfig.ACTION_parentOrder);
@@ -105,9 +128,14 @@ public class MyFragment extends BaseFragment implements AdapterView.OnItemClickL
                 Util.openActivity(getActivity(), QrcodeActivity.class);
                 break;
             case 6:
-                intent = new Intent(getActivity(), BaseWebViewActivity.class);
-                intent.putExtra(BaseWebViewFragment.EXTRA_URL, ZWConfig.Action_helpJz);
+//                startActivity(new Intent(getActivity(), ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
+
+                intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "400-061-2819"));
                 startActivity(intent);
+
+//                intent = new Intent(getActivity(), BaseWebViewActivity.class);
+//                intent.putExtra(BaseWebViewFragment.EXTRA_URL, ZWConfig.Action_helpJz);
+//                startActivity(intent);
                 break;
             case 7:
                 Util.openActivity(getActivity(), SettingActivity.class);
@@ -115,9 +143,45 @@ public class MyFragment extends BaseFragment implements AdapterView.OnItemClickL
         }
     }
 
+    public void setMessageFragmentCallback(MessageFragmentCallback callback) {
+        this.callback = callback;
+    }
+
+    private void invokeUnreadCallback() {
+        if (callback != null) {
+            callback.onUnreadMessageCallback(isShowRed);
+        }
+    }
+
+    /**
+     * 刷新未读消息数量
+     *
+     * @author wangsheng
+     */
+    public interface MessageFragmentCallback {
+        void onUnreadMessageCallback(boolean isShow);
+    }
+
     @Override
     protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
         switch (eventCode) {
+            case EventCodeSelectRedCount:
+                try {
+                    JSONObject jsonObject = new JSONObject(result.getString("body"));
+                    systemCount = jsonObject.getInt("systemCount");
+                    individualCount = jsonObject.getInt("individualCount");
+                    advanceCount = jsonObject.getInt("advanceCount");
+                    if (jsonObject.getInt("allCount") > 0) {
+                        isShowRed = true;
+                    } else {
+                        isShowRed = false;
+                    }
+                    invokeUnreadCallback();
+                    myAdapter.setCount(systemCount, individualCount, advanceCount);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
             case EventCodeGetUserInfo:
                 try {
                     JSONObject jsonObject = new JSONObject(result.getString("body")).getJSONObject("parentInfo");
@@ -138,9 +202,11 @@ public class MyFragment extends BaseFragment implements AdapterView.OnItemClickL
         Bundle extras;
         switch (v.getId()) {
             case R.id.rl_my:
-                extras = new Bundle();
-                extras.putParcelable(MyFragment.EXTRA_USER, userBean);
-                Util.openActivityWithBundle(getActivity(), EditUserProfileActivity.class, extras);
+                if (userBean != null) {
+                    extras = new Bundle();
+                    extras.putParcelable(MyFragment.EXTRA_USER, userBean);
+                    Util.openActivityWithBundle(getActivity(), EditUserProfileActivity.class, extras);
+                }
                 break;
         }
     }
