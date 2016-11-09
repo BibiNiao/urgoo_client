@@ -123,11 +123,19 @@ public class CounselorFilterActivity extends BaseActivity {
         btnTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("path", "search");
-                bundle.putParcelable("search", searchData);
-                Util.openActivityWithBundle(CounselorFilterActivity.this, SearchResultAcivity.class, bundle);
-                restView();
+                if (Util.isEmpty(etSearch.getText().toString())) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("path", "search");
+                    bundle.putParcelable("search", searchData);
+                    Util.openActivityWithBundle(CounselorFilterActivity.this, SearchResultAcivity.class, bundle);
+                    restView();
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("path", "name");
+                    bundle.putString("name", etSearch.getText().toString().trim());
+                    Util.openActivityWithBundle(CounselorFilterActivity.this, SearchResultAcivity.class, bundle);
+                    searchData.clearData();
+                }
             }
         });
         lvSurprise = (MyListView) findViewById(R.id.lv_surprise);
@@ -135,8 +143,14 @@ public class CounselorFilterActivity extends BaseActivity {
         lvSurprise.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                searchData.clearData();
                 searchData.setSurpriseType(surpriseList.get(position).get("type"));
                 searchData.setSurpriseId(position);
+                restView();
+                Bundle bundle = new Bundle();
+                bundle.putString("path", "search");
+                bundle.putParcelable("search", searchData);
+                Util.openActivityWithBundle(CounselorFilterActivity.this, SearchResultAcivity.class, bundle);
                 System.out.println(surpriseList.get(position).get("type"));
             }
         });

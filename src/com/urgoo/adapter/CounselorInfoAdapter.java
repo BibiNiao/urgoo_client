@@ -1,7 +1,6 @@
 package com.urgoo.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.marshalchen.ultimaterecyclerview.UltimateRecyclerviewViewHolder;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.client.R;
-import com.urgoo.counselor.activities.CounselorList;
 import com.urgoo.collect.model.CounselorEntiy;
 
 import java.util.List;
@@ -261,7 +259,6 @@ public class CounselorInfoAdapter extends UltimateViewAdapter<CounselorInfoAdapt
                 tvAll.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        context.startActivity(new Intent(context, CounselorList.class));
                     }
                 });
                 if (onItemClickListener != null) {

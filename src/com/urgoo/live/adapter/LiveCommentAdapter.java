@@ -245,7 +245,7 @@ public class LiveCommentAdapter extends UltimateViewAdapter<LiveCommentAdapter.V
                 Bundle bundle = new Bundle();
                 bundle.putString(CommentListActivity.EXTRA_COMMENT_ID, String.valueOf(comment.getCommentId()));
                 bundle.putString(CommentListActivity.EXTRA_VIDEO_ID, liveId);
-                bundle.putString(CommentListActivity.EXTRA_FLAG, "2");
+                bundle.putString(CommentListActivity.EXTRA_FLAG, "1");
                 Util.openActivityWithBundle(context, CommentListActivity.class, bundle);
                 break;
             case R.id.tv_count:

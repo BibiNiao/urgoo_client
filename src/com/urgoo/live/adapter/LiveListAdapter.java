@@ -80,16 +80,16 @@ public class LiveListAdapter extends UltimateViewAdapter<LiveListAdapter.ViewHol
             holder.tvTitle.setText(live.getTitle());
             holder.tvDes.setText(live.getDes());
             if (live.getStatus().equals("1")) {
-                holder.tvTime.setBackgroundResource(R.drawable.bg_live_time_red);
-                holder.tvTime.setTextColor(context.getResources().getColor(R.color.tvf75657));
+                holder.tvTime.setBackgroundResource(R.drawable.bg_live_time_green);
+                holder.tvTime.setTextColor(context.getResources().getColor(R.color.tab_color));
                 if (live.getBalanceTime() > 0) {
                     holder.tvTime.setText(DataUtil.formatDuring2(Integer.parseInt(live.getBalanceTime() + "")) + "后开始");
                 } else {
                     holder.tvTime.setText("正在直播");
                 }
             } else {
-                holder.tvTime.setBackgroundResource(R.drawable.bg_live_time_green);
-                holder.tvTime.setTextColor(context.getResources().getColor(R.color.tab_color));
+                holder.tvTime.setBackgroundResource(R.drawable.bg_live_time_black);
+                holder.tvTime.setTextColor(context.getResources().getColor(R.color.tv2b2b2b));
                 holder.tvTime.setText("往期回顾");
             }
         }

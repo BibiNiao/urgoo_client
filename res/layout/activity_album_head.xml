@@ -18,7 +18,7 @@
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/sdv_back"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:layout_centerHorizontal="true"
                 fresco:actualImageScaleType="focusCrop"
                 fresco:placeholderImage="@drawable/default_useravatar"
@@ -32,7 +32,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="40dp"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/ic_red_play" />
+                android:src="@drawable/ic_red_play"
+                android:visibility="gone"/>
         </RelativeLayout>
 
         <com.facebook.drawee.view.SimpleDraweeView

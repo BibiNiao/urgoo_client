@@ -116,8 +116,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/gray" />
+        android:layout_height="1px"/>
 
     <RelativeLayout
         android:id="@+id/ll_assistant_my"
@@ -197,6 +196,5 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/gray" />
+        android:layout_height="1px"/>
 </LinearLayout>

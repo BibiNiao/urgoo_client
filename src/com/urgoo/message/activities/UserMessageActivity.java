@@ -28,6 +28,8 @@ import com.urgoo.message.adapter.UserMessageAdapter;
 import com.urgoo.message.biz.MessageManager;
 import com.urgoo.message.model.UserMessage;
 import com.urgoo.net.EventCode;
+import com.urgoo.profile.activities.MessageListActivity;
+import com.urgoo.profile.activities.SystemInformationDetail;
 import com.urgoo.profile.biz.ProfileManager;
 import com.zw.express.tool.Util;
 
@@ -146,27 +148,34 @@ public class UserMessageActivity extends NavToolBarActivity {
             @Override
             public void onItemClick(View v, int position) {
                 Bundle bundle;
-                switch (adapter.getItem(position).getType()) {
-                    case 5:
-                        updateSysMessage(adapter.getItem(position).getInformationId(), adapter.getItem(position).getUnread());
-                        bundle = new Bundle();
-                        bundle.putString(LiveDetailActivity.EXTRA_LIVE_ID, String.valueOf(adapter.getItem(position).getTargetId()));
-                        Util.openActivityWithBundle(UserMessageActivity.this, LiveDetailActivity.class, bundle);
-                        break;
-                    case 6:
-                        updateSysMessage(adapter.getItem(position).getInformationId(), adapter.getItem(position).getUnread());
-                        bundle = new Bundle();
-                        bundle.putString(VideoDetailActivity.EXTRA_VIDEO_ID, String.valueOf(adapter.getItem(position).getTargetId()));
-                        Util.openActivityWithBundle(UserMessageActivity.this, VideoDetailActivity.class, bundle);
-                        break;
+                if (position == 0) {
+                    startActivity(new Intent(UserMessageActivity.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
+                } else {
+                    updateSysMessage(adapter.getItem(position).getInformationId(), adapter.getItem(position).getUnread());
+                    switch (adapter.getItem(position).getType()) {
+                        case 5:
+                            bundle = new Bundle();
+                            bundle.putString(LiveDetailActivity.EXTRA_LIVE_ID, String.valueOf(adapter.getItem(position).getTargetId()));
+                            Util.openActivityWithBundle(UserMessageActivity.this, LiveDetailActivity.class, bundle);
+                            break;
+                        case 6:
+                            bundle = new Bundle();
+                            bundle.putString(VideoDetailActivity.EXTRA_VIDEO_ID, String.valueOf(adapter.getItem(position).getTargetId()));
+                            Util.openActivityWithBundle(UserMessageActivity.this, VideoDetailActivity.class, bundle);
+                            break;
+                        default:
+                            Bundle extras = new Bundle();
+                            extras.putString("content", adapter.getItem(position).getContent());
+                            Util.openActivityWithBundle(UserMessageActivity.this, SystemInformationDetail.class, extras);
+                            break;
+                    }
                 }
+
                 if (adapter.getItem(position).getUnread() == 2) {
                     adapter.getItem(position).setUnread(1);
                     adapter.notifyDataSetChanged();
                 }
-                if (position == 0) {
-                    startActivity(new Intent(UserMessageActivity.this, ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
-                }
+
             }
         });
         showLoadingDialog();

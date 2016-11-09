@@ -1,7 +1,8 @@
 package com.urgoo.live.activities;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -24,7 +25,6 @@ import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ShareUtil;
-import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.activities.CounselorDetailActivity;
 import com.urgoo.counselor.biz.CounselorManager;
 import com.urgoo.domain.ShareDetail;
@@ -35,8 +35,6 @@ import com.urgoo.live.model.Comment;
 import com.urgoo.live.model.VideoDetial;
 import com.urgoo.live.view.CommentInputBox;
 import com.urgoo.live.view.CommentInputToolBoxListener;
-import com.urgoo.live.view.UniversalMediaController;
-import com.urgoo.live.view.UniversalVideoView;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.net.EventCode;
@@ -49,11 +47,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
  * Created by bb on 2016/10/13.
  */
-public class VideoDetailActivity extends BaseActivity implements View.OnClickListener, UniversalVideoView.VideoViewCallback {
+public class VideoDetailActivity extends BaseActivity implements View.OnClickListener {
     public static final String EXTRA_VIDEO_ID = "video_id";
     private String videoId;
     private ShareDetail shareDetail;
@@ -76,19 +76,35 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
     private CommentInputBox commentInputBox;
     private View mVideoLayout;
     private View mFmVideo;
-    private UniversalVideoView mVideoView;
-    private UniversalMediaController mMediaController;
+    private JCVideoPlayerStandard mVideoView;
+    private JCVideoPlayer.JCAutoFullscreenListener sensorEventListener;
+    private SensorManager sensorManager;
     private int cachedHeight;
     private boolean isFullscreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorEventListener = new JCVideoPlayer.JCAutoFullscreenListener();
         setContentView(R.layout.activity_video_detail);
         videoId = getIntent().getStringExtra(EXTRA_VIDEO_ID);
         initViews();
         getVideoDetail();
         getCommentList();
+    }
+
+        @Override
+    protected void onResume() {
+        super.onResume();
+        Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(sensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(sensorEventListener);
     }
 
     private void getVideoDetail() {
@@ -128,16 +144,14 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
 
     private void initViews() {
         recyclerView = (UltimateRecyclerView) findViewById(R.id.recycler_view);
-        mVideoView = (UniversalVideoView) findViewById(R.id.videoView);
-        mMediaController = (UniversalMediaController) findViewById(R.id.media_controller);
+        mVideoView = (JCVideoPlayerStandard) findViewById(R.id.videoView);
         mVideoLayout = findViewById(R.id.video_layout);
         mFmVideo = findViewById(R.id.fm_video);
-        mVideoView.setMediaController(mMediaController);
-        mVideoView.setVideoViewCallback(this);
         setVideoAreaSize();
 
         commentInputBox = (CommentInputBox) findViewById(R.id.ll_comment);
         commentInputBox.setInputHint("评论...");
+
         sdvBack = (SimpleDraweeView) findViewById(R.id.sdv_back);
         ivShare = (ImageView) findViewById(R.id.iv_share);
         ivCollect = (ImageView) findViewById(R.id.iv_collect);
@@ -291,7 +305,7 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
                     tvName.setText(getString(R.string.host_name, videoDetial.getEnName()));
                     tvDate.setText(getString(R.string.host_time, videoDetial.getVideoDate()));
                     tvDes.setText(videoDetial.getDes());
-                    mVideoView.setVideoPath(videoDetial.getVideo());
+                    mVideoView.setUp(videoDetial.getVideo(), JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, "");
                     setCollect();
                     shareDetail = gson.fromJson(jsonObject.getJSONObject("shareDetail").toString(), new TypeToken<ShareDetail>() {
                     }.getType());
@@ -300,43 +314,6 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
                 }
                 break;
         }
-
-    }
-
-    @Override
-    public void onScaleChange(boolean isFullscreen) {
-        this.isFullscreen = isFullscreen;
-        if (isFullscreen) {
-            ViewGroup.LayoutParams layoutParams = mVideoLayout.getLayoutParams();
-            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-            mVideoLayout.setLayoutParams(layoutParams);
-
-        } else {
-            ViewGroup.LayoutParams layoutParams = mVideoLayout.getLayoutParams();
-            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            layoutParams.height = this.cachedHeight;
-            mVideoLayout.setLayoutParams(layoutParams);
-        }
-    }
-
-    @Override
-    public void onPause(MediaPlayer mediaPlayer) {
-
-    }
-
-    @Override
-    public void onStart(MediaPlayer mediaPlayer) {
-
-    }
-
-    @Override
-    public void onBufferingStart(MediaPlayer mediaPlayer) {
-
-    }
-
-    @Override
-    public void onBufferingEnd(MediaPlayer mediaPlayer) {
 
     }
 
@@ -373,8 +350,7 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
                 sdvBack.setVisibility(View.GONE);
                 ivPlay.setVisibility(View.GONE);
                 mFmVideo.setVisibility(View.VISIBLE);
-                mVideoView.start();
-                mVideoView.requestFocus();
+                mVideoView.startButton.performClick();//模拟用户点击开始按钮，NORMAL状态下点击开始播放视频，播放中点击暂停视频
                 break;
             case R.id.iv_back:
                 onBackPressed();
@@ -392,9 +368,10 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onBackPressed() {
-        if (this.isFullscreen) {
-            mVideoView.setFullscreen(false);
-        } else if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
+        if (JCVideoPlayer.backPress()) {
+            return;
+        }
+        if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
             Bundle extras = new Bundle();
             extras.putInt(MainActivity.EXTRA_TAB, 1);
             Util.openActivityWithBundle(VideoDetailActivity.this, MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);

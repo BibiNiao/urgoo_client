@@ -285,4 +285,8 @@ public enum EventCode {
      * 系统消息详情列表
      */
     EventCodeSysMessageDetailList,
+    /**
+     * 获取机器人所有选项
+     */
+    EventCodeGetRobotAll,
 }

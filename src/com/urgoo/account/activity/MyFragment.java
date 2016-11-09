@@ -17,6 +17,7 @@ import com.urgoo.account.model.UserBean;
 import com.urgoo.base.BaseFragment;
 import com.urgoo.client.R;
 import com.urgoo.common.ZWConfig;
+import com.urgoo.data.SPManager;
 import com.urgoo.message.activities.SysMessageActivity;
 import com.urgoo.message.activities.UserMessageActivity;
 import com.urgoo.net.EventCode;
@@ -121,13 +122,13 @@ public class MyFragment extends BaseFragment implements AdapterView.OnItemClickL
             case 3:
                 Util.openActivityForResult(getActivity(), SysMessageActivity.class, MessageListActivity.REQUEST_CODE_MESSAGE);
                 break;
+//            case 4:
+//                Util.openActivity(getActivity(), ActivitiesActivity.class);
+//                break;
             case 4:
-                Util.openActivity(getActivity(), ActivitiesActivity.class);
-                break;
-            case 5:
                 Util.openActivity(getActivity(), QrcodeActivity.class);
                 break;
-            case 6:
+            case 5:
 //                startActivity(new Intent(getActivity(), ChatActivity.class).putExtra("userId", ZWConfig.ACTION_CustomerService));
 
                 intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "400-061-2819"));
@@ -137,7 +138,7 @@ public class MyFragment extends BaseFragment implements AdapterView.OnItemClickL
 //                intent.putExtra(BaseWebViewFragment.EXTRA_URL, ZWConfig.Action_helpJz);
 //                startActivity(intent);
                 break;
-            case 7:
+            case 6:
                 Util.openActivity(getActivity(), SettingActivity.class);
                 break;
         }
@@ -190,6 +191,8 @@ public class MyFragment extends BaseFragment implements AdapterView.OnItemClickL
                     userBean = new UserBean();
                     userBean.setUserIcon(jsonObject.getString("userIcon"));
                     userBean.setNickName(jsonObject.getString("nickName"));
+                    SPManager.getInstance(getActivity()).setUserIcon(jsonObject.getString("userIcon"));
+                    SPManager.getInstance(getActivity()).setUserName(jsonObject.getString("nickName"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -1,7 +1,9 @@
 package com.urgoo.live.activities;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
+import android.content.res.Configuration;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -27,9 +29,7 @@ import com.urgoo.Interface.Constants;
 import com.urgoo.base.BaseActivity;
 import com.urgoo.client.R;
 import com.urgoo.common.ShareUtil;
-import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.activities.CounselorDetailActivity;
-import com.urgoo.counselor.activities.CounselorMainActivity;
 import com.urgoo.counselor.biz.CounselorManager;
 import com.urgoo.domain.ShareDetail;
 import com.urgoo.live.adapter.LiveCommentAdapter;
@@ -39,8 +39,6 @@ import com.urgoo.live.model.Comment;
 import com.urgoo.live.model.LiveDetail;
 import com.urgoo.live.view.CommentInputBox;
 import com.urgoo.live.view.CommentInputToolBoxListener;
-import com.urgoo.live.view.UniversalMediaController;
-import com.urgoo.live.view.UniversalVideoView;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.net.EventCode;
@@ -53,6 +51,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 import us.zoom.sdk.MeetingService;
 import us.zoom.sdk.MeetingServiceListener;
 import us.zoom.sdk.ZoomError;
@@ -62,7 +62,7 @@ import us.zoom.sdk.ZoomSDKInitializeListener;
 /**
  * Created by bb on 2016/10/13.
  */
-public class LiveDetailActivity extends BaseActivity implements Constants, ZoomSDKInitializeListener, MeetingServiceListener, UniversalVideoView.VideoViewCallback, View.OnClickListener {
+public class LiveDetailActivity extends BaseActivity implements Constants, ZoomSDKInitializeListener, MeetingServiceListener, View.OnClickListener {
     public static final String EXTRA_LIVE_ID = "live_id";
     public static final String EXTRA_FROM = "is_from_detail";
     private String liveId;
@@ -90,15 +90,19 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
     private View mVideoLayout;
     private View mFmVideo;
     private View llNotice;
-    private UniversalVideoView mVideoView;
-    private UniversalMediaController mMediaController;
+    private JCVideoPlayerStandard mVideoView;
+    //    private UniversalMediaController mMediaController;
     private int cachedHeight;
     private boolean isFullscreen;
+    private JCVideoPlayer.JCAutoFullscreenListener sensorEventListener;
+    private SensorManager sensorManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_detail);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorEventListener = new JCVideoPlayer.JCAutoFullscreenListener();
         sdk = ZoomSDK.getInstance();
         if (savedInstanceState == null) {
             sdk.initialize(this, APP_KEY, APP_SECRET, WEB_DOMAIN, this);
@@ -113,6 +117,19 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
         initViews();
         getZoomLiveDetail();
         getCommentList();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(sensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(sensorEventListener);
     }
 
     private void registerMeetingServiceListener() {
@@ -187,12 +204,12 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
 
     private void initViews() {
         recyclerView = (UltimateRecyclerView) findViewById(R.id.recycler_view);
-        mVideoView = (UniversalVideoView) findViewById(R.id.videoView);
-        mMediaController = (UniversalMediaController) findViewById(R.id.media_controller);
+        mVideoView = (JCVideoPlayerStandard) findViewById(R.id.videoView);
+//        mMediaController = (UniversalMediaController) findViewById(R.id.media_controller);
         mVideoLayout = findViewById(R.id.video_layout);
         mFmVideo = findViewById(R.id.fm_video);
-        mVideoView.setMediaController(mMediaController);
-        mVideoView.setVideoViewCallback(this);
+//        mVideoView.setMediaController(mMediaController);
+//        mVideoView.setVideoViewCallback(this);
         setVideoAreaSize();
 
         commentInputBox = (CommentInputBox) findViewById(R.id.ll_comment);
@@ -352,7 +369,8 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
                     tvName.setText(getString(R.string.host_name, liveDetail.getEnName()));
                     tvDate.setText(getString(R.string.host_time, liveDetail.getLiveStartTime()));
                     tvDes.setText(liveDetail.getIntroduce());
-                    mVideoView.setVideoPath(liveDetail.getVideo());
+                    mVideoView.setUp(liveDetail.getVideo(), JCVideoPlayerStandard.SCREEN_LAYOUT_LIST, "");
+//                    mVideoView.setVideoPath(liveDetail.getVideo());
                     if (Util.isEmpty(liveDetail.getLiveNotice())) {
                         llNotice.setVisibility(View.GONE);
                     } else {
@@ -367,42 +385,6 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
                 }
                 break;
         }
-
-    }
-
-    @Override
-    public void onScaleChange(boolean isFullscreen) {
-        this.isFullscreen = isFullscreen;
-        if (isFullscreen) {
-            ViewGroup.LayoutParams layoutParams = mVideoLayout.getLayoutParams();
-            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-            mVideoLayout.setLayoutParams(layoutParams);
-        } else {
-            ViewGroup.LayoutParams layoutParams = mVideoLayout.getLayoutParams();
-            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            layoutParams.height = this.cachedHeight;
-            mVideoLayout.setLayoutParams(layoutParams);
-        }
-    }
-
-    @Override
-    public void onPause(MediaPlayer mediaPlayer) {
-
-    }
-
-    @Override
-    public void onStart(MediaPlayer mediaPlayer) {
-
-    }
-
-    @Override
-    public void onBufferingStart(MediaPlayer mediaPlayer) {
-
-    }
-
-    @Override
-    public void onBufferingEnd(MediaPlayer mediaPlayer) {
 
     }
 
@@ -452,8 +434,10 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
                     sdvBack.setVisibility(View.GONE);
                     ivPlay.setVisibility(View.GONE);
                     mFmVideo.setVisibility(View.VISIBLE);
-                    mVideoView.start();
-                    mVideoView.requestFocus();
+                    mVideoView.startButton.performClick();//模拟用户点击开始按钮，NORMAL状态下点击开始播放视频，播放中点击暂停视频
+
+//                    mVideoView.start();
+//                    mVideoView.requestFocus();
                 }
                 break;
             case R.id.iv_back:
@@ -472,9 +456,13 @@ public class LiveDetailActivity extends BaseActivity implements Constants, ZoomS
 
     @Override
     public void onBackPressed() {
-        if (this.isFullscreen) {
-            mVideoView.setFullscreen(false);
-        } else if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
+//        if (this.isFullscreen) {
+//            mVideoView.setFullscreen(false);
+//        } else
+        if (JCVideoPlayer.backPress()) {
+            return;
+        }
+        if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
             Bundle extras = new Bundle();
             extras.putInt(MainActivity.EXTRA_TAB, 1);
             Util.openActivityWithBundle(LiveDetailActivity.this, MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);

@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.urgoo.ScreenManager;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.activities.CounselorActivity;
-import com.urgoo.counselor.activities.CounselorList;
+import com.urgoo.counselor.activities.CounselorFilterActivity;
 import com.urgoo.message.activities.ChatActivity;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.pay.activities.PaySelectActivity;
@@ -103,7 +103,7 @@ public class MyWebViewFragment extends BaseWebViewFragment {
             view.stopLoading();
         } else if (url.startsWith("urgoo://gotoLookForGw")) {
             //寻找顾问
-            getActivity().startActivity(new Intent(getActivity(), CounselorList.class));
+            getActivity().startActivity(new Intent(getActivity(), CounselorFilterActivity.class));
             ScreenManager.getScreenManager().popTwoActivity();
             view.stopLoading();
         } else if (url.startsWith("urgoo://gotoConversation")) {

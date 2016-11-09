@@ -148,7 +148,7 @@ public class ZWConfig {
     public final static String URGOOURL_BASE = "http://10.203.203.49:8082/urgoo/";
 
 //    真实环境
-//    public final static String URGOOURL_BASE = "http://139.129.164.163:8082/urgoo/";
+//    public final static String URGOOURL_BASE = "http://139.129.164.163:8083/urgoo/";
 //    public final static String URGOOURL_BASE = "http://10.203.203.86:8080/urgoo/";
 //    public final static String URGOOURL_BASE = "http://10.203.203.86:8082/urgoo/";
 
@@ -468,4 +468,10 @@ public class ZWConfig {
     public final static String URL_requestGetPlanTimeLine = "http://bbs.urgoo.cn/leoFile/AppShare/timeAxis.html";
     // 修改资料
     public static final String URL_requestEditMy = URGOOURL_BASE + "001/001/student/editData?termType=2";
+    // 获取机器人所有选项
+    public static final String URL_requestGetRobotAll = URGOOURL_BASE + "001/001/robot/robotRun";
+    // 活动地址
+    public static final String URL_requestUrgooActivity = "http://bbs.urgoo.cn/leoFile/AppShare/urgooActivty.html";
+    // 获取验证码
+    public static final String URL_requestGetCode = URGOOURL_BASE + "001/001/login/getIdentifyingCodeAndRegionCode";
 }

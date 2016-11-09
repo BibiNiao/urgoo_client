@@ -100,8 +100,10 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.14'
     compile files('libs/hyphenatechat_3.1.5.jar')
     compile 'com.android.support:design:22.2.1'
-    compile project(':library')
     compile project(':swipeBackLayout')
+    compile ('fm.jiecao:jiecaovideoplayer:4.8.2') {
+        exclude module: 'appcompat-v7'
+    }
 }
 repositories {
     mavenCentral()

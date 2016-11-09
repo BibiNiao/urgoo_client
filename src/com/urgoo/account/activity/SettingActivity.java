@@ -13,6 +13,7 @@ import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
 import com.urgoo.data.SPManager;
 import com.urgoo.jpush.JpushUtlis;
+import com.urgoo.main.activities.AboutUrgoo;
 import com.urgoo.message.EaseHelper;
 import com.urgoo.profile.activities.ChangePwdActivity;
 import com.zw.express.tool.Util;
@@ -85,7 +86,7 @@ public class SettingActivity extends NavToolBarActivity implements AdapterView.O
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                Util.openActivity(this, ChangePwdActivity.class);
+                Util.openActivity(this, AboutUrgoo.class);
                 break;
             case 1:
                 logout();

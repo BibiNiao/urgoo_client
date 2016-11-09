@@ -37,7 +37,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
                 android:text="11111"
-                android:textColor="@color/gray"
                 android:textSize="12dp" />
 
             <ImageView

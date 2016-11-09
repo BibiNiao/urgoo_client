@@ -685,4 +685,41 @@ public class Util {
         }
         return 0;
     }
+
+    /**
+     * 获取不同尺寸对应的像素值
+     *
+     * @param context
+     * @param resId   dimen资源ID
+     * @return
+     */
+    public static int getDimensionPixel(Context context, int resId) {
+        return context.getResources().getDimensionPixelSize(resId);
+    }
+
+
+    /**
+     * 关闭软键盘
+     *
+     * @param mContext
+     */
+    public static void closeSoftKeyBoard(Context mContext) {
+        InputMethodManager imm = (InputMethodManager) mContext
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(((Activity) mContext).getWindow()
+                .getDecorView().getWindowToken(), 0);
+    }
+
+
+    /**
+     * 获取系统状态栏高度
+     */
+    public static int getStatusBarHeight(Context conterxt) {
+        int result = 0;
+        int resourceId = conterxt.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = conterxt.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
 }

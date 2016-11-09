@@ -94,6 +94,21 @@ public class AccountManager {
     }
 
     /**
+     * 获取验证码
+     *
+     * @param regionCode
+     * @param phoneNum
+     * @param callback
+     */
+    public void getCode(String regionCode, String phoneNum, StringRequestCallBack callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("phoneNum", phoneNum);
+        params.put("regionCode", regionCode);
+        params.put("termType", "2");
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetVerifyCode, ZWConfig.URL_requestGetCode, params, callback);
+    }
+
+    /**
      * 注册
      *
      * @param nickName

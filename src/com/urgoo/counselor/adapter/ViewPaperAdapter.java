@@ -26,8 +26,12 @@ import com.urgoo.counselor.activities.CounselorMoreInterface;
 import com.urgoo.counselor.activities.StuEvaluationAcitivity;
 import com.urgoo.counselor.biz.CounselorManager;
 import com.urgoo.counselor.model.Counselor;
+import com.urgoo.message.activities.ChatRobotActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
+import com.urgoo.pay.activities.PayCompleteActivity;
+import com.urgoo.webviewmanage.BaseWebViewActivity;
+import com.urgoo.webviewmanage.BaseWebViewFragment;
 import com.zw.express.tool.Util;
 
 import org.json.JSONException;
@@ -79,9 +83,12 @@ public class ViewPaperAdapter extends PagerAdapter implements View.OnClickListen
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_find_counselor, null);
         SimpleDraweeView sdvAvatar = ViewHolder.get(view, R.id.sdv_avatar);
         RelativeLayout rlAvatar = ViewHolder.get(view, R.id.rl_avatar);
-        RatingBar ratingbar = ViewHolder.get(view, R.id.ratingbar);
+        TextView tvFraction = ViewHolder.get(view, R.id.tv_fraction);
         ImageView ivSearch = ViewHolder.get(view, R.id.iv_search);
         ivSearch.setOnClickListener(this);
+        Button btnRobot = ViewHolder.get(view, R.id.btn_contact);
+        btnRobot.setTag(position);
+        btnRobot.setOnClickListener(this);
         Button btnData = ViewHolder.get(view, R.id.btn_data);
         btnData.setTag(position);
         btnData.setOnClickListener(this);
@@ -104,9 +111,14 @@ public class ViewPaperAdapter extends PagerAdapter implements View.OnClickListen
         ivCollect.setOnClickListener(this);
         TextView tvEvaluate = ViewHolder.get(view, R.id.tv_evaluate);
         tvEvaluate.setTag(position);
-        tvEvaluate.setText(mContext.getString(R.string.find_pingjia, counselorList.get(position).getStudentWords()));
+        if (counselorList.get(position).getStudentWords().equals("0")) {
+            tvEvaluate.setVisibility(View.GONE);
+        } else {
+            tvEvaluate.setVisibility(View.VISIBLE);
+            tvEvaluate.setText(mContext.getString(R.string.find_pingjia, counselorList.get(position).getStudentWords()));
+        }
         tvEvaluate.setOnClickListener(this);
-        ratingbar.setRating(counselorList.get(position).getStarMark() / 2);
+        tvFraction.setText(counselorList.get(position).getStarMark());
         if (counselorList.get(position).getIsAttention().equals("1")) {
             ivCollect.setBackgroundResource(R.drawable.ic_find_collected);
         } else {
@@ -142,15 +154,16 @@ public class ViewPaperAdapter extends PagerAdapter implements View.OnClickListen
      * @param position
      */
     private void showTag(TextView tvTag1, TextView tvTag2, int position) {
-        if (counselorList.get(position).getOrgnizationList() != null && counselorList.get(position).getOrgnizationList().size() > 0) {
-            if (counselorList.get(position).getOrgnizationList().size() == 1) {
-                tvTag1.setText(counselorList.get(position).getOrgnizationList().get(0));
+        if (counselorList.get(position).getOrgs() != null && counselorList.get(position).getOrgs().size() > 0) {
+            if (counselorList.get(position).getOrgs().size() == 1) {
+                tvTag1.setText(counselorList.get(position).getOrgs().get(0));
+                tvTag1.setVisibility(View.VISIBLE);
                 tvTag2.setVisibility(View.GONE);
             } else {
                 tvTag1.setVisibility(View.VISIBLE);
                 tvTag2.setVisibility(View.VISIBLE);
-                tvTag1.setText(counselorList.get(position).getOrgnizationList().get(0));
-                tvTag2.setText(counselorList.get(position).getOrgnizationList().get(1));
+                tvTag1.setText(counselorList.get(position).getOrgs().get(0));
+                tvTag2.setText(counselorList.get(position).getOrgs().get(1));
             }
         } else {
             tvTag1.setVisibility(View.GONE);
@@ -180,6 +193,12 @@ public class ViewPaperAdapter extends PagerAdapter implements View.OnClickListen
         Intent intent;
         Bundle bundle;
         switch (v.getId()) {
+            case R.id.btn_contact:
+                position = (Integer) v.getTag();
+                bundle = new Bundle();
+                bundle.putString(ChatRobotActivity.EXTRA_COUNSELOR_ID, counselorList.get(position).getCounselorId());
+                Util.openActivityWithBundle(mContext, ChatRobotActivity.class, bundle);
+                break;
             case R.id.iv_search:
                 Util.openActivity(mContext, CounselorFilterActivity.class);
                 break;
@@ -206,9 +225,10 @@ public class ViewPaperAdapter extends PagerAdapter implements View.OnClickListen
                 break;
             case R.id.iv_in:
                 position = (Integer) v.getTag();
-                Uri uri = Uri.parse(counselorList.get(position).getLinkedin());
-                intent = new Intent(Intent.ACTION_VIEW, uri);
-                mContext.startActivity(intent);
+//                Uri uri = Uri.parse(counselorList.get(position).getLinkedin());
+                mContext.startActivity(new Intent(mContext, BaseWebViewActivity.class).putExtra(BaseWebViewFragment.EXTRA_URL, counselorList.get(position).getLinkedin()));
+//                intent = new Intent(Intent.ACTION_VIEW, uri);
+//                mContext.startActivity(intent);
                 break;
             case R.id.iv_collect:
                 position = (Integer) v.getTag();

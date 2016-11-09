@@ -1,11 +1,13 @@
 package com.urgoo.collect.activites;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -22,6 +24,7 @@ import com.urgoo.live.activities.AlbumActivity;
 import com.urgoo.live.activities.LiveDetailActivity;
 import com.urgoo.live.activities.VideoDetailActivity;
 import com.urgoo.live.event.FollowVideoEvent;
+import com.urgoo.message.activities.MainActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
 import com.zw.express.tool.Util;
@@ -38,6 +41,8 @@ import de.greenrobot.event.EventBus;
  */
 public class FollowVideoFragment extends BaseFragment implements StringRequestCallBack {
     private UltimateRecyclerView recyclerView;
+    private TextView tvEmpty;
+    private TextView tvFollow;
     private int currentPage = 0;
     private FollowVideoAdapter adapter;
     private List<Video> videoList = new ArrayList<>();
@@ -65,6 +70,16 @@ public class FollowVideoFragment extends BaseFragment implements StringRequestCa
 
     private void initViews() {
         recyclerView = (UltimateRecyclerView) viewContent.findViewById(R.id.recycler_view);
+        tvEmpty = (TextView) viewContent.findViewById(R.id.tv_empty);
+        tvFollow = (TextView) viewContent.findViewById(R.id.tv_follow);
+        tvFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle extras = new Bundle();
+                extras.putInt(MainActivity.EXTRA_TAB, 1);
+                Util.openActivityWithBundle(getActivity(), MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            }
+        });
         adapter = new FollowVideoAdapter(getActivity(), videoList);
 
         recyclerView.setAdapter(adapter);
@@ -137,8 +152,17 @@ public class FollowVideoFragment extends BaseFragment implements StringRequestCa
                     List<Video> videos = gson.fromJson(jsonObject.getJSONArray("myVideo").toString(), new TypeToken<List<Video>>() {
                     }.getType());
                     if (recyclerView.mSwipeRefreshLayout.isRefreshing()) {
-                        adapter.clear();
-                        adapter.addData(videos);
+                        if (videos.isEmpty()) {
+                            tvEmpty.setVisibility(View.VISIBLE);
+                            tvFollow.setVisibility(View.VISIBLE);
+                            recyclerView.setVisibility(View.GONE);
+                        } else {
+                            adapter.clear();
+                            adapter.addData(videos);
+                            tvEmpty.setVisibility(View.GONE);
+                            tvFollow.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                        }
                     } else {
                         if (!videos.isEmpty()) {
                             if (isOther) {

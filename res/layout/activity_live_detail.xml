@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.urgoo.live.view.CommentInputBox
-        android:id="@+id/ll_comment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,27 +35,24 @@
                 android:background="@android:color/black"
                 android:visibility="gone">
 
-                <com.urgoo.live.view.UniversalVideoView
+                <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
                     android:id="@+id/videoView"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_gravity="center"
-                    app:uvv_autoRotation="true"
-                    app:uvv_fitXY="false" />
+                    android:layout_gravity="center"/>
 
-                <com.urgoo.live.view.UniversalMediaController
-                    android:id="@+id/media_controller"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    app:uvv_scalable="true" />
+                <!--<com.urgoo.live.view.UniversalMediaController-->
+                    <!--android:id="@+id/media_controller"-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="fill_parent"-->
+                    <!--app:uvv_scalable="true" />-->
             </FrameLayout>
 
             <ImageView
                 android:id="@+id/iv_play"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
                 android:layout_marginBottom="15dp"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/ic_red_play" />
@@ -107,4 +97,12 @@
         android:layout_height="1px"
         android:layout_above="@id/ll_comment"
         android:background="#ffd8d4ce" />
+
+    <com.urgoo.live.view.CommentInputBox
+        android:id="@+id/ll_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
 </RelativeLayout>

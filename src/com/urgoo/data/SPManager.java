@@ -15,6 +15,7 @@ import java.util.List;
 public class SPManager {
     private final static String SP_NAME = "spdata";
     public final static String USERNAME = "username";
+    public final static String USEICON = "usericon";
     public final static String PASSWORD = "password";
     public final static String COOKIE = "cookie";
     public final static String USER_ID = "userId";
@@ -30,7 +31,23 @@ public class SPManager {
     public final static String PRICE = "price";
     public final static String PAYORDER_ID = "payRequestOrderId";
     public final static String HXCODE = "userHxCode";
+    private static final String GUIDE_BETTER_POST_NEVER = "guide_better_post_never";
 
+    public boolean setGuideBetterPostNever() {
+        return getEditor().putBoolean(GUIDE_BETTER_POST_NEVER, true).commit();
+    }
+
+    public boolean getGuideBetterPostNever() {
+        return getSharedPreferences().getBoolean(GUIDE_BETTER_POST_NEVER, false);
+    }
+
+    public boolean setUserIcon(String usericon) {
+        return getEditor().putString(USEICON, usericon).commit();
+    }
+
+    public String getUserIcon() {
+        return getSharedPreferences().getString(USEICON, "");
+    }
 
     public boolean setHxCode(String hxCode) {
         return getEditor().putString(HXCODE, hxCode).commit();

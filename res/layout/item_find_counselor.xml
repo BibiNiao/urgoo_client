@@ -39,20 +39,18 @@
 
         <ImageView
             android:id="@+id/iv_collect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="18dp"
-            android:layout_marginRight="15dp" />
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"/>
 
         <ImageView
             android:id="@+id/iv_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="80dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_toLeftOf="@id/iv_collect"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="15dp"
             android:src="@drawable/ic_find_share" />
     </RelativeLayout>
@@ -80,7 +78,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/tv_name"
             android:src="@drawable/ic_lingying"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_tag1"
@@ -88,30 +86,24 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/bg_live_time_green"
             android:paddingBottom="2dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
             android:paddingTop="2dp"
             android:text="ICEA"
-            android:textColor="#26a69a"
-            android:textSize="9dp" />
+            android:textColor="@color/tv2b2b2b"
+            android:textSize="11dp" />
 
         <TextView
             android:id="@+id/tv_tag2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="7dp"
+            android:layout_marginRight="15dp"
             android:layout_toLeftOf="@id/tv_tag1"
-            android:background="@drawable/bg_live_time_green"
             android:paddingBottom="2dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
             android:paddingTop="2dp"
             android:text="ICEA"
-            android:textColor="#26a69a"
-            android:textSize="9dp" />
+            android:textColor="@color/tv2b2b2b"
+            android:textSize="11dp" />
 
     </RelativeLayout>
 
@@ -137,7 +129,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/iv_location"
-            android:textColor="@color/tv7a7a7a"
+            android:textColor="@color/tv2b2b2b"
             android:textSize="11dp" />
 
         <TextView
@@ -166,19 +158,16 @@
             android:layout_centerVertical="true"
             android:text="111"
             android:textColor="#3a3a3a"
-            android:textSize="16dp" />
+            android:textSize="16dp"/>
 
-        <RatingBar
-            android:id="@+id/ratingbar"
-            style="@style/roomRatingBar"
+        <TextView
+            android:id="@+id/tv_fraction"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:isIndicator="true"
-            android:numStars="5"
-            android:rating="5.0"
-            android:stepSize="0.5" />
+            android:textColor="@color/tv2b2b2b"
+            android:textSize="12dp" />
 
     </RelativeLayout>
 
@@ -198,9 +187,9 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
-            android:background="@drawable/btn_checked_bg"
+            android:background="@drawable/bg_main_btn_black"
             android:text="查看资料"
-            android:textColor="@color/ffffff"
+            android:textColor="@color/tv2b2b2b"
             android:textSize="15dp" />
 
         <Button
@@ -209,10 +198,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_weight="1"
-            android:background="@drawable/btn_checked_bg"
+            android:background="@drawable/bg_main_btn_black"
             android:text="立即联系"
-            android:textColor="@color/ffffff"
-            android:textSize="15dp" />
+            android:textColor="@color/tv2b2b2b"
+            android:textSize="15dp"/>
     </LinearLayout>
 
 </LinearLayout>

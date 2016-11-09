@@ -53,4 +53,10 @@
         android:layout_height="match_parent"
         android:layout_above="@id/vi_line" />
 
+    <View
+        android:id="@+id/img_guide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@drawable/img_guide_main" />
 </RelativeLayout>

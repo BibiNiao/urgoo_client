@@ -94,6 +94,7 @@ public class SysMessageActivity extends NavToolBarActivity {
                     if (recyclerView.mSwipeRefreshLayout.isRefreshing()) {
                         adapter.clear();
                         adapter.addData(messageItemList);
+                        adapter.notifyDataSetChanged();
                     }
                 } catch (Exception e) {
                     showToastSafe("解析数据信息时出错，请稍后再试~");

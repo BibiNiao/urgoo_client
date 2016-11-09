@@ -34,11 +34,9 @@ import com.urgoo.counselor.activities.FindCounselorFragment;
 import com.urgoo.data.SPManager;
 import com.urgoo.jpush.JpushUtlis;
 import com.urgoo.live.activities.LiveFragment;
-import com.urgoo.main.activities.CounselorFragment;
 import com.urgoo.message.Constant;
 import com.urgoo.message.EaseHelper;
 import com.urgoo.plan.activities.PlanFragment;
-import com.urgoo.profile.activities.ProfileFragment;
 import com.urgoo.view.TabView;
 import com.zw.express.tool.Util;
 import com.zw.express.tool.log.Log;
@@ -97,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private android.app.AlertDialog.Builder accountRemovedBuilder;
     private boolean isConflictDialogShow;
     private boolean isAccountRemovedDialogShow;
-
+    private View guide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,7 +149,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //
 //        liveFragment = new LiveFragment();
-//        counselorFragment = new CounselorFragment();
 //        myWebViewFragment = new MainWebViewFragment();
 //        profileFragment = new ProfileFragment();
 //        planFragment = new PlanFragment();
@@ -175,9 +172,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     public void onEventMainThread(MessageEvent event) {
         tabMy.setNewIndicator(true);
-//        if (profileFragment.isVisible()) {
-//            profileFragment.getSelectRedCount();
-//        }
+        if (myFragment.isVisible()) {
+            myFragment.getSelectRedCount();
+        }
     }
 
     @Override
@@ -196,6 +193,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 初始化组件
      */
     public void initView() {
+        guide = findViewById(R.id.img_guide);
+        if (!SPManager.getInstance(this).getGuideBetterPostNever()) {
+            guide.setVisibility(View.VISIBLE);
+        }
+        guide.setOnClickListener(this);
         tabCounselor = (TabView) findViewById(R.id.tab_counselor);
         tabCounselor.setTextAndDrawableTop(R.string.find_consultant, R.drawable.tab_counselor);
         tabCounselor.setOnClickListener(this);
@@ -458,6 +460,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         switch (v.getId()) {
+            case R.id.img_guide:
+                guide.setVisibility(View.GONE);
+                SPManager.getInstance(this).setGuideBetterPostNever();
+                break;
             case R.id.tab_counselor:
                 switchTab(v);
                 if (findCounselorFragment == null) {

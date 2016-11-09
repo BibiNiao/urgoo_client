@@ -1,11 +1,13 @@
 package com.urgoo.collect.activites;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -20,6 +22,8 @@ import com.urgoo.collect.biz.CollectManager;
 import com.urgoo.collect.event.FollowCounselorEvent;
 import com.urgoo.collect.model.CounselorEntiy;
 import com.urgoo.counselor.activities.CounselorMainActivity;
+import com.urgoo.message.activities.MainActivity;
+import com.urgoo.message.activities.UserMessageActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
 import com.zw.express.tool.Util;
@@ -37,6 +41,8 @@ import de.greenrobot.event.EventBus;
 public class FollowCounselorFragment extends BaseFragment implements StringRequestCallBack {
     private UltimateRecyclerView recyclerView;
     private FollowConsultantAdapter adapter;
+    private TextView tvEmpty;
+    private TextView tvFollow;
     private int currentPage = 0;
     private List<CounselorEntiy> counselorEntiys = new ArrayList<>();
     private boolean isOther = false;
@@ -63,6 +69,16 @@ public class FollowCounselorFragment extends BaseFragment implements StringReque
 
     private void initViews() {
         recyclerView = (UltimateRecyclerView) viewContent.findViewById(R.id.recycler_view);
+        tvEmpty = (TextView) viewContent.findViewById(R.id.tv_empty);
+        tvFollow = (TextView) viewContent.findViewById(R.id.tv_follow);
+        tvFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle extras = new Bundle();
+                extras.putInt(MainActivity.EXTRA_TAB, 0);
+                Util.openActivityWithBundle(getActivity(), MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            }
+        });
         adapter = new FollowConsultantAdapter(getActivity(), counselorEntiys);
 
         recyclerView.setAdapter(adapter);
@@ -122,8 +138,17 @@ public class FollowCounselorFragment extends BaseFragment implements StringReque
                     List<CounselorEntiy> counselorEntiys = gson.fromJson(jsonObject.getJSONArray("counselorListInfoList").toString(), new TypeToken<List<CounselorEntiy>>() {
                     }.getType());
                     if (recyclerView.mSwipeRefreshLayout.isRefreshing()) {
-                        adapter.clear();
-                        adapter.addData(counselorEntiys);
+                        if (counselorEntiys.isEmpty()) {
+                            tvEmpty.setVisibility(View.VISIBLE);
+                            tvFollow.setVisibility(View.VISIBLE);
+                            recyclerView.setVisibility(View.GONE);
+                        } else {
+                            adapter.clear();
+                            adapter.addData(counselorEntiys);
+                            tvEmpty.setVisibility(View.GONE);
+                            tvFollow.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                        }
                     } else {
                         if (!counselorEntiys.isEmpty()) {
                             if (isOther) {

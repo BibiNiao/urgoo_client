@@ -27,9 +27,9 @@ public class Counselor implements Parcelable {
      */
     private String studentWords;
     /**
-     * 星评价 除以2
+     * 星评价
      */
-    private float starMark;
+    private String starMark;
     /**
      * linkin地址
      */
@@ -41,7 +41,7 @@ public class Counselor implements Parcelable {
     /**
      * 资格认证
      */
-    private transient List<String> orgnizationList;
+    private List<String> orgs;
 
     protected Counselor(Parcel in) {
         userIcon = in.readString();
@@ -51,10 +51,10 @@ public class Counselor implements Parcelable {
         habitualResidence = in.readString();
         counselorId = in.readString();
         studentWords = in.readString();
-        starMark = in.readFloat();
+        starMark = in.readString();
         Linkedin = in.readString();
         isAttention = in.readString();
-        orgnizationList = in.createStringArrayList();
+        orgs = in.createStringArrayList();
     }
 
     public static final Creator<Counselor> CREATOR = new Creator<Counselor>() {
@@ -133,11 +133,11 @@ public class Counselor implements Parcelable {
         this.studentWords = studentWords;
     }
 
-    public float getStarMark() {
+    public String getStarMark() {
         return starMark;
     }
 
-    public void setStarMark(float starMark) {
+    public void setStarMark(String starMark) {
         this.starMark = starMark;
     }
 
@@ -157,12 +157,12 @@ public class Counselor implements Parcelable {
         this.isAttention = isAttention;
     }
 
-    public List<String> getOrgnizationList() {
-        return orgnizationList;
+    public List<String> getOrgs() {
+        return orgs;
     }
 
-    public void setOrgnizationList(List<String> orgnizationList) {
-        this.orgnizationList = orgnizationList;
+    public void setOrgs(List<String> orgs) {
+        this.orgs = orgs;
     }
 
     @Override
@@ -179,9 +179,9 @@ public class Counselor implements Parcelable {
         dest.writeString(habitualResidence);
         dest.writeString(counselorId);
         dest.writeString(studentWords);
-        dest.writeFloat(starMark);
+        dest.writeString(starMark);
         dest.writeString(Linkedin);
         dest.writeString(isAttention);
-        dest.writeStringList(orgnizationList);
+        dest.writeStringList(orgs);
     }
 }

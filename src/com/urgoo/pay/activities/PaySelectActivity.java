@@ -68,7 +68,6 @@ public class PaySelectActivity extends NavToolBarActivity implements View.OnClic
     private TextView tobe_Paid;
     private String price;
     private String order;
-    private LinearLayout back;
     private String random;
     private String outTradeNo;
     private String payReqSign;
@@ -138,8 +137,6 @@ public class PaySelectActivity extends NavToolBarActivity implements View.OnClic
 
         tv_Paid = (TextView) view.findViewById(R.id.tv_Paid);
         tobe_Paid = (TextView) view.findViewById(R.id.tobe_Paid);
-        back = (LinearLayout) view.findViewById(R.id.back);
-        back.setOnClickListener(this);
         adapter = new PaySelectAdapter(this);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -35,7 +35,6 @@ import java.util.List;
  * Created by bb on 2016/8/15.
  */
 public class SurveyActivity extends BaseActivity implements View.OnClickListener {
-    public static final String SurveyInfo = "surveyInfo";
     private List<SurveyInfo> surveyInfos;
     private List<SurveyContent> questions;
     private int page = 0;

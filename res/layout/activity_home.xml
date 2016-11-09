@@ -15,31 +15,104 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="0.1"
-        android:gravity="bottom"
-        android:orientation="vertical">
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/edit_style_input"
+        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_region_code"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="登录"
-            android:background="@drawable/btn_checked_bg"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="+86"
             android:textColor="@color/ffffff"
-            android:textSize="16dp" />
+            android:textSize="14dp" />
 
-        <Button
-            android:id="@+id/btn_regist"
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/btn_normal_bg"
-            android:text="新用户"
-            android:textColor="@color/tab_color"
-            android:textSize="16dp" />
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_code_sanjiao" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:background="@color/ffffff" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            style="@style/EditText"
+            android:background="@null"
+            android:drawableLeft="@drawable/ic_phone_login"
+            android:drawablePadding="15dp"
+            android:hint="手机号"
+            android:inputType="number"
+            android:padding="15dp"
+            android:singleLine="true"
+            android:textColor="@color/ffffff"
+            android:textColorHint="@color/ffffff"
+            android:textSize="14dp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_style_input"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_code"
+            style="@style/EditText"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableLeft="@drawable/ic_code_login"
+            android:drawablePadding="15dp"
+            android:hint="验证码"
+            android:inputType="number"
+            android:padding="15dp"
+            android:singleLine="true"
+            android:textColor="@color/ffffff"
+            android:textColorHint="@color/ffffff"
+            android:textSize="14dp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="15dp"
+            android:background="@color/ffffff" />
+
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="15dp"
+            android:text="获取验证码"
+            android:textColor="@color/ffffff"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/edit_style_input"
+        android:text="开始找顾问"
+        android:textColor="@color/ffffff"
+        android:textSize="16dp" />
 </LinearLayout>

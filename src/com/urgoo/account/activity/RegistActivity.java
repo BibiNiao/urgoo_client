@@ -37,10 +37,8 @@ public class RegistActivity extends NavToolBarActivity implements View.OnClickLi
     private TextView tvCode;
     private TimeCount timeCount;
     private EditText etPhone;
-    private EditText etNickName;
     private EditText etCode;
 
-    private String nickname;
     private String phone;
     private String code;
     private String userId;
@@ -56,7 +54,6 @@ public class RegistActivity extends NavToolBarActivity implements View.OnClickLi
 
     public void initViews(View view) {
         etPhone = (EditText) view.findViewById(R.id.et_phone);
-        etNickName = (EditText) view.findViewById(R.id.et_nickname);
         etCode = (EditText) view.findViewById(R.id.et_code);
         tvCode = (TextView) view.findViewById(R.id.tv_code);
         tvCode.setOnClickListener(this);
@@ -108,13 +105,8 @@ public class RegistActivity extends NavToolBarActivity implements View.OnClickLi
      * @return
      */
     private boolean check() {
-        nickname = etNickName.getText().toString();
         phone = etPhone.getText().toString();
         code = etCode.getText().toString();
-        if (Util.isEmpty(nickname)) {
-            showToastSafe("昵称不能为空");
-            return false;
-        }
         if (Util.isEmpty(phone)) {
             showToastSafe("手机号不能为空");
             return false;
@@ -140,15 +132,15 @@ public class RegistActivity extends NavToolBarActivity implements View.OnClickLi
                 try {
                     String token = new JSONObject(result.get("body").toString()).getString("token");
                     String hxid = new JSONObject(result.get("body").toString()).getString("userHxCode");
-                    APPManagerTool.setGrowingIOCS(userId, nickname, phone);
+                    APPManagerTool.setGrowingIOCS(userId, phone, phone);
                     spManager.setToken(token);
                     spManager.setUserId(userId);
-                    spManager.setNickName(nickname);
                     spManager.setUserName(phone);
                     spManager.setHxCode(hxid);
                     EaseHelper.longin(hxid, ZWConfig.ACTION_HXPWD);
                     if (new JSONObject(result.get("body").toString()).getInt("question") == 0) {
                         Util.openActivity(this, SurveyActivity.class);
+                        finish();
                     } else {
                         // 进入主页面
                         Intent intent = new Intent(RegistActivity.this, MainActivity.class);
@@ -236,7 +228,7 @@ public class RegistActivity extends NavToolBarActivity implements View.OnClickLi
                 break;
             case R.id.btn_next:
                 if (check()) {
-                    regist(nickname, phone, code);
+//                    regist(phone, code);
                 }
                 break;
         }

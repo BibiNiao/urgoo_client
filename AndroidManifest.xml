@@ -37,6 +37,7 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.SET_DEBUG_APP" />
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
 
     <!-- 杨德成 20160722  ShareSDK START -->
 
@@ -70,6 +71,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.urgoo.message.activities.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeDisenableSwipeBack" />
         <activity
@@ -85,7 +87,8 @@
             android:theme="@style/AppTheme.Base" />
         <activity
             android:name="com.urgoo.main.activities.AboutUrgoo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base"/>
         <activity
             android:name="com.urgoo.profile.activities.SetPasswordActivity"
             android:screenOrientation="portrait"
@@ -172,15 +175,21 @@
         <!-- 首页 -->
         <activity
             android:name="com.urgoo.account.activity.HomeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeDisenableSwipeBack"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <!-- 登陆 -->
         <activity
             android:name="com.urgoo.account.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base"
             android:windowSoftInputMode="adjustPan|stateVisible" />
+        <!-- 国家码选择页面 -->
+        <activity
+            android:name="com.urgoo.account.activity.SelectCountryCodeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
         <!-- 问卷调查 -->
         <activity
             android:name="com.urgoo.account.activity.SurveyActivity"
@@ -216,11 +225,6 @@
             android:theme="@style/AppTheme.Base"
             android:windowSoftInputMode="adjustPan" />
         <!-- 顾问列表 -->
-        <activity
-            android:name="com.urgoo.counselor.activities.CounselorList"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"
-            android:windowSoftInputMode="adjustPan" />
         <!-- 顾问详情 -->
         <activity
             android:name="com.urgoo.counselor.activities.CounselorActivity"
@@ -552,6 +556,10 @@
         <!-- 个人消息列表 -->
         <activity
             android:name="com.urgoo.message.activities.UserMessageActivity"
+            android:screenOrientation="portrait" />
+        <!-- 聊天机器人 -->
+        <activity
+            android:name="com.urgoo.message.activities.ChatRobotActivity"
             android:screenOrientation="portrait" />
 
         <!-- 设置环信应用的AppKey -->

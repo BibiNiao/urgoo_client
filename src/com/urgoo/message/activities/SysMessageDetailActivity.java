@@ -1,5 +1,6 @@
 package com.urgoo.message.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,7 +17,7 @@ import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.base.NavToolBarActivity;
 import com.urgoo.client.R;
-import com.urgoo.counselor.activities.CounselorDetailActivity;
+import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.activities.CounselorMainActivity;
 import com.urgoo.live.activities.LiveDetailActivity;
 import com.urgoo.live.activities.VideoDetailActivity;
@@ -25,6 +26,7 @@ import com.urgoo.message.biz.MessageManager;
 import com.urgoo.message.event.SysMessageListEvent;
 import com.urgoo.message.model.SysMessage;
 import com.urgoo.net.EventCode;
+import com.urgoo.webviewmanage.BaseWebViewActivity;
 import com.zw.express.tool.Util;
 
 import org.json.JSONObject;
@@ -108,6 +110,8 @@ public class SysMessageDetailActivity extends NavToolBarActivity {
                         Util.openActivityWithBundle(SysMessageDetailActivity.this, VideoDetailActivity.class, bundle);
                         break;
                     case 5:
+                        String strURL = ZWConfig.URL_requestUrgooActivity + "?targetId=" + adapter.getItem(position).getTargetId();
+                        startActivity(new Intent(SysMessageDetailActivity.this, BaseWebViewActivity.class).putExtra(BaseWebViewActivity.EXTRA_URL, strURL));
                         break;
                 }
                 updateSysMessage(adapter.getItem(position).getInformationId(), adapter.getItem(position).getUnread());

@@ -29,7 +29,7 @@ public class MyAdapter extends BaseAdapter {
             items.add(new SettingItem(mContext.getString(R.string.my_advance), R.drawable.ic_my_advance, advanceCount));
             items.add(new SettingItem(mContext.getString(R.string.my_order), R.drawable.ic_my_order, 0));
             items.add(new SettingItem(mContext.getString(R.string.my_sys_message), R.drawable.ic_my_sys_message, systemCount));
-            items.add(new SettingItem(mContext.getString(R.string.my_activities), R.drawable.ic_my_activity, 0));
+//            items.add(new SettingItem(mContext.getString(R.string.my_activities), R.drawable.ic_my_activity, 0));
             items.add(new SettingItem(mContext.getString(R.string.my_share), R.drawable.ic_my_share, 0));
             items.add(new SettingItem(mContext.getString(R.string.my_tel), R.drawable.ic_my_tel, 0));
             items.add(new SettingItem(mContext.getString(R.string.my_setting), R.drawable.ic_my_setting, 0));

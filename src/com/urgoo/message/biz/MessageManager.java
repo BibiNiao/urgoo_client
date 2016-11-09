@@ -85,4 +85,21 @@ public class MessageManager {
         params.put("token", SPManager.getInstance(mContext).getToken());
         HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeUpdateUserMessage, ZWConfig.Action_updateUserInformation, params, callback);
     }
+
+    /**
+     * 获取所有机器人选项
+     *
+     * @param counselorId
+     * @param callback
+     */
+    public void getRobotAll(String counselorId, String level, String target, String text, String type, StringRequestCallBack callback) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("counselorId", counselorId);
+        params.put("token", SPManager.getInstance(mContext).getToken());
+        params.put("level", level);
+        params.put("target", target);
+        params.put("text", text);
+        params.put("type", type);
+        HttpEngine.getInstance(mContext).sendPostRequest(EventCode.EventCodeGetRobotAll, ZWConfig.URL_requestGetRobotAll, params, callback);
+    }
 }

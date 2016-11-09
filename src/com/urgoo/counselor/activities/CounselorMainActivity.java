@@ -26,6 +26,7 @@ import com.urgoo.common.ShareUtil;
 import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.biz.CounselorManager;
 import com.urgoo.counselor.model.Counselor;
+import com.urgoo.message.activities.ChatRobotActivity;
 import com.urgoo.message.activities.MainActivity;
 import com.urgoo.message.activities.SplashActivity;
 import com.urgoo.net.EventCode;
@@ -54,8 +55,9 @@ public class CounselorMainActivity extends NavToolBarActivity implements View.On
     private TextView tvTag1;
     private TextView tvTag2;
     private SimpleDraweeView sdvAvatar;
-    private RatingBar ratingbar;
+    private TextView tvFraction;
     private Button btnData;
+    private Button btnContact;
     private Counselor counselor;
 
     @Override
@@ -81,9 +83,11 @@ public class CounselorMainActivity extends NavToolBarActivity implements View.On
         tvTag1 = (TextView) view.findViewById(R.id.tv_tag1);
         tvTag2 = (TextView) view.findViewById(R.id.tv_tag2);
         sdvAvatar = (SimpleDraweeView) view.findViewById(R.id.sdv_avatar);
-        ratingbar = (RatingBar) view.findViewById(R.id.ratingbar);
+        tvFraction = (TextView) view.findViewById(R.id.tv_fraction);
+        btnContact = (Button) view.findViewById(R.id.btn_contact);
         btnData = (Button) view.findViewById(R.id.btn_data);
         btnData.setOnClickListener(this);
+        btnContact.setOnClickListener(this);
         ivPlay.setOnClickListener(this);
         tvEvaluate.setOnClickListener(this);
         getMyCounselorInfo();
@@ -175,7 +179,7 @@ public class CounselorMainActivity extends NavToolBarActivity implements View.On
                     int width = Util.getDeviceWidth(this);
                     rlAvatar.setLayoutParams(new LinearLayout.LayoutParams(width, (int) (RATIO * width)));
                     sdvAvatar.setImageURI(Uri.parse(counselor.getUserIcon()));
-                    ratingbar.setRating(counselor.getStarMark() / 2);
+                    tvFraction.setText(counselor.getStarMark());
                     showTag(tvTag1, tvTag2);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -191,15 +195,15 @@ public class CounselorMainActivity extends NavToolBarActivity implements View.On
      * @param tvTag2
      */
     private void showTag(TextView tvTag1, TextView tvTag2) {
-        if (counselor.getOrgnizationList() != null && counselor.getOrgnizationList().size() > 0) {
-            if (counselor.getOrgnizationList().size() == 1) {
-                tvTag1.setText(counselor.getOrgnizationList().get(0));
+        if (counselor.getOrgs() != null && counselor.getOrgs().size() > 0) {
+            if (counselor.getOrgs().size() == 1) {
+                tvTag1.setText(counselor.getOrgs().get(0));
                 tvTag2.setVisibility(View.GONE);
             } else {
                 tvTag1.setVisibility(View.VISIBLE);
                 tvTag2.setVisibility(View.VISIBLE);
-                tvTag1.setText(counselor.getOrgnizationList().get(0));
-                tvTag2.setText(counselor.getOrgnizationList().get(1));
+                tvTag1.setText(counselor.getOrgs().get(0));
+                tvTag2.setText(counselor.getOrgs().get(1));
             }
         } else {
             tvTag1.setVisibility(View.GONE);
@@ -212,6 +216,11 @@ public class CounselorMainActivity extends NavToolBarActivity implements View.On
         Bundle bundle;
         Intent intent;
         switch (v.getId()) {
+            case R.id.btn_contact:
+                bundle = new Bundle();
+                bundle.putString(ChatRobotActivity.EXTRA_COUNSELOR_ID, counselorId);
+                Util.openActivityWithBundle(this, ChatRobotActivity.class, bundle);
+                break;
             case R.id.iv_in:
                 Uri uri = Uri.parse(counselor.getLinkedin());
                 intent = new Intent(Intent.ACTION_VIEW, uri);

@@ -80,7 +80,7 @@ public class MyActivitesAdapter extends UltimateViewAdapter<MyActivitesAdapter.V
             holder.tvTitle.setText(live.getTitle());
             holder.tvDes.setText(live.getDes());
             if (live.getStatus().equals("1")) {
-                holder.tvTime.setBackgroundResource(R.drawable.bg_live_time_red);
+                holder.tvTime.setBackgroundResource(R.drawable.bg_live_time_black);
                 holder.tvTime.setTextColor(context.getResources().getColor(R.color.tvf75657));
                 if (live.getBalanceTime() > 0) {
                     holder.tvTime.setText(DataUtil.formatDuring2(Integer.parseInt(live.getBalanceTime() + "")) + "后开始");
