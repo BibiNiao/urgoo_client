@@ -27,24 +27,35 @@ import com.hyphenate.chat.EMClient;
 import com.urgoo.ScreenManager;
 import com.urgoo.account.activity.HomeActivity;
 import com.urgoo.account.activity.MyFragment;
+import com.urgoo.business.BaseService;
 import com.urgoo.client.R;
 import com.urgoo.collect.activites.CollectFragment;
+import com.urgoo.common.ZWConfig;
 import com.urgoo.common.event.MessageEvent;
 import com.urgoo.counselor.activities.FindCounselorFragment;
 import com.urgoo.data.SPManager;
+import com.urgoo.domain.NetHeaderInfoEntity;
 import com.urgoo.jpush.JpushUtlis;
 import com.urgoo.live.activities.LiveFragment;
 import com.urgoo.message.Constant;
 import com.urgoo.message.EaseHelper;
 import com.urgoo.plan.activities.PlanFragment;
+import com.urgoo.profile.activities.UrgooVideoActivity;
 import com.urgoo.view.TabView;
 import com.zw.express.tool.Util;
 import com.zw.express.tool.log.Log;
+import com.zw.express.tool.net.OkHttpClientManager;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import cn.jpush.android.api.TagAliasCallback;
 import de.greenrobot.event.EventBus;
+import okhttp3.Call;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MyFragment.MessageFragmentCallback {
     protected static final String TAG = "MainActivity";
@@ -456,6 +467,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    //杨德成20160801 获取ZOOM房间;接受或拒绝顾问端发起的视频邀请 0:用户未操作，1：接受，2：拒绝
+    private void getZOOMInfo() {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("token", SPManager.getInstance(this).getToken());
+        params.put("termType", "2");
+        OkHttpClientManager.postAsyn(ZWConfig.Action_getZoomRoom,
+                new OkHttpClientManager.ResultCallback<String>() {
+                    @Override
+                    public void onError(Call call, Exception e) {
+                        //UiUtil.show(ZhiBodDetailActivity.this, "网络链接失败，请确定网络连接后重试！");
+                    }
+
+                    @Override
+                    public void onResponse(String respon) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(respon);
+                            NetHeaderInfoEntity hentity = BaseService.getNetHeadInfo(jsonObject);
+                            if (hentity.getCode().equals("200")) {
+                                String zoomId = new JSONObject(new JSONObject(jsonObject.get("body").toString()).getString("zoomInfo")).getString("zoomId");
+                                String nickname = new JSONObject(new JSONObject(jsonObject.get("body").toString()).getString("zoomInfo")).getString("nickname");
+                                String pic = new JSONObject(new JSONObject(jsonObject.get("body").toString()).getString("zoomInfo")).getString("pic");
+                                String zoomNo = new JSONObject(new JSONObject(jsonObject.get("body").toString()).getString("zoomInfo")).getString("zoomNo");
+                                String status = new JSONObject(new JSONObject(jsonObject.get("body").toString()).getString("zoomInfo")).getString("status");
+                                if (!status.equals("2")) {
+                                    Bundle extras = new Bundle();
+                                    extras.putString("icon", pic);
+                                    extras.putString("name", nickname);
+                                    extras.putString("zoomId", zoomId);
+                                    extras.putString("zoomNo", zoomNo);
+                                    Util.openActivityWithBundle(MainActivity.this, UrgooVideoActivity.class, extras);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                , params);
+    }
+
     @Override
     public void onClick(View v) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -481,6 +532,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 transaction.commitAllowingStateLoss();
                 // 更新当前展示的下标
                 indexSelected = TAB_COUNSELOR;
+                getZOOMInfo();
                 break;
             case R.id.tab_live:
                 switchTab(v);
@@ -497,6 +549,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 transaction.commitAllowingStateLoss();
                 // 更新当前展示的下标
                 indexSelected = TAB_LIVE;
+                getZOOMInfo();
                 break;
             case R.id.tab_my:
                 switchTab(v);
@@ -514,6 +567,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 transaction.commitAllowingStateLoss();
                 // 更新当前展示的下标
                 indexSelected = TAB_MY;
+                getZOOMInfo();
                 break;
             case R.id.tab_collect:
                 switchTab(v);
@@ -530,6 +584,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 transaction.commitAllowingStateLoss();
                 // 更新当前展示的下标
                 indexSelected = TAB_COLLECT;
+                getZOOMInfo();
                 break;
             case R.id.tab_plan:
                 switchTab(v);
@@ -546,6 +601,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 transaction.commitAllowingStateLoss();
                 // 更新当前展示的下标
                 indexSelected = TAB_PLAN;
+                getZOOMInfo();
                 break;
             default:
                 break;

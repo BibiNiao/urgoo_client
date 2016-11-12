@@ -8,6 +8,8 @@ public class ShareDetail {
     public String title;
     public String text;
     public String pic;
+    public String pengyouquan;
+    public String weibo;
 
     @Override
     public String toString() {
@@ -17,6 +19,22 @@ public class ShareDetail {
                 ", text='" + text + '\'' +
                 ", pic='" + pic + '\'' +
                 '}';
+    }
+
+    public String getPengyouquan() {
+        return pengyouquan;
+    }
+
+    public void setPengyouquan(String pengyouquan) {
+        this.pengyouquan = pengyouquan;
+    }
+
+    public String getWeibo() {
+        return weibo;
+    }
+
+    public void setWeibo(String weibo) {
+        this.weibo = weibo;
     }
 
     public String getUrl() {

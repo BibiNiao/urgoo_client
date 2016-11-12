@@ -93,11 +93,11 @@ public class ChatRobotActivity extends NavToolBarActivity {
         Robot robotRight = new Robot();
         robotRight.setMyself(true);
         robotRight.setText(text);
-        robotRight.setStyle("3");
+        robotRight.setStyle("4");
         adapter.addRobot(robotRight);
 //        mListView.setSelection(mListView.getAdapter()
 //                .getCount() - 1);
-//        refreshToTail();
+        refreshToTail();
     }
 
 
@@ -126,7 +126,7 @@ public class ChatRobotActivity extends NavToolBarActivity {
                         }
                     });
                 }
-            }, 300);
+            }, 1000);
             mListView.setSelection(adapter.getCount()
                     + mListView.getHeaderViewsCount() - 1);
         }

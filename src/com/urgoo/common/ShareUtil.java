@@ -27,21 +27,10 @@ public class ShareUtil {
      * @param ImageUrl
      * @param url
      */
-    public static void share(Context ctx, String title, String text, String ImageUrl, final String url) {
+    public static void share(Context ctx, String title, String text, String ImageUrl, final String url, final String weibo, final String pengyouquan) {
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
-        oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
-
-            @Override
-            public void onShare(Platform platform, Platform.ShareParams paramsToShare) {
-                switch (platform.getName()) {
-                    case "SinaWeibo":
-                        paramsToShare.setText(paramsToShare.getTitle() + url);
-                        break;
-                }
-            }
-        });
         // 分享时Notification的图标和文字  2.5.9以后的版本不调用此方法
         //oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));
         // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
@@ -49,6 +38,21 @@ public class ShareUtil {
         oks.setTitle(title);
         // text是分享文本，所有平台都需要这个字段
         oks.setText(text);
+        oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
+
+            @Override
+            public void onShare(Platform platform, Platform.ShareParams paramsToShare) {
+                switch (platform.getName()) {
+                    case "SinaWeibo":
+                        paramsToShare.setText(weibo + url);
+                        break;
+                    case "WechatMoments":
+                        paramsToShare.setText(pengyouquan);
+                        paramsToShare.setTitle(pengyouquan);
+                        break;
+                }
+            }
+        });
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
         //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
         oks.setImageUrl(ImageUrl);

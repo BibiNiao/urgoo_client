@@ -24,6 +24,8 @@ public class QrcodeActivity extends NavToolBarActivity {
     private String title;
     private String url;
     private String desc;
+    private String weibo;
+    private String pengyouquan;
 
     @Override
     protected View createContentView() {
@@ -42,7 +44,7 @@ public class QrcodeActivity extends NavToolBarActivity {
             @Override
             public void onClick(View v) {
                 if (!Util.isEmpty(title) && !Util.isEmpty(desc) && !Util.isEmpty(pic) && !Util.isEmpty(url)) {
-                    ShareUtil.share(QrcodeActivity.this, title, desc, pic, url);
+                    ShareUtil.share(QrcodeActivity.this, title, desc, pic, url, weibo, pengyouquan);
                 }
             }
         });
@@ -68,6 +70,8 @@ public class QrcodeActivity extends NavToolBarActivity {
                         title = jsonObject.getString("title");
                         url = jsonObject.getString("url");
                         desc = jsonObject.getString("desc");
+                        weibo = jsonObject.getString("weibo");
+                        pengyouquan = jsonObject.getString("pengyouquan");
                         if (Util.isEmpty(jsonObject.getString("resultStr"))) {
                             tvTitle.setVisibility(View.GONE);
                         } else {

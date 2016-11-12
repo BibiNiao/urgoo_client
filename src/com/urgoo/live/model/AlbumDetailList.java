@@ -8,7 +8,7 @@ public class AlbumDetailList {
      * 头像
      */
     private String coverSmall;
-    private String timeLong;
+    private int timeLong;
     private String albumId;
     /**
      * title
@@ -27,11 +27,11 @@ public class AlbumDetailList {
         this.coverSmall = coverSmall;
     }
 
-    public String getTimeLong() {
+    public int getTimeLong() {
         return timeLong;
     }
 
-    public void setTimeLong(String timeLong) {
+    public void setTimeLong(int timeLong) {
         this.timeLong = timeLong;
     }
 

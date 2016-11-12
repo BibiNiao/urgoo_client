@@ -91,11 +91,9 @@ public class SysMessageActivity extends NavToolBarActivity {
                     JSONObject jsonObject = new JSONObject(result.getString("body"));
                     messageItemList = gson.fromJson(jsonObject.getJSONArray("information").toString(), new TypeToken<List<MessageItem>>() {
                     }.getType());
-                    if (recyclerView.mSwipeRefreshLayout.isRefreshing()) {
-                        adapter.clear();
-                        adapter.addData(messageItemList);
-                        adapter.notifyDataSetChanged();
-                    }
+                    adapter.clear();
+                    adapter.addData(messageItemList);
+                    adapter.notifyDataSetChanged();
                 } catch (Exception e) {
                     showToastSafe("解析数据信息时出错，请稍后再试~");
                 }

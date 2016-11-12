@@ -23,10 +23,12 @@ import com.urgoo.common.ZWConfig;
 import com.urgoo.counselor.adapter.CounselorExperienceAdapter;
 import com.urgoo.counselor.adapter.CounselorSchoolAdapter;
 import com.urgoo.counselor.adapter.CounselorServerAdapter;
+import com.urgoo.counselor.biz.CounselorData;
 import com.urgoo.counselor.biz.CounselorManager;
 import com.urgoo.counselor.model.CounselorDetail;
 import com.urgoo.counselor.model.CounselorServiceList;
 import com.urgoo.counselor.model.EduList;
+import com.urgoo.counselor.model.ServiceLongList;
 import com.urgoo.counselor.model.experienceList;
 import com.urgoo.domain.ShareDetail;
 import com.urgoo.live.activities.LiveDetailActivity;
@@ -91,6 +93,7 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
     private boolean isFrom;
     private CounselorDetail mCounselorDetail;
     private ShareDetail shareDetail;
+    private ArrayList<ServiceLongList> mServiceLongList = new ArrayList<>();
     private ArrayList<CounselorServiceList> mCounselorServiceLis = new ArrayList<>();
     private ArrayList<EduList> mEduList = new ArrayList<>();
     private ArrayList<experienceList> mExperienceList = new ArrayList<>();
@@ -113,7 +116,7 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
         switch (item.getItemId()) {
             case R.id.share:
                 if (shareDetail != null) {
-                    ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url);
+                    ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url, shareDetail.weibo, shareDetail.pengyouquan);
                 }
                 break;
             case R.id.collect:
@@ -314,8 +317,10 @@ public class CounselorDetailActivity extends NavToolBarActivity implements View.
                     } else {
                         cvWorks.setVisibility(View.GONE);
                     }
-//                    mServiceLongList = gson.fromJson(jsonObject.getJSONArray("serviceLongList").toString(), new TypeToken<ArrayList<ServiceLongList>>() {
-//                    }.getType());
+                    mServiceLongList = gson.fromJson(jsonObject.getJSONArray("serviceLongList").toString(), new TypeToken<ArrayList<ServiceLongList>>() {
+                    }.getType());
+                    CounselorData mData = new CounselorData();
+                    mData.setCounselorServiceLis(mServiceLongList);
 //                    mWorksList = gson.fromJson(jsonObject.getJSONArray("works").toString(), new TypeToken<ArrayList<Works>>() {
 //                    }.getType());
                     mEduList = gson.fromJson(jsonObject.getJSONArray("eduList").toString(), new TypeToken<ArrayList<EduList>>() {

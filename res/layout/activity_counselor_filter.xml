@@ -253,6 +253,54 @@
                 android:footerDividersEnabled="false"
                 android:listSelector="@color/transparent"
                 android:scrollbars="none" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="会中文"
+                android:textColor="#26a69a"
+                android:textSize="14dp" />
+
+            <com.urgoo.view.MyListView
+                android:id="@+id/lv_chinese"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/ffffff"
+                android:cacheColorHint="@android:color/transparent"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:footerDividersEnabled="false"
+                android:listSelector="@color/transparent"
+                android:scrollbars="none" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="协会"
+                android:textColor="#26a69a"
+                android:textSize="14dp" />
+
+            <com.urgoo.view.MyListView
+                android:id="@+id/lv_org"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/ffffff"
+                android:cacheColorHint="@android:color/transparent"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:footerDividersEnabled="false"
+                android:listSelector="@color/transparent"
+                android:scrollbars="none" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

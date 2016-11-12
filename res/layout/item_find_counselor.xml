@@ -112,7 +112,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -148,7 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <TextView
@@ -174,7 +174,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="25dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_weight="0.1"
@@ -188,7 +188,7 @@
             android:layout_marginRight="15dp"
             android:layout_weight="1"
             android:background="@drawable/bg_main_btn_black"
-            android:text="查看资料"
+            android:text="查看"
             android:textColor="@color/tv2b2b2b"
             android:textSize="15dp" />
 
@@ -199,7 +199,7 @@
             android:layout_marginLeft="15dp"
             android:layout_weight="1"
             android:background="@drawable/bg_main_btn_black"
-            android:text="立即联系"
+            android:text="咨询"
             android:textColor="@color/tv2b2b2b"
             android:textSize="15dp"/>
     </LinearLayout>

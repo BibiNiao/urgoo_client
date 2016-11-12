@@ -14,6 +14,7 @@ import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 import com.urgoo.Interface.OnItemClickListener;
 import com.urgoo.client.R;
 import com.urgoo.live.model.AlbumDetailList;
+import com.zw.express.tool.Util;
 
 import java.util.List;
 
@@ -94,6 +95,7 @@ public class AlbumDetailAdapter extends UltimateViewAdapter<AlbumDetailAdapter.V
             holder.sdvAvatar.setImageURI(Uri.parse(albumDetail.getCoverSmall()));
             holder.tvDes.setText(albumDetail.getTitle());
             holder.tvTitle.setText(albumDetail.getEnName());
+            holder.tvTime.setText(Util.secToTime(albumDetail.getTimeLong()));
         }
     }
 

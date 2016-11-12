@@ -192,7 +192,7 @@ public class ZhiBodDetailActivity extends BaseActivity implements Constants, Zoo
         im_sharesdk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShareUtil.share(ZhiBodDetailActivity.this, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url);
+                ShareUtil.share(ZhiBodDetailActivity.this, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url, shareDetail.weibo, shareDetail.pengyouquan);
             }
         });
 

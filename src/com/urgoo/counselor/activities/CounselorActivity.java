@@ -708,10 +708,10 @@ public class CounselorActivity extends BaseActivity implements View.OnClickListe
                 }
                 break;
             case R.id.im_cont_fenxiang:         //   分享
-                ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url);
+                ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url, shareDetail.weibo, shareDetail.pengyouquan);
                 break;
             case R.id.img_title_fenixang:       //   分享
-                ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url);
+                ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url, shareDetail.weibo, shareDetail.pengyouquan);
                 break;
         }
     }

@@ -89,7 +89,7 @@ public class OrderActivity extends NavToolBarActivity implements View.OnClickLis
      */
     private boolean isCheck() {
         if (isReedAgr && isReedPayTime && isReedService) {
-            ivCheck.setImageResource(R.drawable.ic_checked);
+            ivCheck.setImageResource(R.drawable.ic_check);
             return true;
         } else {
             ivCheck.setImageResource(R.drawable.ic_uncheck);

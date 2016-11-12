@@ -217,11 +217,6 @@ public class UserMessageActivity extends NavToolBarActivity {
                         }
                     } else {
                         if (!userMessageList.isEmpty()) {
-                            if (count > 0) {
-                                userMessageList.get(0).setUnread(2);
-                            } else {
-                                userMessageList.get(0).setUnread(1);
-                            }
                             adapter.addData(userMessageList);
                         }
                     }

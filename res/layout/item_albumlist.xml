@@ -17,6 +17,16 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="25dp">
 
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdv_avatar"
+                android:layout_width="85dp"
+                android:layout_height="55dp"
+                android:layout_centerVertical="true"
+                fresco:actualImageScaleType="focusCrop"
+                fresco:placeholderImage="@drawable/img_empty_counselor"
+                fresco:placeholderImageScaleType="focusCrop" />
+
             <TextView
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
@@ -31,24 +41,15 @@
                 android:text="32:36"
                 android:textColor="#f2f2f2"
                 android:textSize="9dp" />
-
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/sdv_avatar"
-                android:layout_width="85dp"
-                android:layout_height="55dp"
-                android:layout_centerVertical="true"
-                fresco:actualImageScaleType="focusCrop"
-                fresco:placeholderImage="@drawable/img_empty_counselor"
-                fresco:placeholderImageScaleType="focusCrop" />
         </RelativeLayout>
 
         <ImageView
             android:id="@+id/iv_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
             android:src="@drawable/ic_next" />
 
         <LinearLayout

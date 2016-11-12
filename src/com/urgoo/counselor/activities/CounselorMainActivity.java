@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -97,7 +96,8 @@ public class CounselorMainActivity extends NavToolBarActivity implements View.On
         switch (item.getItemId()) {
             case R.id.share:
                 if (counselor != null) {
-                    ShareUtil.share(this, counselor.getShareDetail().title, counselor.getShareDetail().text, counselor.getShareDetail().pic, ZWConfig.URGOOURL_BASE + counselor.getShareDetail().url);
+                    ShareUtil.share(this, counselor.getShareDetail().title, counselor.getShareDetail().text,
+                            counselor.getShareDetail().pic, ZWConfig.URGOOURL_BASE + counselor.getShareDetail().url, counselor.getShareDetail().weibo, counselor.getShareDetail().pengyouquan);
                 }
                 break;
             case R.id.collect:
@@ -172,7 +172,12 @@ public class CounselorMainActivity extends NavToolBarActivity implements View.On
                     } else {
                         ivPlay.setVisibility(View.VISIBLE);
                     }
-                    tvEvaluate.setText(getString(R.string.find_pingjia, counselor.getStudentWords()));
+                    if (counselor.getStudentWords().equals("0")) {
+                        tvEvaluate.setVisibility(View.GONE);
+                    } else {
+                        tvEvaluate.setVisibility(View.VISIBLE);
+                        tvEvaluate.setText(getString(R.string.find_pingjia, counselor.getStudentWords()));
+                    }
                     tvName.setText(counselor.getEnName());
                     tvLocation.setText(counselor.getHabitualResidence());
                     tvSchool.setText(counselor.getSchool());

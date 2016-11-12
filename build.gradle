@@ -5,7 +5,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.5.0'
-        classpath 'com.growingio.android:vds-gradle-plugin:0.9.93'
+        classpath 'com.growingio.android:vds-gradle-plugin:0.9.99'
     }
 }
 allprojects {
@@ -24,7 +24,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 8
-        versionName "2.0.2"
+        versionName "3.0.0"
         multiDexEnabled true
         ndk {
             abiFilters 'armeabi-v7a', 'armeabi', 'x86'
@@ -46,6 +46,11 @@ android {
 
     dexOptions {
         javaMaxHeapSize "4g"
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 
     sourceSets {
@@ -93,15 +98,14 @@ dependencies {
         exclude group: 'com.parse.bolts',
                 module: 'bolts-android'
     }
-    compile 'com.growingio.android:vds-android-agent:0.9.93@aar'
+    compile 'com.growingio.android:vds-android-agent:0.9.99@aar'
     compile 'com.tencent.bugly:crashreport:latest.release'
-    compile files('libs/ShareSDK-SinaWeibo-2.7.6.jar')
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.alibaba:fastjson:1.2.14'
     compile files('libs/hyphenatechat_3.1.5.jar')
     compile 'com.android.support:design:22.2.1'
     compile project(':swipeBackLayout')
-    compile ('fm.jiecao:jiecaovideoplayer:4.8.2') {
+    compile('fm.jiecao:jiecaovideoplayer:4.8.2') {
         exclude module: 'appcompat-v7'
     }
 }

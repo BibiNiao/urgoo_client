@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +21,6 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.shrb.hrsdk.HRSDK;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
@@ -41,6 +39,7 @@ import com.urgoo.webviewmanage.BaseWebViewActivity;
 import com.urgoo.webviewmanage.BaseWebViewFragment;
 import com.zw.express.tool.GsonTools;
 import com.zw.express.tool.Util;
+import com.shrb.shrbsdk.SHRBSDK;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -155,9 +154,9 @@ public class PaySelectActivity extends NavToolBarActivity implements View.OnClic
                     case 1:
                         setCheck(ivCheck, view);
                         break;
-                    case 2:
-                        setCheck(ivCheck, view);
-                        break;
+//                    case 2:
+//                        setCheck(ivCheck, view);
+//                        break;
                 }
             }
         });
@@ -308,10 +307,11 @@ public class PaySelectActivity extends NavToolBarActivity implements View.OnClic
             } else if (payPath == 1) {
                 //微信
                 getWechatDetail(mOrder.getServiceName(), price, mOrder.getPayRequestOrderId() + order);
-            } else if (payPath == 2) {
-                //银行卡
-                getHuaRui(mOrder.getServiceName(), price, orderId);
             }
+//            else if (payPath == 2) {
+//                //银行卡
+//                getHuaRui(mOrder.getServiceName(), price, orderId);
+//            }
         } else {
             showToastSafe("请选择支付方式");
         }
@@ -330,7 +330,7 @@ public class PaySelectActivity extends NavToolBarActivity implements View.OnClic
                 getUserIDs();
             }
         };
-        HRSDK.approveDev(approveDevSign, random, handler);
+        SHRBSDK.approveDev(approveDevSign, random, handler, this);
     }
 
     /**
@@ -352,11 +352,10 @@ public class PaySelectActivity extends NavToolBarActivity implements View.OnClic
                     orderPay();
                 }
                 android.util.Log.e("responseMap:", responseMap.toString());
-                android.util.Log.e("openID:", openID);
             }
         };
 
-        HRSDK.Users.getUserIDs(spManager.getToken(), handler);
+        SHRBSDK.Users.getUserIDs(spManager.getToken(), handler);
     }
 
 
@@ -407,8 +406,8 @@ public class PaySelectActivity extends NavToolBarActivity implements View.OnClic
         String goodsTag = "WXG";
         String timeValid = "120";
         String deviceInfo = "34234234";
-        HRSDK.Pay.orderPay(openID, personUnionID, mchName, mchID, outTradeNo, body, detail, random, payReqSign, attach, confirmOrder,
-                unpaidAmount, paidAmount, unpaidAmount, limitPay, feeType, goodsTag, timeValid, deviceInfo, autoFillMap, callbackMap, PaySelectActivity.this, handler);
+        SHRBSDK.Pay.orderPay(openID, personUnionID, mchName, mchID, outTradeNo, body, detail, random, payReqSign, attach, confirmOrder,
+                mOrder.getPriceTotal(), paidAmount, unpaidAmount, limitPay, feeType, goodsTag, timeValid, deviceInfo, autoFillMap, callbackMap, PaySelectActivity.this, handler);
     }
 
     @Override

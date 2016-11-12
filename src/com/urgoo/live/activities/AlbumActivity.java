@@ -169,6 +169,7 @@ public class AlbumActivity extends BaseActivity implements View.OnClickListener 
                     tvDes.setText(albumDetail.getDes());
                     tvVideo.setText(getString(R.string.alubm_video, albumDetail.getTotalVideoUrlList().size()));
                     shareDetail = albumDetail.getShareDetail();
+                    tvTime.setText(getString(R.string.alubm_time, Util.secToTime(albumDetail.getTimeLong())));
                     checkCollect();
                     List<AlbumDetailList> albumDetailList = gson.fromJson(jsonObject.getJSONArray("albumDetailList").toString(), new TypeToken<List<AlbumDetailList>>() {
                     }.getType());
@@ -228,7 +229,7 @@ public class AlbumActivity extends BaseActivity implements View.OnClickListener 
                 onFavoriteArticle();
                 break;
             case R.id.iv_share:
-                ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url);
+                ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, shareDetail.url, shareDetail.weibo, shareDetail.pengyouquan);
                 break;
         }
     }

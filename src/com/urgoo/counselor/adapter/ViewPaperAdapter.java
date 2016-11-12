@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -29,7 +28,6 @@ import com.urgoo.counselor.model.Counselor;
 import com.urgoo.message.activities.ChatRobotActivity;
 import com.urgoo.net.EventCode;
 import com.urgoo.net.StringRequestCallBack;
-import com.urgoo.pay.activities.PayCompleteActivity;
 import com.urgoo.webviewmanage.BaseWebViewActivity;
 import com.urgoo.webviewmanage.BaseWebViewFragment;
 import com.zw.express.tool.Util;
@@ -236,8 +234,10 @@ public class ViewPaperAdapter extends PagerAdapter implements View.OnClickListen
                 break;
             case R.id.iv_share:
                 position = (Integer) v.getTag();
-                com.urgoo.domain.ShareDetail shareDetail = counselorList.get(position).getShareDetail();
-                ShareUtil.share(mContext, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url);
+                if (counselorList != null) {
+                    com.urgoo.domain.ShareDetail shareDetail = counselorList.get(position).getShareDetail();
+                    ShareUtil.share(mContext, shareDetail.title, shareDetail.text, shareDetail.pic, ZWConfig.URGOOURL_BASE + shareDetail.url, shareDetail.weibo, shareDetail.pengyouquan);
+                }
                 break;
         }
     }

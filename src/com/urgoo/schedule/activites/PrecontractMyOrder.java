@@ -6,10 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +51,7 @@ public class PrecontractMyOrder extends FragmentActivityBase {
                     R.string.complete};
     private TabHost mMyorderTabHost;
     private ViewPager mMyorderViewPage;
-    private LinearLayout LinLyout_myorder_back;
+    protected Toolbar mToolbar;
     private String systemCount = "0";
     private String TaskCount = "0";
     private String AccountCount = "0";
@@ -68,18 +70,13 @@ public class PrecontractMyOrder extends FragmentActivityBase {
         mFragments.add(new tobeconfirmedmyorderFragment());
         mFragments.add(new confirmedmyorderFragment());
         mFragments.add(new completemyorderFragment());
-        LinLyout_myorder_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EventBus.getDefault().post(new CounselorEvent());
-                if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
-                    Bundle extras = new Bundle();
-                    extras.putInt(MainActivity.EXTRA_TAB, 3);
-                    Util.openActivityWithBundle(PrecontractMyOrder.this, MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                }
-                finish();
-            }
-        });
+//        LinLyout_myorder_back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                EventBus.getDefault().post(new CounselorEvent());
+//
+//            }
+//        });
         mAdapter = new MyFragmentPageAdapter(getSupportFragmentManager(), mFragments);
         mMyorderViewPage.setAdapter(mAdapter);
         TabHost.TabContentFactory factory = new TabHost.TabContentFactory() {
@@ -113,7 +110,21 @@ public class PrecontractMyOrder extends FragmentActivityBase {
     public void initView() {
         mMyorderViewPage = (ViewPager) findViewById(R.id.myorder_viewPage);
         mMyorderTabHost = (TabHost) findViewById(R.id.myorder_tab_host);
-        LinLyout_myorder_back = (LinearLayout) findViewById(R.id.LinLyout_myorder_back);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle("我的预约");
+        mToolbar.setNavigationIcon(R.drawable.ic_back);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getIntent().getBooleanExtra(SplashActivity.EXTRA_FROM_PUSH, false)) {
+                    Bundle extras = new Bundle();
+                    extras.putInt(MainActivity.EXTRA_TAB, 3);
+                    Util.openActivityWithBundle(PrecontractMyOrder.this, MainActivity.class, extras, Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                }
+                finish();
+            }
+        });
+//        LinLyout_myorder_back = (LinearLayout) findViewById(R.id.LinLyout_myorder_back);
     }
 
     private void cleanRedShowAdvance(final String flag) {

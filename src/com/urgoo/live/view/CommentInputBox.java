@@ -160,13 +160,13 @@ public class CommentInputBox extends RelativeLayout {
         this.replyTarget = replyTarget;
     }
 
+    public String getReplyTarget() {
+        return replyTarget;
+    }
+
     public void loseFocus() {
         hideKeyboard(context);
         requestFocus();
-    }
-
-    public String getReplyTarget() {
-        return replyTarget;
     }
 
     public void showReplyInputToolBox() {
@@ -175,6 +175,7 @@ public class CommentInputBox extends RelativeLayout {
     }
 
     public void resetToolBox() {
+        setReplyTarget("0");
         this.etInput.setText("");
     }
 }

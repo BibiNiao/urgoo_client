@@ -13,28 +13,20 @@
  */
 package com.urgoo.client;
 
-import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.multidex.MultiDex;
-
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.growingio.android.sdk.collection.Configuration;
 import com.growingio.android.sdk.collection.GrowingIO;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMOptions;
-import com.shrb.hrsdk.HRSDK;
+import com.shrb.shrbsdk.SHRBSDK;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.urgoo.data.SPManager;
 import com.urgoo.message.EaseHelper;
 import com.zw.express.tool.image.ImageLoaderUtil;
-
-import java.util.Iterator;
-import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 import cn.sharesdk.framework.ShareSDK;
@@ -58,7 +50,7 @@ public class BaseApplication extends Application {
         JPushInterface.init(this);
 
         ShareSDK.initSDK(this);
-        HRSDK.getInstance().initWithAppID("3ae8f6f3-7c62-4bdf-8b02-7ae4c55574ef");
+        SHRBSDK.initWithAppID("3ae8f6f3-7c62-4bdf-8b02-7ae4c55574ef", this);
 
         // Fresco初始化
         ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this).setDownsampleEnabled(true).build();

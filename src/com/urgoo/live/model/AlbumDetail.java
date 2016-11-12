@@ -20,7 +20,7 @@ public class AlbumDetail {
     /**
      * 视频时间
      */
-    private String timeLong;
+    private int timeLong;
     private String isFollowed;
     private String title;
     private com.urgoo.domain.ShareDetail shareDetail;
@@ -53,11 +53,11 @@ public class AlbumDetail {
         this.des = des;
     }
 
-    public String getTimeLong() {
+    public int getTimeLong() {
         return timeLong;
     }
 
-    public void setTimeLong(String timeLong) {
+    public void setTimeLong(int timeLong) {
         this.timeLong = timeLong;
     }
 

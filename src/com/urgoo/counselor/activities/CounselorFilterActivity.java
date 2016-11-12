@@ -45,6 +45,8 @@ public class CounselorFilterActivity extends BaseActivity {
     private MyListView lvSex;
     private MyListView lvLocation;
     private MyListView lvYear;
+    private MyListView lvChinese;
+    private MyListView lvOrg;
     private EditText etSearch;
     private Button btnTrue;
     private Button btnRest;
@@ -54,6 +56,8 @@ public class CounselorFilterActivity extends BaseActivity {
     private List<Map<String, String>> sexList = new ArrayList<>();
     private List<Map<String, String>> locationList = new ArrayList<>();
     private List<Map<String, String>> yearList = new ArrayList<>();
+    private List<Map<String, String>> chineseList = new ArrayList<>();
+    private List<Map<String, String>> orgList = new ArrayList<>();
 
     private FilterAdatper surpriseAdapter;
     private FilterAdatper serviceAdapter;
@@ -61,6 +65,8 @@ public class CounselorFilterActivity extends BaseActivity {
     private FilterAdatper sexAdapter;
     private FilterAdatper locationAdapter;
     private FilterAdatper yearAdapter;
+    private FilterAdatper chineseAdapter;
+    private FilterAdatper orgAdapter;
 
     private SearchData searchData;
 
@@ -81,6 +87,8 @@ public class CounselorFilterActivity extends BaseActivity {
         lvSex.setItemChecked(searchData.getGenderId(), false);
         lvLocation.setItemChecked(searchData.getPositionId(), false);
         lvYear.setItemChecked(searchData.getCounselorExperanceId(), false);
+        lvChinese.setItemChecked(searchData.getChineseLevelId(), false);
+        lvOrg.setItemChecked(searchData.getOrganizationId(), false);
         searchData.clearData();
     }
 
@@ -146,11 +154,11 @@ public class CounselorFilterActivity extends BaseActivity {
                 searchData.clearData();
                 searchData.setSurpriseType(surpriseList.get(position).get("type"));
                 searchData.setSurpriseId(position);
-                restView();
                 Bundle bundle = new Bundle();
                 bundle.putString("path", "search");
                 bundle.putParcelable("search", searchData);
                 Util.openActivityWithBundle(CounselorFilterActivity.this, SearchResultAcivity.class, bundle);
+                restView();
                 System.out.println(surpriseList.get(position).get("type"));
             }
         });
@@ -199,20 +207,42 @@ public class CounselorFilterActivity extends BaseActivity {
                 System.out.println(yearList.get(position).get("type"));
             }
         });
+        lvChinese = (MyListView) findViewById(R.id.lv_chinese);
+        lvChinese.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                searchData.setChineseLevelType(chineseList.get(position).get("type"));
+                searchData.setChineseLevelId(position);
+                System.out.println(chineseList.get(position).get("type"));
+            }
+        });
+        lvOrg = (MyListView) findViewById(R.id.lv_org);
+        lvOrg.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                searchData.setOrganizationType(orgList.get(position).get("type"));
+                searchData.setOrganizationId(position);
+                System.out.println(orgList.get(position).get("type"));
+            }
+        });
         surpriseAdapter = new FilterAdatper(this, surpriseList);
         serviceAdapter = new FilterAdatper(this, serviceList);
         fromAdapter = new FilterAdatper(this, fromList);
         sexAdapter = new FilterAdatper(this, sexList);
         yearAdapter = new FilterAdatper(this, yearList);
         locationAdapter = new FilterAdatper(this, locationList);
+        chineseAdapter = new FilterAdatper(this, chineseList);
+        orgAdapter = new FilterAdatper(this, orgList);
     }
 
     private void getCounselorFilter() {
+        showLoadingDialog();
         CounselorManager.getInstance(this).getCounselorFilter(this);
     }
 
     @Override
     protected void onResponseSuccess(EventCode eventCode, JSONObject result) {
+        dismissLoadingDialog();
         switch (eventCode) {
             case EventCodeGetCounselorFilter:
                 try {
@@ -273,6 +303,24 @@ public class CounselorFilterActivity extends BaseActivity {
                     }
                     lvYear.setAdapter(yearAdapter);
                     yearAdapter.notifyDataSetChanged();
+
+                    for (int i = 0; i < counselorFilterInfo.getChineselevelList().size(); i++) {
+                        Map<String, String> map = new HashMap<>();
+                        map.put("name", counselorFilterInfo.getChineselevelList().get(i).getChineseLevelName());          //名字
+                        map.put("type", counselorFilterInfo.getChineselevelList().get(i).getChineseLevelType());        //类型
+                        chineseList.add(map);
+                    }
+                    lvChinese.setAdapter(chineseAdapter);
+                    chineseAdapter.notifyDataSetChanged();
+
+                    for (int i = 0; i < counselorFilterInfo.getOrgList().size(); i++) {
+                        Map<String, String> map = new HashMap<>();
+                        map.put("name", counselorFilterInfo.getOrgList().get(i).getOrganizationName());          //名字
+                        map.put("type", counselorFilterInfo.getOrgList().get(i).getOrganizationType());        //类型
+                        orgList.add(map);
+                    }
+                    lvOrg.setAdapter(orgAdapter);
+                    orgAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

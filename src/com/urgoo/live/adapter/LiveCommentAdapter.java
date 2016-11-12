@@ -250,30 +250,33 @@ public class LiveCommentAdapter extends UltimateViewAdapter<LiveCommentAdapter.V
                 break;
             case R.id.tv_count:
                 toReplyPosition = (Integer) v.getTag();
-//                commentToolBox.setReplyTarget(String.valueOf(comment.getCommentId()));
+                commentToolBox.setReplyTarget(String.valueOf(comment.getCommentId()));
                 commentToolBox.setInputHint("回复" + comment.getNickName() + ":");
                 commentToolBox.showReplyInputToolBox();
                 commentToolBox.setCommentInputToolBoxListener(new CommentInputToolBoxListener() {
                     @Override
                     public void onSend(CharSequence inputMsg) {
                         context.showLoadingDialog();
-                        LiveManager.getInstance(context).postComment(liveId, inputMsg.toString(), "1", String.valueOf(comment.getCommentId()), new StringRequestCallBack() {
-                            @Override
-                            public void onSuccess(EventCode eventCode, String response) {
-                                context.showToastSafe("评论成功");
-                                if (commentToolBox != null) {
-                                    commentToolBox.loseFocus();
-                                    commentToolBox.setInputHint("评论...");
-                                    commentToolBox.resetToolBox();
-                                }
-                                context.refreshCommentList();
-                            }
-
-                            @Override
-                            public void onFailure(EventCode eventCode, Call call) {
-                                context.showToastSafe("评论失败");
-                            }
-                        });
+                        context.postComment(liveId, inputMsg.toString(), commentToolBox.getReplyTarget());
+//                        LiveManager.getInstance(context).postComment(liveId, inputMsg.toString(), "1", String.valueOf(comment.getCommentId()), new StringRequestCallBack() {
+//                            @Override
+//                            public void onSuccess(EventCode eventCode, String response) {
+//                                context.dismissLoadingDialog();
+//                                context.showToastSafe("评论成功");
+//                                if (commentToolBox != null) {
+//                                    commentToolBox.loseFocus();
+//                                    commentToolBox.setInputHint("评论...");
+//                                    commentToolBox.resetToolBox();
+//                                }
+//                                context.refreshCommentList();
+//                            }
+//
+//                            @Override
+//                            public void onFailure(EventCode eventCode, Call call) {
+//                                context.dismissLoadingDialog();
+//                                context.showToastSafe("评论失败");
+//                            }
+//                        });
                     }
                 });
                 break;

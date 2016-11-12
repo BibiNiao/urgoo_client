@@ -35,7 +35,7 @@
     <string name="find_pingjia">%s条学生评价</string>
     <string name="find_fraction">综合评分 : %s</string>
     <string name="alubm_video">%s个视频</string>
-    <string name="alubm_time">时长:%s</string>
+    <string name="alubm_time">时长: %s</string>
     <string name="host_name">主讲人: %s</string>
     <string name="host_time">时间: %s</string>
     <string name="plan_time">截止时间 %s</string>

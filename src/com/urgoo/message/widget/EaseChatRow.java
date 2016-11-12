@@ -8,7 +8,9 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMMessage.Direct;
 import com.hyphenate.util.DateUtils;
+import com.urgoo.business.imageLoadBusiness;
 import com.urgoo.client.R;
+import com.urgoo.data.SPManager;
 import com.urgoo.message.activities.EaseChatMessageList;
 import com.urgoo.message.adapter.EaseMessageAdapter;
 import com.urgoo.message.utils.EaseUserUtils;
@@ -115,7 +117,9 @@ public abstract class EaseChatRow extends LinearLayout {
         }
         //设置头像和nick
         if(message.direct() == Direct.SEND){
-            EaseUserUtils.setUserAvatar(context, EMClient.getInstance().getCurrentUser(), userAvatarView);
+            imageLoadBusiness.imageLoadByNewURL(SPManager.getInstance(context).getUserIcon(), userAvatarView);
+
+//            EaseUserUtils.setUserAvatar(context, EMClient.getInstance().getCurrentUser(), userAvatarView);
             //发送方不显示nick
 //            UserUtils.setUserNick(EMChatManager.getInstance().getCurrentUser(), usernickView);
         }else{

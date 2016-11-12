@@ -515,6 +515,7 @@
         <activity
             android:name="com.urgoo.live.activities.LiveDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize"
             android:screenOrientation="portrait" />
         <!-- 专辑详情 -->
         <activity
@@ -524,10 +525,12 @@
         <activity
             android:name="com.urgoo.live.activities.VideoDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize"
             android:screenOrientation="portrait" />
         <!-- 回复列表 -->
         <activity
             android:name="com.urgoo.live.activities.CommentListActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
             android:screenOrientation="portrait" />
         <!-- 顾问简介(非首页) -->
         <activity

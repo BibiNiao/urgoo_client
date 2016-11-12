@@ -115,7 +115,7 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
         LiveManager.getInstance(this).getCommentList(videoId, page, "2", this);
     }
 
-    private void postComment(String id, String content, String targetId) {
+    public void postComment(String id, String content, String targetId) {
         LiveManager.getInstance(this).postComment(id, content, "2", targetId, this);
     }
 
@@ -126,19 +126,22 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
      */
     public void refreshCommentList() {
         if (adapter != null) {
-            if (adapter.getAdapterItemCount() < 10) {
-                recyclerView.setRefreshing(true);
-                getCommentList();
-            } else {
-                /**
-                 * 如果之前已经调过disableLoadmore()，则可以调此方法重新启用加载更多
-                 * ps:如果直接之前调过disableLoadmore(),再调用enableLoadmore()重新启用加载更多的话
-                 *    会出现列表向下滑动以后才能触发上拉加载
-                 */
-                if (!recyclerView.isLoadMoreEnabled()) {
-                    recyclerView.reenableLoadmore();
-                }
-            }
+            page = 0;
+            recyclerView.setRefreshing(true);
+            getCommentList();
+//            if (adapter.getAdapterItemCount() < 10) {
+//                recyclerView.setRefreshing(true);
+//                getCommentList();
+//            } else {
+//                /**
+//                 * 如果之前已经调过disableLoadmore()，则可以调此方法重新启用加载更多
+//                 * ps:如果直接之前调过disableLoadmore(),再调用enableLoadmore()重新启用加载更多的话
+//                 *    会出现列表向下滑动以后才能触发上拉加载
+//                 */
+//                if (!recyclerView.isLoadMoreEnabled()) {
+//                    recyclerView.reenableLoadmore();
+//                }
+//            }
         }
     }
 
@@ -357,7 +360,7 @@ public class VideoDetailActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.iv_share:
                 if (shareDetail != null) {
-                    ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, shareDetail.url);
+                    ShareUtil.share(this, shareDetail.title, shareDetail.text, shareDetail.pic, shareDetail.url, shareDetail.weibo, shareDetail.pengyouquan);
                 }
                 break;
             case R.id.iv_collect:

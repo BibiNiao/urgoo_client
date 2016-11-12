@@ -129,13 +129,11 @@ public class ChatRobotAdapter extends BaseAdapter {
         Robot robot = getItem(fposition);
         String type = robot.getStyle();
         final ChatMsgViewHolder holder;
-        if (convertView == null) {
+//        if (convertView == null) {
             holder = new ChatMsgViewHolder();
             convertView = createViewByMessage(robot);
             holder.text = (TextView) convertView.findViewById(R.id.text);
             holder.icon = (SimpleDraweeView) convertView.findViewById(R.id.sdv_avatar);
-            System.out.println("======================" + fposition + " = " + robot.getStyle() + robot.getText());
-            System.out.println("======================" + robot.getStyle());
             if (type.equals(MESSAGE_TYPE_DATE)) {
                 holder.lvDate = (RecyclerView) convertView.findViewById(R.id.lv_date);
             } else if (type.equals(MESSAGE_TYPE_TIME)) {
@@ -146,10 +144,11 @@ public class ChatRobotAdapter extends BaseAdapter {
                 holder.lvHorizontal = (RecyclerView) convertView.findViewById(R.id.lv_horizontal);
             }
             convertView.setTag(holder);
-        } else {
-            System.out.println("//////////////////////" + fposition + " = " + robot.getStyle() + robot.getText());
-            holder = (ChatMsgViewHolder) convertView.getTag();
-        }
+//        } else {
+//            System.out.println("//////////////////////" + fposition + " = " + robot.getStyle() + robot.getText());
+//            holder = (ChatMsgViewHolder) convertView.getTag();
+//        }
+
         if (type.equals(MESSAGE_TYPE_DATE)) {
             if (holder.lvDate != null) {
                 DateAdpater dateAdpater = new DateAdpater(chatPage, robot.getListOption());
@@ -209,7 +208,7 @@ public class ChatRobotAdapter extends BaseAdapter {
                 adapter.notifyDataSetChanged();
             }
         } else {
-            if (holder.lvHorizontal != null) {
+            if (holder.lvHorizontal != null && robots.get(fposition).getListOption().size() > 0) {
                 HorizontalAdpater horizontalAdpater = new HorizontalAdpater(chatPage, robot.getListOption());
                 holder.lvHorizontal.setAdapter(horizontalAdpater);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(chatPage, LinearLayoutManager.HORIZONTAL, false);

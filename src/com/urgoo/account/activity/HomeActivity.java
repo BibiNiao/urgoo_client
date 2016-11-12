@@ -276,10 +276,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.btn_next:
                 if (loginOrRegister()) {
-                    if (flag.equals("1")) {
-                        loginUrgoo(phone, code);
-                    } else if (flag.equals("2")) {
-                        regist(phone, phone, code);
+                    if (Util.isEmpty(flag)) {
+                        showToastSafe("验证码错误");
+                    } else {
+                        if (flag.equals("1")) {
+                            loginUrgoo(phone, code);
+                        } else if (flag.equals("2")) {
+                            regist(phone, phone, code);
+                        }
                     }
                 }
                 break;

@@ -143,9 +143,9 @@ public class ZWConfig {
     //测试环境
 //    public final static String URGOOURL_BASE = "http://www-test-urgoo.com/urgoo/";
     //生产环境
-//    public final static String URGOOURL_BASE = "http://www-prd-urgoo.com/urgoo/";
+    public final static String URGOOURL_BASE = "http://www-prd-urgoo.com/urgoo/";
 //    小孙
-    public final static String URGOOURL_BASE = "http://10.203.203.49:8082/urgoo/";
+//    public final static String URGOOURL_BASE = "http://10.203.203.49:8082/urgoo/";
 
 //    真实环境
 //    public final static String URGOOURL_BASE = "http://139.129.164.163:8083/urgoo/";
@@ -213,7 +213,7 @@ public class ZWConfig {
     //杨德成20160505 start
     public static final String Action_taskDetail = URGOOURL_BASE + "001/001/task/taskDetailStu?";
 
-    public static final String Action_getAvatarAndnickname = URGOOURL_BASE + "001/001/profile/getUserInfoByHxCode";
+    public static final String Action_getAvatarAndnickname = URGOOURL_BASE + "001/001/profile/getUserInfoByHxCodeAndroid";
 
 
     public final static String ACTION_CustomerService = "ydc2001";
@@ -371,8 +371,6 @@ public class ZWConfig {
     public static final String URL_getStudentTaskListNewest = URGOOURL_BASE + "001/001/task/getStudentTaskListNewest";
 
     public final static String ACTION_selectParentInfo = URGOOURL_BASE + "001/001/user/selectParentInfo";
-    public static final String Action_getZoomRoom = URGOOURL_BASE + "001/001/zoom/getZoomRoom";
-
 
     // 任务详情
     public static final String Action_getTaskDetailByTaskId = URGOOURL_BASE + "001/001/task/getTaskDetailByTaskId";
@@ -474,4 +472,6 @@ public class ZWConfig {
     public static final String URL_requestUrgooActivity = "http://bbs.urgoo.cn/leoFile/AppShare/urgooActivty.html";
     // 获取验证码
     public static final String URL_requestGetCode = URGOOURL_BASE + "001/001/login/getIdentifyingCodeAndRegionCode";
+    // 全屏接受拒绝视频预约
+    public static final String Action_getZoomRoom = URGOOURL_BASE + "001/001/zoom/getZoomRoom";
 }
